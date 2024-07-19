@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLocale } from "next-intl";
@@ -7,19 +7,41 @@ const Avatar = () => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale();
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative inline-block text-left">
+    <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
         className="flex items-center p-2 rounded-full transition-all"
       >
         <Image
-          src="/avt.avif"
+          src="/avatar.jpg"
           alt="User avatar"
           width={30}
           height={30}
@@ -37,7 +59,7 @@ const Avatar = () => {
           </div>
           <hr className="flex-grow border-gray-300" />
           <ul className="py-2 text-sm text-gray-700">
-          <li>
+            <li>
               <a
                 href={`/${locale}/booking-history`}
                 className="block px-4 py-2 hover:bg-gray-100"
@@ -56,6 +78,22 @@ const Avatar = () => {
             <hr className="flex-grow border-gray-300" />
             <li>
               <a
+                href={`/${locale}/services`}
+                className="block px-4 py-2 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <Image
+                    src="/services.svg"
+                    alt="history"
+                    width={17}
+                    height={17}
+                  />
+                  <p className="ml-2">Services</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a
                 href={`/${locale}/booking-history`}
                 className="block px-4 py-2 hover:bg-gray-100"
               >
@@ -70,14 +108,18 @@ const Avatar = () => {
                 </div>
               </a>
             </li>
+            <hr className="flex-grow border-gray-300" />
             <li>
               <a href="/settings" className="block px-4 py-2 hover:bg-gray-100">
-                Settings
-              </a>
-            </li>
-            <li>
-              <a href="/earnings" className="block px-4 py-2 hover:bg-gray-100">
-                Earnings
+                <div className="flex items-center">
+                  <Image
+                    src="/support.svg"
+                    alt="history"
+                    width={17}
+                    height={17}
+                  />
+                  <p className="ml-2">Support</p>
+                </div>
               </a>
             </li>
           </ul>

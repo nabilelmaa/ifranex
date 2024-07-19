@@ -38,11 +38,11 @@ export const Navbar = () => {
         <>
           <nav className="flex items-center justify-between py-2 shadow-md px-4 z-50 relative">
             <Link href="/">
-              <p className="font-bold text-green-500 lg:text-xl">
+              <p className="font-bold text-green-500 text-xl lg:text-3xl md:text-3xl">
                 Ifrane<span className="text-black">X.</span>
               </p>
             </Link>
-            <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-700 font-semibold">
+            <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
               <Link href="/">
                 <li className="hover:text-green-400 transition cursor-pointer">
                   {t("nav_home")}

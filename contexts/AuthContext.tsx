@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     Cookies.remove("token");
     Cookies.remove("token_exp");
-    router.push(`/${locale}/login`);
+    router.push(`/`);
   };
 
   const checkAuthState = async (): Promise<void> => {

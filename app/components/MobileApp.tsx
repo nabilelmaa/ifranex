@@ -49,7 +49,7 @@ export const MobileApp = () => {
             <div className="camera"></div>
             <div className="display">
               <div className="artboard artboard-demo phone-1">
-                <Image src="/image.png" alt="image" width={400} height={120} />
+                <Image src="/phone-picture.jpg" alt="image" width={320} height={100} />
               </div>
             </div>
           </div>
