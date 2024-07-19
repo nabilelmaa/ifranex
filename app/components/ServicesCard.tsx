@@ -6,6 +6,8 @@ export const ServicesCard: React.FC<ServiceProps> = ({
   description,
   category,
   banner,
+  id,
+  pricePerHour,
 }) => {
   return (
     <div className="border rounded-md shadow-lg bg-gray-100">
