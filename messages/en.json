@@ -1,0 +1,73 @@
+{
+    "Navbar": {
+        "nav_home": "Home",
+        "nav_about": "About",
+        "nav_services": "Services",
+        "nav_us": "Why us",
+        "nav_reviews": "Reviews",
+        "login_button": "Login",
+        "signout_button": "Log out"
+    },
+    "Us": {
+        "title": "What Makes Us Different?",
+        "description": "We believe in building long-lasting relationships with our customers and always treat them with respect and professionalism.",
+        "qualified_people": "Qualified People",
+        "qualified_people_desc": "Our plumbers are fully qualified, highly experienced, and insured, providing you with complete peace of mind.",
+        "services_24_7": "24/7 Services",
+        "services_24_7_desc": "Reach out to us at any time, our skilled plumbing engineers will respond quickly to provide the help you need.",
+        "competitive_pricing": "Competitive Pricing",
+        "competitive_pricing_desc": "We are committed to matching the prices set by our competitors for any plumbing services and installations."
+    },
+    "ServiceCard": {
+        "book_now": "Book now"
+    },
+    "RegisterForm": {
+        "create_account": "Create account",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "submit_button": "Submit",
+        "submitting": "Submitting",
+        "have_account": "Already have an account?",
+        "sign_in": "Signin",
+        "error_message_register": "User with that email already exist!",
+        "verify": "Verify",
+        "sending_code": "Sending code",
+        "verification_code": "Enter verification code",
+        "account_created": "Account created successfully!",
+        "invalid_code": "Invalid verification code!"
+    },
+    "LoginForm": {
+        "welcome_message": "Welcome back",
+        "email": "Email",
+        "password": "Password",
+        "forgot_password": "Forgot password?",
+        "signin_button": "Sign In",
+        "dont_have": "Don't have an account?",
+        "sign_up": "Signup",
+        "error_message_login": "Either your email or password is incorrect!"
+    },
+    "BookingSummary": {
+        "booking_success": "Booking created successfully!"
+    },
+    "Footer": {
+        "job": "Do you want to get a job?",
+        "join_team": "Join our team to grow your skills! We offer great opportunities for career growth.",
+        "apply_to_join": "Apply to join us",
+        "rights_reserved": "All rights reserved.",
+        "company": "Company",
+        "about_us": "About us",
+        "customer_reviews": "Customer reviews",
+        "pricing": "Pricing",
+        "company_policies": "Company policies",
+        "terms_and_services": "Terms and services",
+        "services": "Services",
+        "tap_repair_and_replacement": "Tap Repair and Replacement",
+        "toilet_and_shower_leaks": "Toilet and Shower Leaks",
+        "kitchen_installations": "Kitchen Installations",
+        "bathroom_installations": "Bathroom Installations",
+        "emergency_plumber": "Emergency Plumber",
+        "baby_sitting": "Babysitting",
+        "get_in_touch": "Get in Touch"
+    }
+}

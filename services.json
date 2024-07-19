@@ -1,0 +1,112 @@
+[
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1719426071/hrh-ifrane/l9u6qre66wle0qrk8mbr.jpg",
+        "pricePerHour": 20,
+        "category": "Cleaning",
+        "title_en": "Cleaning",
+        "description_en": "Professional cleaning services",
+        "title_fr": "Nettoyage",
+        "description_fr": "Services de nettoyage professionnels",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1720894605/hrh-ifrane/l72nnv9c1mnzooywc1eq.jpg",
+        "pricePerHour": 25,
+        "category": "Cooking",
+        "title_en": "Cooking",
+        "description_en": "Expert cooking services",
+        "title_fr": "Cuisine",
+        "description_fr": "Services de cuisine expert",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1720895003/hrh-ifrane/vqhgbrr6igvfo9ylytpm.jpg",
+        "pricePerHour": 30,
+        "category": "Electrical",
+        "title_en": "Electrical",
+        "description_en": "Electrical installation and repair",
+        "title_fr": "Électrique",
+        "description_fr": "Installation et réparation électrique",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1719426080/hrh-ifrane/yo2i7kiaghqai6peozdf.jpg",
+        "pricePerHour": 35,
+        "category": "Plumbing",
+        "title_en": "Plumbing",
+        "description_en": "Professional plumbing services",
+        "title_fr": "Plomberie",
+        "description_fr": "Services de plomberie professionnels",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1720895310/hrh-ifrane/xiegxpilowey7k6zadnl.jpg",
+        "pricePerHour": 40,
+        "category": "TV and Electronics",
+        "title_en": "TV and Electronics",
+        "description_en": "TV and electronics setup and repair",
+        "title_fr": "TV et Électronique",
+        "description_fr": "Installation et réparation de TV et d'électronique",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1720895409/hrh-ifrane/mthjbj86eko29epjpak5.jpg",
+        "pricePerHour": 50,
+        "category": "IT support",
+        "title_en": "IT Support",
+        "description_en": "Comprehensive IT support services",
+        "title_fr": "Support IT",
+        "description_fr": "Services de support informatique complets",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1719427444/StockCake-Painter_at_Work_1719427419_w6vozw.jpg",
+        "pricePerHour": 45,
+        "category": "Painting",
+        "title_en": "Painting",
+        "description_en": "Interior and exterior painting services",
+        "title_fr": "Peinture",
+        "description_fr": "Services de peinture intérieure et extérieure",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1718908155/hrh-ifrane/baby-sitting_xspilg.jpg",
+        "pricePerHour": 15,
+        "category": "Babysitting",
+        "title_en": "Babysitting",
+        "description_en": "Reliable babysitting services",
+        "title_fr": "Garde d'enfants",
+        "description_fr": "Services de garde d'enfants fiables",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "https://res.cloudinary.com/dcncaesb0/image/upload/v1720895560/hrh-ifrane/eothjhf4yjvqqftykvqm.jpg",
+        "pricePerHour": 30,
+        "category": "Repair",
+        "title_en": "Repair",
+        "description_en": "General repair services",
+        "title_fr": "Réparation",
+        "description_fr": "Services de réparation générale",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "banner": "url_to_installation_banner",
+        "pricePerHour": 30,
+        "category": "Installations",
+        "title_en": "Installations",
+        "description_en": "Installation services for various needs",
+        "title_fr": "Installations",
+        "description_fr": "Services d'installation pour divers besoins",
+        "createdAt": "2024-07-07T15:01:58.204+00:00",
+        "updatedAt": "2024-07-07T15:01:58.204+00:00"
+    }
+]

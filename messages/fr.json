@@ -1,0 +1,70 @@
+{
+    "Navbar": {
+        "nav_home": "Accueil",
+        "nav_about": "À propos",
+        "nav_services": "Services",
+        "nav_us": "Pourquoi nous",
+        "nav_reviews": "Avis",
+        "login_button": "Se connecter",
+        "signout_button": "Se déconnecter"
+    },
+    "Us": {
+        "title": "Qu'est-ce qui nous rend différents?",
+        "description": "Nous croyons en la construction de relations durables avec nos clients et les traitons toujours avec respect et professionnalisme.",
+        "qualified_people": "Personnes qualifiés",
+        "qualified_people_desc": "Nos plombiers sont pleinement qualifiés, très expérimentés et assurés, vous offrant une tranquillité d'esprit totale.",
+        "services_24_7": "Services 24/7",
+        "services_24_7_desc": "Contactez-nous à tout moment, nos ingénieurs en plomberie qualifiés répondront rapidement pour fournir l'aide dont vous avez besoin.",
+        "competitive_pricing": "Tarification compétitive",
+        "competitive_pricing_desc": "Nous nous engageons à égaler les prix fixés par nos concurrents pour tous les services et installations de plomberie."
+    },
+    "ServiceCard": {
+        "book_now": "Réserver maintenant"
+    },
+    "RegisterForm": {
+        "create_account": "Créer un compte",
+        "username": "Nom d'utilisateur",
+        "email": "Email",
+        "password": "Mot de passe",
+        "submit_button": "Soumettre",
+        "submitting": "Soumission en cours",
+        "have_account": "Vous avez déjà un compte ?",
+        "sign_in": "Se connecter",
+        "error_message_register": "Un utilisateur avec cet email existe déjà!",
+        "verify": "Vérifier",
+        "sending_code": "Envoi du code",
+        "verification_code": "Entrer le code de vérification",
+        "account_created": "Compte créé avec succès!",
+        "invalid_code": "Code de vérification invalide!"
+    },
+    "LoginForm": {
+        "welcome_message": "Bienvenue à nouveau",
+        "email": "Email",
+        "password": "Mot de passe",
+        "forgot_password": "Mot de passe oublié?",
+        "signin_button": "Se connecter",
+        "dont_have": "Vous n'avez pas de compte?",
+        "sign_up": "S'inscrire",
+        "error_message_login": "Votre email ou mot de passe est incorrect!"
+    },
+    "Footer": {
+        "job": "Voulez-vous trouver un emploi?",
+        "join_team": "Rejoignez notre équipe pour développer vos compétences! Nous offrons de grandes opportunités de croissance professionnelle.",
+        "apply_to_join": "Postulez pour nous rejoindre",
+        "rights_reserved": "Tous droits réservés.",
+        "company": "Entreprise",
+        "about_us": "À propos de nous",
+        "customer_reviews": "Avis des clients",
+        "pricing": "Tarification",
+        "company_policies": "Politiques de l'entreprise",
+        "terms_and_services": "Conditions et services",
+        "services": "Services",
+        "tap_repair_and_replacement": "Réparation et remplacement de robinets",
+        "toilet_and_shower_leaks": "Fuites de toilettes et de douches",
+        "kitchen_installations": "Installations de cuisine",
+        "bathroom_installations": "Installations de salle de bain",
+        "baby_sitting": "Babysitting",
+        "emergency_plumber": "Plombier d'urgence",
+        "get_in_touch": "Contactez-nous"
+    }
+}
