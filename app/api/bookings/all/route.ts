@@ -1,19 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { verifyToken } from '@/lib/auth';
 import { Service } from "@/types/index";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const locale = searchParams.get('locale') || 'fr'; 
-  const { userId } = await verifyToken(request);
 
   try {
-
     const bookings = await db.booking.findMany({
-      where: {
-        customerId: userId,
-      },
       include: {
         service: true,
       },
@@ -22,26 +16,27 @@ export async function GET(request: NextRequest) {
       },
     });
 
-
     const formattedBookings = bookings.map((booking) => {
       const title = booking.service[`title_${locale}` as keyof Service] || booking.service.title_en;
-      const description = booking.service[`description_${locale}` as keyof Service] || booking.service.description_en;
       const bookingDate = new Date(booking.createdAt);
       if (isNaN(bookingDate.getTime())) {
-        throw new Error("Invalid date format for booking createdAt");
+        throw new Error("Invalid date format for booking bookingDate");
       }
       return {
         id: booking.id,
-        bookingDate: bookingDate.toISOString(),
+        createdAt: bookingDate.toISOString(),
+        fullName: booking.fullName,
+        phoneNumber: booking.phoneNumber,
+        address: booking.address,
+        timing: booking.timing,
         title,
-        description,
         status: booking.status,
       };
     });
 
     return NextResponse.json({ bookings: formattedBookings }); 
   } catch (error) {
-    console.error('Error fetching booking history:', error);
+    console.error('Error fetching bookings:', error);
     return NextResponse.json({
       status: 500,
       statusText: 'Internal Server Error',

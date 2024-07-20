@@ -28,7 +28,6 @@ const BookingSummary: React.FC = () => {
   const handleConfirmBooking = async () => {
     try {
       const token = localStorage.getItem("token");
-      console.log("booking-summary/page.tsx => ", token);
 
       const response = await fetch("/api/bookings/create", {
         method: "POST",
@@ -46,9 +45,9 @@ const BookingSummary: React.FC = () => {
 
       if (!response.ok) {
         throw new Error("Failed to confirm booking");
-        showToast("Failed to create booking!", "error");
       }
-
+      
+    
       showToast("Booking created successfully!", "success");
       router.push(`/${locale}/success`);
     } catch (error) {

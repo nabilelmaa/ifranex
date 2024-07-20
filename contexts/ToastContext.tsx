@@ -25,16 +25,16 @@ export const useToast = (): ToastContextType => {
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [toast, setToast] = useState<Toast>({
-    show: false,
-    message: "",
-    type: "success",
+    show: false, 
+    message: "", 
+    type: "success", 
   });
 
   const showToast = (
     message: string,
     type: "success" | "error" = "success"
   ) => {
-    console.log("Showing toast:", { message, type }); 
+    console.log("Showing toast:", { message, type });
     setToast({ show: true, message, type });
     setTimeout(
       () => setToast({ show: false, message: "", type: "success" }),
@@ -46,7 +46,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     <ToastContext.Provider value={{ showToast }}>
       {children}
       {toast.show && (
-        <div className="fixed bottom-4 right-4 z-50 sm:bottom-auto sm:right-auto sm:left-0 sm:top-1/2 sm:-translate-y-1/2 sm:mx-auto">
+        <div className="fixed top-4 right-4 z-50 pointer-events-none">
           {toast.type === "success" ? (
             <ToastSuccess message={toast.message} />
           ) : (

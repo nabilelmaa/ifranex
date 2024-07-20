@@ -91,7 +91,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         logout();
       }
     } else {
-      if (pathname !== `/${locale}` && pathname !== `/${locale}/register`) {
+      if (
+        pathname !== `/${locale}` &&
+        pathname !== `/${locale}/register` &&
+        pathname !== `/${locale}/admin`
+      ) {
         logout();
       }
     }

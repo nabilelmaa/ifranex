@@ -41,7 +41,7 @@ const Avatar = () => {
         className="flex items-center p-2 rounded-full transition-all"
       >
         <Image
-          src="/avatar.jpg"
+          src="/avatar-icon.jpeg"
           alt="User avatar"
           width={30}
           height={30}
@@ -50,7 +50,7 @@ const Avatar = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 w-46 mt-2 bg-white border rounded-lg shadow-lg z-10">
+        <div className="absolute right-0 w-52 mt-2 bg-white border rounded-lg shadow-lg z-10">
           <div className="px-4 py-3 text-sm text-gray-900 text-center">
             <div>{user?.username}</div>
             <div className="font-semibold truncate text-gray-700 text-xs">

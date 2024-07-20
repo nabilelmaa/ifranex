@@ -30,9 +30,9 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
             <Navbar />
-            <main>
-              <ToastProvider>{children}</ToastProvider>
-            </main>
+            <ToastProvider>
+              <main>{children}</main>
+            </ToastProvider>
             <Footer />
           </AuthProvider>
         </NextIntlClientProvider>

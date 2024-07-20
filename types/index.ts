@@ -1,4 +1,4 @@
-import { BookingStatus, Service } from "@prisma/client";
+import { BookingStatus } from "@prisma/client";
 
 export interface ServiceProps {
     id: string;
@@ -8,6 +8,18 @@ export interface ServiceProps {
     title: string;
     description: string;
   }
+
+  export interface Service {
+    id: string;
+    banner: string;
+    pricePerHour: number;
+    category: string;
+    title_en: string;
+    description_en: string;
+    title_fr: string;
+    description_fr: string;
+  }
+  
 
 export interface BookingProps {
   bookingDate: string | number | Date;
@@ -35,16 +47,3 @@ export interface BookingDetails {
     createdAt: string;
     customerId: string;
 }
-
-export interface Booking {
-    id: string;
-    fullName: string;
-    address: string;
-    timing: Date;
-    phoneNumber: string;
-    details: string;
-    status: BookingStatus; 
-    createdAt: Date;
-    customerId: string;
-    serviceId: Service;
-  }
