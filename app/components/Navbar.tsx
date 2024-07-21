@@ -29,14 +29,15 @@ export const Navbar = () => {
   }, [isAuthenticated]);
 
   const isHomePage = pathname === `/${locale}`;
+  const isAdminPage = pathname === `/${locale}/admin`;
   const isLoginPage = pathname === `/${locale}/login`;
   const isRegisterPage = pathname === `/${locale}/register`;
 
   return (
     <>
-      {!isLoginPage && !isRegisterPage && (
+      {!isLoginPage && !isRegisterPage && !isAdminPage && (
         <>
-          <nav className="flex items-center justify-between py-2 shadow-md px-4 z-50 relative">
+          <nav className="flex items-center justify-between p-6 z-50 relative">
             <Link href="/">
               <p className="font-bold text-green-500 text-xl lg:text-3xl md:text-3xl">
                 Ifrane<span className="text-black">X.</span>
@@ -81,7 +82,7 @@ export const Navbar = () => {
                     <Avatar />
                   ) : (
                     <Link href={`/${locale}/login`}>
-                      <button className="flex items-center ml-4 px-4 py-2 border rounded-full text-black shadow-lg transition-all">
+                      <button className="ml-8 inline-block px-4 py-3 text-sm font-semibold leading-none bg-white hover:bg-blueGray-800 hover:text-white rounded-full shadow-md transition duration-100">
                         {t("login_button")}
                       </button>
                     </Link>

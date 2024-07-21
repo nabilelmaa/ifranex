@@ -108,7 +108,8 @@ export const SignInForm: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none"
+            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+              placeholder="example@gmail.com"
             required
           />
         </div>
@@ -135,7 +136,8 @@ export const SignInForm: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full pr-10 focus:border-blue-300 focus:outline-none"
+              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 password-input"
+              placeholder="••••••••"
               required
             />
             <button
@@ -148,7 +150,7 @@ export const SignInForm: React.FC = () => {
           </div>
 
           <a
-            className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800"
+            className="inline-block align-baseline text-sm text-green-500 hover:text-green-600"
             href="#"
           >
             {t("forgot_password")}
@@ -157,7 +159,7 @@ export const SignInForm: React.FC = () => {
         <div className="mb-6">
           <button
             type="submit"
-            className="bg-black hover:bg-white hover:text-black text-white border hover:border-black w-full px-4 py-2 rounded-md transition-colors duration-300"
+            className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
           >
             {loading ? (
               <div className="flex items-center justify-center">
@@ -174,7 +176,7 @@ export const SignInForm: React.FC = () => {
         <span className="inline-block align-baseline text-xs lg:text-sm md:text-sm">
           {t("dont_have")}{" "}
           <a
-            className="text-blue-500 hover:text-blue-600"
+            className="text-green-500 hover:text-green-600"
             href={`/${locale}/register`}
           >
             {t("sign_up")}

@@ -98,8 +98,14 @@ body {
 
 .footer-wave {
   position: absolute;
-  top: -50px; /* Adjust as needed */
+  top: -50px; 
   width: 100%;
   height: auto;
-  z-index: -1; /* Ensure it stays behind other content */
+  z-index: -1;
+}
+
+
+.password-input {
+  @apply font-verdana;
+  letter-spacing: 0.125em;
 }

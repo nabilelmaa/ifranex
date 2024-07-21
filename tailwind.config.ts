@@ -18,7 +18,15 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        verdana: ['Verdana', 'sans-serif'],
+      },
       colors: {
+        "blueGray-800":"#1e293b",
+        "coolGray-800":"#1f2937",
+        "coolGray-900":"#111827",
+        "coolGray-200":"#e5e7eb",
+        
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

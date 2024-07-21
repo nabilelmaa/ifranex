@@ -3,7 +3,7 @@ function page() {
     console.log();
   };
   return (
-    <div className="flex items-center justify-center bg-gray-100">
+    <div className="flex items-center justify-center bg-gray-100 min-h-screen">
       <div className="bg-white p-6 rounded-lg shadow-lg text-center">
         <h2 className="text-3xl font-semibold mb-4 text-green-500">
           Booking Confirmed!

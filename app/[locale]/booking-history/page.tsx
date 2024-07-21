@@ -5,6 +5,8 @@ import { useToast } from "@/contexts/ToastContext";
 import { BookingProps } from "@/types/index";
 import { useLocale } from "next-intl";
 import Image from "next/image";
+import { hourglass } from "ldrs";
+
 import {
   Table,
   TableBody,
@@ -18,8 +20,8 @@ import {
 const statusIcons: { [key: string]: string } = {
   Pending: "/pending.svg",
   Canceled: "/canceled.svg",
-  Confirmed: "/confirmed.svg",
-  Completed: "/completed.svg",
+  Confirmed: "/confirmed-icon.svg",
+  Completed: "/completed-icon.svg",
 };
 
 const BookingHistory: React.FC = () => {
@@ -58,18 +60,18 @@ const BookingHistory: React.FC = () => {
 
     fetchBookings();
   }, [locale, showToast]);
-
+  hourglass.register();
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6 min-h-screen">
       <h2 className="text-3xl font-bold">Booking History</h2>
       {loading ? (
         <div className="flex justify-center items-center h-screen">
-          <div className="space-x-2">
-            <span className="loading loading-ball loading-xs"></span>
-            <span className="loading loading-ball loading-sm"></span>
-            <span className="loading loading-ball loading-md"></span>
-            <span className="loading loading-ball loading-lg"></span>
-          </div>
+          <l-hourglass
+            size="40"
+            bg-opacity="0.1"
+            speed="1.75"
+            color="black"
+          ></l-hourglass>
         </div>
       ) : bookings.length === 0 ? (
         <p>No bookings found.</p>

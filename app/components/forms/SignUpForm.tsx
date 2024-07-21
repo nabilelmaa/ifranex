@@ -138,14 +138,15 @@ export const SignUpForm: React.FC = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none"
+              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+              placeholder="example@gmail.com"
               required={formState === "email"}
             />
           </div>
           <div className="mb-6">
             <button
               type="submit"
-              className="bg-black hover:bg-white hover:text-black text-white border hover:border-black w-full px-4 py-2 rounded-md transition-colors duration-300"
+              className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
               disabled={loading}
             >
               {loading ? (
@@ -191,7 +192,7 @@ export const SignUpForm: React.FC = () => {
                     ref={(el) => {
                       inputRefs.current[0] = el!;
                     }}
-                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none text-center"
+                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     maxLength={1}
                     required={formState === "verification"}
                   />
@@ -204,7 +205,7 @@ export const SignUpForm: React.FC = () => {
                     ref={(el) => {
                       inputRefs.current[1] = el;
                     }}
-                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none text-center"
+                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     maxLength={1}
                     required={formState === "verification"}
                   />
@@ -217,7 +218,7 @@ export const SignUpForm: React.FC = () => {
                     ref={(el) => {
                       if (el) inputRefs.current[2] = el;
                     }}
-                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none text-center"
+                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     maxLength={1}
                     required={formState === "verification"}
                   />
@@ -230,7 +231,7 @@ export const SignUpForm: React.FC = () => {
                     ref={(el) => {
                       if (el) inputRefs.current[3] = el;
                     }}
-                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none text-center"
+                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     maxLength={1}
                     required={formState === "verification"}
                   />
@@ -257,7 +258,7 @@ export const SignUpForm: React.FC = () => {
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:border-blue-300 focus:outline-none"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   required={formState === "verification"}
                 />
               </div>
@@ -283,7 +284,7 @@ export const SignUpForm: React.FC = () => {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="mt-1 p-2 border border-gray-300 rounded-md w-full pr-10 focus:border-blue-300 focus:outline-none"
+                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                     required={formState === "verification"}
                   />
                   <button
@@ -298,7 +299,7 @@ export const SignUpForm: React.FC = () => {
               <div className="mb-6">
                 <button
                   type="submit"
-                  className="bg-black hover:bg-white hover:text-black text-white border hover:border-black w-full px-4 py-2 rounded-md transition-colors duration-300"
+                  className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
                   disabled={loading}
                 >
                   {loading ? (
@@ -324,7 +325,7 @@ export const SignUpForm: React.FC = () => {
         <span className="inline-block align-baseline text-xs lg:text-sm md:text-sm">
           {t("have_account")}{" "}
           <a
-            className="text-blue-500 hover:text-blue-800"
+            className="text-green-500 hover:text-green-600"
             href={`/${locale}/login`}
           >
             {t("sign_in")}
