@@ -149,8 +149,8 @@ const AdminView = () => {
     }
   };
   const handleEdit = async (id: string) => {};
-  
-lineWobble.register()
+
+  lineWobble.register();
 
   if (loading) {
     return (
@@ -302,7 +302,7 @@ lineWobble.register()
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center justify-between cursor-pointer">
+                    <div className="flex items-center lg:justify-between md:justify-between gap-2 cursor-pointer">
                       {booking.status === "Pending" && (
                         <>
                           <Image
