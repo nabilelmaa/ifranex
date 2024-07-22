@@ -17,6 +17,20 @@ import {
   TableRow,
 } from "@/app/components/ui/table";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/app/components/ui/alert-dialog";
+
+import { Button } from "@/app/components/ui/button";
+
 const statusIcons: { [key: string]: string } = {
   Pending: "/pending.svg",
   Canceled: "/canceled.svg",
@@ -27,39 +41,68 @@ const statusIcons: { [key: string]: string } = {
 const BookingHistory: React.FC = () => {
   const [bookings, setBookings] = useState<BookingProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
   const { showToast } = useToast();
   const locale = useLocale();
 
   useEffect(() => {
-    const fetchBookings = async () => {
-      try {
-        const token = localStorage.getItem("token");
-
-        const response = await fetch(`/api/bookings/history?locale=${locale}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch booking history");
-        }
-
-        const data = await response.json();
-        setBookings(data.bookings || []);
-      } catch (error) {
-        console.error(error);
-        showToast(
-          "Failed to fetch booking history. Please try again.",
-          "error"
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchBookings();
   }, [locale, showToast]);
+
+  const fetchBookings = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(`/api/bookings/history?locale=${locale}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch booking history");
+      }
+
+      const data = await response.json();
+      setBookings(data.bookings || []);
+    } catch (error) {
+      console.error(error);
+      showToast("Failed to fetch booking history. Please try again.", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleCancel = (id: any) => {
+    setSelectedBookingId(id);
+    setShowModal(true);
+  };
+
+  const confirmCancel = async () => {
+    try {
+      const response = await fetch(
+        `/api/bookings/${selectedBookingId}/cancel`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: "Canceled" }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      showToast("Booking canceled!", "success");
+      await fetchBookings();
+    } catch (error) {
+      console.error("Error canceling booking:", error);
+    } finally {
+      setShowModal(false);
+      setSelectedBookingId(null);
+    }
+  };
   hourglass.register();
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6 min-h-screen">
@@ -84,6 +127,7 @@ const BookingHistory: React.FC = () => {
               <TableHead>Service</TableHead>
               <TableHead>Description</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -105,10 +149,42 @@ const BookingHistory: React.FC = () => {
                     <span>{booking.status}</span>
                   </div>
                 </TableCell>
+                <TableCell>
+                  {(booking.status === "Pending" ||
+                    booking.status === "Confirmed") && (
+                    <Button
+                      variant="destructive"
+                      className="py-1 px-4"
+                      onClick={() => handleCancel(booking.id)}
+                    >
+                      Cancel
+                    </Button>
+                  )}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+      )}
+      {showModal && (
+        <AlertDialog open={showModal} onOpenChange={setShowModal}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will cancel your booking.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setShowModal(false)}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={confirmCancel}>
+                Confirm
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       )}
     </div>
   );

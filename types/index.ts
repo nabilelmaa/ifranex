@@ -1,5 +1,3 @@
-import { BookingStatus } from "@prisma/client";
-
 export interface ServiceProps {
     id: string;
     banner: string;

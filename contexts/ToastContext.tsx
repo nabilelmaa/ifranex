@@ -1,6 +1,6 @@
 "use client";
-import { ToastSuccess } from "@/app/components/ui/ToastSuccess";
-import { ToastFailed } from "@/app/components/ui/ToastFailed";
+import { ToastSuccess } from "@/app/components/ui/toast-success";
+import { ToastFailed } from "@/app/components/ui/toast-fail";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface Toast {

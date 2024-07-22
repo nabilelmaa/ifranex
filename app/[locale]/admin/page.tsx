@@ -266,6 +266,7 @@ const AdminView = () => {
               <TableHead>Address</TableHead>
               <TableHead>Timing</TableHead>
               <TableHead>Service</TableHead>
+              <TableHead>Needs</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -284,6 +285,7 @@ const AdminView = () => {
                     {new Date(booking.timing).toLocaleString()}
                   </TableCell>
                   <TableCell>{booking.title}</TableCell>
+                  <TableCell>{booking.description}</TableCell>
                   <TableCell>
                     <Badge
                       variant={

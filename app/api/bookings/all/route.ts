@@ -30,6 +30,7 @@ export async function GET(request: NextRequest) {
         address: booking.address,
         timing: booking.timing,
         title,
+        description: booking.details,
         status: booking.status,
       };
     });

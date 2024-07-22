@@ -1,16 +1,9 @@
 "use client";
 
+import React, { useState, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
-import { useTransition } from "react";
 import Image from "next/image";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/app/components/ui/select";
 
 const languages = [
   { code: 'en', name: 'English', flag: '/usa.png' },
@@ -19,50 +12,65 @@ const languages = [
 
 function LocaleSwitcher() {
   const [isPending, startTransition] = useTransition();
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const localeActive = useLocale();
   const pathname = usePathname();
 
   const onSelectChange = (code: string) => {
-    if (code === localeActive) return; // Prevents selecting the same language
+    if (code === localeActive) return;
     const newPathname = pathname.replace(`/${localeActive}`, `/${code}`);
     startTransition(() => {
       router.replace(newPathname);
     });
+    setIsOpen(false);
   };
+
+  const activeLanguage = languages.find((lang) => lang.code === localeActive) || languages[0];
 
   return (
     <div className="relative inline-block text-left">
-      <Select onValueChange={onSelectChange}>
-        <SelectTrigger className="flex items-center p-2 border rounded-full hover:bg-gray-200 transition-all">
+      <div>
+        <button
+          type="button"
+          className="flex items-center p-2 border rounded-full hover:bg-gray-200 transition-all"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <Image
-            src={languages.find((lang) => lang.code === localeActive)?.flag || ''}
+            src={activeLanguage.flag}
             alt={localeActive}
             width={24}
             height={24}
             className="mr-2"
           />
-          <SelectValue
-            placeholder={languages.find((lang) => lang.code === localeActive)?.name || 'Select Language'}
-          />
-        </SelectTrigger>
-        <SelectContent>
-          {languages.map((language) => (
-            <SelectItem key={language.code} value={language.code} disabled={isPending}>
-              <div className="flex items-center">
-                <Image
-                  src={language.flag}
-                  alt={language.name}
-                  width={24}
-                  height={24}
-                  className="mr-2"
-                />
-                <span>{language.name}</span>
-              </div>
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+          <span>{activeLanguage.name}</span>
+        </button>
+      </div>
+
+      {isOpen && (
+        <div className="absolute right-0 mt-2 w-44 rounded-lg shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <ul className="py-2 text-sm text-gray-700">
+            {languages.map((language) => (
+              <li key={language.code}>
+                <button
+                  className="flex items-center w-full px-4 py-2 hover:bg-gray-100 disabled:opacity-50"
+                  onClick={() => onSelectChange(language.code)}
+                  disabled={isPending || language.code === localeActive}
+                >
+                  <Image
+                    src={language.flag}
+                    alt={language.name}
+                    width={24}
+                    height={24}
+                    className="mr-2"
+                  />
+                  <span>{language.name}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

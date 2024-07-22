@@ -14,6 +14,7 @@ import {
 } from "@/app/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
+import { useToast } from "@/contexts/ToastContext";
 
 function OTPModal() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -21,6 +22,7 @@ function OTPModal() {
   const [isVerified, setIsVerified] = useState(false);
   const router = useRouter();
   const locale = useLocale();
+  const { showToast } = useToast();
 
   const admin_passcode = process.env.NEXT_PUBLIC_ADMIN_PASSCODE;
 
@@ -57,7 +59,9 @@ function OTPModal() {
         setIsVerified(true);
         setError("");
         router.push(`/${locale}/admin`);
+        showToast("Access granted to admin.", "success");
       } else {
+        showToast("Invalid OTP. Please try again.", "error");
         setError("Invalid OTP. Please try again.");
       }
     } else {
@@ -72,9 +76,6 @@ function OTPModal() {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Verify Admin Access</AlertDialogTitle>
-            <AlertDialogDescription>
-              Please enter the 6-digit OTP to proceed.
-            </AlertDialogDescription>
             <div className="flex justify-center space-x-2 mt-4">
               {otp.map((digit, index) => (
                 <input
@@ -88,7 +89,7 @@ function OTPModal() {
                 />
               ))}
             </div>
-            {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+            {/* {error && <p className="text-red-500 text-center mt-2">{error}</p>} */}
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => setOtp(["", "", "", "", "", ""])}>
