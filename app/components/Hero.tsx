@@ -47,14 +47,14 @@ export const Hero = () => {
     content[locale as keyof typeof content];
 
   return (
-    <div className="py-12 lg:py-20 md:py-20">
+    <div className="lg:py-20 md:py-20">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap xl:items-center -mx-4">
           <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
             <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem]">
               <TypewriterEffect words={words} />
             </h1>
-            <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base  ">
+            <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base mt-6 mb-6">
               {description}
             </p>
             <div className="flex flex-wrap">
