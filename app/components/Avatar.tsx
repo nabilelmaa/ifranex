@@ -8,7 +8,19 @@ const Avatar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const colors = [
+    // "bg-gray-400",
+    "bg-blue-500",
+    // "bg-green-500",
+    // "bg-yellow-500",
+    // "bg-purple-500",
+  ];
 
+  const getRandomColor = () => {
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  const [avatarColor, setAvatarColor] = useState(getRandomColor());
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -38,15 +50,9 @@ const Avatar = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className="flex items-center p-2 rounded-full transition-all"
+        className={`ml-4 flex items-center justify-center w-8 h-8 rounded-full text-white ${avatarColor} transition-all`}
       >
-        <Image
-          src="/avatar-icon.jpeg"
-          alt="User avatar"
-          width={30}
-          height={30}
-          className="rounded-full"
-        />
+        {user && user.username ? user.username.charAt(0).toUpperCase() : "?"}
       </button>
 
       {isOpen && (

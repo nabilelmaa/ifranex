@@ -1,0 +1,32 @@
+[
+    {
+        "userId": "6693fa7615384eb94d176110",
+        "rating": 4,
+        "comment": "الخدمة كانت ممتازة وسريعة للغاية. بالتأكيد سأعود مرة أخرى.",
+        "timestamp": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "userId": "6694216da48413539a3564ec",
+        "rating": 3,
+        "comment": "The staff were very friendly and helpful. Thank you!",
+        "timestamp": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "userId": "669abb64dba34fb879e7d795",
+        "rating": 5,
+        "comment": "They arrived on time and completed the work quickly and efficiently",
+        "timestamp": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "userId": "669abb64dba34fb879e7d795",
+        "rating": 4,
+        "comment": "L'endroit est propre et bien organisé, mais les prix sont un peu élevés",
+        "timestamp": "2024-07-07T15:01:58.204+00:00"
+    },
+    {
+        "userId": "669c14fff297132be151d249",
+        "rating": 5,
+        "comment": "The service was great and the technician was professional. Highly recommend.",
+        "timestamp": "2024-07-07T15:01:58.204+00:00"
+    }
+]

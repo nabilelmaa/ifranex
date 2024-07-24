@@ -81,7 +81,17 @@ const Page: React.FC = () => {
 
   return (
     <div className="lg:p-12 md:p-6">
-      <h1 className="text-lg lg:text-2xl md:text-xl">
+      <div className="breadcrumbs text-sm">
+        <ul>
+          <li>
+            <a href={`/${locale}`}>Home</a>
+          </li>
+          <li>
+            <a>Services</a>
+          </li>
+        </ul>
+      </div>
+      <h1 className="text-lg lg:text-2xl md:text-xl mt-4">
         Browse our popular services
       </h1>
 

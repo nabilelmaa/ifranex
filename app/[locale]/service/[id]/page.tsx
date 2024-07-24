@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import BookingForm from "@/app/components/forms/BookingForm";
 import { ServiceProps } from "@/types/index";
+import { useLocale, useTranslations } from "next-intl";
 
 const BookingSkeleton = () => (
   <div className="flex flex-col lg:flex-row lg:p-12 md:p-6">
@@ -48,6 +49,8 @@ const Page = () => {
   const { id } = useParams();
   const [service, setService] = useState<ServiceProps | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const locale = useLocale();
+  const t = useTranslations("Navbar");
 
   useEffect(() => {
     const fetchService = async () => {
@@ -63,7 +66,24 @@ const Page = () => {
   if (loading) return <BookingSkeleton />;
   if (!service) return <div>Loading...</div>;
 
-  return <BookingForm service={service} />;
+  return (
+    <div className="lg:p-12 md:p-6">
+      <div className="breadcrumbs text-sm">
+        <ul>
+          <li>
+            <a href={`/${locale}`}>{t("nav_home")}</a>
+          </li>
+          <li>
+            <a href={`/${locale}/services`}>{t("nav_services")}</a>
+          </li>
+          <li>
+            <a>{service.title}</a>
+          </li>
+        </ul>
+      </div>
+      <BookingForm service={service} />;
+    </div>
+  );
 };
 
 export default Page;

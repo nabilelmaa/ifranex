@@ -1,123 +1,135 @@
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 import { ServicesCard } from "@/app/components/ServicesCard";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
-import { Button } from "@/app/components/ui/tailwindcss-button";
+import { ServiceProps } from "@/types/index";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export const ServicesList = () => {
-  const locale = useLocale();
-  const button = {
-    name: "Tailwindcss Connect",
-    description: "Button featured on Tailwindcss Connect website",
-    showDot: false,
-    component: (
-      <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block">
-        <span className="absolute inset-0 overflow-hidden rounded-full">
-          <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
-        </span>
-        <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
-          <span>{`Tailwind Connect`}</span>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="M10.75 8.75L14.25 12L10.75 15.25"
-            ></path>
-          </svg>
-        </div>
-        <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
-      </button>
-    ),
-  };
+gsap.registerPlugin(ScrollTrigger);
+
+const ServicesCardSkeleton = () => {
   return (
-    <div className="p-6 lg:p-12 rounded-sm">
-      <h1 className="mb-4 text-lg font-semibold lg:text-xl">
-        Explore our popular services
-      </h1>
-      <div className="grid grid-cols-2 gap-2 lg:flex lg:items-center lg:justify-between md:flex md:items-center md:justify-between">
-        <ServicesCard
-          title="Babysetting"
-          description="This is the best cleaning service"
-          category="Baby"
-          banner="https://res.cloudinary.com/dcncaesb0/image/upload/v1718908155/hrh-ifrane/baby-sitting_xspilg.jpg"
-          id=""
-          pricePerHour={45}
-        />
-        <ServicesCard
-          title="Paiting home"
-          description="This is the best painting service"
-          category="Paiting"
-          banner="https://res.cloudinary.com/dcncaesb0/image/upload/v1719427444/StockCake-Painter_at_Work_1719427419_w6vozw.jpg"
-          id=""
-          pricePerHour={45}
-        />
-        <ServicesCard
-          title="Cleaning home"
-          description="This is the best cleaning service"
-          category="Cleaning"
-          banner="https://res.cloudinary.com/dcncaesb0/image/upload/v1719426084/hrh-ifrane/mbwomub7chiatjalo0ux.jpg"
-          id=""
-          pricePerHour={45}
-        />
-        <ServicesCard
-          title="Shower Repairs"
-          description="This is the best cleaning service"
-          category="Repair"
-          banner="https://res.cloudinary.com/dcncaesb0/image/upload/v1719427215/StockCake-Modern_Shower_Head_1719427177_if7lzc.jpg"
-          id=""
-          pricePerHour={45}
-        />
-        <ServicesCard
-          title="Home instalations"
-          description="This is the best cleaning service"
-          category="Instalation"
-          banner="https://res.cloudinary.com/dcncaesb0/image/upload/v1719426080/hrh-ifrane/yo2i7kiaghqai6peozdf.jpg"
-          id=""
-          pricePerHour={45}
-        />
+    <div className="mt-12 flex flex-col h-full overflow-hidden border rounded-lg shadow-lg bg-gray-200 animate-pulse">
+      <div className="relative w-full h-48 bg-gray-300"></div>
+      <div className="flex flex-col flex-grow p-4 space-y-4">
+        <div className="w-3/4 h-6 bg-gray-300 rounded"></div>
+        <div className="flex-grow space-y-2">
+          <div className="w-full h-4 bg-gray-300 rounded"></div>
+          <div className="w-5/6 h-4 bg-gray-300 rounded"></div>
+          <div className="w-2/3 h-4 bg-gray-300 rounded"></div>
+        </div>
+        <div className="w-1/3 h-6 bg-gray-300 rounded mt-auto"></div>
       </div>
-      <div className="flex justify-center items-center mt-4 w-full">
-        <Link href={`/${locale}/services`}>
-          <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6 text-white inline-block">
-            <span className="absolute inset-0 overflow-hidden rounded-full">
-              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
-            </span>
-            <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10">
-              <span>See all services</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+    </div>
+  );
+};
+
+export const ServicesList: React.FC = () => {
+  const [services, setServices] = useState<ServiceProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const locale = useLocale();
+  const cardsContainerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const fetchServices = async () => {
+    try {
+      const response = await fetch(`/api/services?locale=${locale}`);
+      if (!response.ok) {
+        throw new Error(`Error fetching services: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setServices(data);
+      setLoading(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchServices();
+  }, [locale]);
+
+  useEffect(() => {
+    if (services.length > 0 && cardsContainerRef.current) {
+      const cards = cardsRef.current.filter(
+        (card): card is HTMLDivElement => card !== null
+      );
+
+      gsap.fromTo(
+        cards,
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.9,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: cardsContainerRef.current,
+            start: "top bottom-=100",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, {
+            scale: 1.05,
+            duration: 0.3,
+          });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            scale: 1,
+            duration: 0.3,
+          });
+        });
+      });
+    }
+  }, [services]);
+
+  return (
+    <div className="overflow-hidden lg:py-20 mt-12">
+      <div
+        ref={cardsContainerRef}
+        className="flex sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide sm:scrollbar-default"
+      >
+        {loading
+          ? Array.from({ length: 5 }).map((_, index) => (
+              <div key={index} className="flex-shrink-0 w-64 sm:w-auto">
+                <ServicesCardSkeleton />
+              </div>
+            ))
+          : services.slice(0, 5).map((service, index) => (
+              <div
+                key={index}
+                ref={(el) => {
+                  cardsRef.current[index] = el;
+                }}
+                className="flex-shrink-0 w-64 sm:w-auto transition-all duration-300"
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M10.75 8.75L14.25 12L10.75 15.25"
-                ></path>
-              </svg>
-            </div>
-            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
-          </button>
-          {/* <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-black border border-black  text-sm">
+                <ServicesCard service={service} />
+              </div>
+            ))}
+      </div>
+      <div className="flex justify-center items-center mt-8">
+        <Link href="/services">
+          <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-black text-white font-semibold text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             <div className="flex items-center justify-center">
-              <p className="mb-1 mr-4">See all services</p>
-              <p>
-                <FaChevronRight />
-              </p>
+              <span className="mr-2">See all services</span>
+              <FaChevronRight className="text-xs" />
             </div>
-          </button> */}
+          </button>
         </Link>
       </div>
     </div>

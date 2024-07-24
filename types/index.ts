@@ -45,3 +45,12 @@ export interface BookingDetails {
     createdAt: string;
     customerId: string;
 }
+
+export interface Review {
+  user: any;
+  id: string
+  userId: string
+  rating: number
+  comment: string
+  timestamp: string | number | Date;
+}

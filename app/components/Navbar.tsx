@@ -43,37 +43,39 @@ export const Navbar = () => {
                 Ifrane<span className="text-black">X.</span>
               </p>
             </Link>
-            <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
-              <Link href="/">
-                <li className="hover:text-green-400 transition cursor-pointer">
-                  {t("nav_home")}
+            {isHomePage && (
+              <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
+                <Link href="/">
+                  <li className="hover:text-green-400 transition cursor-pointer">
+                    {t("nav_home")}
+                  </li>
+                </Link>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer"
+                  onClick={() => scrollToSection("footer")}
+                >
+                  {t("nav_about")}
                 </li>
-              </Link>
-              <li
-                className="hover:text-green-400 transition cursor-pointer"
-                onClick={() => scrollToSection("footer")}
-              >
-                {t("nav_about")}
-              </li>
-              <li
-                className="hover:text-green-400 transition cursor-pointer"
-                onClick={() => scrollToSection("services")}
-              >
-                {t("nav_services")}
-              </li>
-              <li
-                className="hover:text-green-400 transition cursor-pointer"
-                onClick={() => scrollToSection("us")}
-              >
-                {t("nav_us")}
-              </li>
-              <li
-                className="hover:text-green-400 transition cursor-pointer"
-                onClick={() => scrollToSection("reviews")}
-              >
-                {t("nav_reviews")}
-              </li>
-            </ul>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer"
+                  onClick={() => scrollToSection("services")}
+                >
+                  {t("nav_services")}
+                </li>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer"
+                  onClick={() => scrollToSection("us")}
+                >
+                  {t("nav_us")}
+                </li>
+                <li
+                  className="hover:text-green-400 transition cursor-pointer"
+                  onClick={() => scrollToSection("reviews")}
+                >
+                  {t("nav_reviews")}
+                </li>
+              </ul>
+            )}
             <div className="relative text-left lg:flex md:flex items-center">
               <LocalSwitcher />
               {isAuthChecked && (
@@ -90,7 +92,7 @@ export const Navbar = () => {
                 </>
               )}
             </div>
-            {isHomePage && (
+            {/* {isHomePage && (
               <div className="lg:hidden md:hidden">
                 <Image
                   src={isSidebarOpen ? "/x.svg" : "/menu.svg"}
@@ -101,7 +103,7 @@ export const Navbar = () => {
                   className="cursor-pointer"
                 />
               </div>
-            )}
+            )} */}
           </nav>
           <div
             className={`fixed top-0 right-0 h-full bg-white w-full shadow-lg transform transition-transform duration-300 ${

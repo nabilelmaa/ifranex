@@ -1,31 +1,36 @@
-import { ServiceProps } from "@/types";
+import React from "react";
 import Image from "next/image";
+import { ServiceProps } from "@/types";
 
-export const ServicesCard: React.FC<ServiceProps> = ({
-  title,
-  description,
-  category,
-  banner,
-  id,
-  pricePerHour,
-}) => {
+interface ServiceCardProps {
+  service: ServiceProps;
+}
+
+export const ServicesCard: React.FC<ServiceCardProps> = ({ service }) => {
+
   return (
-    <div className="border rounded-md shadow-lg bg-gray-100">
-      <div className="relative w-full h-40 mb-4 overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden border rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl bg-white">
+      <div className="relative w-full h-48">
         <Image
-          src={banner}
-          alt={title}
+          src={service.banner}
+          alt={service.title}
           layout="fill"
           objectFit="cover"
-          className="rounded-t-lg"
+          className="transition-transform duration-300 hover:scale-105"
         />
       </div>
-      <div className="px-2">
-        <h1 className="font-semibold text-md lg:text-xl md:lg:text-xl">
-          {title}
+      <div className="flex flex-col flex-grow p-4">
+        <h1 className="font-meduim text-xl mb-2 text-gray-800">
+          {service.title}
         </h1>
-        <p className="text-xs lg:text-lg text-gray-700">{description}</p>
-        <p className="text-green-500 mb-2">{category}</p>
+        <p className="text-sm text-gray-600 mb-4 flex-grow">
+          {service.description}
+        </p>
+        <div className="flex justify-between items-center mt-auto">
+          <span className="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full">
+            {service.category}
+          </span>
+        </div>
       </div>
     </div>
   );

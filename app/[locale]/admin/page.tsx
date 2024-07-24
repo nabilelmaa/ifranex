@@ -154,7 +154,7 @@ const AdminView = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen container mx-auto p-4 flex items-center justify-center">
+      <div className="min-h-screen container mx-auto flex items-center justify-center">
         <l-line-wobble
           size="80"
           stroke="5"
