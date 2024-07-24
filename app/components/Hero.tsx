@@ -54,7 +54,7 @@ export const Hero = () => {
             <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem]">
               <TypewriterEffect words={words} />
             </h1>
-            <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base mt-6 mb-6">
+            <p className="text-neutral-600 dark:text-neutral-200 text-md sm:text-base mt-6 mb-6">
               {description}
             </p>
             <div className="flex flex-wrap">
