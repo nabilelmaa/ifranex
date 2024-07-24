@@ -52,7 +52,7 @@ const Avatar = () => {
         onClick={toggleDropdown}
         className={`ml-4 flex items-center justify-center w-8 h-8 rounded-full text-white ${avatarColor} transition-all`}
       >
-        {user && user.username ? user.username.charAt(0).toUpperCase() : "?"}
+        {user && user.username ? user.username.charAt(0).toUpperCase() : ""}
       </button>
 
       {isOpen && (

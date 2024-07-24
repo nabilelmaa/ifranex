@@ -80,7 +80,7 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className="lg:p-12 md:p-6">
+    <div className="lg:p-12 md:p-6 p-2">
       <div className="breadcrumbs text-sm">
         <ul>
           <li>
