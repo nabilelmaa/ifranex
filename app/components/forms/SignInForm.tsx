@@ -22,7 +22,6 @@ export const SignInForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    console.log("Submitting login form with:", { email, password });
 
     try {
       const response = await fetch("/api/auth/sign-in", {
@@ -34,28 +33,26 @@ export const SignInForm: React.FC = () => {
       });
 
       const data = await response.json();
-      console.log("Response from sign-in API:", data);
 
       if (response.ok) {
         const token = data.token;
         setCookie("token", token);
         localStorage.setItem("token", token);
-        console.log("Token set in cookies:", token);
 
         const userDetailsResponse = await fetch("/api/auth/user-details", {
           method: "GET",
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
         const userDetailsData = await userDetailsResponse.json();
 
         if (userDetailsResponse.ok) {
-          const { username } = userDetailsData.user;
-          login(data.token, { username, email });
+          const { id, username, profilePicture } = userDetailsData.user;
+          login(data.token, { id, profilePicture, username, email });
           setLoading(false);
-          console.log("Redirecting to services page");
+
           router.push(`/${locale}/services`);
         } else {
           setLoading(false);
@@ -81,7 +78,7 @@ export const SignInForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-xl md:w-1/3 lg:w-1/4">
+    <div className="p-8 rounded-lg md:w-1/3 lg:w-1/4 ">
       <p className="text-center font-bold text-green-500 lg:text-xl">
         Ifrane<span className="text-black">X.</span>
       </p>
@@ -109,7 +106,7 @@ export const SignInForm: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-              placeholder="example@gmail.com"
+            placeholder="example@gmail.com"
             required
           />
         </div>
@@ -159,7 +156,7 @@ export const SignInForm: React.FC = () => {
         <div className="mb-6">
           <button
             type="submit"
-            className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+            className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6  bg-black focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
           >
             {loading ? (
               <div className="flex items-center justify-center">
@@ -172,7 +169,7 @@ export const SignInForm: React.FC = () => {
           </button>
         </div>
       </form>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center lg:justify-between md:justify-between gap-4">
         <span className="inline-block align-baseline text-xs lg:text-sm md:text-sm">
           {t("dont_have")}{" "}
           <a

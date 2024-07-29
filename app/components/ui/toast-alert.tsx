@@ -1,12 +1,13 @@
-interface ToastSuccessProps {
+interface ToastFailedProps {
   message: string;
 }
-export const ToastSuccess: React.FC<ToastSuccessProps> = ({ message }) => (
+
+export const ToastAlert: React.FC<ToastFailedProps> = ({ message }) => (
   <div
     className="max-w-xs bg-zinc-800 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700"
     role="alert"
     tabIndex={-1}
-    aria-labelledby="hs-toast-success-example-label"
+    aria-labelledby="hs-toast-error-example-label"
   >
     <div className="flex p-4">
       <div className="shrink-0">

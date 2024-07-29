@@ -168,7 +168,7 @@ const BookingSummary: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
         <button
           onClick={handleConfirmBooking}
-          className="flex-1 py-3 px-6 bg-black text-white rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
+          className="flex-1 py-3 px-6 bg-black text-white rounded-md shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center"
           disabled={isLoading}
         >
           {isLoading ? (
@@ -179,7 +179,7 @@ const BookingSummary: React.FC = () => {
         </button>
         <button
           onClick={handleCancelBooking}
-          className="flex-1 py-3 px-6  text-white bg-red-500 hover:bg-red-600 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300"
+          className="flex-1 py-3 px-6  text-white bg-red-500 hover:bg-red-600 rounded-md shadow-lg transform hover:scale-105 transition-all duration-300"
           disabled={isLoading}
         >
           Cancel

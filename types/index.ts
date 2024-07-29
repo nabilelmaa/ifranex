@@ -5,6 +5,7 @@ export interface ServiceProps {
     category: string;
     title: string;
     description: string;
+    hidden: boolean
   }
 
   export interface Service {
@@ -16,6 +17,7 @@ export interface ServiceProps {
     description_en: string;
     title_fr: string;
     description_fr: string;
+    hidden: boolean
   }
   
 

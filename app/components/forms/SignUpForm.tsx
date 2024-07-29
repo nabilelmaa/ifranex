@@ -105,7 +105,7 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-xl md:w-1/3 lg:w-1/4">
+    <div className="p-8 md:w-1/3 lg:w-1/4">
       <p className="text-center font-bold text-green-500 lg:text-xl mb-4">
         Ifrane<span className="text-black">X.</span>
       </p>
@@ -146,7 +146,7 @@ export const SignUpForm: React.FC = () => {
           <div className="mb-6">
             <button
               type="submit"
-              className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+              className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-black focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
               disabled={loading}
             >
               {loading ? (
@@ -299,7 +299,7 @@ export const SignUpForm: React.FC = () => {
               <div className="mb-6">
                 <button
                   type="submit"
-                  className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+                  className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-black focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
                   disabled={loading}
                 >
                   {loading ? (

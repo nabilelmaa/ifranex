@@ -94,7 +94,7 @@ const BookingHistory: React.FC = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      showToast("Booking canceled!", "success");
+      showToast("Booking canceled successfully!", "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error canceling booking:", error);

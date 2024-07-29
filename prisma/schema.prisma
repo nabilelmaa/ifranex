@@ -8,14 +8,15 @@ generator client {
 }
 
 model User {
-  id        String    @id @default(auto()) @map("_id") @db.ObjectId
-  username  String    @unique
-  email     String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  bookings  Booking[] @relation("CustomerBookings")
-  reviews   Review[]
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  profilePicture String
+  username       String    @unique
+  email          String    @unique
+  password       String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  bookings       Booking[] @relation("CustomerBookings")
+  reviews        Review[]
 }
 
 model Booking {
@@ -42,6 +43,7 @@ model Service {
   description_en String
   title_fr       String
   description_fr String
+  hidden         Boolean   @default(false)
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   bookings       Booking[] @relation("ServiceBookings")

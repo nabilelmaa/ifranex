@@ -12,6 +12,8 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
 interface User {
+  id: string;
+  profilePicture: string;
   username: string;
   email: string;
 }
@@ -94,7 +96,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (
         pathname !== `/${locale}` &&
         pathname !== `/${locale}/register` &&
-        pathname !== `/${locale}/admin`
+        pathname !== `/${locale}/register` &&
+        pathname !== `/${locale}/admin/dashboard` &&
+        pathname !== `/${locale}/admin/services` &&
+        pathname !== `/${locale}/admin/users`
       ) {
         logout();
       }

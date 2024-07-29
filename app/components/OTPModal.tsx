@@ -58,7 +58,7 @@ function OTPModal() {
       if (combinedOtp === admin_passcode) {
         setIsVerified(true);
         setError("");
-        router.push(`/${locale}/admin`);
+        router.push(`/${locale}/admin/dashboard`);
         showToast("Access granted to admin.", "success");
       } else {
         showToast("Invalid OTP. Please try again.", "error");

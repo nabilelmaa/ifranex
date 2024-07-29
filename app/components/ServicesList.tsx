@@ -122,7 +122,7 @@ export const ServicesList: React.FC = () => {
               </div>
             ))}
       </div>
-      <div className="flex justify-center items-center mt-8">
+      <div className="flex justify-center items-center mt-12">
         <Link href={`${locale}/services`}>
           <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-black text-white font-semibold text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             <div className="flex items-center justify-center">

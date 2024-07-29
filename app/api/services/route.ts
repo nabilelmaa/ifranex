@@ -10,6 +10,7 @@ interface Service {
   description_en: string;
   title_fr: string;
   description_fr: string;
+  hidden: boolean
 }
 
 export async function GET(request: NextRequest) {
@@ -30,6 +31,7 @@ export async function GET(request: NextRequest) {
         category: service.category,
         title,
         description,
+        hidden: service.hidden
       };
     });
 

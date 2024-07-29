@@ -6,6 +6,17 @@ import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
 import { useLocale } from "next-intl";
 import { lineWobble } from "ldrs";
+import BarChart from "@/app/components/BarChart";
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 import {
   Select,
@@ -31,7 +42,7 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 
-const AdminView = () => {
+const Dashboard = () => {
   const [bookings, setBookings] = useState<BookingProps[]>([]);
   const [filteredBookings, setFilteredBookings] = useState<BookingProps[]>([]);
   const [filter, setFilter] = useState("all");
@@ -60,7 +71,6 @@ const AdminView = () => {
         throw new Error(`Error fetching bookings: ${response.statusText}`);
       }
       const data = await response.json();
-      console.log(data);
       setBookings(data.bookings);
     } catch (err) {
       setError("Error fetching bookings");
@@ -110,6 +120,7 @@ const AdminView = () => {
       console.error("Error confirming booking:", error);
     }
   };
+
   const handleCancel = async (id: string) => {
     try {
       const response = await fetch(`/api/bookings/${id}/cancel`, {
@@ -129,6 +140,7 @@ const AdminView = () => {
       console.error("Error canceling booking:", error);
     }
   };
+
   const handleCompleted = async (id: string) => {
     try {
       const response = await fetch(`/api/bookings/${id}/complete`, {
@@ -142,13 +154,12 @@ const AdminView = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      showToast("Congratulations the job is completed! 🎉", "success");
+      showToast("Congratulations, the job is completed! 🎉", "success");
       await fetchBookings();
     } catch (error) {
-      console.error("Error confirming teh job is completed:", error);
+      console.error("Error confirming the job is completed:", error);
     }
   };
-  const handleEdit = async (id: string) => {};
 
   lineWobble.register();
 
@@ -170,8 +181,15 @@ const AdminView = () => {
     return <div>Error: {error}</div>;
   }
 
+  const chartData = [
+    { label: "Total", value: totalBookings },
+    { label: "Pending", value: pendingBookings },
+    { label: "Confirmed", value: confirmedBookings },
+    { label: "Completed", value: completedBookings },
+  ];
+
   return (
-    <div className="min-h-screen container mx-auto lg:p-12 md:p-12">
+    <div className="min-h-screen container mx-auto ">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="pb-3">
@@ -182,7 +200,12 @@ const AdminView = () => {
           </CardHeader>
           <CardFooter>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Image src="/trend-up.png" alt="Edit" width={24} height={24} />
+              <Image
+                src="/trend-up.png"
+                alt="Trend Up"
+                width={24}
+                height={24}
+              />
               <span>+5.2% this month</span>
             </div>
           </CardFooter>
@@ -196,7 +219,12 @@ const AdminView = () => {
           </CardHeader>
           <CardFooter>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Image src="/trend-down.png" alt="Edit" width={24} height={24} />
+              <Image
+                src="/trend-down.png"
+                alt="Trend Down"
+                width={24}
+                height={24}
+              />
               <span>-1.8% this month</span>
             </div>
           </CardFooter>
@@ -210,7 +238,12 @@ const AdminView = () => {
           </CardHeader>
           <CardFooter>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Image src="/trend-up.png" alt="Edit" width={24} height={24} />
+              <Image
+                src="/trend-up.png"
+                alt="Trend Up"
+                width={24}
+                height={24}
+              />
               <span>+2.5% this month</span>
             </div>
           </CardFooter>
@@ -224,11 +257,30 @@ const AdminView = () => {
           </CardHeader>
           <CardFooter>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Image src="/trend-up.png" alt="Edit" width={24} height={24} />
+              <Image
+                src="/trend-up.png"
+                alt="Trend Up"
+                width={24}
+                height={24}
+              />
               <span>+3.0% this month</span>
             </div>
           </CardFooter>
         </Card>
+      </div>
+      <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-12 p-4">
+        <h1 className="text-xl text-gray-800 font-semibold mb-2">
+          Bookings Overview
+        </h1>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Line type="monotone" dataKey="value" stroke="#8884d8" />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-12 p-4">
         <h1 className="text-xl text-gray-800 font-semibold mb-2">Bookings</h1>
@@ -308,14 +360,6 @@ const AdminView = () => {
                       {booking.status === "Pending" && (
                         <>
                           <Image
-                            src="/edit-icon.svg"
-                            alt="Edit"
-                            width={38}
-                            height={38}
-                            onClick={() => handleEdit(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md"
-                          />
-                          <Image
                             src="/confirmed-icon.svg"
                             alt="Confirm"
                             width={38}
@@ -329,31 +373,13 @@ const AdminView = () => {
                             width={38}
                             height={38}
                             onClick={() => handleCancel(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md"
+                            className="p-2 border border-gray-200 rounded-md mr-2"
                           />
                         </>
                       )}
-                      {(booking.status === "Completed" ||
-                        booking.status === "Canceled") && (
-                        <Image
-                          src="/edit-icon.svg"
-                          alt="Edit"
-                          width={38}
-                          height={38}
-                          onClick={() => handleEdit(booking.id)}
-                          className="p-2 border border-gray-200 rounded-md"
-                        />
-                      )}
+
                       {booking.status === "Confirmed" && (
                         <>
-                          <Image
-                            src="/edit-icon.svg"
-                            alt="Edit"
-                            width={38}
-                            height={38}
-                            onClick={() => handleEdit(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md"
-                          />
                           <Image
                             src="/completed-icon.svg"
                             alt="Edit"
@@ -368,7 +394,7 @@ const AdminView = () => {
                             width={38}
                             height={38}
                             onClick={() => handleCancel(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md"
+                            className="p-2 border border-gray-200 rounded-md mr-2"
                           />
                         </>
                       )}
@@ -390,4 +416,4 @@ const AdminView = () => {
   );
 };
 
-export default AdminView;
+export default Dashboard;

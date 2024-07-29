@@ -1,16 +1,17 @@
 "use client";
 import { ToastSuccess } from "@/app/components/ui/toast-success";
 import { ToastFailed } from "@/app/components/ui/toast-fail";
+import { ToastAlert } from "@/app/components/ui/toast-alert";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface Toast {
   show: boolean;
   message: string;
-  type: "success" | "error";
+  type: "success" | "error" | "alert";
 }
 
 interface ToastContextType {
-  showToast: (message: string, type?: "success" | "error") => void;
+  showToast: (message: string, type?: "success" | "error" | "alert") => void;
 }
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
@@ -25,16 +26,15 @@ export const useToast = (): ToastContextType => {
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [toast, setToast] = useState<Toast>({
-    show: false, 
-    message: "", 
-    type: "success", 
+    show: false,
+    message: "",
+    type: "success",
   });
 
   const showToast = (
     message: string,
-    type: "success" | "error" = "success"
+    type: "success" | "error" | "alert" = "success"
   ) => {
-    console.log("Showing toast:", { message, type });
     setToast({ show: true, message, type });
     setTimeout(
       () => setToast({ show: false, message: "", type: "success" }),
@@ -47,11 +47,9 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       {children}
       {toast.show && (
         <div className="fixed top-4 right-4 z-50 pointer-events-none">
-          {toast.type === "success" ? (
-            <ToastSuccess message={toast.message} />
-          ) : (
-            <ToastFailed message={toast.message} />
-          )}
+          {toast.type === "success" && <ToastSuccess message={toast.message} />}
+          {toast.type === "error" && <ToastFailed message={toast.message} />}
+          {toast.type === "alert" && <ToastAlert message={toast.message} />}
         </div>
       )}
     </ToastContext.Provider>

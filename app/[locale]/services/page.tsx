@@ -2,7 +2,7 @@
 
 import { SetStateAction, useEffect, useState } from "react";
 import { ServiceProps } from "@/types/index";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ServiceCard } from "@/app/components/ServiceCard";
 import {
   Select,
@@ -36,6 +36,7 @@ const Page: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const locale = useLocale();
+  const t = useTranslations("Navbar");
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -45,16 +46,21 @@ const Page: React.FC = () => {
           throw new Error(`Error fetching services: ${response.statusText}`);
         }
         const data = await response.json();
-        setServices(data);
+        console.log("Fetched services:", data);
+        const visibleServices = data.filter(
+          (service: ServiceProps) => !service.hidden
+        );
+        console.log("Visible services:", visibleServices);
+        setServices(visibleServices);
         setCategories([
           "All",
           ...Array.from(
             new Set<string>(
-              data.map((service: ServiceProps) => service.category)
+              visibleServices.map((service: ServiceProps) => service.category)
             )
           ),
         ]);
-        setFilteredServices(data);
+        setFilteredServices(visibleServices);
       } catch (error) {
         setError("Error fetching services");
       } finally {
@@ -80,14 +86,14 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className="lg:p-12 md:p-6 p-2">
+    <div className="min-h-screen lg:p-12 md:p-6 p-2">
       <div className="breadcrumbs text-sm">
         <ul>
           <li>
-            <a href={`/${locale}`}>Home</a>
+            <a href={`/${locale}`}>{t("nav_home")}</a>
           </li>
           <li>
-            <a>Services</a>
+            <a href={`/${locale}`}>{t("nav_services")}</a>
           </li>
         </ul>
       </div>

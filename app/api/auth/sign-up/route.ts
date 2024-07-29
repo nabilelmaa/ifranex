@@ -24,8 +24,9 @@ export const POST = async (req: NextRequest) => {
 
     const user = await db.user.create({
       data: {
+        profilePicture: '',
         username,
-        email,
+        email,  
         password: hashedPassword,
       },
     });
