@@ -54,8 +54,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       Cookies.set("token", token);
       Cookies.set("token_exp", (decodedToken.exp * 1000).toString());
       console.log("Authentication state updated");
-
-      // Triggering state update and redirect after updating state
       router.push(`/${locale}/services`);
     } catch (error) {
       console.error("Error during login:", error);
