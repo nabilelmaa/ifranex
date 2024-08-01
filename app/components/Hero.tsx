@@ -8,11 +8,11 @@ export const Hero = () => {
 
   const enWords = [
     { text: "Find" },
-    { text: "Trusted", className: "text-green-500 dark:text-green-500" },
+    { text: "Trusted", className: "text-colGreen-000 dark:text-colGreen-000" },
     { text: "Handypersons" },
     { text: "for" },
-    { text: "Every", className: "text-green-500 dark:text-green-500" },
-    { text: "Need", className: "text-green-500 dark:text-green-500" },
+    { text: "Every", className: "text-colGreen-000 dark:text-colGreen-000" },
+    { text: "Need", className: "text-colGreen-000 dark:text-colGreen-000" },
   ];
 
   const frWords = [
@@ -20,10 +20,13 @@ export const Hero = () => {
     { text: "des" },
     { text: "bricoleurs" },
     { text: "de" },
-    { text: "confiance", className: "text-green-500 dark:text-green-500" },
+    {
+      text: "confiance",
+      className: "text-colGreen-000 dark:text-colGreen-000",
+    },
     { text: "pour " },
-    { text: "chaque", className: "text-green-500 dark:text-green-500" },
-    { text: "besoin", className: "text-green-500 dark:text-green-500" },
+    { text: "chaque", className: "text-colGreen-000 dark:text-colGreen-000" },
+    { text: "besoin", className: "text-colGreen-000 dark:text-colGreen-000" },
   ];
 
   const content = {
@@ -60,7 +63,7 @@ export const Hero = () => {
             <div className="flex flex-wrap">
               <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:mt-24 w-full">
                 <Link href={`/${locale}/services`}>
-                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-black border dark:border-white border-transparent text-white text-sm">
+                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-colGreen-000 border dark:border-white border-transparent text-white text-sm">
                     {getStarted}
                   </button>
                 </Link>

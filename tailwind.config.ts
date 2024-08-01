@@ -28,6 +28,7 @@ const config = {
         "coolGray-800":"#1f2937",
         "coolGray-900":"#111827",
         "coolGray-200":"#e5e7eb",
+        "colGreen-000":"#12c322",
         
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

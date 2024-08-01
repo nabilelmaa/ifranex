@@ -3,7 +3,6 @@ import { Reviews } from "@/app/components/Reviews";
 import { MobileApp } from "@/app/components/MobileApp";
 import { WhyUs } from "@/app/components/WhyUs";
 import { Services } from "@/app/components/Services";
-import { MyTabs } from "@/app/components/MyTabs";
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <WhyUs />
       <Reviews />
       <MobileApp />
-      <MyTabs />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React, {
   useContext,
   useState,
   useEffect,
+  useCallback,
   ReactNode,
 } from "react";
 import { useRouter, usePathname } from "next/navigation";
@@ -21,9 +22,9 @@ interface User {
 interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
-  login: (token: string, user: User) => void;
+  login: (token: string, user: User) => Promise<void>;
   logout: () => void;
-  checkAuthState: () => void;
+  checkAuthState: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -37,43 +38,48 @@ export const useAuth = (): AuthContextType => {
 };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      const decodedToken: any = jwtDecode(token);
-      return decodedToken.exp * 1000 > Date.now();
-    }
-    return false;
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
 
   const router = useRouter();
   const locale = useLocale();
-  const [user, setUser] = useState<User | null>(null);
   const pathname = usePathname();
 
-  const login = (token: string, userData: User): void => {
-    const decodedToken: any = jwtDecode(token);
-    setIsAuthenticated(true);
-    setUser(userData);
-    Cookies.set("token", token);
-    Cookies.set("token_exp", (decodedToken.exp * 1000).toString());
-  };
+  const login = useCallback(async (token: string, userData: User): Promise<void> => {
+    console.log("Login function called");
+    try {
+      const decodedToken: any = jwtDecode(token);
+      setIsAuthenticated(true);
+      setUser(userData);
+      Cookies.set("token", token);
+      Cookies.set("token_exp", (decodedToken.exp * 1000).toString());
+      console.log("Authentication state updated");
 
-  const logout = (): void => {
+      // Triggering state update and redirect after updating state
+      router.push(`/${locale}/services`);
+    } catch (error) {
+      console.error("Error during login:", error);
+      throw error;
+    }
+  }, [router, locale]);
+
+  const logout = useCallback((): void => {
+    console.log("Logout function called");
     setIsAuthenticated(false);
     setUser(null);
     Cookies.remove("token");
     Cookies.remove("token_exp");
-    router.push(`/`);
-  };
+    router.push(`/${locale}`);
+  }, [router, locale]);
 
-  const checkAuthState = async (): Promise<void> => {
+  const checkAuthState = useCallback(async (): Promise<void> => {
+    console.log("Checking auth state...");
     const token = Cookies.get("token");
     const tokenExp = Cookies.get("token_exp");
 
     if (token && tokenExp && parseInt(tokenExp) > Date.now()) {
+      console.log("Token is valid and not expired");
       setIsAuthenticated(true);
-
       try {
         const response = await fetch("/api/auth/user-details", {
           method: "GET",
@@ -93,24 +99,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         logout();
       }
     } else {
-      if (
-        pathname !== `/${locale}` &&
-        pathname !== `/${locale}/register` &&
-        pathname !== `/${locale}/register` &&
-        pathname !== `/${locale}/admin/dashboard` &&
-        pathname !== `/${locale}/admin/services` &&
-        pathname !== `/${locale}/admin/users`
-      ) {
-        logout();
+      setIsAuthenticated(false);
+      setUser(null);
+
+      const publicPaths = [
+        `/${locale}`,
+        `/${locale}/login`,
+        `/${locale}/register`,
+      ];
+      const adminPaths = [
+        `/${locale}/admin/dashboard`,
+        `/${locale}/admin/services`,
+        `/${locale}/admin/users`,
+      ];
+
+      if (!publicPaths.includes(pathname) && !adminPaths.includes(pathname)) {
+        router.push(`/${locale}`);
       }
     }
-  };
+  }, [logout, router, locale, pathname]);
 
   useEffect(() => {
+    console.log("AuthProvider mounted");
     checkAuthState();
     const interval = setInterval(checkAuthState, 1000 * 60);
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      console.log("AuthProvider unmounted");
+      clearInterval(interval);
+    };
+  }, [checkAuthState]);
 
   const authContextValue: AuthContextType = {
     user,

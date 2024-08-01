@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useTranslations, useLocale } from "next-intl";
@@ -19,59 +19,67 @@ export const SignInForm: React.FC = () => {
   const locale = useLocale();
   const { login } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setLoading(true);
+      setErrorMessage(false);
 
-    try {
-      const response = await fetch("/api/auth/sign-in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        const token = data.token;
-        setCookie("token", token);
-        localStorage.setItem("token", token);
-
-        const userDetailsResponse = await fetch("/api/auth/user-details", {
-          method: "GET",
+      try {
+        const response = await fetch("/api/auth/sign-in", {
+          method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify({ email, password }),
         });
 
-        const userDetailsData = await userDetailsResponse.json();
+        const data = await response.json();
 
-        if (userDetailsResponse.ok) {
-          const { id, username, profilePicture } = userDetailsData.user;
-          login(data.token, { id, profilePicture, username, email });
-          setLoading(false);
+        if (response.ok) {
+          const token = data.token;
+          console.log("Token received:", token);
 
-          router.push(`/${locale}/services`);
+          setCookie("token", token);
+          localStorage.setItem("token", token);
+          // console.log("LocalStorage set:", localStorage.getItem("token"));
+
+          const userDetailsResponse = await fetch("/api/auth/user-details", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          const userDetailsData = await userDetailsResponse.json();
+
+          if (userDetailsResponse.ok) {
+            const { id, username, profilePicture } = userDetailsData.user;
+            await login(token, { id, profilePicture, username, email });
+
+            setLoading(false);
+            router.push(`/${locale}/services`);
+          } else {
+            setLoading(false);
+            setErrorMessage(true);
+            console.error(
+              "Error fetching user details:",
+              userDetailsData.message
+            );
+          }
         } else {
           setLoading(false);
           setErrorMessage(true);
-          console.error(
-            "Error fetching user details:",
-            userDetailsData.message
-          );
+          console.error("Sign-in error:", data.message);
         }
-      } else {
+      } catch (error) {
         setLoading(false);
         setErrorMessage(true);
-        console.error("Sign-in error:", data.message);
+        console.error("An error occurred:", error);
       }
-    } catch (error) {
-      setLoading(false);
-      console.error("An error occurred:", error);
-    }
-  };
+    },
+    [email, password, login, router, locale]
+  );
 
   const togglePassword = () => {
     setShowPassword(!showPassword);

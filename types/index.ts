@@ -56,3 +56,12 @@ export interface Review {
   comment: string
   timestamp: string | number | Date;
 }
+
+export interface Message {
+  id: string;
+  content_en: string;
+  content_fr: string;
+  createdAt: string;
+  bookingId: string;
+  userId: string;
+}

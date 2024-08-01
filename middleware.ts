@@ -13,9 +13,12 @@ export function middleware(request: NextRequest) {
   const localeMatch = pathname.match(/^\/(en|fr|ar)(\/|$)/);
   const locale = localeMatch ? localeMatch[1] : 'en';
 
+  console.log(`Token: ${token}`);
+  console.log(`Requested Path: ${pathname}`);
+
   const response = intlMiddleware(request);
 
-  if (!token && pathname.startsWith(`/${locale}/service`)) {
+  if (!token && !pathname.startsWith(`/${locale}`)) {
     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 

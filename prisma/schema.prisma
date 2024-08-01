@@ -17,6 +17,7 @@ model User {
   updatedAt      DateTime  @updatedAt
   bookings       Booking[] @relation("CustomerBookings")
   reviews        Review[]
+  Message        Message[]
 }
 
 model Booking {
@@ -32,6 +33,7 @@ model Booking {
   customerId  String        @db.ObjectId
   service     Service       @relation("ServiceBookings", fields: [serviceId], references: [id])
   serviceId   String        @db.ObjectId
+  messages    Message[]
 }
 
 model Service {
@@ -47,6 +49,17 @@ model Service {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   bookings       Booking[] @relation("ServiceBookings")
+}
+
+model Message {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  content_en String
+  content_fr String
+  createdAt  DateTime @default(now())
+  booking    Booking  @relation(fields: [bookingId], references: [id])
+  bookingId  String   @db.ObjectId
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @db.ObjectId
 }
 
 model Review {

@@ -8,6 +8,7 @@ import { Button } from "@/app/components/ui/button";
 import { Tabs, Tab } from "@nextui-org/react";
 import { useToast } from "@/contexts/ToastContext";
 import axios from "axios";
+import { tailChase } from "ldrs";
 
 const Avatar = () => {
   const { user, logout } = useAuth();
@@ -28,6 +29,7 @@ const Avatar = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [passwordError, setPasswordError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -74,14 +76,13 @@ const Avatar = () => {
   };
 
   const handleSave = async () => {
+    setIsLoading(true);
     const updatedFields: any = {};
 
-    // Check if username has changed
     if (username !== user?.username) {
       updatedFields.username = username;
     }
 
-    // Handle profile image upload if changed
     if (profileImage) {
       try {
         const formData = new FormData();
@@ -98,6 +99,7 @@ const Avatar = () => {
         if (cloudinaryResponse.status === 200) {
           updatedFields.profilePicture = cloudinaryResponse.data.secure_url;
         } else {
+          setIsLoading(false);
           throw new Error("Failed to upload image to Cloudinary");
         }
       } catch (error) {
@@ -110,7 +112,6 @@ const Avatar = () => {
       }
     }
 
-    // Handle password change if attempted
     if (oldPassword && newPassword) {
       if (!validatePasswords()) {
         return;
@@ -119,7 +120,6 @@ const Avatar = () => {
       updatedFields.newPassword = newPassword;
     }
 
-    // Only proceed with the update if there are changes
     if (Object.keys(updatedFields).length === 0) {
       showToast("No changes to update", "alert");
       return;
@@ -133,6 +133,7 @@ const Avatar = () => {
       });
 
       if (response.status === 200) {
+        setIsLoading(false);
         showToast("Profile updated successfully!", "success");
 
         (document.getElementById("my_modal_2") as HTMLDialogElement).close();
@@ -153,6 +154,7 @@ const Avatar = () => {
     setProfileImage(null);
   };
 
+  tailChase.register();
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
@@ -184,6 +186,7 @@ const Avatar = () => {
               {user?.email}
             </div>
           </div>
+          <hr className="flex-grow border-gray-300" />
           <ul className="py-2 text-sm text-gray-700">
             <li>
               <button
@@ -204,6 +207,22 @@ const Avatar = () => {
                   <p className="ml-2">Manage account</p>
                 </div>
               </button>
+            </li>
+            <li>
+              <a
+                href={`/${locale}/messages`}
+                className="block px-4 py-2 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <Image
+                    src="/inbox.svg"
+                    alt="history"
+                    width={17}
+                    height={17}
+                  />
+                  <p className="ml-2">Inbox</p>
+                </div>
+              </a>
             </li>
             <li>
               <a
@@ -366,7 +385,15 @@ const Avatar = () => {
               Cancel
             </Button>
             <Button variant="outline" onClick={handleSave}>
-              Save changes
+              {isLoading ? (
+                <l-tail-chase
+                  size="20"
+                  speed="1.75"
+                  color="black"
+                ></l-tail-chase>
+              ) : (
+                "Save changes"
+              )}
             </Button>
           </div>
         </div>

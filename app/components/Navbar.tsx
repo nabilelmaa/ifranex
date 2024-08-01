@@ -28,6 +28,8 @@ export const Navbar = () => {
     setAuthChecked(true);
   }, [isAuthenticated]);
 
+  console.log("isAuthenticated?: ", isAuthenticated);
+
   const isHomePage = pathname === `/${locale}`;
   const isDashboardPage = pathname === `/${locale}/admin/dashboard`;
   const isServicesPage = pathname === `/${locale}/admin/services`;
@@ -45,7 +47,7 @@ export const Navbar = () => {
           <>
             <nav className="flex items-center justify-between p-6 z-50 relative ">
               <Link href="/">
-                <p className="font-bold text-green-500 text-xl lg:text-3xl md:text-3xl">
+                <p className="font-bold text-colGreen-000 text-xl lg:text-2xl md:text-2xl">
                   Ifrane<span className="text-black">X.</span>
                 </p>
               </Link>

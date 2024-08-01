@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
 import { useLocale } from "next-intl";
 import { lineWobble } from "ldrs";
-import BarChart from "@/app/components/BarChart";
+import { BarChart } from "@/app/components/BarChart";
 
 import {
   LineChart,
@@ -272,7 +272,7 @@ const Dashboard = () => {
         <h1 className="text-xl text-gray-800 font-semibold mb-2">
           Bookings Overview
         </h1>
-        <ResponsiveContainer width="100%" height={300}>
+        {/* <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
@@ -280,7 +280,8 @@ const Dashboard = () => {
             <Tooltip />
             <Line type="monotone" dataKey="value" stroke="#8884d8" />
           </LineChart>
-        </ResponsiveContainer>
+        </ResponsiveContainer> */}
+        <BarChart data={chartData} />
       </div>
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-12 p-4">
         <h1 className="text-xl text-gray-800 font-semibold mb-2">Bookings</h1>

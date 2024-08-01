@@ -4,6 +4,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import { ServiceProps } from "@/types/index";
 import { useLocale, useTranslations } from "next-intl";
 import { ServiceCard } from "@/app/components/ServiceCard";
+import Cookies from "js-cookie";
 import {
   Select,
   SelectContent,
@@ -67,8 +68,12 @@ const Page: React.FC = () => {
         setLoading(false);
       }
     };
+    const token = Cookies.get("token");
 
-    fetchServices();
+    if (token) {
+      fetchServices();
+    }
+      
   }, [locale]);
 
   useEffect(() => {
@@ -93,7 +98,7 @@ const Page: React.FC = () => {
             <a href={`/${locale}`}>{t("nav_home")}</a>
           </li>
           <li>
-            <a href={`/${locale}`}>{t("nav_services")}</a>
+            <a href={`/${locale}/services`}>{t("nav_services")}</a>
           </li>
         </ul>
       </div>

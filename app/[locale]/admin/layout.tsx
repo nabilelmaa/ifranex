@@ -13,7 +13,11 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const locale = useLocale();
@@ -22,38 +26,30 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     {
       label: "Dashboard",
       href: `/${locale}/admin/dashboard`,
-      icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
+      icon: <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Services",
       href: `/${locale}/admin/services`,
-      icon: (
-        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
+      icon: <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Users",
       href: `/${locale}/admin/users`,
-      icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
+      icon: <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Messages",
       href: "#",
-      icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
+      icon: <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />,
     },
   ];
 
   return (
-    <div className={cn("flex", "h-screen")}>
+    <div className={cn("flex h-screen overflow-hidden")}>
       <Sidebar open={open} setOpen={setOpen} animate={true}>
-        <SidebarBody className="justify-between gap-10">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+        <SidebarBody className="flex flex-col h-full">
+          <div className="flex-grow overflow-y-auto">
             <Logo />
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
@@ -63,12 +59,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           </div>
         </SidebarBody>
       </Sidebar>
-      <main className="flex-1 p-4">{children}</main>
+      <main className="flex-1 overflow-y-auto p-4">
+        {children}
+      </main>
     </div>
   );
 };
 
-const Logo = () => (
+const Logo: React.FC = () => (
   <Link
     href="#"
     className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
