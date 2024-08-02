@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export const PATCH = async (req: NextRequest, { params }: { params: { id: string } }) => {
   try {
     const { id } = params;
-
     const { status } = await req.json();
 
 
@@ -19,6 +18,21 @@ export const PATCH = async (req: NextRequest, { params }: { params: { id: string
       where: { id },
       data: {
         status: 'Completed',
+      },
+      include: {
+        service: true,
+      },
+    });
+
+    const service_en = updatedBooking.service.description_en.toLowerCase()
+    const service_fr = updatedBooking.service.description_fr.toLowerCase()
+
+    await db.message.create({
+      data: {
+        content_en: `Your booking for ${service_en} has been completed. Thank you for using our service!`,
+        content_fr: `Votre réservation pour ${service_fr} a été complétée. Merci d'utiliser notre service!`,
+        bookingId: updatedBooking.id,
+        userId: updatedBooking.customerId,
       },
     });
 

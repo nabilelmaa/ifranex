@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
@@ -17,6 +17,7 @@ const Avatar = () => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const colors = ["bg-gray-300"];
   const { showToast } = useToast();
+  const t = useTranslations("Avatar");
 
   const getRandomColor = () => {
     return colors[Math.floor(Math.random() * colors.length)];
@@ -134,7 +135,7 @@ const Avatar = () => {
 
       if (response.status === 200) {
         setIsLoading(false);
-        showToast("Profile updated successfully!", "success");
+        showToast(t("toast_updated"), "success");
 
         (document.getElementById("my_modal_2") as HTMLDialogElement).close();
         resetForm();
@@ -142,7 +143,7 @@ const Avatar = () => {
       }
     } catch (error) {
       console.error("Error updating user information", error);
-      showToast("Failed to update profile. Please try again.", "error");
+      showToast(t("toast_error"), "error");
     }
   };
 
@@ -199,12 +200,12 @@ const Avatar = () => {
               >
                 <div className="flex items-center">
                   <Image
-                    src="/manage-user.svg"
+                    src="/mng-user.svg"
                     alt="user"
                     width={17}
                     height={17}
                   />
-                  <p className="ml-2">Manage account</p>
+                  <p className="ml-2">{t("manage_acc")}</p>
                 </div>
               </button>
             </li>
@@ -220,7 +221,7 @@ const Avatar = () => {
                     width={17}
                     height={17}
                   />
-                  <p className="ml-2">Inbox</p>
+                  <p className="ml-2">{t("inbox")}</p>
                 </div>
               </a>
             </li>
@@ -236,7 +237,7 @@ const Avatar = () => {
                     width={17}
                     height={17}
                   />
-                  <p className="ml-2">Services</p>
+                  <p className="ml-2">{t("services")}</p>
                 </div>
               </a>
             </li>
@@ -252,7 +253,7 @@ const Avatar = () => {
                     width={17}
                     height={17}
                   />
-                  <p className="ml-2">History</p>
+                  <p className="ml-2">{t("history")}</p>
                 </div>
               </a>
             </li>
@@ -265,7 +266,7 @@ const Avatar = () => {
                     width={17}
                     height={17}
                   />
-                  <p className="ml-2">Support</p>
+                  <p className="ml-2">{t("support")}</p>
                 </div>
               </a>
             </li>
@@ -283,7 +284,9 @@ const Avatar = () => {
                   width={17}
                   height={17}
                 />
-                <p className="ml-2">Log out</p>
+                <p className="ml-2 text-red-500 font-semibold">
+                  {t("log_out")}
+                </p>
               </div>
             </button>
           </div>
@@ -292,9 +295,9 @@ const Avatar = () => {
 
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg mb-6">Edit Profile</h3>
+          <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
-            <Tab key="personal-info" title="Personal Information">
+            <Tab key="personal-info" title={t("personal_info")}>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Image
@@ -314,7 +317,7 @@ const Avatar = () => {
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="username" className="text-start">
-                    Username
+                    {t("username")}
                   </Label>
                   <Input
                     id="username"
@@ -325,11 +328,11 @@ const Avatar = () => {
                 </div>
               </div>
             </Tab>
-            <Tab key="security" title="Security">
+            <Tab key="security" title={t("security")}>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="oldPassword" className="text-start text-xs">
-                    Current Password
+                    {t("curr_pass")}
                   </Label>
                   <Input
                     id="oldPassword"
@@ -341,14 +344,14 @@ const Avatar = () => {
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="newPassword" className="text-start text-xs">
-                    New Password
+                    {t("new_pass")}
                   </Label>
                   <Input
                     id="newPassword"
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="col-span-3"
+                    className="col-span-3 w-45"
                   />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
@@ -356,7 +359,7 @@ const Avatar = () => {
                     htmlFor="confirmPassword"
                     className="text-start text-xs"
                   >
-                    Confirm New Password
+                    {t("conf_pass")}
                   </Label>
                   <Input
                     id="confirmPassword"
@@ -382,7 +385,7 @@ const Avatar = () => {
                 resetForm();
               }}
             >
-              Cancel
+              {t("cancel")}
             </Button>
             <Button variant="outline" onClick={handleSave}>
               {isLoading ? (
@@ -392,13 +395,13 @@ const Avatar = () => {
                   color="black"
                 ></l-tail-chase>
               ) : (
-                "Save changes"
+                t("save")
               )}
             </Button>
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button>Close</button>
+          <button> {t("cancel")}</button>
         </form>
       </dialog>
     </div>

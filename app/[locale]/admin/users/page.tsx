@@ -83,10 +83,10 @@ const UsersPage = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-4">
-        <Card>
+        <Card className="bg-gradient-to-tl from-blue-500 via-indigo-600 to-purple-700">
           <CardHeader className="pb-3">
-            <CardTitle>Total Users</CardTitle>
-            <CardDescription className="text-4xl font-bold">
+            <CardTitle className="text-white">Total Users</CardTitle>
+            <CardDescription className="text-4xl font-bold text-white">
               {totalUsers}
             </CardDescription>
           </CardHeader>

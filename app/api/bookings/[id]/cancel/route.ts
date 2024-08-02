@@ -20,6 +20,21 @@ export const PATCH = async (req: NextRequest, { params }: { params: { id: string
       data: {
         status: 'Canceled',
       },
+      include: {
+        service: true
+      }
+    });
+
+    const service_en = updatedBooking.service.description_en.toLowerCase()
+    const service_fr = updatedBooking.service.description_fr.toLowerCase()
+    
+    await db.message.create({
+      data: {
+        content_en: `Your booking for ${service_en} has been canceled.`,
+        content_fr: `Votre réservation pour ${service_fr} a été annulée.`,
+        bookingId: updatedBooking.id,
+        userId: updatedBooking.customerId,
+      },
     });
 
     return NextResponse.json(

@@ -1,4 +1,23 @@
 {
+    "Avatar": {
+        "manage_acc": "Gérer le compte",
+        "inbox": "Boîte de réception",
+        "services": "Services",
+        "history": "Historique",
+        "support": "Support",
+        "log_out": "Se déconnecter",
+        "edit_profile": "Modifier le profil",
+        "personal_info": "Informations personnelles",
+        "username": "Nom d'utilisateur",
+        "security": "Sécurité",
+        "curr_pass": "Mot de passe actuel",
+        "new_pass": "Nouveau mot de passe",
+        "conf_pass": "Confirmer le nouveau mot de passe",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "toast_updated": "Profil mis à jour avec succès!",
+        "toast_error": "Échec de la mise à jour du profil. Veuillez réessayer."
+    },
     "Navbar": {
         "nav_home": "Accueil",
         "nav_about": "À propos",
@@ -6,7 +25,9 @@
         "nav_us": "Pourquoi nous",
         "nav_reviews": "Avis",
         "login_button": "Se connecter",
-        "signout_button": "Se déconnecter"
+        "signout_button": "Se déconnecter",
+        "browse": "Parcourez nos services populaires",
+        "inbox": "Boîte de réception"
     },
     "Us": {
         "title": "Qu'est-ce qui nous rend différents?",
@@ -66,5 +87,22 @@
         "baby_sitting": "Babysitting",
         "emergency_plumber": "Plombier d'urgence",
         "get_in_touch": "Contactez-nous"
+    },
+    "BookingForm": {
+        "title": "Veuillez remplir le formulaire",
+        "fname": "Prénom",
+        "lname": "Nom",
+        "phone": "Numéro de téléphone",
+        "address": "Adresse",
+        "date": "Date préférée",
+        "time": "Heure préférée",
+        "needs": "Décrivez vos besoins",
+        "proceed": "Passer au récapitulatif",
+        "optional": "Optionnel",
+        "confirm_title": "Confirmez votre réservation",
+        "service_details": "Détails du service",
+        "your_details": "Vos détails",
+        "confirm": "Confirmer",
+        "cancel": "Annuler"
     }
 }

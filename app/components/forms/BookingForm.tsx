@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ServiceProps } from "@/types/index";
 import Image from "next/image";
 
@@ -19,7 +19,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
     time: "",
     needs: "",
   });
-
+  const t = useTranslations("BookingForm");
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -70,7 +70,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
             </div>
             <div className="md:w-1/2 p-8">
               <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">
-                Fill the form please
+                {t("title")}
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-6 lg:space-y-0">
@@ -79,7 +79,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                       htmlFor="firstName"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      First Name
+                      {t("fname")}
                     </label>
                     <input
                       id="firstName"
@@ -96,7 +96,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                       htmlFor="lastName"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Last Name
+                      {t("lname")}
                     </label>
                     <input
                       id="lastName"
@@ -114,7 +114,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                     htmlFor="phoneNumber"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Phone Number
+                    {t("phone")}
                   </label>
                   <input
                     id="phoneNumber"
@@ -131,7 +131,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                     htmlFor="address"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Address
+                    {t("address")}
                   </label>
                   <input
                     id="address"
@@ -148,7 +148,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                     htmlFor="date"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Preferred Date
+                    {t("date")}
                   </label>
                   <input
                     id="date"
@@ -165,7 +165,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                     htmlFor="time"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Preferred Time
+                    {t("time")}
                   </label>
                   <input
                     id="time"
@@ -182,7 +182,8 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                     htmlFor="needs"
                     className="block text-sm font-medium text-gray-700 mb-1"
                   >
-                    Describe Your Needs
+                    {t("needs")}
+                    <span className="text-amber-400">({t("optional")})</span>
                   </label>
                   <textarea
                     id="needs"
@@ -191,7 +192,6 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                     onChange={handleChange}
                     className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
                     rows={4}
-                    required
                   ></textarea>
                 </div>
                 <button
@@ -205,7 +205,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                       color="white"
                     ></l-tail-chase>
                   ) : (
-                    "Proceed to Summary"
+                    t("proceed")
                   )}
                 </button>
               </form>

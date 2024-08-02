@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { FaEnvelope, FaCalendarCheck } from "react-icons/fa";
 import { hourglass } from "ldrs";
+import Image from "next/image";
 
 interface Message {
   id: string;
@@ -26,14 +26,12 @@ const UserInbox: React.FC = () => {
   const fetchMessages = async () => {
     try {
       const token = localStorage.getItem("token");
-
       const response = await fetch(`/api/bookings/messages?locale=${locale}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (response.ok) {
-        setIsLoading(false);
         const data = await response.json();
         setMessages(data.messages);
       }
@@ -47,55 +45,82 @@ const UserInbox: React.FC = () => {
   hourglass.register();
 
   return (
-    <div className="container mx-auto p-4 h-screen">
-      <div className="breadcrumbs text-sm">
-        <ul>
-          <li>
-            <a href={`/${locale}`}>{t("nav_home")}</a>
-          </li>
-          <li>
-            <a href={`/${locale}/services`}>{t("nav_services")}</a>
-          </li>
-        </ul>
-      </div>
-      <h1 className="text-2xl font-semibold mt-4 mb-6 text-gray-800">
-        Your Inbox
-      </h1>
-      {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <l-hourglass
-            size="40"
-            bg-opacity="0.1"
-            speed="1.75"
-            color="black"
-          ></l-hourglass>
-        </div>
-      ) : messages.length === 0 ? (
-        <p className="text-lg text-gray-600">You have no messages.</p>
-      ) : (
-        <ul className="space-y-4">
-          {messages.map((message) => (
-            <li
-              key={message.id}
-              className="bg-white shadow-md border border-gray-200 rounded-lg overflow-hidden transition-transform transform hover:scale-105"
-            >
-              <div className="flex items-center border-b border-gray-200 p-4 bg-gray-50">
-                <FaEnvelope className="text-blue-600 mr-3" />
-                <p className="font-semibold text-lg text-gray-800">
-                  {message.serviceTitle}
-                </p>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700 mb-2">{message.content}</p>
-                <p className="text-sm text-gray-500">
-                  <FaCalendarCheck className="inline mr-1" />
-                  {new Date(message.createdAt).toLocaleString()}
-                </p>
-              </div>
+    <div className="min-h-screen">
+      <div className="container mx-auto p-4">
+        <div className="breadcrumbs text-sm mb-6">
+          <ul>
+            <li>
+              <a href={`/${locale}`}>{t("nav_home")}</a>
             </li>
-          ))}
-        </ul>
-      )}
+            <li>
+              <a href={`/${locale}/services`}>{t("nav_services")}</a>
+            </li>
+            <li>
+              <a href={`/${locale}`}>{t("inbox")}</a>
+            </li>
+          </ul>
+        </div>
+
+        <h1 className="text-2xl font-semibold text-gray-800 mb-6">
+          Your Inbox
+        </h1>
+
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <l-hourglass
+              size="40"
+              bg-opacity="0.1"
+              speed="1.75"
+              color="black"
+            ></l-hourglass>
+          </div>
+        ) : messages.length === 0 ? (
+          <div className="bg-white shadow-md rounded-lg p-8 text-center">
+            <p className="text-xl text-gray-600">You have no messages.</p>
+          </div>
+        ) : (
+          <ul className="space-y-6">
+            {messages.map((message) => (
+              <li
+                key={message.id}
+                className="bg-white shadow-md rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <Image
+                        src="/mail-check.svg"
+                        alt="Message"
+                        width={24}
+                        height={24}
+                        className="text-blue-600"
+                      />
+                      <h2 className="text-xl font-semibold text-gray-800">
+                        {message.serviceTitle}
+                      </h2>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Image
+                        src="/calendar.svg"
+                        alt="Date"
+                        width={16}
+                        height={16}
+                        className="mr-2"
+                      />
+                      <span>
+                        {new Date(message.createdAt).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">
+                    {message.content}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

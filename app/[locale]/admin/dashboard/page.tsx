@@ -191,10 +191,10 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen container mx-auto ">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-gradient-to-bl from-indigo-600 via-purple-700 to-pink-800">
           <CardHeader className="pb-3">
-            <CardTitle>Total Bookings</CardTitle>
-            <CardDescription className="text-4xl font-bold">
+            <CardTitle className="text-white">Total Bookings</CardTitle>
+            <CardDescription className="text-4xl font-bold text-white">
               {totalBookings}
             </CardDescription>
           </CardHeader>
@@ -206,14 +206,14 @@ const Dashboard = () => {
                 width={24}
                 height={24}
               />
-              <span>+5.2% this month</span>
+              <span className="text-white">+5.2% this month</span>
             </div>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-br from-yellow-500 via-orange-600 to-red-700">
           <CardHeader className="pb-3">
-            <CardTitle>Pending Bookings</CardTitle>
-            <CardDescription className="text-4xl font-bold">
+            <CardTitle className="text-white">Pending Bookings</CardTitle>
+            <CardDescription className="text-4xl font-bold text-white">
               {pendingBookings}
             </CardDescription>
           </CardHeader>
@@ -225,14 +225,14 @@ const Dashboard = () => {
                 width={24}
                 height={24}
               />
-              <span>-1.8% this month</span>
+              <span className="text-white">-1.8% this month</span>
             </div>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-tr from-cyan-600 via-blue-700 to-indigo-800">
           <CardHeader className="pb-3">
-            <CardTitle>Confirmed Bookings</CardTitle>
-            <CardDescription className="text-4xl font-bold">
+            <CardTitle className="text-white">Confirmed Bookings</CardTitle>
+            <CardDescription className="text-4xl font-bold text-white">
               {confirmedBookings}
             </CardDescription>
           </CardHeader>
@@ -244,14 +244,14 @@ const Dashboard = () => {
                 width={24}
                 height={24}
               />
-              <span>+2.5% this month</span>
+              <span className="text-white">+2.5% this month</span>
             </div>
           </CardFooter>
         </Card>
-        <Card>
+        <Card className="bg-gradient-to-br from-teal-500 via-green-600 to-lime-700">
           <CardHeader className="pb-3">
-            <CardTitle>Completed Bookings</CardTitle>
-            <CardDescription className="text-4xl font-bold">
+            <CardTitle className="text-white">Completed Bookings</CardTitle>
+            <CardDescription className="text-4xl font-bold text-white">
               {completedBookings}
             </CardDescription>
           </CardHeader>
@@ -263,7 +263,7 @@ const Dashboard = () => {
                 width={24}
                 height={24}
               />
-              <span>+3.0% this month</span>
+              <span className="text-white">+3.0% this month</span>
             </div>
           </CardFooter>
         </Card>
@@ -272,15 +272,6 @@ const Dashboard = () => {
         <h1 className="text-xl text-gray-800 font-semibold mb-2">
           Bookings Overview
         </h1>
-        {/* <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Line type="monotone" dataKey="value" stroke="#8884d8" />
-          </LineChart>
-        </ResponsiveContainer> */}
         <BarChart data={chartData} />
       </div>
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-12 p-4">

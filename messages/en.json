@@ -1,4 +1,23 @@
 {
+    "Avatar": {
+        "manage_acc": "Manage account",
+        "inbox": "Inbox",
+        "services": "Services",
+        "history": "Manage account",
+        "support": "Support",
+        "log_out": "Log out",
+        "edit_profile": "Edite Profile",
+        "personal_info": "Personal Information",
+        "username": "Username",
+        "security": "Security",
+        "curr_pass": "Current Password",
+        "new_pass": "New Password",
+        "conf_pass": "Confirm New Password",
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "toast_updated": "Profile updated successfully!",
+        "toast_error": "Failed to update profile. Please try again."
+    },
     "Navbar": {
         "nav_home": "Home",
         "nav_about": "About",
@@ -6,7 +25,9 @@
         "nav_us": "Why us",
         "nav_reviews": "Reviews",
         "login_button": "Login",
-        "signout_button": "Log out"
+        "signout_button": "Log out",
+        "browse": "Browse our popular services",
+        "inbox":"Inbox"
     },
     "Us": {
         "title": "What Makes Us Different?",
@@ -69,5 +90,22 @@
         "emergency_plumber": "Emergency Plumber",
         "baby_sitting": "Babysitting",
         "get_in_touch": "Get in Touch"
+    },
+    "BookingForm": {
+        "title": "Fill the form please",
+        "fname": "First Name",
+        "lname": "Last Name",
+        "phone": "Phone Number",
+        "address": "Address",
+        "date": "Preferred Date",
+        "time": "Preferred Time",
+        "needs": "Describe Your Needs",
+        "proceed": "Proceed to Summary",
+        "optional": "Optional",
+        "confirm_title": "Confirm Your Booking",
+        "service_details": "Service Details",
+        "your_details": "Service Details",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
     }
 }

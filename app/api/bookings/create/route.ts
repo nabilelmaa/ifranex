@@ -46,7 +46,7 @@ export const POST = async (req: NextRequest) => {
     console.log('Parsing request body...');
     const { fullName, phoneNumber, address, timing, needs, serviceTitle, serviceId } = await req.json();
 
-    if (!fullName || !phoneNumber || !address || !timing || !needs || !serviceTitle || !serviceId) {
+    if (!fullName || !phoneNumber || !address || !timing || !serviceTitle || !serviceId) {
       console.log('Missing required fields:', { fullName, phoneNumber, address, timing, needs, serviceTitle, serviceId });
       return NextResponse.json({ message: 'All fields are required' }, { status: 400 });
     }

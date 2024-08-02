@@ -28,7 +28,16 @@ export const Navbar = () => {
     setAuthChecked(true);
   }, [isAuthenticated]);
 
-  console.log("isAuthenticated?: ", isAuthenticated);
+  useEffect(() => {
+    if (isSidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isSidebarOpen]);
 
   const isHomePage = pathname === `/${locale}`;
   const isDashboardPage = pathname === `/${locale}/admin/dashboard`;
@@ -45,12 +54,24 @@ export const Navbar = () => {
         !isServicesPage &&
         !isUsersPage && (
           <>
-            <nav className="flex items-center justify-between p-6 z-50 relative ">
-              <Link href="/">
-                <p className="font-bold text-colGreen-000 text-xl lg:text-2xl md:text-2xl">
-                  Ifrane<span className="text-black">X.</span>
-                </p>
-              </Link>
+            <nav className="flex items-center justify-between p-6 z-50 relative">
+              <div className="flex items-center">
+                <div className="lg:hidden md:hidden mr-4">
+                  <Image
+                    src={isSidebarOpen ? "/x.svg" : "/menu.svg"}
+                    alt={isSidebarOpen ? "Close menu" : "Open menu"}
+                    width={24}
+                    height={24}
+                    onClick={() => setSidebarOpen(!isSidebarOpen)}
+                    className="cursor-pointer"
+                  />
+                </div>
+                <Link href="/">
+                  <p className="font-bold text-colGreen-000 text-xl lg:text-2xl md:text-2xl">
+                    Ifrane<span className="text-black">X.</span>
+                  </p>
+                </Link>
+              </div>
               {isHomePage && (
                 <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
                   <Link href="/">
@@ -100,97 +121,97 @@ export const Navbar = () => {
                   </>
                 )}
               </div>
-              {/* {isHomePage && (
-              <div className="lg:hidden md:hidden">
-                <Image
-                  src={isSidebarOpen ? "/x.svg" : "/menu.svg"}
-                  alt={isSidebarOpen ? "Close menu" : "Open menu"}
-                  width={24}
-                  height={24}
-                  onClick={() => setSidebarOpen(!isSidebarOpen)}
-                  className="cursor-pointer"
-                />
-              </div>
-            )} */}
             </nav>
+            {isSidebarOpen && (
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                onClick={() => setSidebarOpen(false)}
+              ></div>
+            )}
             <div
-              className={`fixed top-0 right-0 h-full bg-white w-full shadow-lg transform transition-transform duration-300 ${
-                isSidebarOpen ? "translate-x-0" : "translate-x-full"
-              } z-40`}
+              className={`fixed top-0 left-0 h-full bg-white w-3/4 shadow-lg transform transition-transform duration-300 ${
+                isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+              } z-50 lg:hidden md:hidden overflow-y-auto`}
             >
-              <ul className="flex flex-col items-start px-8 gap-4 mt-20">
-                <li className="hover:text-green-400 transition cursor-pointer flex items-center gap-2">
-                  <Image src={"/home.svg"} alt="Home" width={20} height={20} />
-                  <Link href="/" className="block">
-                    {t("nav_home")}
+              <div className="flex flex-col h-full">
+                <div className="p-6 border-b border-gray-200">
+                  <Link href="/" onClick={() => setSidebarOpen(false)}>
+                    <p className="font-bold text-colGreen-000 text-xl">
+                      Ifrane<span className="text-black">X.</span>
+                    </p>
                   </Link>
-                </li>
-                <li
-                  className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
-                  onClick={() => scrollToSection("footer")}
-                >
-                  <Image
-                    src={"/about.svg"}
-                    alt="About"
-                    width={20}
-                    height={20}
-                  />
-                  {t("nav_about")}
-                </li>
-                <li
-                  className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
-                  onClick={() => scrollToSection("services")}
-                >
-                  <Image
-                    src={"/work.svg"}
-                    alt="Services"
-                    width={20}
-                    height={20}
-                  />
-                  {t("nav_services")}
-                </li>
-                <li
-                  className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
-                  onClick={() => scrollToSection("us")}
-                >
-                  <Image
-                    src={"/question.svg"}
-                    alt="Us"
-                    width={20}
-                    height={20}
-                  />
-                  {t("nav_us")}
-                </li>
-                <li
-                  className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
-                  onClick={() => scrollToSection("reviews")}
-                >
-                  <Image
-                    src={"/message.svg"}
-                    alt="Reviews"
-                    width={20}
-                    height={20}
-                  />
-                  {t("nav_reviews")}
-                </li>
-                <hr className="flex-grow border-gray-300" />
-                <div>
-                  <Link href={`/${locale}/login`}>
-                    <button
-                      className="flex items-center font-semibold text-black transition-all gap-2"
+                </div>
+                <ul className="flex-grow flex flex-col items-start px-6 py-4 gap-4">
+                  <li className="hover:text-green-400 transition cursor-pointer flex items-center gap-2">
+                    <Image src="/home.svg" alt="Home" width={20} height={20} />
+                    <Link
+                      href="/"
+                      className="block"
                       onClick={() => setSidebarOpen(false)}
                     >
-                      <Image
-                        src={"/log-in.svg"}
-                        alt="Login"
-                        width={20}
-                        height={20}
-                      />
+                      {t("nav_home")}
+                    </Link>
+                  </li>
+                  <li
+                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    onClick={() => scrollToSection("footer")}
+                  >
+                    <Image
+                      src="/about.svg"
+                      alt="About"
+                      width={20}
+                      height={20}
+                    />
+                    {t("nav_about")}
+                  </li>
+                  <li
+                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    onClick={() => scrollToSection("services")}
+                  >
+                    <Image
+                      src="/work.svg"
+                      alt="Services"
+                      width={20}
+                      height={20}
+                    />
+                    {t("nav_services")}
+                  </li>
+                  <li
+                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    onClick={() => scrollToSection("us")}
+                  >
+                    <Image
+                      src="/question.svg"
+                      alt="Us"
+                      width={20}
+                      height={20}
+                    />
+                    {t("nav_us")}
+                  </li>
+                  <li
+                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    onClick={() => scrollToSection("reviews")}
+                  >
+                    <Image
+                      src="/message.svg"
+                      alt="Reviews"
+                      width={20}
+                      height={20}
+                    />
+                    {t("nav_reviews")}
+                  </li>
+                </ul>
+                <div className="p-6 border-t border-gray-200">
+                  <Link href={`/${locale}/login`}>
+                    <button
+                      className="w-full mt-4 px-4 py-3 text-sm font-semibold leading-none bg-white rounded-full shadow-md transition duration-100"
+                      onClick={() => setSidebarOpen(false)}
+                    >
                       {t("login_button")}
                     </button>
                   </Link>
                 </div>
-              </ul>
+              </div>
             </div>
           </>
         )}
