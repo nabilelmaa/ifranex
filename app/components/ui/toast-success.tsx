@@ -11,7 +11,7 @@ export const ToastSuccess: React.FC<ToastSuccessProps> = ({ message }) => (
     <div className="flex p-4">
       <div className="shrink-0">
         <svg
-          className="shrink-0 size-4 text-green-500 mt-0.5"
+          className="shrink-0 size-4 text-colGreen-000 mt-0.5"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -24,7 +24,7 @@ export const ToastSuccess: React.FC<ToastSuccessProps> = ({ message }) => (
       <div className="ms-3">
         <p
           id="hs-toast-success-example-label"
-          className="text-sm font-medium text-green-500 dark:text-neutral-400"
+          className="text-sm font-medium text-colGreen-000 dark:text-neutral-400"
         >
           {message}
         </p>

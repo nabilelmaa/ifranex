@@ -51,12 +51,27 @@
         "submitting": "Soumission en cours",
         "have_account": "Vous avez déjà un compte ?",
         "sign_in": "Se connecter",
-        "error_message_register": "Un utilisateur avec cet email existe déjà!",
+        "user_exist": "Un utilisateur avec cet email existe déjà!",
         "verify": "Vérifier",
         "sending_code": "Envoi du code",
+        "code_sent": "Code de vérification envoyé!",
         "verification_code": "Entrer le code de vérification",
         "account_created": "Compte créé avec succès!",
-        "invalid_code": "Code de vérification invalide!"
+        "invalid_code": "Code de vérification invalide!",
+        "failed_to_send_code": "Échec de l'envoi de l'e-mail de vérification !",
+        "fill_fields": "Veuillez remplir tous les champs.",
+        "failed_to_verify": "Échec de la vérification de l'e-mail!",
+        "try_again": "Une erreur s'est produite. Veuillez réessayer.",
+        "reset_forgot_password": "Mot de passe oublié ?",
+        "reset_description": "Veuillez entrer l'adresse e-mail associée à votre compte. Nous vous enverrons un code de vérification par e-mail pour réinitialiser votre mot de passe.",
+        "reset_success": "Votre mot de passe a été réinitialisé.",
+        "passwords_not_match": "Les champs de mot de passe ne correspondent pas.",
+        "failed_to_reset_password": "Échec de la réinitialisation du mot de passe.",
+        "new_pass": "Nouveau mot de passe",
+        "conf_new_pass": "Confirmation du mot de passe",
+        "reset_button": "Réinitialiser",
+        "resetting": "Réinitialisation",
+        "return": "Retour à la connexion"
     },
     "LoginForm": {
         "welcome_message": "Bienvenue à nouveau",
@@ -66,7 +81,7 @@
         "signin_button": "Se connecter",
         "dont_have": "Vous n'avez pas de compte?",
         "sign_up": "S'inscrire",
-        "error_message_login": "Votre email ou mot de passe est incorrect!"
+        "error_message_login": "Identifiants invalides"
     },
     "Footer": {
         "job": "Voulez-vous trouver un emploi?",

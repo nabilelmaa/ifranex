@@ -27,7 +27,7 @@
         "login_button": "Login",
         "signout_button": "Log out",
         "browse": "Browse our popular services",
-        "inbox":"Inbox"
+        "inbox": "Inbox"
     },
     "Us": {
         "title": "What Makes Us Different?",
@@ -51,12 +51,27 @@
         "submitting": "Submitting",
         "have_account": "Already have an account?",
         "sign_in": "Signin",
-        "error_message_register": "User with that email already exist!",
+        "user_exist": "User with that email already exist.",
         "verify": "Verify",
         "sending_code": "Sending code",
+        "code_sent": "Verification code sent!",
         "verification_code": "Enter verification code",
-        "account_created": "Account created successfully!",
-        "invalid_code": "Invalid verification code!"
+        "account_created": "Account created successfully.",
+        "invalid_code": "Invalid verification code!",
+        "failed_to_send_code": "Failed to send verification email",
+        "fill_fields": "Please fill out all fields.",
+        "failed_to_verify": "Failed to verify email.",
+        "try_again": "An error occurred. Please try again.",
+        "reset_forgot_password": "Forgot your password?",
+        "reset_description": "Please enter the email address associated with your account. We'll email you a verification code to reset your password.",
+        "reset_success": "Your password has been reset.",
+        "passwords_not_match": "Passwords fields do not match.",
+        "failed_to_reset_password": "Failed to reset password.",
+        "new_pass": "New password",
+        "conf_new_pass": "Password confirmation",
+        "reset_button": "Reset Password",
+        "resetting": "Resetting",
+        "return": "Return to Sign In"
     },
     "LoginForm": {
         "welcome_message": "Welcome back",
@@ -66,7 +81,7 @@
         "signin_button": "Sign In",
         "dont_have": "Don't have an account?",
         "sign_up": "Signup",
-        "error_message_login": "Either your email or password is incorrect!"
+        "error_message_login": "Invalid credentials"
     },
     "BookingSummary": {
         "booking_success": "Booking created successfully!"

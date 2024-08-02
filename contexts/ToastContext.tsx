@@ -3,6 +3,7 @@ import { ToastSuccess } from "@/app/components/ui/toast-success";
 import { ToastFailed } from "@/app/components/ui/toast-fail";
 import { ToastAlert } from "@/app/components/ui/toast-alert";
 import { createContext, ReactNode, useContext, useState } from "react";
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Toast {
   show: boolean;
@@ -22,6 +23,12 @@ export const useToast = (): ToastContextType => {
     throw new Error("useToast must be used within a ToastProvider");
   }
   return context;
+};
+
+const toastVariants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 100 }
 };
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
@@ -45,13 +52,21 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {toast.show && (
-        <div className="fixed top-4 right-4 z-50 pointer-events-none">
-          {toast.type === "success" && <ToastSuccess message={toast.message} />}
-          {toast.type === "error" && <ToastFailed message={toast.message} />}
-          {toast.type === "alert" && <ToastAlert message={toast.message} />}
-        </div>
-      )}
+      <AnimatePresence>
+        {toast.show && (
+          <motion.div
+            className="fixed top-4 right-4 z-50 pointer-events-none"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={toastVariants}
+          >
+            {toast.type === "success" && <ToastSuccess message={toast.message} />}
+            {toast.type === "error" && <ToastFailed message={toast.message} />}
+            {toast.type === "alert" && <ToastAlert message={toast.message} />}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </ToastContext.Provider>
   );
 };

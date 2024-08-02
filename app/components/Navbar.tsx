@@ -45,6 +45,7 @@ export const Navbar = () => {
   const isUsersPage = pathname === `/${locale}/admin/users`;
   const isLoginPage = pathname === `/${locale}/login`;
   const isRegisterPage = pathname === `/${locale}/register`;
+  const isResetPasswowrdPage = pathname === `/${locale}/reset-password`;
 
   return (
     <>
@@ -52,7 +53,9 @@ export const Navbar = () => {
         !isRegisterPage &&
         !isDashboardPage &&
         !isServicesPage &&
-        !isUsersPage && (
+        !isUsersPage &&
+        !isResetPasswowrdPage && 
+        (
           <>
             <nav className="flex items-center justify-between p-6 z-50 relative">
               <div className="flex items-center">

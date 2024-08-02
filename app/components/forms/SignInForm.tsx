@@ -5,6 +5,7 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useTranslations, useLocale } from "next-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import { setCookie } from "cookies-next";
+import { useToast } from "@/contexts/ToastContext";
 import Image from "next/image";
 import OTPModal from "../OTPModal";
 
@@ -18,6 +19,7 @@ export const SignInForm: React.FC = () => {
   const t = useTranslations("LoginForm");
   const locale = useLocale();
   const { login } = useAuth();
+  const { showToast } = useToast();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -55,9 +57,9 @@ export const SignInForm: React.FC = () => {
           if (userDetailsResponse.ok) {
             const { id, username, profilePicture } = userDetailsData.user;
             await login(token, { id, profilePicture, username, email });
-
-            setLoading(false);
+            showToast("Login success!", "success");
             router.push(`/${locale}/services`);
+            setLoading(false);
           } else {
             setLoading(false);
             setErrorMessage(true);
@@ -85,11 +87,11 @@ export const SignInForm: React.FC = () => {
   };
 
   return (
-    <div className="p-8 rounded-lg md:w-1/3 lg:w-1/4 ">
+    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-lg">
       <p className="text-center font-bold text-green-500 lg:text-xl">
         Ifrane<span className="text-black">X.</span>
       </p>
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-xl font-bold mb-6 text-center">
         {t("welcome_message")}
       </h2>
 
@@ -109,7 +111,7 @@ export const SignInForm: React.FC = () => {
             >
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
             </svg>
-            <p className="ms-3 text-sm font-medium">
+            <p className="ms-3 text-xs lg:text-sm md:text-sm font-medium">
               {t("error_message_login")}
             </p>
             <button
@@ -158,7 +160,7 @@ export const SignInForm: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+            className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 ffocus:ring-indigo-700 focus:ring-opacity-50"
             placeholder="example@gmail.com"
             required
           />
@@ -186,7 +188,7 @@ export const SignInForm: React.FC = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 password-input"
+              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50 password-input"
               placeholder="••••••••"
               required
             />
@@ -200,8 +202,8 @@ export const SignInForm: React.FC = () => {
           </div>
 
           <a
-            className="inline-block align-baseline text-sm text-green-500 hover:text-green-600"
-            href="#"
+            className="inline-block align-baseline text-sm text-indigo-700 mt-2"
+            href={`/${locale}/reset-password`}
           >
             {t("forgot_password")}
           </a>
@@ -209,12 +211,13 @@ export const SignInForm: React.FC = () => {
         <div className="mb-6">
           <button
             type="submit"
-            className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6  bg-black focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+            className="btn btn-primary w-full"
+            disabled={loading}
           >
             {loading ? (
               <div className="flex items-center justify-center">
                 <span className="loading loading-spinner loading-sm mr-2"></span>
-                {t("signin_button")}...
+                {t("signin_button")}..
               </div>
             ) : (
               t("signin_button")
@@ -225,14 +228,11 @@ export const SignInForm: React.FC = () => {
       <div className="flex items-center lg:justify-between md:justify-between gap-4">
         <span className="inline-block align-baseline text-xs lg:text-sm md:text-sm">
           {t("dont_have")}{" "}
-          <a
-            className="text-green-500 hover:text-green-600"
-            href={`/${locale}/register`}
-          >
+          <a className="text-indigo-700" href={`/${locale}/register`}>
             {t("sign_up")}
           </a>
         </span>
-        <div className="text-sm text-green-500 underline">
+        <div className="text-sm text-indigo-700 underline">
           <OTPModal />
         </div>
       </div>

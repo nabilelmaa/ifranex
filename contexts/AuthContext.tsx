@@ -107,6 +107,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         `/${locale}`,
         `/${locale}/login`,
         `/${locale}/register`,
+        `/${locale}/reset-password`,
       ];
       const adminPaths = [
         `/${locale}/admin/dashboard`,

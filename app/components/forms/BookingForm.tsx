@@ -69,7 +69,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
               </div>
             </div>
             <div className="md:w-1/2 p-8">
-              <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">
+              <h2 className="text-xl lg:text-2xl md:text-2xl font-semibold mb-6 text-center text-gray-800">
                 {t("title")}
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">

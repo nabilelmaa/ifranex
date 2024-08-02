@@ -1,16 +1,18 @@
 "use client";
-import { useRef, useState } from "react";
+
+import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
 
-export const SignUpForm: React.FC = () => {
-  const [username, setUsername] = useState("");
+export const ResetPassword: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [isCodeSent, setIsCodeSent] = useState(false);
@@ -51,27 +53,33 @@ export const SignUpForm: React.FC = () => {
           setLoading(false);
         }
       } else {
-        if (!email || !verificationCode || !username || !password) {
+        if (!email || !verificationCode || !password || !confirmPassword) {
           setErrorMessage(t("fill_fields"));
           setLoading(false);
           return;
         }
 
-        const response = await fetch("/api/auth/sign-up", {
+        if (password !== confirmPassword) {
+          setErrorMessage(t("passwords_not_match"));
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch("/api/users/reset-password", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, verificationCode, username, password }),
+          body: JSON.stringify({ email, verificationCode, password }),
         });
 
         const data = await response.json();
 
         if (response.ok) {
-          showToast(t("account_created"), "success");
-          router.push(`/${locale}/services`);
+          showToast(t("reset_success"), "success");
+          router.push(`/${locale}/login`);
         } else {
-          setErrorMessage(data.message || t("failed_to_verify"));
+          setErrorMessage(data.message || t("failed_to_reset_password"));
         }
         setLoading(false);
       }
@@ -81,8 +89,12 @@ export const SignUpForm: React.FC = () => {
     }
   };
 
-  const togglePassword = () => {
-    setShowPassword(!showPassword);
+  const togglePassword = (field: "password" | "confirmPassword") => {
+    if (field === "password") {
+      setShowPassword(!showPassword);
+    } else {
+      setShowConfirmPassword(!showConfirmPassword);
+    }
   };
 
   const handleVerificationCodeChange = (
@@ -105,13 +117,19 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
+    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-lg">
       <p className="text-center font-bold text-green-500 lg:text-xl mb-4">
         Ifrane<span className="text-black">X.</span>
       </p>
-      <h2 className="text-2xl font-bold mb-6 text-center">
-        {t("create_account")}
-      </h2>
+
+      {!isCodeSent && (
+        <>
+          <h2 className="text-2xl font-bold mb-6 text-center">
+            {t("reset_forgot_password")}
+          </h2>
+          <p className="text-gray-500 text-center">{t("reset_description")}</p>
+        </>
+      )}
       {errorMessage && (
         <div
           id="alert-border-2"
@@ -181,7 +199,7 @@ export const SignUpForm: React.FC = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
+              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 ffocus:ring-indigo-700 focus:ring-opacity-50"
               placeholder="example@gmail.com"
               required={formState === "email"}
             />
@@ -195,10 +213,10 @@ export const SignUpForm: React.FC = () => {
               {loading ? (
                 <div className="flex items-center justify-center text-xs lg:text-sm md:text-md">
                   <span className="loading loading-spinner loading-sm mr-2"></span>
-                  {t("sending_code")}..
+                  {t("submitting")}..
                 </div>
               ) : (
-                t("verify")
+                t("submit_button")
               )}
             </button>
           </div>
@@ -228,82 +246,28 @@ export const SignUpForm: React.FC = () => {
                   </label>
                 </div>
                 <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={one}
-                    onChange={(e) => handleVerificationCodeChange(e, setOne, 1)}
-                    ref={(el) => {
-                      inputRefs.current[0] = el!;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
-                  <input
-                    type="text"
-                    value={two}
-                    onChange={(e) =>
-                      handleVerificationCodeChange(e, setTwo, 2, 0)
-                    }
-                    ref={(el) => {
-                      inputRefs.current[1] = el;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
-                  <input
-                    type="text"
-                    value={three}
-                    onChange={(e) =>
-                      handleVerificationCodeChange(e, setThree, 3, 1)
-                    }
-                    ref={(el) => {
-                      if (el) inputRefs.current[2] = el;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
-                  <input
-                    type="text"
-                    value={four}
-                    onChange={(e) =>
-                      handleVerificationCodeChange(e, setFour, undefined, 2)
-                    }
-                    ref={(el) => {
-                      if (el) inputRefs.current[3] = el;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
+                  {[setOne, setTwo, setThree, setFour].map((setter, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={[one, two, three, four][index]}
+                      onChange={(e) =>
+                        handleVerificationCodeChange(
+                          e,
+                          setter,
+                          index < 3 ? index + 1 : undefined,
+                          index > 0 ? index - 1 : undefined
+                        )
+                      }
+                      ref={(el) => {
+                        inputRefs.current[index] = el;
+                      }}
+                      className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
+                      maxLength={1}
+                      required={formState === "verification"}
+                    />
+                  ))}
                 </div>
-              </div>
-              <div className="mb-4">
-                <div className="flex items-center mb-2">
-                  <Image
-                    src="/user.svg"
-                    alt="user-icon"
-                    width={20}
-                    height={20}
-                    className="mr-1"
-                  />
-                  <label
-                    className="block text-gray-700 text-sm ml-1"
-                    htmlFor="username"
-                  >
-                    {t("username")}
-                  </label>
-                </div>
-                <input
-                  type="text"
-                  id="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                  required={formState === "verification"}
-                />
               </div>
               <div className="mb-4">
                 <div className="flex items-center mb-2">
@@ -318,10 +282,10 @@ export const SignUpForm: React.FC = () => {
                     className="block text-gray-700 text-sm ml-1"
                     htmlFor="password"
                   >
-                    {t("password")}
+                    {t("new_pass")}
                   </label>
                 </div>
-                <div className="relative focus:border-blue-500">
+                <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     id="password"
@@ -332,26 +296,60 @@ export const SignUpForm: React.FC = () => {
                   />
                   <button
                     type="button"
-                    onClick={togglePassword}
+                    onClick={() => togglePassword("password")}
                     className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
                   >
                     {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
                   </button>
                 </div>
               </div>
+              <div className="mb-4">
+                <div className="flex items-center mb-2">
+                  <Image
+                    src="/lock.svg"
+                    alt="lock"
+                    width={20}
+                    height={20}
+                    className="mr-1"
+                  />
+                  <label
+                    className="block text-gray-700 text-sm ml-1"
+                    htmlFor="confirmPassword"
+                  >
+                    {t("conf_new_pass")}
+                  </label>
+                </div>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
+                    required={formState === "verification"}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => togglePassword("confirmPassword")}
+                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                  >
+                    {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                  </button>
+                </div>
+              </div>
               <div className="mb-6">
                 <button
                   type="submit"
-                  className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-black focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50 rounded-md shadow-sm"
+                  className="btn btn-primary w-full"
                   disabled={loading}
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
                       <span className="loading loading-spinner loading-sm mr-2"></span>
-                      {t("submitting")}..
+                      {t("resetting")}..
                     </div>
                   ) : (
-                    t("submit_button")
+                    t("reset_button")
                   )}
                 </button>
               </div>
@@ -361,32 +359,21 @@ export const SignUpForm: React.FC = () => {
       </form>
 
       <div className="flex items-center justify-between">
-        <span className="inline-block align-baseline text-sm lg:text-sm md:text-sm">
-          {t("have_account")}{" "}
-          <a className="text-indigo-700" href={`/${locale}/login`}>
-            {t("sign_in")}
+        <span className="flex align-baseline text-sm">
+          <Image
+            src="/return.svg"
+            alt="return"
+            width={18}
+            height={18}
+            className="mr-1"
+          />
+          <a
+            className="text-indigo-700 font-semibold"
+            href={`/${locale}/login`}
+          >
+            {t("return")}
           </a>
         </span>
-      </div>
-      <div className="col-span-6 mt-6">
-        <p className="text-sm text-gray-500">
-          By creating an account, you agree to our
-          <a
-            href={`/${locale}/terms&conditions`}
-            className="text-gray-700 underline"
-          >
-            {" "}
-            terms and conditions{" "}
-          </a>
-          and{" "}
-          <a
-            href={`/${locale}/privacy&policy`}
-            className="text-gray-700 underline"
-          >
-            privacy policy
-          </a>
-          .
-        </p>
       </div>
     </div>
   );
