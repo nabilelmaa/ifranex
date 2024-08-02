@@ -45,21 +45,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const locale = useLocale();
   const pathname = usePathname();
 
-  const login = useCallback(async (token: string, userData: User): Promise<void> => {
-    console.log("Login function called");
-    try {
-      const decodedToken: any = jwtDecode(token);
-      setIsAuthenticated(true);
-      setUser(userData);
-      Cookies.set("token", token);
-      Cookies.set("token_exp", (decodedToken.exp * 1000).toString());
-      console.log("Authentication state updated");
-      router.push(`/${locale}/services`);
-    } catch (error) {
-      console.error("Error during login:", error);
-      throw error;
-    }
-  }, [router, locale]);
+  const login = useCallback(
+    async (token: string, userData: User): Promise<void> => {
+      console.log("Login function called");
+      try {
+        const decodedToken: any = jwtDecode(token);
+        setIsAuthenticated(true);
+        setUser(userData);
+        Cookies.set("token", token);
+        Cookies.set("token_exp", (decodedToken.exp * 1000).toString());
+        console.log("Authentication state updated");
+        router.push(`/${locale}/services`);
+      } catch (error) {
+        console.error("Error during login:", error);
+        throw error;
+      }
+    },
+    [router, locale]
+  );
 
   const logout = useCallback((): void => {
     console.log("Logout function called");
@@ -112,7 +115,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       ];
 
       if (!publicPaths.includes(pathname) && !adminPaths.includes(pathname)) {
-        router.push(`/${locale}`);
+        router.push(`/${locale}/login`);
       }
     }
   }, [logout, router, locale, pathname]);

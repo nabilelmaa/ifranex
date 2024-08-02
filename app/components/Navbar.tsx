@@ -56,16 +56,18 @@ export const Navbar = () => {
           <>
             <nav className="flex items-center justify-between p-6 z-50 relative">
               <div className="flex items-center">
-                <div className="lg:hidden md:hidden mr-4">
-                  <Image
-                    src={isSidebarOpen ? "/x.svg" : "/menu.svg"}
-                    alt={isSidebarOpen ? "Close menu" : "Open menu"}
-                    width={24}
-                    height={24}
-                    onClick={() => setSidebarOpen(!isSidebarOpen)}
-                    className="cursor-pointer"
-                  />
-                </div>
+                {isHomePage && (
+                  <div className="lg:hidden md:hidden mr-4">
+                    <Image
+                      src="/menu.svg"
+                      alt={isSidebarOpen ? "Close menu" : "Open menu"}
+                      width={24}
+                      height={24}
+                      onClick={() => setSidebarOpen(!isSidebarOpen)}
+                      className="cursor-pointer"
+                    />
+                  </div>
+                )}
                 <Link href="/">
                   <p className="font-bold text-colGreen-000 text-xl lg:text-2xl md:text-2xl">
                     Ifrane<span className="text-black">X.</span>
@@ -122,7 +124,7 @@ export const Navbar = () => {
                 )}
               </div>
             </nav>
-            {isSidebarOpen && (
+            {isSidebarOpen && isHomePage && (
               <div
                 className="fixed inset-0 bg-black bg-opacity-50 z-40"
                 onClick={() => setSidebarOpen(false)}
@@ -201,15 +203,17 @@ export const Navbar = () => {
                     {t("nav_reviews")}
                   </li>
                 </ul>
-                <div className="p-6 border-t border-gray-200">
-                  <Link href={`/${locale}/login`}>
-                    <button
-                      className="w-full mt-4 px-4 py-3 text-sm font-semibold leading-none bg-white rounded-full shadow-md transition duration-100"
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      {t("login_button")}
-                    </button>
-                  </Link>
+                <div className="p-6">
+                  {!isAuthenticated && (
+                    <Link href={`/${locale}/login`}>
+                      <button
+                        className="w-full mt-4 px-4 py-3 text-sm font-semibold leading-none bg-white border border-black rounded-full shadow-md transition duration-100"
+                        onClick={() => setSidebarOpen(false)}
+                      >
+                        {t("login_button")}
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
