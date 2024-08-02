@@ -57,12 +57,12 @@ export const Navbar = () => {
             <nav className="flex items-center justify-between p-6 z-50 relative">
               <div className="flex items-center">
                 {isHomePage && (
-                  <div className="lg:hidden md:hidden mr-4">
+                  <div className="lg:hidden md:hidden mr-4 bg-gray-200 p-2 rounded-md">
                     <Image
                       src="/menu.svg"
                       alt={isSidebarOpen ? "Close menu" : "Open menu"}
-                      width={24}
-                      height={24}
+                      width={18}
+                      height={18}
                       onClick={() => setSidebarOpen(!isSidebarOpen)}
                       className="cursor-pointer"
                     />
@@ -136,15 +136,15 @@ export const Navbar = () => {
               } z-50 lg:hidden md:hidden overflow-y-auto`}
             >
               <div className="flex flex-col h-full">
-                <div className="p-6 border-b border-gray-200">
+                <div className="p-6">
                   <Link href="/" onClick={() => setSidebarOpen(false)}>
-                    <p className="font-bold text-colGreen-000 text-xl">
+                    <p className="font-bold text-colGreen-000 text-3xl">
                       Ifrane<span className="text-black">X.</span>
                     </p>
                   </Link>
                 </div>
-                <ul className="flex-grow flex flex-col items-start px-6 py-4 gap-4">
-                  <li className="hover:text-green-400 transition cursor-pointer flex items-center gap-2">
+                <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2">
+                  <li className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md">
                     <Image src="/home.svg" alt="Home" width={20} height={20} />
                     <Link
                       href="/"
@@ -155,7 +155,7 @@ export const Navbar = () => {
                     </Link>
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
                     onClick={() => scrollToSection("footer")}
                   >
                     <Image
@@ -167,7 +167,7 @@ export const Navbar = () => {
                     {t("nav_about")}
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
                     onClick={() => scrollToSection("services")}
                   >
                     <Image
@@ -179,7 +179,7 @@ export const Navbar = () => {
                     {t("nav_services")}
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
                     onClick={() => scrollToSection("us")}
                   >
                     <Image
@@ -191,7 +191,7 @@ export const Navbar = () => {
                     {t("nav_us")}
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer flex items-center gap-2"
+                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
                     onClick={() => scrollToSection("reviews")}
                   >
                     <Image
