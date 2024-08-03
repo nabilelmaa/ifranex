@@ -98,14 +98,21 @@ body {
 
 .footer-wave {
   position: absolute;
-  top: -50px; 
+  top: -50px;
   width: 100%;
   height: auto;
   z-index: -1;
 }
 
-
 .password-input {
   @apply font-verdana;
   letter-spacing: 0.125em;
+}
+
+@media screen and (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
 }

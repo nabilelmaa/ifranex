@@ -6,6 +6,7 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
+import { tailspin } from "ldrs";
 
 export const ResetPassword: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -115,6 +116,8 @@ export const ResetPassword: React.FC = () => {
       inputRefs.current[prevIndex]?.focus();
     }
   };
+
+  tailspin.register();
 
   return (
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
