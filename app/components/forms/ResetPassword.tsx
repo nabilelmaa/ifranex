@@ -205,7 +205,14 @@ export const ResetPassword: React.FC = () => {
             >
               {loading ? (
                 <div className="flex items-center justify-center text-xs lg:text-sm md:text-md">
-                  <span className="loading loading-spinner loading-sm mr-2"></span>
+                  <span className="mr-2 mt-1">
+                    <l-tailspin
+                      size="16"
+                      stroke="1"
+                      speed="0.9"
+                      color="black"
+                    ></l-tailspin>
+                  </span>
                   {t("submitting")}..
                 </div>
               ) : (
@@ -319,7 +326,14 @@ export const ResetPassword: React.FC = () => {
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
-                      <span className="loading loading-spinner loading-sm mr-2"></span>
+                      <span className="mr-2 mt-1">
+                        <l-tailspin
+                          size="16"
+                          stroke="1"
+                          speed="0.9"
+                          color="black"
+                        ></l-tailspin>
+                      </span>
                       {t("resetting")}..
                     </div>
                   ) : (

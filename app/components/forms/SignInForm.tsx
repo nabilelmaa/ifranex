@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import { setCookie } from "cookies-next";
 import { useToast } from "@/contexts/ToastContext";
-import Image from "next/image";
+import { tailspin } from "ldrs";
 import OTPModal from "../OTPModal";
 
 export const SignInForm: React.FC = () => {
@@ -86,6 +86,8 @@ export const SignInForm: React.FC = () => {
     setShowPassword(!showPassword);
   };
 
+  tailspin.register();
+
   return (
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
       <p className="text-center font-bold text-green-500 lg:text-xl">
@@ -154,7 +156,12 @@ export const SignInForm: React.FC = () => {
           />
           <label
             htmlFor="email"
-            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            className={`absolute text-sm duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 ${
+              email ||
+              document.activeElement === document.getElementById("email")
+                ? "text-indigo-600"
+                : "text-gray-500"
+            }`}
           >
             {t("email")}
           </label>
@@ -197,7 +204,14 @@ export const SignInForm: React.FC = () => {
           >
             {loading ? (
               <div className="flex items-center justify-center">
-                <span className="loading loading-spinner loading-sm mr-2"></span>
+                <span className="mr-2 mt-1">
+                  <l-tailspin
+                    size="16"
+                    stroke="1"
+                    speed="0.9"
+                    color="black"
+                  ></l-tailspin>
+                </span>
                 {t("signin_button")}..
               </div>
             ) : (

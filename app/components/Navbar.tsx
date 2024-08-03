@@ -59,7 +59,7 @@ export const Navbar = () => {
             <nav className="flex items-center justify-between lg:px-8 px-2 py-6 z-50 relative">
               <div className="flex items-center">
                 {(isHomePage || !isHomePage) && (
-                  <div className="lg:hidden md:hidden mr-4 bg-gray-200 p-2 rounded-md">
+                  <div className="lg:hidden mr-4 bg-gray-200 p-2 rounded-md">
                     <Image
                       src="/menu.svg"
                       alt={isSidebarOpen ? "Close menu" : "Open menu"}
@@ -71,13 +71,13 @@ export const Navbar = () => {
                   </div>
                 )}
                 <Link href="/">
-                  <p className="font-bold text-colGreen-000 text-xl lg:text-2xl md:text-2xl">
+                  <p className="font-bold text-colGreen-000 text-xl lg:text-2xl">
                     Ifrane<span className="text-black">X.</span>
                   </p>
                 </Link>
               </div>
               {isHomePage && (
-                <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
+                <ul className="lg:flex justify-center gap-4 hidden h-full text-gray-900">
                   <li
                     className="hover:text-green-400 transition cursor-pointer"
                     onClick={() => scrollToSection("footer")}
@@ -105,7 +105,7 @@ export const Navbar = () => {
                 </ul>
               )}
               {!isHomePage && (
-                <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
+                <ul className="lg:flex justify-center gap-4 hidden h-full text-gray-900">
                   <li>
                     <Link href="/">
                       <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
@@ -143,7 +143,7 @@ export const Navbar = () => {
                   </li>
                 </ul>
               )}
-              <div className="relative text-left lg:flex md:flex items-center">
+              <div className="relative text-left lg:flex items-center">
                 <LocalSwitcher />
                 {isAuthChecked && (
                   <>
@@ -168,9 +168,9 @@ export const Navbar = () => {
               ></div>
             )}
             <div
-              className={`fixed top-0 left-0 h-full bg-white w-3/4 shadow-lg transform transition-transform duration-300 ${
+              className={`fixed top-0 left-0 h-full bg-slate-50 w-3/4 shadow-lg transform transition-transform duration-300 ${
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-              } z-50 lg:hidden md:hidden overflow-y-auto`}
+              } z-50 lg:hidden overflow-y-auto`}
             >
               <div className="flex flex-col h-full">
                 <div className="p-6">
@@ -180,7 +180,7 @@ export const Navbar = () => {
                     </p>
                   </Link>
                 </div>
-                <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2">
+                <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2 font-semibold">
                   {isHomePage ? (
                     <>
                       <li
@@ -263,6 +263,7 @@ export const Navbar = () => {
                               ? "bg-green-100"
                               : "hover:bg-gray-100"
                           }`}
+                          onClick={() => setSidebarOpen(false)}
                         >
                           <div className="flex items-center">
                             <Image
@@ -283,6 +284,7 @@ export const Navbar = () => {
                               ? "bg-green-100"
                               : "hover:bg-gray-100"
                           }`}
+                          onClick={() => setSidebarOpen(false)}
                         >
                           <div className="flex items-center">
                             <Image
@@ -303,6 +305,7 @@ export const Navbar = () => {
                               ? "bg-green-100"
                               : "hover:bg-gray-100"
                           }`}
+                          onClick={() => setSidebarOpen(false)}
                         >
                           <div className="flex items-center">
                             <Image
@@ -323,6 +326,7 @@ export const Navbar = () => {
                               ? "bg-green-100"
                               : "hover:bg-gray-100"
                           }`}
+                          onClick={() => setSidebarOpen(false)}
                         >
                           <div className="flex items-center">
                             <Image

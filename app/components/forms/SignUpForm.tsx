@@ -5,6 +5,7 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
+import { tailspin } from "ldrs";
 
 export const SignUpForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -84,6 +85,8 @@ export const SignUpForm: React.FC = () => {
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
+
+  tailspin.register();
 
   const handleVerificationCodeChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -185,7 +188,14 @@ export const SignUpForm: React.FC = () => {
             >
               {loading ? (
                 <div className="flex items-center justify-center text-xs lg:text-sm md:text-md">
-                  <span className="loading loading-spinner loading-sm mr-2"></span>
+                  <span className="mr-2 mt-1">
+                    <l-tailspin
+                      size="16"
+                      stroke="1"
+                      speed="0.9"
+                      color="black"
+                    ></l-tailspin>
+                  </span>
                   {t("sending_code")}..
                 </div>
               ) : (
@@ -320,7 +330,14 @@ export const SignUpForm: React.FC = () => {
                 >
                   {loading ? (
                     <div className="flex items-center justify-center">
-                      <span className="loading loading-spinner loading-sm mr-2"></span>
+                      <span className="mr-2 mt-1">
+                        <l-tailspin
+                          size="16"
+                          stroke="1"
+                          speed="0.9"
+                          color="black"
+                        ></l-tailspin>
+                      </span>
                       {t("submitting")}..
                     </div>
                   ) : (
