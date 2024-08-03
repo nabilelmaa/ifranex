@@ -5,6 +5,7 @@ import { ServiceProps } from "@/types/index";
 import { useLocale, useTranslations } from "next-intl";
 import { ServiceCard } from "@/app/components/ServiceCard";
 import Cookies from "js-cookie";
+import { useToast } from "@/contexts/ToastContext";
 import {
   Select,
   SelectContent,
@@ -38,6 +39,7 @@ const Page: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const locale = useLocale();
   const t = useTranslations("Navbar");
+  const { showToast } = useToast();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -47,11 +49,10 @@ const Page: React.FC = () => {
           throw new Error(`Error fetching services: ${response.statusText}`);
         }
         const data = await response.json();
-        console.log("Fetched services:", data);
         const visibleServices = data.filter(
           (service: ServiceProps) => !service.hidden
         );
-        console.log("Visible services:", visibleServices);
+
         setServices(visibleServices);
         setCategories([
           "All",
@@ -63,6 +64,7 @@ const Page: React.FC = () => {
         ]);
         setFilteredServices(visibleServices);
       } catch (error) {
+        showToast("error_fetching_services", "error");
         setError("Error fetching services");
       } finally {
         setLoading(false);

@@ -12,7 +12,10 @@
         "cancel": "Cancel",
         "save": "Save changes",
         "toast_updated": "Profile updated successfully!",
-        "toast_error": "Failed to update profile. Please try again."
+        "toast_error": "Failed to update profile. Please try again.",
+        "allowed": "Allowed",
+        "update_photo": "Update Photo",
+        "error_fetching_services":"Error fetching services."
     },
     "Navbar": {
         "nav_home": "Home",

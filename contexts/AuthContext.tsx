@@ -47,14 +47,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = useCallback(
     async (token: string, userData: User): Promise<void> => {
-      console.log("Login function called");
       try {
         const decodedToken: any = jwtDecode(token);
         setIsAuthenticated(true);
         setUser(userData);
         Cookies.set("token", token);
         Cookies.set("token_exp", (decodedToken.exp * 1000).toString());
-        console.log("Authentication state updated");
         router.push(`/${locale}/services`);
       } catch (error) {
         console.error("Error during login:", error);
@@ -65,7 +63,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 
   const logout = useCallback((): void => {
-    console.log("Logout function called");
     setIsAuthenticated(false);
     setUser(null);
     Cookies.remove("token");
@@ -74,12 +71,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [router, locale]);
 
   const checkAuthState = useCallback(async (): Promise<void> => {
-    console.log("Checking auth state...");
     const token = Cookies.get("token");
     const tokenExp = Cookies.get("token_exp");
 
     if (token && tokenExp && parseInt(tokenExp) > Date.now()) {
-      console.log("Token is valid and not expired");
+    
       setIsAuthenticated(true);
       try {
         const response = await fetch("/api/auth/user-details", {
@@ -122,11 +118,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, [logout, router, locale, pathname]);
 
   useEffect(() => {
-    console.log("AuthProvider mounted");
     checkAuthState();
     const interval = setInterval(checkAuthState, 1000 * 60);
     return () => {
-      console.log("AuthProvider unmounted");
       clearInterval(interval);
     };
   }, [checkAuthState]);

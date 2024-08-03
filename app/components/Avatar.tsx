@@ -238,22 +238,39 @@ const Avatar = () => {
           <Tabs aria-label="Options">
             <Tab key="personal-info" title={t("personal_info")}>
               <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 group">
                   <Image
                     src={user?.profilePicture || "/default-avatar.png"}
                     alt="profile picture"
-                    width={45}
-                    height={45}
+                    layout="fill"
+                    objectFit="cover"
                     className="rounded-full"
                   />
 
-                  <Input
+                  <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <img
+                      src="/camera.svg"
+                      alt="Camera"
+                      className="w-8 h-8 mb-2"
+                    />
+                    <span className="text-white text-xs text-center">
+                      {t("update_photo")}
+                    </span>
+                  </div>
+
+                  <input
                     type="file"
                     id="profileImage"
                     onChange={handleImageChange}
-                    className="col-span-3"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    accept=".jpeg,.jpg,.png,.gif"
                   />
                 </div>
+
+                <div className="mt-1 text-xs text-gray-500">
+                  {t("allowed")}*.jpeg, *.jpg, *.png, *.gif
+                </div>
+
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="username" className="text-start">
                     {t("username")}
