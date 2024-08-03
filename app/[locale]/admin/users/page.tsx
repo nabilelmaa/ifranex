@@ -111,17 +111,17 @@ const UsersPage = () => {
               <TableRow key={user.id}>
                 <TableCell>
                   <div className="flex items-center">
-                    <div className="mr-4">
+                    <div className="mr-4 relative w-9 h-9 overflow-hidden rounded-full">
                       {user.profilePicture ? (
                         <Image
                           src={user.profilePicture}
                           alt={user.username}
-                          width={35}
-                          height={35}
-                          className="object-cover rounded-full border border-indigo-700"
+                          layout="fill"
+                          objectFit="cover"
+                          className="rounded-full border border-indigo-700"
                         />
                       ) : (
-                        <div className="w-9 h-9 flex rounded-full items-center justify-center bg-gray-300">
+                        <div className="w-full h-full flex items-center justify-center bg-gray-300">
                           {user && user.username
                             ? user.username.charAt(0).toUpperCase()
                             : ""}
