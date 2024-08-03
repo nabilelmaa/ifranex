@@ -208,7 +208,7 @@ export const SignInForm: React.FC = () => {
                   <l-tailspin
                     size="16"
                     stroke="1"
-                    speed="0.9"
+                    speed="0.6"
                     color="black"
                   ></l-tailspin>
                 </span>
