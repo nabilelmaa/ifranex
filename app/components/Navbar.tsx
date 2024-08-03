@@ -54,12 +54,11 @@ export const Navbar = () => {
         !isDashboardPage &&
         !isServicesPage &&
         !isUsersPage &&
-        !isResetPasswowrdPage && 
-        (
+        !isResetPasswowrdPage && (
           <>
-            <nav className="flex items-center justify-between p-6 z-50 relative">
+            <nav className="flex items-center justify-between lg:px-8 px-2 py-6 z-50 relative">
               <div className="flex items-center">
-                {isHomePage && (
+                {(isHomePage || !isHomePage) && (
                   <div className="lg:hidden md:hidden mr-4 bg-gray-200 p-2 rounded-md">
                     <Image
                       src="/menu.svg"
@@ -79,11 +78,6 @@ export const Navbar = () => {
               </div>
               {isHomePage && (
                 <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
-                  <Link href="/">
-                    <li className="hover:text-green-400 transition cursor-pointer">
-                      {t("nav_home")}
-                    </li>
-                  </Link>
                   <li
                     className="hover:text-green-400 transition cursor-pointer"
                     onClick={() => scrollToSection("footer")}
@@ -110,6 +104,45 @@ export const Navbar = () => {
                   </li>
                 </ul>
               )}
+              {!isHomePage && (
+                <ul className="lg:flex md:flex justify-center gap-4 hidden h-full text-gray-900">
+                  <li>
+                    <Link href="/">
+                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                        {t("nav_home")}
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={`/${locale}/messages`}>
+                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                        {t("inbox")}
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={`/${locale}/services`}>
+                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                        {t("services")}
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href={`/${locale}/booking-history`}>
+                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                        {t("history")}
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/settings">
+                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                        {t("support")}
+                      </p>
+                    </Link>
+                  </li>
+                </ul>
+              )}
               <div className="relative text-left lg:flex md:flex items-center">
                 <LocalSwitcher />
                 {isAuthChecked && (
@@ -127,7 +160,8 @@ export const Navbar = () => {
                 )}
               </div>
             </nav>
-            {isSidebarOpen && isHomePage && (
+
+            {isSidebarOpen && (
               <div
                 className="fixed inset-0 bg-black bg-opacity-50 z-40"
                 onClick={() => setSidebarOpen(false)}
@@ -141,70 +175,168 @@ export const Navbar = () => {
               <div className="flex flex-col h-full">
                 <div className="p-6">
                   <Link href="/" onClick={() => setSidebarOpen(false)}>
-                    <p className="font-bold text-colGreen-000 text-3xl">
+                    <p className="font-bold text-colGreen-000 text-2xl">
                       Ifrane<span className="text-black">X.</span>
                     </p>
                   </Link>
                 </div>
                 <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2">
-                  <li className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md">
-                    <Image src="/home.svg" alt="Home" width={20} height={20} />
-                    <Link
-                      href="/"
-                      className="block"
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      {t("nav_home")}
-                    </Link>
-                  </li>
-                  <li
-                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                    onClick={() => scrollToSection("footer")}
-                  >
-                    <Image
-                      src="/about.svg"
-                      alt="About"
-                      width={20}
-                      height={20}
-                    />
-                    {t("nav_about")}
-                  </li>
-                  <li
-                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                    onClick={() => scrollToSection("services")}
-                  >
-                    <Image
-                      src="/work.svg"
-                      alt="Services"
-                      width={20}
-                      height={20}
-                    />
-                    {t("nav_services")}
-                  </li>
-                  <li
-                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                    onClick={() => scrollToSection("us")}
-                  >
-                    <Image
-                      src="/question.svg"
-                      alt="Us"
-                      width={20}
-                      height={20}
-                    />
-                    {t("nav_us")}
-                  </li>
-                  <li
-                    className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                    onClick={() => scrollToSection("reviews")}
-                  >
-                    <Image
-                      src="/message.svg"
-                      alt="Reviews"
-                      width={20}
-                      height={20}
-                    />
-                    {t("nav_reviews")}
-                  </li>
+                  {isHomePage ? (
+                    <>
+                      <li
+                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
+                        onClick={() => scrollToSection("footer")}
+                      >
+                        <Image
+                          src="/about.svg"
+                          alt="About"
+                          width={20}
+                          height={20}
+                        />
+                        {t("nav_about")}
+                      </li>
+                      <li
+                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
+                        onClick={() => scrollToSection("services")}
+                      >
+                        <Image
+                          src="/work.svg"
+                          alt="Services"
+                          width={20}
+                          height={20}
+                        />
+                        {t("nav_services")}
+                      </li>
+                      <li
+                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
+                        onClick={() => scrollToSection("us")}
+                      >
+                        <Image
+                          src="/question.svg"
+                          alt="Us"
+                          width={20}
+                          height={20}
+                        />
+                        {t("nav_us")}
+                      </li>
+                      <li
+                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
+                        onClick={() => scrollToSection("reviews")}
+                      >
+                        <Image
+                          src="/message.svg"
+                          alt="Reviews"
+                          width={20}
+                          height={20}
+                        />
+                        {t("nav_reviews")}
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link
+                          href="/"
+                          className={`block px-4 py-2 rounded-md w-52 ${
+                            pathname === `/${locale}`
+                              ? "bg-green-100"
+                              : "hover:bg-gray-100"
+                          }`}
+                          onClick={() => setSidebarOpen(false)}
+                        >
+                          <div className="flex items-center">
+                            <Image
+                              src="/home.svg"
+                              alt="home"
+                              width={17}
+                              height={17}
+                            />
+                            <p className="ml-2">{t("nav_home")}</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/${locale}/messages`}
+                          className={`block px-4 py-2 rounded-md w-52 ${
+                            pathname === `/${locale}/messages`
+                              ? "bg-green-100"
+                              : "hover:bg-gray-100"
+                          }`}
+                        >
+                          <div className="flex items-center">
+                            <Image
+                              src="/inbox.svg"
+                              alt="inbox"
+                              width={17}
+                              height={17}
+                            />
+                            <p className="ml-2">{t("inbox")}</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/${locale}/services`}
+                          className={`block px-4 py-2 rounded-md w-52 ${
+                            pathname === `/${locale}/services`
+                              ? "bg-green-100"
+                              : "hover:bg-gray-100"
+                          }`}
+                        >
+                          <div className="flex items-center">
+                            <Image
+                              src="/services.svg"
+                              alt="services"
+                              width={17}
+                              height={17}
+                            />
+                            <p className="ml-2">{t("services")}</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href={`/${locale}/booking-history`}
+                          className={`block px-4 py-2 rounded-md w-52 ${
+                            pathname === `/${locale}/booking-history`
+                              ? "bg-green-100"
+                              : "hover:bg-gray-100"
+                          }`}
+                        >
+                          <div className="flex items-center">
+                            <Image
+                              src="/history.svg"
+                              alt="history"
+                              width={17}
+                              height={17}
+                            />
+                            <p className="ml-2">{t("history")}</p>
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/settings"
+                          className={`block px-4 py-2 rounded-md w-52 ${
+                            pathname === `/${locale}/settings`
+                              ? "bg-green-100"
+                              : "hover:bg-gray-100"
+                          }`}
+                        >
+                          <div className="flex items-center">
+                            <Image
+                              src="/support.svg"
+                              alt="support"
+                              width={17}
+                              height={17}
+                            />
+                            <p className="ml-2">{t("support")}</p>
+                          </div>
+                        </Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
                 <div className="p-6">
                   {!isAuthenticated && (

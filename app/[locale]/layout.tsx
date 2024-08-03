@@ -23,9 +23,11 @@ export default async function LocaleLayout({
   params: { locale: string };
 }) {
   const messages = await getMessages();
+
+  //bg-gradient-to-bl from-rose-100 to-teal-100
   return (
     <html lang={locale}>
-      <body className="bg-gradient-to-bl from-rose-100 to-teal-100">
+      <body className="">
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
             <ToastProvider>

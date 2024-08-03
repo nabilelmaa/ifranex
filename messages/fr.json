@@ -1,10 +1,6 @@
 {
     "Avatar": {
         "manage_acc": "Gérer le compte",
-        "inbox": "Boîte de réception",
-        "services": "Services",
-        "history": "Historique",
-        "support": "Support",
         "log_out": "Se déconnecter",
         "edit_profile": "Modifier le profil",
         "personal_info": "Informations personnelles",
@@ -12,7 +8,7 @@
         "security": "Sécurité",
         "curr_pass": "Mot de passe actuel",
         "new_pass": "Nouveau mot de passe",
-        "conf_pass": "Confirmer le nouveau mot de passe",
+        "conf_pass": "Confirmation du mot de pass",
         "cancel": "Annuler",
         "save": "Enregistrer",
         "toast_updated": "Profil mis à jour avec succès!",
@@ -27,7 +23,11 @@
         "login_button": "Se connecter",
         "signout_button": "Se déconnecter",
         "browse": "Parcourez nos services populaires",
-        "inbox": "Boîte de réception"
+        "inbox": "Boîte de réception",
+        "services": "Services",
+        "history": "Historique",
+        "support": "Support",
+        "your_inbox": "Votre boîte de réception"
     },
     "Us": {
         "title": "Qu'est-ce qui nous rend différents?",

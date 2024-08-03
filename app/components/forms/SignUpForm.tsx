@@ -160,31 +160,22 @@ export const SignUpForm: React.FC = () => {
         <div
           className={`transition-all ${formState === "email" ? "" : "hidden"}`}
         >
-          <div className="mb-4">
-            <div className="flex items-center mb-2">
-              <Image
-                src="/mail.svg"
-                alt="user-icon"
-                width={20}
-                height={20}
-                className="mr-1"
-              />
-              <label
-                className="block text-gray-700 text-sm ml-1"
-                htmlFor="email"
-              >
-                {t("email")}
-              </label>
-            </div>
+          <div className="mb-4 relative">
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-              placeholder="example@gmail.com"
+              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+              placeholder=""
               required={formState === "email"}
             />
+            <label
+              htmlFor="email"
+              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            >
+              {t("email")}
+            </label>
           </div>
           <div className="mb-6">
             <button
@@ -280,69 +271,51 @@ export const SignUpForm: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className="mb-4">
-                <div className="flex items-center mb-2">
-                  <Image
-                    src="/user.svg"
-                    alt="user-icon"
-                    width={20}
-                    height={20}
-                    className="mr-1"
-                  />
-                  <label
-                    className="block text-gray-700 text-sm ml-1"
-                    htmlFor="username"
-                  >
-                    {t("username")}
-                  </label>
-                </div>
+              <div className="mb-4 relative">
                 <input
                   type="text"
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                  placeholder=""
                   required={formState === "verification"}
                 />
+                <label
+                  htmlFor="username"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                >
+                  {t("username")}
+                </label>
               </div>
-              <div className="mb-4">
-                <div className="flex items-center mb-2">
-                  <Image
-                    src="/lock.svg"
-                    alt="lock"
-                    width={20}
-                    height={20}
-                    className="mr-1"
-                  />
-                  <label
-                    className="block text-gray-700 text-sm ml-1"
-                    htmlFor="password"
-                  >
-                    {t("password")}
-                  </label>
-                </div>
-                <div className="relative focus:border-blue-500">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    required={formState === "verification"}
-                  />
-                  <button
-                    type="button"
-                    onClick={togglePassword}
-                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
-                  >
-                    {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
-                  </button>
-                </div>
+              <div className="mb-4 relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor="password"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                >
+                  {t("password")}
+                </label>
+                <button
+                  type="button"
+                  onClick={togglePassword}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                >
+                  {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                </button>
               </div>
               <div className="mb-6">
                 <button
                   type="submit"
-                  className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-black focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50 rounded-md shadow-sm"
+                  className="btn btn-primary w-full"
                   disabled={loading}
                 >
                   {loading ? (
@@ -361,7 +334,7 @@ export const SignUpForm: React.FC = () => {
       </form>
 
       <div className="flex items-center justify-between">
-        <span className="inline-block align-baseline text-sm lg:text-sm md:text-sm">
+        <span className="inline-block align-baseline text-sm">
           {t("have_account")}{" "}
           <a className="text-indigo-700" href={`/${locale}/login`}>
             {t("sign_in")}
@@ -373,7 +346,7 @@ export const SignUpForm: React.FC = () => {
           By creating an account, you agree to our
           <a
             href={`/${locale}/terms&conditions`}
-            className="text-gray-700 underline"
+            className="text-indigo-700 underline"
           >
             {" "}
             terms and conditions{" "}
@@ -381,7 +354,7 @@ export const SignUpForm: React.FC = () => {
           and{" "}
           <a
             href={`/${locale}/privacy&policy`}
-            className="text-gray-700 underline"
+            className="text-indigo-700 underline"
           >
             privacy policy
           </a>

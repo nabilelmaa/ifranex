@@ -117,7 +117,7 @@ export const ResetPassword: React.FC = () => {
   };
 
   return (
-    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-lg">
+    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
       <p className="text-center font-bold text-green-500 lg:text-xl mb-4">
         Ifrane<span className="text-black">X.</span>
       </p>
@@ -127,7 +127,9 @@ export const ResetPassword: React.FC = () => {
           <h2 className="text-2xl font-bold mb-6 text-center">
             {t("reset_forgot_password")}
           </h2>
-          <p className="text-gray-500 text-center">{t("reset_description")}</p>
+          <p className="text-gray-500 text-center mb-2">
+            {t("reset_description")}
+          </p>
         </>
       )}
       {errorMessage && (
@@ -178,31 +180,22 @@ export const ResetPassword: React.FC = () => {
         <div
           className={`transition-all ${formState === "email" ? "" : "hidden"}`}
         >
-          <div className="mb-4">
-            <div className="flex items-center mb-2">
-              <Image
-                src="/mail.svg"
-                alt="user-icon"
-                width={20}
-                height={20}
-                className="mr-1"
-              />
-              <label
-                className="block text-gray-700 text-sm ml-1"
-                htmlFor="email"
-              >
-                {t("email")}
-              </label>
-            </div>
+          <div className="mb-4 relative">
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 ffocus:ring-indigo-700 focus:ring-opacity-50"
-              placeholder="example@gmail.com"
+              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+              placeholder=""
               required={formState === "email"}
             />
+            <label
+              htmlFor="email"
+              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            >
+              {t("email")}
+            </label>
           </div>
           <div className="mb-6">
             <button
@@ -269,73 +262,54 @@ export const ResetPassword: React.FC = () => {
                   ))}
                 </div>
               </div>
-              <div className="mb-4">
-                <div className="flex items-center mb-2">
-                  <Image
-                    src="/lock.svg"
-                    alt="lock"
-                    width={20}
-                    height={20}
-                    className="mr-1"
-                  />
-                  <label
-                    className="block text-gray-700 text-sm ml-1"
-                    htmlFor="password"
-                  >
-                    {t("new_pass")}
-                  </label>
-                </div>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    required={formState === "verification"}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => togglePassword("password")}
-                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
-                  >
-                    {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
-                  </button>
-                </div>
+              <div className="mb-4 relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor="password"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                >
+                  {t("new_pass")}
+                </label>
+                <button
+                  type="button"
+                  onClick={() => togglePassword("password")}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                >
+                  {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                </button>
               </div>
-              <div className="mb-4">
-                <div className="flex items-center mb-2">
-                  <Image
-                    src="/lock.svg"
-                    alt="lock"
-                    width={20}
-                    height={20}
-                    className="mr-1"
-                  />
-                  <label
-                    className="block text-gray-700 text-sm ml-1"
-                    htmlFor="confirmPassword"
-                  >
-                    {t("conf_new_pass")}
-                  </label>
-                </div>
-                <div className="relative">
-                  <input
-                    type={showConfirmPassword ? "text" : "password"}
-                    id="confirmPassword"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    required={formState === "verification"}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => togglePassword("confirmPassword")}
-                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
-                  >
-                    {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
-                  </button>
-                </div>
+
+              <div className="mb-4 relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  id="confirmPassword"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                  placeholder=" "
+                  required={formState === "verification"}
+                />
+                <label
+                  htmlFor="confirmPassword"
+                  className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                >
+                  {t("conf_new_pass")}
+                </label>
+                <button
+                  type="button"
+                  onClick={() => togglePassword("confirmPassword")}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                >
+                  {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                </button>
               </div>
               <div className="mb-6">
                 <button

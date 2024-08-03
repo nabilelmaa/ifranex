@@ -1,10 +1,6 @@
 {
     "Avatar": {
         "manage_acc": "Manage account",
-        "inbox": "Inbox",
-        "services": "Services",
-        "history": "Manage account",
-        "support": "Support",
         "log_out": "Log out",
         "edit_profile": "Edite Profile",
         "personal_info": "Personal Information",
@@ -12,7 +8,7 @@
         "security": "Security",
         "curr_pass": "Current Password",
         "new_pass": "New Password",
-        "conf_pass": "Confirm New Password",
+        "conf_pass": "Password confirmation",
         "cancel": "Cancel",
         "save": "Save changes",
         "toast_updated": "Profile updated successfully!",
@@ -27,7 +23,11 @@
         "login_button": "Login",
         "signout_button": "Log out",
         "browse": "Browse our popular services",
-        "inbox": "Inbox"
+        "inbox": "Inbox",
+        "services": "Services",
+        "history": "History",
+        "support": "Support",
+        "your_inbox": "Your Inbox"
     },
     "Us": {
         "title": "What Makes Us Different?",

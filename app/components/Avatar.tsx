@@ -187,7 +187,7 @@ const Avatar = () => {
               {user?.email}
             </div>
           </div>
-          <hr className="flex-grow border-gray-300" />
+
           <ul className="py-2 text-sm text-gray-700">
             <li>
               <button
@@ -209,7 +209,7 @@ const Avatar = () => {
                 </div>
               </button>
             </li>
-            <li>
+            {/* <li>
               <a
                 href={`/${locale}/messages`}
                 className="block px-4 py-2 hover:bg-gray-100"
@@ -217,7 +217,7 @@ const Avatar = () => {
                 <div className="flex items-center">
                   <Image
                     src="/inbox.svg"
-                    alt="history"
+                    alt="inbox"
                     width={17}
                     height={17}
                   />
@@ -233,7 +233,7 @@ const Avatar = () => {
                 <div className="flex items-center">
                   <Image
                     src="/services.svg"
-                    alt="history"
+                    alt="services"
                     width={17}
                     height={17}
                   />
@@ -262,14 +262,14 @@ const Avatar = () => {
                 <div className="flex items-center">
                   <Image
                     src="/support.svg"
-                    alt="history"
+                    alt="support"
                     width={17}
                     height={17}
                   />
                   <p className="ml-2">{t("support")}</p>
                 </div>
               </a>
-            </li>
+            </li> */}
           </ul>
           <hr className="flex-grow border-gray-300" />
           <div className="py-1">

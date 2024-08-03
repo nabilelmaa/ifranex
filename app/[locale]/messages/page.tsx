@@ -62,7 +62,7 @@ const UserInbox: React.FC = () => {
         </div>
 
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">
-          Your Inbox
+          {t("your_inbox")}
         </h1>
 
         {isLoading ? (
