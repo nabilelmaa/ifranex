@@ -4,7 +4,7 @@ interface ToastFailedProps {
 
 export const ToastAlert: React.FC<ToastFailedProps> = ({ message }) => (
   <div
-    className="max-w-xs bg-zinc-800 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700"
+    className="max-w-xs bg-neutral-200 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700"
     role="alert"
     tabIndex={-1}
     aria-labelledby="hs-toast-error-example-label"
@@ -12,7 +12,7 @@ export const ToastAlert: React.FC<ToastFailedProps> = ({ message }) => (
     <div className="flex p-4">
       <div className="shrink-0">
         <svg
-          className="shrink-0 size-4 text-green-500 mt-0.5"
+          className="shrink-0 size-4 text-blue-500 mt-0.5"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -25,7 +25,7 @@ export const ToastAlert: React.FC<ToastFailedProps> = ({ message }) => (
       <div className="ms-3">
         <p
           id="hs-toast-success-example-label"
-          className="text-sm font-medium text-green-500 dark:text-neutral-400"
+          className="text-sm font-medium text-blue-500 dark:text-neutral-400"
         >
           {message}
         </p>

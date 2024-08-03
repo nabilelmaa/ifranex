@@ -40,7 +40,7 @@ export const SignInForm: React.FC = () => {
 
         if (response.ok) {
           const token = data.token;
-          console.log("Token received:", token);
+
 
           setCookie("token", token);
           localStorage.setItem("token", token);

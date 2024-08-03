@@ -122,7 +122,9 @@ const Avatar = () => {
     }
 
     if (Object.keys(updatedFields).length === 0) {
-      showToast("No changes to update", "alert");
+      showToast(t("no_changes"), "alert");
+      setIsLoading(false);
+      (document.getElementById("my_modal_2") as HTMLDialogElement).close();
       return;
     }
 
@@ -237,7 +239,7 @@ const Avatar = () => {
           <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
             <Tab key="personal-info" title={t("personal_info")}>
-              <div className="grid gap-4 py-4">
+              <div className="grid gap-4 py-4 h-[200px] overflow-y-auto">
                 <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 group">
                   <Image
                     src={user?.profilePicture || "/default-avatar.png"}
@@ -267,7 +269,7 @@ const Avatar = () => {
                   />
                 </div>
 
-                <div className="mt-1 text-xs text-gray-500">
+                <div className="text-xs text-gray-500">
                   {t("allowed")}*.jpeg, *.jpg, *.png, *.gif
                 </div>
 
@@ -285,7 +287,7 @@ const Avatar = () => {
               </div>
             </Tab>
             <Tab key="security" title={t("security")}>
-              <div className="grid gap-4 py-4">
+              <div className="grid gap-4 py-4 h-[200px] overflow-y-auto">
                 <div className="grid grid-cols-4 items-center gap-4">
                   <Label htmlFor="oldPassword" className="text-start text-xs">
                     {t("curr_pass")}

@@ -15,7 +15,8 @@
         "toast_error": "Échec de la mise à jour du profil. Veuillez réessayer.",
         "allowed": "Autorisé",
         "update_photo": "Mettre à jour la photo",
-        "error_fetching_services": "Erreur lors de la récupération des services."
+        "error_fetching_services": "Erreur lors de la récupération des services.",
+        "no_changes": "Aucune modification à mettre à jour."
     },
     "Navbar": {
         "nav_home": "Accueil",

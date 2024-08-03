@@ -15,7 +15,8 @@
         "toast_error": "Failed to update profile. Please try again.",
         "allowed": "Allowed",
         "update_photo": "Update Photo",
-        "error_fetching_services":"Error fetching services."
+        "error_fetching_services": "Error fetching services.",
+        "no_changes": "No changes to update."
     },
     "Navbar": {
         "nav_home": "Home",
