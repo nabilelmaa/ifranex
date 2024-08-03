@@ -31,7 +31,7 @@ function LocaleSwitcher() {
       <div>
         <button
           type="button"
-          className="flex items-center p-2 border rounded-full hover:bg-gray-200 transition-all"
+          className="flex items-center transition-all"
           onClick={() => setIsOpen(!isOpen)}
         >
           <Image

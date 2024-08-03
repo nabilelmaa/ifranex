@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ServicesCard } from "@/app/components/ServicesCard";
 import { useLocale } from "next-intl";
 import Link from "next/link";
@@ -13,21 +13,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ServicesCardSkeleton = () => {
   return (
-    <div className="mt-12 flex flex-col h-full overflow-hidden border rounded-lg shadow-lg bg-gray-200 animate-pulse">
-      <div className="relative w-full h-48 bg-gray-300"></div>
-      <div className="flex flex-col flex-grow p-4 space-y-4">
-        <div className="w-3/4 h-6 bg-gray-300 rounded"></div>
-        <div className="flex-grow space-y-2">
-          <div className="w-full h-4 bg-gray-300 rounded"></div>
-          <div className="w-5/6 h-4 bg-gray-300 rounded"></div>
-          <div className="w-2/3 h-4 bg-gray-300 rounded"></div>
+    <div className="flex flex-col h-full overflow-hidden border rounded-lg shadow-lg bg-white animate-pulse">
+      <div className="relative w-full h-32 sm:h-48 bg-gray-200"></div>
+      <div className="flex flex-col flex-grow p-3 sm:p-4 space-y-2 sm:space-y-4">
+        <div className="w-3/4 h-4 sm:h-6 bg-gray-200 rounded"></div>
+        <div className="flex-grow space-y-1 sm:space-y-2">
+          <div className="w-full h-3 sm:h-4 bg-gray-200 rounded"></div>
+          <div className="w-5/6 h-3 sm:h-4 bg-gray-200 rounded"></div>
+          <div className="w-2/3 h-3 sm:h-4 bg-gray-200 rounded"></div>
         </div>
-        <div className="w-1/3 h-6 bg-gray-300 rounded mt-auto"></div>
+        <div className="w-1/3 h-4 sm:h-6 bg-gray-200 rounded mt-auto"></div>
       </div>
     </div>
   );
 };
-
 export const ServicesList: React.FC = () => {
   const [services, setServices] = useState<ServiceProps[]>([]);
   const [loading, setLoading] = useState(true);
@@ -102,11 +101,11 @@ export const ServicesList: React.FC = () => {
     <div className="overflow-hidden lg:py-20 mt-12">
       <div
         ref={cardsContainerRef}
-        className="flex sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide sm:scrollbar-default"
+        className="flex sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide sm:scrollbar-default"
       >
         {loading
           ? Array.from({ length: 5 }).map((_, index) => (
-              <div key={index} className="flex-shrink-0 w-64 sm:w-auto">
+              <div key={index} className="flex-shrink-0 w-44 sm:w-auto">
                 <ServicesCardSkeleton />
               </div>
             ))
@@ -116,7 +115,7 @@ export const ServicesList: React.FC = () => {
                 ref={(el) => {
                   cardsRef.current[index] = el;
                 }}
-                className="flex-shrink-0 w-64 sm:w-auto transition-all duration-300"
+                className="flex-shrink-0 w-44 sm:w-auto transition-all duration-300"
               >
                 <ServicesCard service={service} />
               </div>
@@ -124,8 +123,8 @@ export const ServicesList: React.FC = () => {
       </div>
       <div className="flex justify-center items-center lg:mt-12 mb-8 mt-6">
         <Link href={`${locale}/services`}>
-          <button className="w-full sm:w-auto px-8 py-3 rounded-full bg-black text-white font-semibold text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            <div className="flex items-center justify-cente">
+          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-black text-white font-semibold text-xs sm:text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            <div className="flex items-center justify-center">
               <span className="mr-2">See all services</span>
               <FaChevronRight className="text-xs" />
             </div>
