@@ -194,11 +194,12 @@ const Avatar = () => {
             <li>
               <button
                 className="block px-4 py-2 w-full text-left hover:bg-gray-100"
-                onClick={() =>
+                onClick={() => {
                   (
                     document.getElementById("my_modal_2") as HTMLDialogElement
-                  ).showModal()
-                }
+                  ).showModal();
+                  setIsOpen(false);
+                }}
               >
                 <div className="flex items-center">
                   <Image
