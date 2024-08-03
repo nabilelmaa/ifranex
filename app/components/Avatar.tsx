@@ -160,20 +160,20 @@ const Avatar = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className={`ml-4 flex items-center justify-center w-9 h-9 rounded-full text-white ${avatarColor} transition-all border-2 border-indigo-700 focus:border-3 focus:border-indigo-700`}
+        className={`ml-4 relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden text-white ${avatarColor} transition-all border-2 border-indigo-700 focus:border-3 focus:border-indigo-700`}
       >
         {user && user.profilePicture ? (
-          <Image
-            src={user.profilePicture}
-            alt={user.username || "User"}
-            width={35}
-            height={35}
-            className="object-cove rounded-full"
-          />
+          <div className="absolute inset-0">
+            <Image
+              src={user.profilePicture}
+              alt={user.username || "User"}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full"
+            />
+          </div>
         ) : (
-          <div
-            className={`w-full h-full flex rounded-full items-center justify-center ${avatarColor}`}
-          >
+          <div className="w-full h-full flex items-center justify-center">
             {user && user.username ? user.username.charAt(0).toUpperCase() : ""}
           </div>
         )}
