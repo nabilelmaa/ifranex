@@ -248,8 +248,8 @@ export const Navbar = () => {
                             <Image
                               src="/home.svg"
                               alt="home"
-                              width={17}
-                              height={17}
+                              width={20}
+                              height={20}
                             />
                             <p className="ml-2">{t("nav_home")}</p>
                           </div>
@@ -269,8 +269,8 @@ export const Navbar = () => {
                             <Image
                               src="/inbox.svg"
                               alt="inbox"
-                              width={17}
-                              height={17}
+                              width={20}
+                              height={20}
                             />
                             <p className="ml-2">{t("inbox")}</p>
                           </div>
@@ -290,8 +290,8 @@ export const Navbar = () => {
                             <Image
                               src="/services.svg"
                               alt="services"
-                              width={17}
-                              height={17}
+                              width={20}
+                              height={20}
                             />
                             <p className="ml-2">{t("services")}</p>
                           </div>
@@ -311,8 +311,8 @@ export const Navbar = () => {
                             <Image
                               src="/history.svg"
                               alt="history"
-                              width={17}
-                              height={17}
+                              width={20}
+                              height={20}
                             />
                             <p className="ml-2">{t("history")}</p>
                           </div>
@@ -332,8 +332,8 @@ export const Navbar = () => {
                             <Image
                               src="/support.svg"
                               alt="support"
-                              width={17}
-                              height={17}
+                              width={20}
+                              height={20}
                             />
                             <p className="ml-2">{t("support")}</p>
                           </div>

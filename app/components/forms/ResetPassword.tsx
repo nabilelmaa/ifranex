@@ -210,7 +210,7 @@ export const ResetPassword: React.FC = () => {
                 <div className="flex items-center justify-center text-xs lg:text-sm md:text-md">
                   <span className="mr-2 mt-1">
                     <l-tailspin
-                      size="16"
+                      size="15"
                       stroke="1"
                       speed="0.6"
                       color="black"
@@ -331,7 +331,7 @@ export const ResetPassword: React.FC = () => {
                     <div className="flex items-center justify-center">
                       <span className="mr-2 mt-1">
                         <l-tailspin
-                          size="16"
+                          size="15"
                           stroke="1"
                           speed="0.6"
                           color="black"

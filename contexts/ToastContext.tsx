@@ -45,7 +45,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     setToast({ show: true, message, type });
     setTimeout(
       () => setToast({ show: false, message: "", type: "success" }),
-      3000
+      2500
     );
   };
 

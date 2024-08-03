@@ -160,7 +160,7 @@ const BookingSummary = () => {
           disabled={isLoading}
         >
           {isLoading ? (
-            <l-tail-chase size="24" speed="1.75" color="white" />
+            <l-tail-chase size="20" speed="1.75" color="white" />
           ) : (
             t("confirm")
           )}

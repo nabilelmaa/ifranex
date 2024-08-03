@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 html,
 body {
@@ -14,7 +14,7 @@ body {
 
 * {
   box-sizing: inherit;
-} */
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

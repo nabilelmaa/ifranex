@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 import {
   AreaChart,
   Area,
@@ -20,6 +21,9 @@ interface BarChartProps {
 }
 
 export const BarChart: React.FC<BarChartProps> = ({ data }) => {
+  const t = useTranslations("Tables");
+  const valueLabel = t("value"); 
+
   const gradientOffset = () => {
     const dataMax = Math.max(...data.map((i) => i.value));
     const dataMin = Math.min(...data.map((i) => i.value));
@@ -58,8 +62,9 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
             boxShadow:
               "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
           }}
+          formatter={(value) => [`${value}`, valueLabel]} 
         />
-        <Legend />
+        <Legend formatter={() => valueLabel} /> 
         <defs>
           <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
             <stop offset={off} stopColor="#8884d8" stopOpacity={0.8} />
@@ -68,7 +73,7 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
         </defs>
         <Area
           type="monotone"
-          dataKey="value"
+          dataKey="value" 
           stroke="#8884d8"
           fill="url(#splitColor)"
           strokeWidth={2}

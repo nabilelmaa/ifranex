@@ -160,7 +160,7 @@ const Avatar = () => {
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className={`ml-4 flex items-center justify-center w-8 h-8 rounded-full text-white ${avatarColor} transition-all`}
+        className={`ml-4 flex items-center justify-center w-9 h-9 rounded-full text-white ${avatarColor} transition-all border-2 border-indigo-700 focus:border-3 focus:border-indigo-700`}
       >
         {user && user.profilePicture ? (
           <Image
@@ -209,67 +209,6 @@ const Avatar = () => {
                 </div>
               </button>
             </li>
-            {/* <li>
-              <a
-                href={`/${locale}/messages`}
-                className="block px-4 py-2 hover:bg-gray-100"
-              >
-                <div className="flex items-center">
-                  <Image
-                    src="/inbox.svg"
-                    alt="inbox"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2">{t("inbox")}</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/${locale}/services`}
-                className="block px-4 py-2 hover:bg-gray-100"
-              >
-                <div className="flex items-center">
-                  <Image
-                    src="/services.svg"
-                    alt="services"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2">{t("services")}</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/${locale}/booking-history`}
-                className="block px-4 py-2 hover:bg-gray-100"
-              >
-                <div className="flex items-center">
-                  <Image
-                    src="/history.svg"
-                    alt="history"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2">{t("history")}</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="/settings" className="block px-4 py-2 hover:bg-gray-100">
-                <div className="flex items-center">
-                  <Image
-                    src="/support.svg"
-                    alt="support"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2">{t("support")}</p>
-                </div>
-              </a>
-            </li> */}
           </ul>
           <hr className="flex-grow border-gray-300" />
           <div className="py-1">

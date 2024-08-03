@@ -20,13 +20,15 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { useToast } from "@/contexts/ToastContext";
 import { lineWobble } from "ldrs";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const UsersPage = () => {
   const [users, setUsers] = useState<any[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const { showToast } = useToast();
-
+  const t = useTranslations("Tables");
   const totalUsers = users.length;
 
   const fetchUsers = async () => {
@@ -52,11 +54,11 @@ const UsersPage = () => {
       if (!response.ok) {
         throw new Error(`Error deleting user: ${response.statusText}`);
       }
-      showToast("User deleted successfully!", "success");
+      showToast(t("user_deleted"), "success");
       fetchUsers();
     } catch (error) {
       console.error("Error deleting user:", error);
-      showToast("Error deleting user", "error");
+      showToast(t("error_deleting_user"), "error");
     }
   };
 
@@ -85,29 +87,51 @@ const UsersPage = () => {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-4">
         <Card className="bg-gradient-to-tl from-blue-500 via-indigo-600 to-purple-700">
           <CardHeader className="pb-3">
-            <CardTitle className="text-white">Total Users</CardTitle>
-            <CardDescription className="text-4xl font-bold text-white">
+            <CardTitle className="text-white font-semibold">
+              {t("total_users")}
+            </CardTitle>
+            <CardDescription className="text-3xl font-semibold text-white">
               {totalUsers}
             </CardDescription>
           </CardHeader>
         </Card>
       </div>
-
-      <h1 className="text-2xl font-bold mb-4">Users</h1>
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Username</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Created At</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>{t("username")}</TableHead>
+            <TableHead>{t("email")}</TableHead>
+            <TableHead>{t("created_at")}</TableHead>
+            <TableHead>{t("actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {users.length > 0 ? (
             users.map((user) => (
               <TableRow key={user.id}>
-                <TableCell>{user.username}</TableCell>
+                <TableCell>
+                  <div className="flex items-center">
+                    <div className="mr-4">
+                      {user.profilePicture ? (
+                        <Image
+                          src={user.profilePicture}
+                          alt={user.username}
+                          width={35}
+                          height={35}
+                          className="object-cover rounded-full border border-indigo-700"
+                        />
+                      ) : (
+                        <div className="w-9 h-9 flex rounded-full items-center justify-center bg-gray-300">
+                          {user && user.username
+                            ? user.username.charAt(0).toUpperCase()
+                            : ""}
+                        </div>
+                      )}
+                    </div>
+                    <div>{user.username}</div>
+                  </div>
+                </TableCell>
+
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
                   {new Date(user.createdAt).toLocaleDateString()}
@@ -117,7 +141,7 @@ const UsersPage = () => {
                     onClick={() => handleDelete(user.id)}
                     variant="destructive"
                   >
-                    Delete
+                    {t("delete")}
                   </Button>
                 </TableCell>
               </TableRow>
@@ -125,7 +149,7 @@ const UsersPage = () => {
           ) : (
             <TableRow>
               <TableCell colSpan={4} className="text-center">
-                No users available
+                {t("no_users")}
               </TableCell>
             </TableRow>
           )}

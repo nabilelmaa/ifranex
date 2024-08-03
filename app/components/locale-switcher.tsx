@@ -1,13 +1,11 @@
-"use client";
-
 import React, { useState, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
 const languages = [
-  { code: 'en', name: 'English', flag: '/usa.png' },
-  { code: 'fr', name: 'Français', flag: '/france.png' },
+  { code: 'en', name: 'EN', flag: '/usa.png' },
+  { code: 'fr', name: 'FR', flag: '/france.png' },
 ];
 
 function LocaleSwitcher() {
@@ -43,7 +41,12 @@ function LocaleSwitcher() {
             height={24}
             className="mr-2"
           />
-          <span>{activeLanguage.name}</span>
+          <Image
+            src="/arrow-down.svg"
+            alt="Open menu"
+            width={18}
+            height={18}
+          />
         </button>
       </div>
 

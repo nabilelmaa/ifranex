@@ -57,7 +57,7 @@ export const SignInForm: React.FC = () => {
           if (userDetailsResponse.ok) {
             const { id, username, profilePicture } = userDetailsData.user;
             await login(token, { id, profilePicture, username, email });
-            showToast("Login success!", "success");
+            showToast(t("login_success"), "success");
             router.push(`/${locale}/services`);
             setLoading(false);
           } else {
@@ -206,7 +206,7 @@ export const SignInForm: React.FC = () => {
               <div className="flex items-center justify-center">
                 <span className="mr-2 mt-1">
                   <l-tailspin
-                    size="16"
+                    size="15"
                     stroke="1"
                     speed="0.6"
                     color="black"

@@ -5,6 +5,13 @@ import { useLocale } from "next-intl";
 
 export const Hero = () => {
   const locale = useLocale();
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const enWords = [
     { text: "Find" },
@@ -67,7 +74,10 @@ export const Hero = () => {
                     {getStarted}
                   </button>
                 </Link>
-                <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-black border border-black  text-sm">
+                <button
+                  className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-black border border-black  text-sm"
+                  // onClick={() => scrollToSection("how-it-works")}
+                >
                   {howItWorks}
                 </button>
               </div>

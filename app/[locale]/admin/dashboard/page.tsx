@@ -7,17 +7,7 @@ import { useToast } from "@/contexts/ToastContext";
 import { useLocale } from "next-intl";
 import { lineWobble } from "ldrs";
 import { BarChart } from "@/app/components/BarChart";
-
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer,
-} from "recharts";
-
+import { useTranslations } from "next-intl";
 import {
   Select,
   SelectContent,
@@ -35,7 +25,6 @@ import {
 } from "@/app/components/ui/table";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -43,25 +32,28 @@ import {
 } from "@/app/components/ui/card";
 
 const Dashboard = () => {
+  const t = useTranslations("Tables");
   const [bookings, setBookings] = useState<BookingProps[]>([]);
   const [filteredBookings, setFilteredBookings] = useState<BookingProps[]>([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState(t("all"));
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const locale = useLocale();
   const { showToast } = useToast();
 
-  const totalBookings = filteredBookings.length;
-  const pendingBookings = filteredBookings.filter(
-    (booking) => booking.status === "Pending"
-  ).length;
-  const confirmedBookings = filteredBookings.filter(
-    (booking) => booking.status === "Confirmed"
-  ).length;
-  const completedBookings = filteredBookings.filter(
-    (booking) => booking.status === "Completed"
-  ).length;
+  type Status = "Pending" | "Confirmed" | "Canceled" | "Completed";
+
+  const statusMap: Record<Status, string> = {
+    Pending: t("pending"),
+    Confirmed: t("confirmed"),
+    Canceled: t("canceled"),
+    Completed: t("completed"),
+  };
+
+  const translateStatus = (status: Status): string => {
+    return statusMap[status];
+  };
 
   const fetchBookings = async () => {
     setLoading(true);
@@ -85,9 +77,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     const statusFiltered =
-      filter === "all"
+      filter === t("all")
         ? bookings
-        : bookings.filter((booking) => booking.status === filter);
+        : bookings.filter(
+            (booking) => translateStatus(booking.status as Status) === filter
+          );
 
     const searchFiltered = statusFiltered.filter((booking) => {
       const fullName = booking.fullName || "";
@@ -114,7 +108,7 @@ const Dashboard = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      showToast("Booking confirmed!", "success");
+      showToast(t("booking_confirmed"), "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error confirming booking:", error);
@@ -134,7 +128,7 @@ const Dashboard = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      showToast("Booking canceled!", "success");
+      showToast(t("booking_canceled"), "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error canceling booking:", error);
@@ -154,7 +148,7 @@ const Dashboard = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      showToast("Congratulations, the job is completed! 🎉", "success");
+      showToast(t("booking_completed"), "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error confirming the job is completed:", error);
@@ -182,20 +176,39 @@ const Dashboard = () => {
   }
 
   const chartData = [
-    { label: "Total", value: totalBookings },
-    { label: "Pending", value: pendingBookings },
-    { label: "Confirmed", value: confirmedBookings },
-    { label: "Completed", value: completedBookings },
+    { label: t("all"), value: filteredBookings.length },
+    {
+      label: t("pending"),
+      value: filteredBookings.filter((booking) => booking.status === "Pending")
+        .length,
+    },
+    {
+      label: t("confirmed"),
+      value: filteredBookings.filter(
+        (booking) => booking.status === "Confirmed"
+      ).length,
+    },
+    {
+      label: t("completed"),
+      value: filteredBookings.filter(
+        (booking) => booking.status === "Completed"
+      ).length,
+    },
+    {
+      label: t("canceled"),
+      value: filteredBookings.filter((booking) => booking.status === "Canceled")
+        .length,
+    },
   ];
 
   return (
-    <div className="min-h-screen container mx-auto ">
+    <div className="min-h-screen container mx-auto">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="bg-gradient-to-bl from-indigo-600 via-purple-700 to-pink-800">
           <CardHeader className="pb-3">
-            <CardTitle className="text-white">Total Bookings</CardTitle>
+            <CardTitle className="text-white">{t("total_bookings")}</CardTitle>
             <CardDescription className="text-4xl font-bold text-white">
-              {totalBookings}
+              {filteredBookings.length}
             </CardDescription>
           </CardHeader>
           <CardFooter>
@@ -212,9 +225,15 @@ const Dashboard = () => {
         </Card>
         <Card className="bg-gradient-to-br from-yellow-500 via-orange-600 to-red-700">
           <CardHeader className="pb-3">
-            <CardTitle className="text-white">Pending Bookings</CardTitle>
+            <CardTitle className="text-white">
+              {t("pending_bookings")}
+            </CardTitle>
             <CardDescription className="text-4xl font-bold text-white">
-              {pendingBookings}
+              {
+                filteredBookings.filter(
+                  (booking) => booking.status === "Pending"
+                ).length
+              }
             </CardDescription>
           </CardHeader>
           <CardFooter>
@@ -231,9 +250,15 @@ const Dashboard = () => {
         </Card>
         <Card className="bg-gradient-to-tr from-cyan-600 via-blue-700 to-indigo-800">
           <CardHeader className="pb-3">
-            <CardTitle className="text-white">Confirmed Bookings</CardTitle>
+            <CardTitle className="text-white">
+              {t("confirmed_bookings")}
+            </CardTitle>
             <CardDescription className="text-4xl font-bold text-white">
-              {confirmedBookings}
+              {
+                filteredBookings.filter(
+                  (booking) => booking.status === "Confirmed"
+                ).length
+              }
             </CardDescription>
           </CardHeader>
           <CardFooter>
@@ -250,9 +275,15 @@ const Dashboard = () => {
         </Card>
         <Card className="bg-gradient-to-br from-teal-500 via-green-600 to-lime-700">
           <CardHeader className="pb-3">
-            <CardTitle className="text-white">Completed Bookings</CardTitle>
+            <CardTitle className="text-white">
+              {t("completed_bookings")}
+            </CardTitle>
             <CardDescription className="text-4xl font-bold text-white">
-              {completedBookings}
+              {
+                filteredBookings.filter(
+                  (booking) => booking.status === "Completed"
+                ).length
+              }
             </CardDescription>
           </CardHeader>
           <CardFooter>
@@ -270,16 +301,18 @@ const Dashboard = () => {
       </div>
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-12 p-4">
         <h1 className="text-xl text-gray-800 font-semibold mb-2">
-          Bookings Overview
+          {t("overview")}
         </h1>
         <BarChart data={chartData} />
       </div>
       <div className="rounded-lg border bg-card text-card-foreground shadow-sm mt-12 p-4">
-        <h1 className="text-xl text-gray-800 font-semibold mb-2">Bookings</h1>
-        <p className="mb-4">Manage all bookings here</p>
+        <h1 className="text-xl text-gray-800 font-semibold mb-2">
+          {t("bookings")}
+        </h1>
+        <p className="mb-4">{t("manage_bookings")}</p>
         <div className="flex justify-between items-center mb-4">
           <Input
-            placeholder="Search bookings by name or phone number..."
+            placeholder={t("search_bookings")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-1/3"
@@ -292,11 +325,11 @@ const Dashboard = () => {
               {filter || "Filter"}
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All</SelectItem>
-              <SelectItem value="Pending">Pending</SelectItem>
-              <SelectItem value="Confirmed">Confirmed</SelectItem>
-              <SelectItem value="Completed">Completed</SelectItem>
-              <SelectItem value="Canceled">Canceled</SelectItem>
+              <SelectItem value={t("all")}>{t("all")}</SelectItem>
+              <SelectItem value={t("pending")}> {t("pending")}</SelectItem>
+              <SelectItem value={t("confirmed")}>{t("confirmed")}</SelectItem>
+              <SelectItem value={t("completed")}>{t("completed")}</SelectItem>
+              <SelectItem value={t("canceled")}>{t("canceled")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -304,15 +337,15 @@ const Dashboard = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Booking Date</TableHead>
-              <TableHead>Customer Name</TableHead>
-              <TableHead>Phone Number</TableHead>
-              <TableHead>Address</TableHead>
-              <TableHead>Timing</TableHead>
-              <TableHead>Service</TableHead>
-              <TableHead>Needs</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>{t("booking_date")}</TableHead>
+              <TableHead>{t("customer_name")}</TableHead>
+              <TableHead>{t("phone")}</TableHead>
+              <TableHead>{t("address")}</TableHead>
+              <TableHead>{t("timing")}</TableHead>
+              <TableHead>{t("service")}</TableHead>
+              <TableHead>{t("needs")}</TableHead>
+              <TableHead>{t("status")}</TableHead>
+              <TableHead>{t("actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -344,7 +377,7 @@ const Dashboard = () => {
                           : "outline"
                       }
                     >
-                      {booking.status}
+                      {translateStatus(booking.status as Status)}
                     </Badge>
                   </TableCell>
                   <TableCell>

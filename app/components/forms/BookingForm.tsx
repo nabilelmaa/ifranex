@@ -74,129 +74,135 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-6 lg:space-y-0">
-                  <div className="flex-1">
-                    <label
-                      htmlFor="firstName"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      {t("fname")}
-                    </label>
+                  <div className="flex-1 relative">
                     <input
                       id="firstName"
                       type="text"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                      className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                       required
+                      placeholder=""
                     />
-                  </div>
-                  <div className="flex-1">
                     <label
-                      htmlFor="lastName"
-                      className="block text-sm font-medium text-gray-700 mb-1"
+                      htmlFor="firstName"
+                      className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                     >
-                      {t("lname")}
+                      {t("fname")}
                     </label>
+                  </div>
+                  <div className="flex-1 relative">
                     <input
                       id="lastName"
                       type="text"
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                      className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                       required
+                      placeholder=""
                     />
+                    <label
+                      htmlFor="lastName"
+                      className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                    >
+                      {t("lname")}
+                    </label>
                   </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor="phoneNumber"
-                    className="block text-sm font-medium text-gray-700 mb-1"
-                  >
-                    {t("phone")}
-                  </label>
+                <div className="flex-1 relative">
                   <input
                     id="phoneNumber"
                     type="tel"
                     name="phoneNumber"
                     value={formData.phoneNumber}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                     required
+                    placeholder=""
                   />
-                </div>
-                <div>
                   <label
-                    htmlFor="address"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    htmlFor="phoneNumber"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                   >
-                    {t("address")}
+                    {t("phone")}
                   </label>
+                </div>
+                <div className="flex-1 relative">
                   <input
                     id="address"
                     type="text"
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                     required
+                    placeholder=""
                   />
-                </div>
-                <div>
                   <label
-                    htmlFor="date"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    htmlFor="address"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                   >
-                    {t("date")}
+                    {t("address")}
                   </label>
+                </div>
+                <div className="flex-1 relative">
                   <input
                     id="date"
                     type="date"
                     name="date"
                     value={formData.date}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                     required
+                    placeholder=""
                   />
-                </div>
-                <div>
                   <label
-                    htmlFor="time"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    htmlFor="date"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                   >
-                    {t("time")}
+                    {t("date")}
                   </label>
+                </div>
+                <div className="flex-1 relative">
                   <input
                     id="time"
                     type="time"
                     name="time"
                     value={formData.time}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                     required
+                    placeholder=""
                   />
-                </div>
-                <div>
                   <label
-                    htmlFor="needs"
-                    className="block text-sm font-medium text-gray-700 mb-1"
+                    htmlFor="time"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                   >
-                    {t("needs")}
-                    <span className="text-amber-400">({t("optional")})</span>
+                    {t("time")}
                   </label>
+                </div>
+                <div className="flex-1 relative">
                   <textarea
                     id="needs"
                     name="needs"
                     value={formData.needs}
                     onChange={handleChange}
-                    className="block w-full px-4 py-3 rounded-lg border focus:bg-white focus:ring-0"
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
                     rows={4}
                   ></textarea>
+                  <label
+                    htmlFor="needs"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >
+                    {t("needs")}
+                    <span className="text-amber-400">({t("optional")})</span>
+                  </label>
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 px-4 bg-black text-white font rounded-lg shadow-lg hover:from-green-600 hover:to-blue-600 transition duration-300"
+                  className="w-full py-3 px-4 bg-black text-white rounded-lg shadow-lg transition duration-300"
                 >
                   {loading ? (
                     <l-tail-chase

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@/contexts/ToastContext";
 import { BookingProps } from "@/types/index";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { hourglass } from "ldrs";
 
@@ -45,6 +45,7 @@ const BookingHistory: React.FC = () => {
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const { showToast } = useToast();
   const locale = useLocale();
+  const t = useTranslations("Tables");
 
   useEffect(() => {
     fetchBookings();
@@ -63,12 +64,11 @@ const BookingHistory: React.FC = () => {
       if (!response.ok) {
         throw new Error("Failed to fetch booking history");
       }
-
       const data = await response.json();
       setBookings(data.bookings || []);
     } catch (error) {
       console.error(error);
-      showToast("Failed to fetch booking history. Please try again.", "error");
+      showToast(t("failed"), "error");
     } finally {
       setLoading(false);
     }
@@ -94,7 +94,7 @@ const BookingHistory: React.FC = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      showToast("Booking canceled successfully!", "success");
+      showToast(t("booking_canceled"), "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error canceling booking:", error);
@@ -104,10 +104,10 @@ const BookingHistory: React.FC = () => {
     }
   };
   hourglass.register();
-  
+
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6 min-h-screen">
-      <h2 className="text-3xl font-bold">Booking History</h2>
+      <h2 className="text-3xl font-bold">{t("booking_history")}</h2>
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <l-hourglass
@@ -118,17 +118,17 @@ const BookingHistory: React.FC = () => {
           ></l-hourglass>
         </div>
       ) : bookings.length === 0 ? (
-        <p>No bookings found.</p>
+        <p>{t("no_bookings")}</p>
       ) : (
         <Table>
-          <TableCaption>Your recent bookings.</TableCaption>
+          <TableCaption>{t("recent_bookings")}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Date</TableHead>
-              <TableHead>Service</TableHead>
-              <TableHead>Description</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>{t("date")}</TableHead>
+              <TableHead>{t("service")}</TableHead>
+              <TableHead>{t("description")}</TableHead>
+              <TableHead>{t("status")}</TableHead>
+              <TableHead>{t("actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -158,7 +158,7 @@ const BookingHistory: React.FC = () => {
                       className="py-1 px-4"
                       onClick={() => handleCancel(booking.id)}
                     >
-                      Cancel
+                      {t("cancel")}
                     </Button>
                   )}
                 </TableCell>
@@ -171,17 +171,17 @@ const BookingHistory: React.FC = () => {
         <AlertDialog open={showModal} onOpenChange={setShowModal}>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>{t("modal_title")}</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will cancel your booking.
+                {t("modal_description")}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel onClick={() => setShowModal(false)}>
-                Cancel
+                {t("cancel")}
               </AlertDialogCancel>
               <AlertDialogAction onClick={confirmCancel}>
-                Confirm
+                {t("confirm")}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
