@@ -190,6 +190,7 @@
         "no_users": "Aucun utilisateur disponible.",
         "booking_completed": "Félicitations, le travail est terminé. 🎉",
         "booking_confirmed": "Réservation confirmée.",
-        "value": "Valeur"
+        "value": "Valeur",
+        "":""
     }
 }
