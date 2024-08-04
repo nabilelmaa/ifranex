@@ -143,7 +143,7 @@ export const Navbar = () => {
                   </li>
                 </ul>
               )}
-              <div className="relative text-left lg:flex items-center">
+              <div className="relative text-left flex items-center">
                 <LocalSwitcher />
                 {isAuthChecked && (
                   <>
