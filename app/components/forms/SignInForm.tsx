@@ -187,9 +187,9 @@ export const SignInForm: React.FC = () => {
             className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
           >
             {showPassword ? (
-              <Image src="/eye-off.svg" alt="eye-on" width={18} />
+              <Image src="/eye-off.svg" alt="eye-on" width={18} height={18} />
             ) : (
-              <Image src="/eye-on.svg" alt="eye-on" height={18} />
+              <Image src="/eye-on.svg" alt="eye-on" width={18} height={18} />
             )}
           </button>
         </div>
