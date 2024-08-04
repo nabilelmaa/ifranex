@@ -39,30 +39,25 @@ const sendBookingEmail = async (email: string, bookingDetails: BookingDetails) =
 
 export const POST = async (req: NextRequest) => {
   try {
-    console.log('Verifying token...');
+  
     const { userId } = await verifyToken(req);
-    console.log('Token verified. User ID:', userId);
 
-    console.log('Parsing request body...');
     const { fullName, phoneNumber, address, timing, needs, serviceTitle, serviceId } = await req.json();
 
     if (!fullName || !phoneNumber || !address || !timing || !serviceTitle || !serviceId) {
-      console.log('Missing required fields:', { fullName, phoneNumber, address, timing, needs, serviceTitle, serviceId });
       return NextResponse.json({ message: 'All fields are required' }, { status: 400 });
     }
 
-    console.log('Fetching user from database...');
     const user = await db.user.findUnique({
       where: { id: userId },
       select: { email: true },
     });
 
     if (!user) {
-      console.log('User not found:', userId);
       return NextResponse.json({ message: 'User not found' }, { status: 404 });
     }
 
-    console.log('Creating booking in database...');
+  
     const booking = await db.booking.create({
       data: {
         fullName,
@@ -82,13 +77,13 @@ export const POST = async (req: NextRequest) => {
       createdAt: booking.createdAt.toISOString(),
     };
 
-    console.log('Sending booking confirmation email...');
+    
     await sendBookingEmail(user.email, bookingDetails);
 
-    console.log('Booking created successfully:', booking);
+
     return NextResponse.json({ message: 'Booking created successfully', booking }, { status: 201 });
   } catch (error) {
-    console.error('Error creating booking:', error);
+ 
     return NextResponse.json({ message: 'Unable to create booking', error: (error as any).message }, { status: 500 });
   }
 };

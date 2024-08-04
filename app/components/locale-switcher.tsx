@@ -39,7 +39,7 @@ function LocaleSwitcher() {
             alt={localeActive}
             width={24}
             height={24}
-            className="mr-2"
+            className="mr-1"
           />
           <Image
             src="/arrow-down.svg"

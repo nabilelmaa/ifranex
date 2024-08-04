@@ -16,7 +16,13 @@
         "allowed": "Allowed",
         "update_photo": "Update Photo",
         "error_fetching_services": "Error fetching services.",
-        "no_changes": "No changes to update."
+        "no_changes": "No changes to update.",
+        "rate_us": "Rate us",
+        "leave_comment": "Leave comment",
+        "submit": "Submit",
+        "failed_to_submit_review": "Failed to submit your review. Please try again.",
+        "failed_to_update_profile_picture": "Failed to upload profile picture. Please try again.",
+        "thank_you_for_review": "Thank you for your review !"
     },
     "Navbar": {
         "nav_home": "Home",
@@ -43,8 +49,12 @@
         "competitive_pricing": "Competitive Pricing",
         "competitive_pricing_desc": "We are committed to matching the prices set by our competitors for any plumbing services and installations."
     },
+    "Reviews": {
+        "what_people_say": "What people say about us ?"
+    },
     "ServiceCard": {
-        "book_now": "Book now"
+        "book_now": "Book now",
+        "see_all_services": "See all services"
     },
     "RegisterForm": {
         "create_account": "Create account",

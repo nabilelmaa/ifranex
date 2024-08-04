@@ -16,7 +16,13 @@
         "allowed": "Autorisé",
         "update_photo": "Mettre à jour la photo",
         "error_fetching_services": "Erreur lors de la récupération des services.",
-        "no_changes": "Aucune modification à mettre à jour."
+        "no_changes": "Aucune modification à mettre à jour.",
+        "rate_us": "Évaluez-nous",
+        "leave_comment": "Laisser un commentaire",
+        "submit": "Soumettre",
+        "failed_to_submit_review": "Échec de l'envoi de votre avis. Veuillez réessayer.",
+        "failed_to_update_profile_picture": "Échec du téléchargement de la photo de profil. Veuillez réessayer.",
+        "thank_you_for_review": "Merci pour votre avis !"
     },
     "Navbar": {
         "nav_home": "Accueil",
@@ -43,8 +49,12 @@
         "competitive_pricing": "Tarification compétitive",
         "competitive_pricing_desc": "Nous nous engageons à égaler les prix fixés par nos concurrents pour tous les services et installations de plomberie."
     },
+    "Reviews": {
+        "what_people_say": "Ce que les gens disent de nous ?"
+    },
     "ServiceCard": {
-        "book_now": "Réserver maintenant"
+        "book_now": "Réserver maintenant",
+        "see_all_services": "Voir tous les services"
     },
     "RegisterForm": {
         "create_account": "Créer un compte",
@@ -55,7 +65,7 @@
         "submitting": "Soumission en cours",
         "have_account": "Vous avez déjà un compte ?",
         "sign_in": "Se connecter",
-        "user_exist": "Un utilisateur avec cet email existe déjà!",
+        "user_exist": "Un utilisateur avec cet email existe déjà !",
         "verify": "Vérifier",
         "sending_code": "Envoi du code",
         "code_sent": "Code de vérification envoyé!",

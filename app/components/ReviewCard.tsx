@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Review } from "@/types/index";
-import { Meteors } from "@/app/components/ui/meteors";
+import Image from "next/image";
 
 interface ReviewCardProps {
   review: Review;
@@ -21,9 +21,11 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.to(card, { autoAlpha: 1, y: 0, duration: 0.6 })
-        .to(content.children, { autoAlpha: 1, y: 0, stagger: 0.1 }, "-=0.2");
-
+      tl.to(card, { autoAlpha: 1, y: 0, duration: 0.6 }).to(
+        content.children,
+        { autoAlpha: 1, y: 0, stagger: 0.1 },
+        "-=0.2"
+      );
 
       card.addEventListener("mouseenter", () => {
         gsap.to(card, { scale: 1.03, duration: 0.3 });
@@ -41,12 +43,12 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
       stars.push(
         <svg
           key={i}
-          className={`shrink-0 size-5 ${
-            i < rating ? "text-yellow-400" : "text-gray-600"
+          className={`shrink-0 size-4 ${
+            i < rating ? "text-yellow-400" : "text-gray-400"
           } transition-colors duration-300`}
           xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
+          width="6"
+          height="6"
           fill="currentColor"
           viewBox="0 0 16 16"
         >
@@ -58,8 +60,36 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   };
 
   return (
-    <div className="w-full relative max-w-md mb-8">
-      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" />
+    <div className="w-full h-full flex flex-col bg-white p-6 rounded-xl shadow-md">
+      <p className="flex-grow mb-4">{review.comment}</p>
+      <div className="flex items-start mt-auto">
+        <div className="mr-4 relative w-10 h-10 overflow-hidden rounded-full flex-shrink-0">
+          {review.user.profilePicture ? (
+            <Image
+              src={review.user.profilePicture}
+              alt="profile-picture"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full border border-indigo-700"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gray-300 text-white font-semibold">
+              {review.user.username.charAt(0).toUpperCase()}
+            </div>
+          )}
+        </div>
+        <div className="flex-grow">
+          <p className="font-medium">{review.user.username}</p>
+          <div className="flex justify-between items-center mt-1">
+            <div className="flex">{renderStars(review.rating)}</div>
+            <p className="text-sm text-gray-600">
+              {new Date(review.timestamp).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    /* <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" />
       <div
         ref={cardRef}
         className="relative shadow-xl bg-gray-900 border border-gray-800 px-6 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start"
@@ -84,8 +114,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
           </div>
         </div>
         <Meteors number={20} />
-      </div>
-    </div>
+      </div> */
   );
 };
 

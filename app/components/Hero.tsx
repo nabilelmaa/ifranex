@@ -39,15 +39,41 @@ export const Hero = () => {
   const content = {
     en: {
       words: enWords,
-      description:
-        "We're different. Flex is the only SaaS business platform that lets you run your business on one platform, seamlessly across all digital channels.",
+      description: (
+        <>
+          Welcome to{" "}
+          <span className="font-semibold text-colGreen-000">ifraneX</span>, your
+          trusted partner for all home repair and handywork needs. Whether it's
+          a minor fix or a major renovation, our skilled professionals are here
+          to provide top-notch service with a smile. From plumbing and
+          electrical work to carpentry and painting, we handle it all with
+          precision and care. Let us help you keep your home in perfect shape,
+          so you can enjoy the comfort and peace of mind you deserve. Book your
+          service today and experience the difference with{" "}
+          <span className="font-semibold text-colGreen-000">ifraneX</span>!
+        </>
+      ),
       getStarted: "Get Started",
       howItWorks: "How it works?",
     },
     fr: {
       words: frWords,
-      description:
-        "Nous sommes différents. Flex est la seule plateforme commerciale SaaS qui vous permet de gérer votre entreprise sur une seule plateforme, de manière transparente sur tous les canaux numériques.",
+      description: (
+        <>
+          Bienvenue chez{" "}
+          <span className="font-semibold text-colGreen-000">ifraneX</span>,
+          votre partenaire de confiance pour tous vos besoins de réparation et
+          de bricolage à domicile. Qu'il s'agisse d'une petite réparation ou
+          d'une rénovation majeure, nos professionnels qualifiés sont là pour
+          vous offrir un service de première qualité avec le sourire. De la
+          plomberie et des travaux électriques à la menuiserie et à la peinture,
+          nous nous occupons de tout avec précision et soin. Laissez-nous vous
+          aider à garder votre maison en parfait état, afin que vous puissiez
+          profiter du confort et de la tranquillité d'esprit que vous méritez.
+          Réservez votre service dès aujourd'hui et découvrez la différence avec{" "}
+          <span className="font-semibold text-colGreen-000">ifraneX</span>!
+        </>
+      ),
       getStarted: "Commencer",
       howItWorks: "Comment ça marche ?",
     },
@@ -57,7 +83,7 @@ export const Hero = () => {
     content[locale as keyof typeof content];
 
   return (
-    <div className="lg:py-20 md:py-20">
+    <div className="lg:py-16 md:py-16">
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap xl:items-center -mx-4">
           <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
