@@ -342,10 +342,9 @@ const Avatar = () => {
       </AnimatePresence>
 
       {isRatingModalOpen && (
-        <dialog id="rating_modal" className="modal" open>
+        <dialog id="my_modal_2" className="modal" open>
           <div className="modal-box">
             <h3 className="font-bold text-lg mb-6">{t("rate_us")}</h3>
-            {/* <LottieAnimation /> */}
             <div className="flex justify-center mb-4">{renderStars()}</div>
             <div className="relative">
               <textarea

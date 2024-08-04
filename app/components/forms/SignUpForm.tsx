@@ -322,15 +322,15 @@ export const SignUpForm: React.FC = () => {
                     <Image
                       src="/eye-off.svg"
                       alt="eye-on"
-                      width={20}
-                      height={20}
+                      width={18}
+                      height={18}
                     />
                   ) : (
                     <Image
                       src="/eye-on.svg"
                       alt="eye-on"
-                      width={20}
-                      height={20}
+                      width={18}
+                      height={18}
                     />
                   )}
                 </button>
