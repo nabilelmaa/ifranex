@@ -1,7 +1,7 @@
 "use client";
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { useAuth } from "@/contexts/AuthContext";
 import { setCookie } from "cookies-next";
@@ -40,7 +40,6 @@ export const SignInForm: React.FC = () => {
 
         if (response.ok) {
           const token = data.token;
-
 
           setCookie("token", token);
           localStorage.setItem("token", token);
@@ -187,7 +186,11 @@ export const SignInForm: React.FC = () => {
             onClick={togglePassword}
             className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
           >
-            {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
+            {showPassword ? (
+              <Image src="/eye-off.svg" alt="eye-on" width={20} height={20} />
+            ) : (
+              <Image src="/eye-on.svg" alt="eye-on" width={20} height={20} />
+            )}
           </button>
         </div>
         <a

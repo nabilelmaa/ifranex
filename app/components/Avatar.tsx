@@ -9,9 +9,9 @@ import { Tabs, Tab } from "@nextui-org/react";
 import { useToast } from "@/contexts/ToastContext";
 import axios from "axios";
 import { tailChase } from "ldrs";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Avatar = () => {
-  
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale();
@@ -237,7 +237,9 @@ const Avatar = () => {
 
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
-      <button
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={toggleDropdown}
         className={`ml-4 relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden text-white ${avatarColor} transition-all border-2 border-indigo-700 focus:border-3 focus:border-indigo-700`}
       >
@@ -256,80 +258,88 @@ const Avatar = () => {
             {user && user.username ? user.username.charAt(0).toUpperCase() : ""}
           </div>
         )}
-      </button>
+      </motion.button>
 
-      {isOpen && (
-        <div className="absolute right-0 w-52 mt-2 bg-white border rounded-lg shadow-lg z-10">
-          <div className="px-4 py-3 text-sm text-gray-900 text-center">
-            <div>{user?.username}</div>
-            <div className="font-semibold truncate text-gray-700 text-xs">
-              {user?.email}
-            </div>
-          </div>
-
-          <ul className="py-2 text-sm text-gray-700">
-            <li>
-              <button
-                className="block px-4 py-2 w-full text-left hover:bg-gray-100"
-                onClick={() => {
-                  (
-                    document.getElementById("my_modal_2") as HTMLDialogElement
-                  ).showModal();
-                  setIsOpen(false);
-                }}
-              >
-                <div className="flex items-center">
-                  <Image
-                    src="/settings.svg"
-                    alt="user"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2">{t("manage_acc")}</p>
-                </div>
-              </button>
-            </li>
-            <li>
-              <button
-                className="block px-4 py-2 w-full text-left hover:bg-gray-100"
-                onClick={() => {
-                  setIsRatingModalOpen(true);
-                  setIsOpen(false);
-                }}
-              >
-                <div className="flex items-center">
-                  <Image
-                    src="/review.svg"
-                    alt="review"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2">{t("rate_us")}</p>
-                </div>
-              </button>
-            </li>
-          </ul>
-          <hr className="flex-grow border-gray-300" />
-          <div className="py-1">
-            <button
-              onClick={logout}
-              className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
-            >
-              <div className="flex items-center">
-                <Image
-                  src="/log-out.svg"
-                  alt="log-out-icon"
-                  width={17}
-                  height={17}
-                />
-                <p className="ml-2 text-red-500 font-semibold">
-                  {t("log_out")}
-                </p>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute right-0 w-52 mt-2 bg-white border rounded-lg shadow-lg z-10"
+          >
+            <div className="px-4 py-3 text-sm text-gray-900 text-center">
+              <div>{user?.username}</div>
+              <div className="font-semibold truncate text-gray-700 text-xs">
+                {user?.email}
               </div>
-            </button>
-          </div>
-        </div>
-      )}
+            </div>
+
+            <ul className="py-2 text-sm text-gray-700">
+              <li>
+                <button
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100"
+                  onClick={() => {
+                    (
+                      document.getElementById("my_modal_2") as HTMLDialogElement
+                    ).showModal();
+                    setIsOpen(false);
+                  }}
+                >
+                  <div className="flex items-center">
+                    <Image
+                      src="/settings.svg"
+                      alt="user"
+                      width={17}
+                      height={17}
+                    />
+                    <p className="ml-2">{t("manage_acc")}</p>
+                  </div>
+                </button>
+              </li>
+              <li>
+                <button
+                  className="block px-4 py-2 w-full text-left hover:bg-gray-100"
+                  onClick={() => {
+                    setIsRatingModalOpen(true);
+                    setIsOpen(false);
+                  }}
+                >
+                  <div className="flex items-center">
+                    <Image
+                      src="/review.svg"
+                      alt="review"
+                      width={17}
+                      height={17}
+                    />
+                    <p className="ml-2">{t("rate_us")}</p>
+                  </div>
+                </button>
+              </li>
+            </ul>
+            <hr className="flex-grow border-gray-300" />
+            <div className="py-1">
+              <button
+                onClick={logout}
+                className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <Image
+                    src="/log-out.svg"
+                    alt="log-out-icon"
+                    width={17}
+                    height={17}
+                  />
+                  <p className="ml-2 text-red-500 font-semibold">
+                    {t("log_out")}
+                  </p>
+                </div>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {isRatingModalOpen && (
         <dialog id="rating_modal" className="modal" open>

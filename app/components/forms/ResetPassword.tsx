@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
@@ -293,7 +292,21 @@ export const ResetPassword: React.FC = () => {
                   onClick={() => togglePassword("password")}
                   className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
                 >
-                  {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                  {showPassword ? (
+                    <Image
+                      src="/eye-off.svg"
+                      alt="eye-on"
+                      width={20}
+                      height={20}
+                    />
+                  ) : (
+                    <Image
+                      src="/eye-on.svg"
+                      alt="eye-on"
+                      width={20}
+                      height={20}
+                    />
+                  )}
                 </button>
               </div>
 
@@ -318,7 +331,21 @@ export const ResetPassword: React.FC = () => {
                   onClick={() => togglePassword("confirmPassword")}
                   className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
                 >
-                  {showConfirmPassword ? <IoIosEyeOff /> : <IoIosEye />}
+                  {showPassword ? (
+                    <Image
+                      src="/eye-off.svg"
+                      alt="eye-on"
+                      width={20}
+                      height={20}
+                    />
+                  ) : (
+                    <Image
+                      src="/eye-on.svg"
+                      alt="eye-on"
+                      width={20}
+                      height={20}
+                    />
+                  )}
                 </button>
               </div>
               <div className="mb-6">
