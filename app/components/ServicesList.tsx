@@ -1,15 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ServicesCard } from "@/app/components/ServicesCard";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import { ServiceProps } from "@/types/index";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const ServicesCardSkeleton = () => {
   return (
@@ -27,12 +24,13 @@ const ServicesCardSkeleton = () => {
     </div>
   );
 };
+
 export const ServicesList: React.FC = () => {
   const [services, setServices] = useState<ServiceProps[]>([]);
   const [loading, setLoading] = useState(true);
   const locale = useLocale();
-  const cardsContainerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const t = useTranslations("ServiceCard");
 
   const fetchServices = async () => {
@@ -54,73 +52,78 @@ export const ServicesList: React.FC = () => {
   }, [locale]);
 
   useEffect(() => {
-    if (services.length > 0 && cardsContainerRef.current) {
-      const cards = cardsRef.current.filter(
+    if (services.length > 0 && carouselRef.current) {
+      const carousel = carouselRef.current;
+      const cards = cardRefs.current.filter(
         (card): card is HTMLDivElement => card !== null
       );
 
-      gsap.fromTo(
-        cards,
-        {
-          opacity: 0,
-          y: 50,
-          scale: 0.9,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: cardsContainerRef.current,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse",
-          },
-        }
+      const clonedCards = cards.map(
+        (card) => card.cloneNode(true) as HTMLDivElement
       );
+      clonedCards.forEach((card) => carousel.appendChild(card));
 
-      cards.forEach((card) => {
+      const totalWidth = cards.reduce((acc, card) => acc + card.offsetWidth, 0);
+
+      gsap.set(carousel, { x: 0 });
+
+      const tl = gsap.timeline({ repeat: -1, paused: true });
+      tl.to(carousel, {
+        x: -totalWidth,
+        duration: 20,
+        ease: "none",
+        onComplete: () => {
+          gsap.set(carousel, { x: 0 });
+        },
+      });
+
+      tl.play();
+
+      carousel.addEventListener("mouseenter", () => tl.pause());
+      carousel.addEventListener("mouseleave", () => tl.play());
+
+      [...cards, ...clonedCards].forEach((card) => {
         card.addEventListener("mouseenter", () => {
-          gsap.to(card, {
-            scale: 1.05,
-            duration: 0.3,
-          });
+          gsap.to(card, { scale: 1.05, duration: 0.3 });
         });
         card.addEventListener("mouseleave", () => {
-          gsap.to(card, {
-            scale: 1,
-            duration: 0.3,
-          });
+          gsap.to(card, { scale: 1, duration: 0.3 });
         });
       });
+
+      return () => {
+        tl.kill();
+        clonedCards.forEach((card) => card.remove());
+      };
     }
   }, [services]);
 
   return (
     <div className="overflow-hidden lg:py-20 mt-12">
-      <div
-        ref={cardsContainerRef}
-        className="flex sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-8 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide sm:scrollbar-default"
-      >
-        {loading
-          ? Array.from({ length: 5 }).map((_, index) => (
-              <div key={index} className="flex-shrink-0 w-44 sm:w-auto">
-                <ServicesCardSkeleton />
-              </div>
-            ))
-          : services.slice(0, 5).map((service, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  cardsRef.current[index] = el;
-                }}
-                className="flex-shrink-0 w-44 sm:w-auto transition-all duration-300"
-              >
-                <ServicesCard service={service} />
-              </div>
-            ))}
+      <div className="relative">
+        <div
+          ref={carouselRef}
+          className="flex gap-3 sm:gap-4 overflow-visible"
+          style={{ width: "200%" }}
+        >
+          {loading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <div key={index} className="flex-shrink-0 w-44 sm:w-64">
+                  <ServicesCardSkeleton />
+                </div>
+              ))
+            : services.slice(0, 6).map((service, index) => (
+                <div
+                  key={index}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
+                  className="flex-shrink-0 w-44 sm:w-64 transition-all duration-300"
+                >
+                  <ServicesCard service={service} />
+                </div>
+              ))}
+        </div>
       </div>
       <div className="flex justify-center items-center lg:mt-12 mb-8 mt-6">
         <Link href={`${locale}/services`}>
