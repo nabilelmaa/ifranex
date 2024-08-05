@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import axios from "axios";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +12,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -21,7 +21,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/app/components/ui/select";
@@ -56,56 +55,98 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
   const { showToast } = useToast();
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations("Tables");
 
   const [selectedCategory, setSelectedCategory] = useState<string>(
     serviceToEdit?.category || (categories.length > 0 ? categories[0] : "")
   );
+  const [bannerImage, setBannerImage] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     if (serviceToEdit) {
-      setValue("banner", serviceToEdit.banner);
-      setValue("pricePerHour", serviceToEdit.pricePerHour);
-      setValue("category", serviceToEdit.category);
-      setValue("title_en", serviceToEdit.title_en);
-      setValue("description_en", serviceToEdit.description_en);
-      setValue("title_fr", serviceToEdit.title_fr);
-      setValue("description_fr", serviceToEdit.description_fr);
-      setValue("hidden", serviceToEdit.hidden);
+      Object.keys(serviceToEdit).forEach((key) => {
+        setValue(key as keyof Service, serviceToEdit[key as keyof Service]);
+      });
     }
   }, [serviceToEdit, setValue]);
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setBannerImage(e.target.files[0]);
+    }
+  };
+
+  const uploadImageToCloudinary = async (image: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append(
+      "upload_preset",
+      process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || ""
+    );
+
+    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+    try {
+      const response = await axios.post(cloudinaryUrl, formData);
+      if (response.status === 200) {
+        return response.data.secure_url;
+      } else {
+        throw new Error("Failed to upload image to Cloudinary");
+      }
+    } catch (error) {
+      console.error("Error uploading image to Cloudinary", error);
+      throw error;
+    }
+  };
+
   const onSubmit = async (data: any) => {
     if (!selectedCategory) {
-      showToast("Please select a category", "error");
+      showToast(t("select_category"), "error");
       return;
     }
 
+    setIsLoading(true);
+
     try {
+      let bannerUrl = data.banner;
+
+      if (bannerImage) {
+        bannerUrl = await uploadImageToCloudinary(bannerImage);
+      }
+
       const endpoint = serviceToEdit
         ? `/api/services/update?id=${serviceToEdit.id}`
         : "/api/services/create";
+
+      const method = serviceToEdit ? "PATCH" : "POST";
+
       const response = await fetch(endpoint, {
-        method: "PATCH",
+        method: method,
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, category: selectedCategory }),
+        body: JSON.stringify({
+          ...data,
+          category: selectedCategory,
+          banner: bannerUrl,
+        }),
       });
+
       const result = await response.json();
       if (!response.ok) {
-        throw new Error(result.message || "Failed to update service");
+        throw new Error(result.message || t("failed_to_update_service"));
       }
+
       showToast(
-        serviceToEdit
-          ? "Service updated successfully!"
-          : "Service added to database!",
-        "alert"
+        serviceToEdit ? t("service_updated") : t("service_added"),
+        "success"
       );
-      router.push(`/${locale}/admin/services`);
+      window.location.reload();
     } catch (error) {
-      console.error("Error managing service:", error);
-      showToast("Error managing service", "error");
+      showToast((error as Error).message || "Error managing service", "error");
     } finally {
+      setIsLoading(false);
       closeModal();
       reset();
     }
@@ -116,22 +157,25 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>
-            {serviceToEdit ? "Edit Service" : "Add New Service"}
+            {serviceToEdit ? t("edit_service") : t("add_new_service")}
           </DialogTitle>
           <DialogDescription>
-            {serviceToEdit
-              ? "Update the details of the service."
-              : "Fill in the details to add a new service."}
+            {serviceToEdit ? t("update_details") : t("fill_details")}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <Label htmlFor="banner">Banner URL</Label>
-            <Input id="banner" {...register("banner", { required: true })} />
+            <Label htmlFor="banner">{t("banner")}</Label>
+            <Input
+              id="banner"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
           </div>
 
           <div>
-            <Label htmlFor="pricePerHour">Price Per Hour</Label>
+            <Label htmlFor="pricePerHour">{t("price")}</Label>
             <Input
               id="pricePerHour"
               type="number"
@@ -141,7 +185,7 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
           </div>
 
           <div>
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category">{t("category")}</Label>
             <Select
               onValueChange={(value) => {
                 setSelectedCategory(value);
@@ -165,7 +209,7 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
           </div>
 
           <div>
-            <Label htmlFor="title_en">English Title</Label>
+            <Label htmlFor="title_en">{t("english_title")}</Label>
             <Input
               id="title_en"
               {...register("title_en", { required: true })}
@@ -173,7 +217,7 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
           </div>
 
           <div>
-            <Label htmlFor="description_en">English Description</Label>
+            <Label htmlFor="description_en">{t("english_description")}</Label>
             <Input
               id="description_en"
               {...register("description_en", { required: true })}
@@ -181,7 +225,7 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
           </div>
 
           <div>
-            <Label htmlFor="title_fr">French Title</Label>
+            <Label htmlFor="title_fr">{t("french_title")}</Label>
             <Input
               id="title_fr"
               {...register("title_fr", { required: true })}
@@ -189,19 +233,27 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
           </div>
 
           <div>
-            <Label htmlFor="description_fr">French Description</Label>
+            <Label htmlFor="description_fr">{t("french_description")}</Label>
             <Input
               id="description_fr"
               {...register("description_fr", { required: true })}
             />
           </div>
-
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={closeModal}>
-              Cancel
+            <Button
+              type="button"
+              variant="outline"
+              onClick={closeModal}
+              disabled={isLoading}
+            >
+              {t("cancel")}
             </Button>
-            <Button type="submit">
-              {serviceToEdit ? "Update Service" : "Add Service"}
+            <Button type="submit" disabled={isLoading}>
+              {isLoading
+                ? t("submitting")
+                : serviceToEdit
+                ? t("update_service")
+                : t("add_service")}
             </Button>
           </DialogFooter>
         </form>

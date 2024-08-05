@@ -18,6 +18,7 @@ import Image from "next/image";
 import { ServiceForm } from "@/app/components/forms/ServiceForm";
 import { useToast } from "@/contexts/ToastContext";
 import { lineWobble } from "ldrs";
+import { useTranslations } from "next-intl";
 
 const ManageServices = () => {
   const [services, setServices] = useState<Service[]>([]);
@@ -26,6 +27,7 @@ const ManageServices = () => {
   const [serviceToEdit, setServiceToEdit] = useState<Service | null>(null);
   const [categories, setCategories] = useState<string[]>([]);
   const { showToast } = useToast();
+  const t = useTranslations("Tables");
 
   const fetchServices = async () => {
     setIsLoading(true);
@@ -67,10 +69,10 @@ const ManageServices = () => {
       setServices((prevServices) =>
         prevServices.filter((service) => service.id !== id)
       );
-      showToast("Service deleted successfully!", "success");
+      showToast(t("service_deleted"), "success");
       fetchServices();
     } catch (error) {
-      console.error("Error deleting service:", error);
+      showToast(t("error_deleting"), "error");
     }
   };
 
@@ -87,7 +89,7 @@ const ManageServices = () => {
         },
         body: JSON.stringify({ id, hidden: newHiddenStatus }),
       });
-      showToast("Visibility changed successfully!", "success");
+      showToast(t("visibility_changed"), "success");
       fetchServices();
     } catch (error) {
       console.error("Error toggling visibility:", error);
@@ -116,36 +118,34 @@ const ManageServices = () => {
   }
   return (
     <div className="min-h-screen container mx-auto">
-      <h1 className="text-2xl font-semibold mb-4">Manage Services</h1>
+      <h1 className="text-2xl font-semibold mb-4">{t("manage_services")}</h1>
       <div className="flex items-center justify-between mb-6">
         <div className="flex-1 max-w-md">
           <Input
             type="search"
-            placeholder="Search services..."
+            placeholder={t("search_services")}
             className="w-full"
           />
         </div>
         <Button onClick={handleAddClick} className="flex items-center">
           {" "}
           <Image src="/plus.svg" alt="plus" width={15} height={15} />
-         <p className="ml-2">
-            Add Service
-            </p> 
+          <p className="ml-2">{t("add_service")}</p>
         </Button>
       </div>
 
       <Table>
-        <TableCaption>A list of available services.</TableCaption>
+        <TableCaption>{t("list_of_available_services")}</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Category</TableHead>
-            <TableHead>En Title</TableHead>
-            <TableHead>EN Description</TableHead>
-            <TableHead>FR Title</TableHead>
-            <TableHead>FR Description</TableHead>
-            <TableHead>Price(MAD)</TableHead>
-            <TableHead>Banner</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>{t("category")}</TableHead>
+            <TableHead>{t("en_title")}</TableHead>
+            <TableHead>{t("en_description")}</TableHead>
+            <TableHead>{t("fr_title")}</TableHead>
+            <TableHead>{t("fr_description")}</TableHead>
+            <TableHead>{t("price")} (MAD)</TableHead>
+            <TableHead>{t("banner")}</TableHead>
+            <TableHead>{t("actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -163,45 +163,60 @@ const ManageServices = () => {
                   alt="Banner"
                   width={50}
                   height={50}
+                  className="rounded-md h-12 w-12"
                 />
               </TableCell>
-              <TableCell className="flex items-center">
-                <button
-                  onClick={() => handleEditClick(service)}
-                  className="mr-4"
-                >
-                  <Image
-                    src="/update.svg"
-                    alt="Update"
-                    width={20}
-                    height={20}
-                  />
-                </button>
-                <button
-                  onClick={() => handleDeleteClick(service.id)}
-                  className="mr-4"
-                >
-                  <Image src="/trash.svg" alt="Delete" width={20} height={20} />
-                </button>
-                <button
-                  onClick={() =>
-                    handleToggleVisibility(service.id, service.hidden)
-                  }
-                >
-                  <Image
-                    src={service.hidden ? "/eye-off.svg" : "/eye-on.svg"}
-                    alt="Visibility"
-                    width={20}
-                    height={20}
-                  />
-                </button>
+              <TableCell>
+                <div className="flex items-center justify-between space-x-2">
+                  <Button
+                    onClick={() => handleEditClick(service)}
+                    variant="ghost"
+                    className="p-2"
+                  >
+                    <Image
+                      src="/update.svg"
+                      alt="Update"
+                      width={22}
+                      height={22}
+                      className="min-w-[22x] min-h-[22px]"
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => handleDeleteClick(service.id)}
+                    variant="ghost"
+                    className="p-2"
+                  >
+                    <Image
+                      src="/trash.svg"
+                      alt="Delete"
+                      width={22}
+                      height={22}
+                      className="min-w-[22x] min-h-[22px]"
+                    />
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      handleToggleVisibility(service.id, service.hidden)
+                    }
+                    variant="ghost"
+                    className="p-2"
+                  >
+                    <Image
+                      src={service.hidden ? "/eye-on.svg" : "/eye-off.svg"}
+                      alt="Visibility"
+                      width={22}
+                      height={22}
+                      className="min-w-[22x] min-h-[22px]"
+                    />
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={4}>Total Services</TableCell>
+            <TableCell colSpan={4}>{t("total_services")}</TableCell>
             <TableCell>{services.length}</TableCell>
           </TableRow>
         </TableFooter>

@@ -173,7 +173,7 @@
         "fr_title": "FR Title",
         "en_description": "EN Description",
         "fr_description": "FR Description",
-        "price": "Price(MAD)",
+        "price": "Price",
         "banner": "Banner",
         "manage_services": "Manage Services",
         "add_service": "Add Service",
@@ -193,6 +193,26 @@
         "no_users": "No users available.",
         "booking_completed": "Congratulations, the job is completed. 🎉",
         "booking_confirmed": "Booking confirmed.",
-        "value": "Value"
+        "value": "Value",
+        "service_deleted": "Service deleted successfully !",
+        "error_deleting": "Error deleting service!",
+        "visibility_changed": "Visibility changed successfully.",
+        "list_of_available_services": "A list of available services.",
+        "total_services": "Total Services",
+        "english_title": "English Title",
+        "english_description": "English Description",
+        "french_title": "French Title",
+        "french_description": "French Description",
+        "update_service": "Update",
+
+        "edit_service": "Edit Service",
+        "add_new_service": "Add New Service",
+        "update_details": "Update the details of the service.",
+        "fill_details": "Fill in the details to add a new service.",
+        "select_category": "Please select a category.",
+        "failed_to_update_service": "Failed to update service",
+        "service_updated": "Service updated successfully !",
+        "service_added": "Service added to database !",
+        "submitting": "Submitting"
     }
 }
