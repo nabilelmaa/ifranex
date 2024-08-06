@@ -183,7 +183,7 @@ export const Navbar = () => {
                     onClick={() => setSidebarOpen(false)}
                   >
                     <Image
-                      src="/logo-blue.svg"
+                      src="/logo-black.svg"
                       alt="logo"
                       width={96}
                       height={96}
@@ -193,31 +193,43 @@ export const Navbar = () => {
                 </div>
                 <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2 font-semibold">
                   {isHomePage ? (
-                   <ul className="space-y-2">
-                   {[
-                     { id: "footer", icon: "/about.svg", label: t("nav_about") },
-                     { id: "services", icon: "/work.svg", label: t("nav_services") },
-                     { id: "us", icon: "/question.svg", label: t("nav_us") },
-                     { id: "reviews", icon: "/message.svg", label: t("nav_reviews") }
-                   ].map(({ id, icon, label }) => (
-                     <li key={id} onClick={() => scrollToSection(id)}>
-                       <a className="flex items-center p-3 rounded-lg transition-all duration-200 bg-white hover:bg-blue-50 hover:shadow-md group">
-                         <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 group-hover:bg-blue-200">
-                           <Image
-                             src={icon}
-                             alt={label}
-                             width={20}
-                             height={20}
-                             className="text-blue-600"
-                           />
-                         </div>
-                         <span className="ml-3 font-medium text-gray-700 group-hover:text-blue-600">
-                           {label}
-                         </span>
-                       </a>
-                     </li>
-                   ))}
-                 </ul>
+                    <ul className="space-y-2">
+                      {[
+                        {
+                          id: "footer",
+                          icon: "/about.svg",
+                          label: t("nav_about"),
+                        },
+                        {
+                          id: "services",
+                          icon: "/work.svg",
+                          label: t("nav_services"),
+                        },
+                        { id: "us", icon: "/question.svg", label: t("nav_us") },
+                        {
+                          id: "reviews",
+                          icon: "/message.svg",
+                          label: t("nav_reviews"),
+                        },
+                      ].map(({ id, icon, label }) => (
+                        <li key={id} onClick={() => scrollToSection(id)}>
+                          <a className="flex items-center p-3 rounded-lg transition-all duration-200 bg-white hover:bg-blue-50 hover:shadow-md group">
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 group-hover:bg-blue-200">
+                              <Image
+                                src={icon}
+                                alt={label}
+                                width={20}
+                                height={20}
+                                className="text-blue-600"
+                              />
+                            </div>
+                            <span className="ml-3 font-medium text-gray-700 group-hover:text-blue-600">
+                              {label}
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   ) : (
                     <>
                       <li>
