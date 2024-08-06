@@ -16,10 +16,10 @@ export const WhyUs = () => {
     <section id="us" className="bg-gradient-to-b from-gray-100 to-white py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
             {t("title")}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-md md:text-xl lg:text-xl text-gray-600 max-w-3xl mx-auto">
             {t("description")}
           </p>
         </div>

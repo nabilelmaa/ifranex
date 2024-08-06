@@ -7,6 +7,8 @@ import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import { ServiceProps } from "@/types/index";
 import { gsap } from "gsap";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const ServicesCardSkeleton = () => {
   return (
@@ -32,6 +34,16 @@ export const ServicesList: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const t = useTranslations("ServiceCard");
+
+  const icons = [
+    "/cleaning.svg",
+    "/painting.svg",
+    "/chef.svg",
+    "/baby.svg",
+    "/shower.svg",
+    "/tech-support.svg",
+    "/repair.svg",
+  ];
 
   const fetchServices = async () => {
     try {
@@ -100,6 +112,31 @@ export const ServicesList: React.FC = () => {
 
   return (
     <div className="overflow-hidden lg:py-20 mt-12">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-center mb-8"
+        >
+          <ul className="flex space-x-4">
+            {icons.map((icon, index) => (
+              <motion.li
+                key={index}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="bg-white p-2 rounded-full shadow-md"
+              >
+                <Image
+                  src={icon}
+                  alt={`icon-${index}`}
+                  width={45}
+                  height={45}
+                />
+              </motion.li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
       <div className="relative">
         <div
           ref={carouselRef}
@@ -127,7 +164,7 @@ export const ServicesList: React.FC = () => {
       </div>
       <div className="flex justify-center items-center lg:mt-12 mb-8 mt-6">
         <Link href={`${locale}/services`}>
-          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-white text-indigo-700 font-semibold text-xs sm:text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
+          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-white text-indigo-700 font-semibold text-sm sm:text-sm transition duration-300 focus:outline-none ring-2 ring-indigo-700 focus:ring-opacity-50">
             <div className="flex items-center justify-center">
               <span className="mr-2">{t("see_all_services")}</span>
               <FaChevronRight className="text-xs" />

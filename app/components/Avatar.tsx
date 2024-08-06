@@ -33,7 +33,6 @@ const Avatar = () => {
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
@@ -126,7 +125,7 @@ const Avatar = () => {
     if (Object.keys(updatedFields).length === 0) {
       showToast(t("no_changes"), "alert");
       setIsLoading(false);
-      (document.getElementById("my_modal_2") as HTMLDialogElement).close();
+      (document.getElementById("account") as HTMLDialogElement).close();
       return;
     }
 
@@ -141,7 +140,7 @@ const Avatar = () => {
         showToast(t("toast_updated"), "success");
         setIsLoading(false);
 
-        (document.getElementById("my_modal_2") as HTMLDialogElement).close();
+        (document.getElementById("account") as HTMLDialogElement).close();
         resetForm();
         window.location.reload();
       }
@@ -191,11 +190,12 @@ const Avatar = () => {
       });
 
       if (response.ok) {
-        setIsRatingModalOpen(false);
+        (document.getElementById("rating") as HTMLDialogElement).close();
         setIsLoading(false);
         showToast(t("thank_you_for_review"), "success");
         resetRatingForm();
       } else {
+        (document.getElementById("rating") as HTMLDialogElement).close();
         showToast(t("failed_to_submit_review"), "error");
         setIsLoading(false);
       }
@@ -282,7 +282,7 @@ const Avatar = () => {
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100"
                   onClick={() => {
                     (
-                      document.getElementById("my_modal_2") as HTMLDialogElement
+                      document.getElementById("account") as HTMLDialogElement
                     ).showModal();
                     setIsOpen(false);
                   }}
@@ -302,7 +302,9 @@ const Avatar = () => {
                 <button
                   className="block px-4 py-2 w-full text-left hover:bg-gray-100"
                   onClick={() => {
-                    setIsRatingModalOpen(true);
+                    (
+                      document.getElementById("rating") as HTMLDialogElement
+                    ).showModal();
                     setIsOpen(false);
                   }}
                 >
@@ -341,63 +343,65 @@ const Avatar = () => {
         )}
       </AnimatePresence>
 
-      {isRatingModalOpen && (
-        <dialog id="my_modal_2" className="modal" open>
-          <div className="modal-box">
-            <h3 className="font-bold text-lg mb-6">{t("rate_us")}</h3>
-            <div className="flex justify-center mb-4">{renderStars()}</div>
-            <div className="relative">
-              <textarea
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
-                value={comment}
-                onChange={handleCommentChange}
-                rows={4}
-              ></textarea>
-              <label
-                htmlFor="comment"
-                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-              >
-                {t("leave_comment")}
-              </label>
-            </div>
-            <div className="modal-action">
-              <Button
-                variant="cancel"
-                onClick={() => setIsRatingModalOpen(false)}
-              >
-                {t("cancel")}
-              </Button>
-              <Button
-                variant="outline"
-                className="w-28"
-                onClick={handleSubmitRating}
-              >
-                {isLoading ? (
-                  <l-tail-chase
-                    size="20"
-                    speed="1.75"
-                    color="black"
-                  ></l-tail-chase>
-                ) : (
-                  t("submit")
-                )}
-              </Button>
-            </div>
+      <dialog id="rating" className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg mb-6">{t("rate_us")}</h3>
+          <div className="flex justify-center mb-4">{renderStars()}</div>
+          <div className="relative">
+            <textarea
+              className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+              value={comment}
+              onChange={handleCommentChange}
+              rows={4}
+            ></textarea>
+            <label
+              htmlFor="comment"
+              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            >
+              {t("leave_comment")}
+            </label>
           </div>
-          <form method="dialog" className="modal-backdrop">
-            <button
+          <div className="modal-action">
+            <Button
+              variant="cancel"
               onClick={() => {
-                setIsRatingModalOpen(false);
-                resetRatingForm();
+                (
+                  document.getElementById("rating") as HTMLDialogElement
+                ).close();
+                resetForm();
               }}
             >
               {t("cancel")}
-            </button>
-          </form>
-        </dialog>
-      )}
+            </Button>
+            <Button
+              variant="outline"
+              className="w-28"
+              onClick={handleSubmitRating}
+            >
+              {isLoading ? (
+                <l-tail-chase
+                  size="20"
+                  speed="1.75"
+                  color="black"
+                ></l-tail-chase>
+              ) : (
+                t("submit")
+              )}
+            </Button>
+          </div>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button
+            onClick={() => {
+              resetRatingForm();
+            }}
+          >
+            {t("cancel")}
+          </button>
+        </form>
+      </dialog>
 
-      <dialog id="my_modal_2" className="modal">
+      <dialog id="account" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
@@ -501,7 +505,7 @@ const Avatar = () => {
               variant="cancel"
               onClick={() => {
                 (
-                  document.getElementById("my_modal_2") as HTMLDialogElement
+                  document.getElementById("account") as HTMLDialogElement
                 ).close();
                 resetForm();
               }}

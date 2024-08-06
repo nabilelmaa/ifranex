@@ -56,15 +56,15 @@ export const Navbar = () => {
         !isUsersPage &&
         !isResetPasswowrdPage && (
           <>
-            <nav className="flex items-center justify-between lg:px-8 px-2 py-4 fixed top-0 left-0 w-full z-50 bg-transparent bg-opacity-70 backdrop-blur-md backdrop-saturate-150 supports-[backdrop-filter]:bg-white/70">
+            <nav className="flex items-center justify-between lg:px-8 px-2 py-4 fixed top-0 left-0 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-saturate-150">
               <div className="flex items-center">
                 {(isHomePage || !isHomePage) && (
                   <div className="lg:hidden mr-4 rounded-md">
                     <Image
                       src="/menu.svg"
                       alt={isSidebarOpen ? "Close menu" : "Open menu"}
-                      width={22}
-                      height={22}
+                      width={20}
+                      height={20}
                       onClick={() => setSidebarOpen(!isSidebarOpen)}
                       className="cursor-pointer"
                     />
@@ -112,35 +112,35 @@ export const Navbar = () => {
                 <ul className="lg:flex justify-center gap-4 hidden h-full text-gray-900">
                   <li>
                     <Link href="/">
-                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                      <p className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer">
                         {t("nav_home")}
                       </p>
                     </Link>
                   </li>
                   <li>
                     <Link href={`/${locale}/messages`}>
-                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                      <p className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer">
                         {t("inbox")}
                       </p>
                     </Link>
                   </li>
                   <li>
                     <Link href={`/${locale}/services`}>
-                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                      <p className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer">
                         {t("services")}
                       </p>
                     </Link>
                   </li>
                   <li>
                     <Link href={`/${locale}/booking-history`}>
-                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                      <p className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer">
                         {t("history")}
                       </p>
                     </Link>
                   </li>
                   <li>
                     <Link href="/settings">
-                      <p className="transition cursor-pointer p-2 hover:bg-green-100 hover:text-green-700 rounded-md">
+                      <p className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer">
                         {t("support")}
                       </p>
                     </Link>
@@ -172,9 +172,9 @@ export const Navbar = () => {
               ></div>
             )}
             <div
-              className={`fixed top-0 left-0 h-full w-full max-w-md bg-white bg-opacity-30 backdrop-blur-xl shadow-2xl transform transition-all duration-300 ease-in-out ${
+              className={`fixed top-0 left-0 bottom-0 w-80 bg-white/80 shadow-lg transform transition-all duration-300 ease-in-out ${
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-              } z-50 overflow-hidden`}
+              } z-50 overflow-y-auto backdrop-blur-md`}
             >
               <div className="flex flex-col h-full">
                 <div className="p-6">
@@ -213,17 +213,14 @@ export const Navbar = () => {
                         },
                       ].map(({ id, icon, label }) => (
                         <li key={id} onClick={() => scrollToSection(id)}>
-                          <a className="flex items-center p-3 rounded-lg transition-all duration-200 bg-white hover:bg-blue-50 hover:shadow-md group">
-                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 group-hover:bg-blue-200">
-                              <Image
-                                src={icon}
-                                alt={label}
-                                width={20}
-                                height={20}
-                                className="text-blue-600"
-                              />
-                            </div>
-                            <span className="ml-3 font-medium text-gray-700 group-hover:text-blue-600">
+                          <a className="flex items-center p-3 rounded-lg transition-all duration-200 bg-gra-50 hover:bg-gray-100 hover:shadow-md group">
+                            <Image
+                              src={icon}
+                              alt={label}
+                              width={20}
+                              height={20}
+                            />
+                            <span className="ml-3 font-medium text-gray-700">
                               {label}
                             </span>
                           </a>
@@ -234,10 +231,10 @@ export const Navbar = () => {
                     <>
                       <li>
                         <Link
-                          href="/"
+                          href={`/${locale}`}
                           className={`block px-4 py-2 rounded-md w-52 ${
                             pathname === `/${locale}`
-                              ? "bg-green-100"
+                              ? "bg-gray-50"
                               : "hover:bg-gray-100"
                           }`}
                           onClick={() => setSidebarOpen(false)}
@@ -258,7 +255,7 @@ export const Navbar = () => {
                           href={`/${locale}/messages`}
                           className={`block px-4 py-2 rounded-md w-52 ${
                             pathname === `/${locale}/messages`
-                              ? "bg-green-100"
+                              ? "bg-gray-50"
                               : "hover:bg-gray-100"
                           }`}
                           onClick={() => setSidebarOpen(false)}
@@ -279,7 +276,7 @@ export const Navbar = () => {
                           href={`/${locale}/services`}
                           className={`block px-4 py-2 rounded-md w-52 ${
                             pathname === `/${locale}/services`
-                              ? "bg-green-100"
+                              ? "bg-gray-50"
                               : "hover:bg-gray-100"
                           }`}
                           onClick={() => setSidebarOpen(false)}
@@ -300,7 +297,7 @@ export const Navbar = () => {
                           href={`/${locale}/booking-history`}
                           className={`block px-4 py-2 rounded-md w-52 ${
                             pathname === `/${locale}/booking-history`
-                              ? "bg-green-100"
+                              ? "bg-gray-50"
                               : "hover:bg-gray-100"
                           }`}
                           onClick={() => setSidebarOpen(false)}
@@ -321,7 +318,7 @@ export const Navbar = () => {
                           href="/settings"
                           className={`block px-4 py-2 rounded-md w-52 ${
                             pathname === `/${locale}/settings`
-                              ? "bg-green-100"
+                              ? "bg-gray-50"
                               : "hover:bg-gray-100"
                           }`}
                           onClick={() => setSidebarOpen(false)}

@@ -103,7 +103,7 @@ const Page: React.FC = () => {
           </li>
         </ul>
       </div>
-      <div className="max-w-full max-auto lg:w-80 mt-6">
+      <div className="max-w-full max-auto lg:w-80 mt-12">
         <p className="flex items-center p-2 border rounded-full w-full bg-white text-green-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
