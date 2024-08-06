@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Head from 'next/head';
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/app/components/Navbar";
@@ -26,6 +27,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        />
+      </Head>
       <body className="bg-slate-00">
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>

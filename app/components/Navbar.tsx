@@ -56,7 +56,7 @@ export const Navbar = () => {
         !isUsersPage &&
         !isResetPasswowrdPage && (
           <>
-            <nav className="flex items-center justify-between lg:px-8 px-2 py-3 fixed top-0 left-0 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-saturate-150">
+            <nav className="flex items-center justify-between lg:px-8 px-2 py-3 fixed top-0 left-0 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-blur-ios backdrop-saturate-150">
               <div className="flex items-center">
                 {(isHomePage || !isHomePage) && (
                   <div className="lg:hidden mr-4 rounded-md">
