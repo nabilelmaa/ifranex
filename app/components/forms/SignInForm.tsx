@@ -89,13 +89,10 @@ export const SignInForm: React.FC = () => {
 
   return (
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
-      <p className="text-center font-bold text-green-500 lg:text-xl">
-        Ifrane<span className="text-black">X.</span>
-      </p>
-      <h2 className="text-xl font-bold mb-6 text-center">
-        {t("welcome_message")}
-      </h2>
-
+      <div className="flex justify-center mb-4">
+        <Image src="/logo-blue.svg" alt="logo" width={96} height={96} />
+      </div>
+      <h2 className="text-xl font-bold text-center">{t("welcome_message")}</h2>
       <div className="mt-4 text-center">
         {errorMessage && (
           <div

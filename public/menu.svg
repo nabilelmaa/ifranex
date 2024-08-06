@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
-    <path d="M4 5L20 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M4 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M4 19L20 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" viewBox="0 0 20 14" id="menu"><g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"><g stroke="#000" stroke-width="2" transform="translate(-1629 -1753)"><g transform="translate(1630 1754)"><path d="M0 6h18M0 0h18M0 12h18"></path></g></g></g></svg>

@@ -108,10 +108,10 @@ export const SignUpForm: React.FC = () => {
 
   return (
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
-      <p className="text-center font-bold text-green-500 lg:text-xl mb-4">
-        Ifrane<span className="text-black">X.</span>
-      </p>
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <div className="flex justify-center mb-4">
+        <Image src="/logo-blue.svg" alt="logo" width={96} height={96} />
+      </div>
+      <h2 className="text-xl font-bold text-center mb-4">
         {t("create_account")}
       </h2>
       {errorMessage && (

@@ -1,55 +1,46 @@
+import React from 'react';
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card";
 
 export const WhyUs = () => {
   const t = useTranslations("Us");
+
+  const features = [
+    { icon: "/verified.svg", title: "qualified_people", description: "qualified_people_desc" },
+    { icon: "/clock.svg", title: "services_24_7", description: "services_24_7_desc" },
+    { icon: "/money.svg", title: "competitive_pricing", description: "competitive_pricing_desc" },
+  ];
+
   return (
-    <section id="us">
-      <div className="flex items-center justify-center w-full py-12 px-6 md:p-24 rounded-md bg-black">
-        <div className="bg-white rounded-xl shadow-lg p-6 md:p-12 w-full max-w-5xl">
-          <h2 className="font-semibold text-lg md:text-2xl lg:text-3xl text-black">
+    <section id="us" className="bg-gradient-to-b from-gray-100 to-white py-16 md:py-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             {t("title")}
           </h2>
-          <p className="text-gray-800 mt-4 text-sm md:text-base lg:text-md">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {t("description")}
           </p>
-          <div className="flex flex-col md:flex-row gap-8 mt-8">
-            <div className="flex flex-col items-center md:items-start">
-              <div className="mb-4">
-                {" "}
-                <Image src="/verified.svg" alt="" width={45} height={45} />
-              </div>
-              <p className="font-semibold text-black text-md md:text-xl lg:text-xl text-center md:text-left">
-                {t("qualified_people")}
-              </p>
-              <p className="text-gray-800 text-start md:text-left text-sm mt-2">
-                {t("qualified_people_desc")}
-              </p>
-            </div>
-            <div className="flex flex-col items-center md:items-start">
-              <div className="mb-4">
-                <Image src="/clock.svg" alt="" width={45} height={45} />
-              </div>
-              <p className="font-semibold text-black text-md md:text-xl lg:text-xl text-center md:text-left">
-                {t("services_24_7")}
-              </p>
-              <p className="text-gray-800 text-start md:text-left text-sm mt-2">
-                {t("services_24_7_desc")}
-              </p>
-            </div>
-            <div className="flex flex-col items-center md:items-start">
-              <div className="mb-4">
-                {" "}
-                <Image src="/money.svg" alt="" width={45} height={45} />
-              </div>
-              <p className="font-semibold text-black text-md md:text-xl lg:text-xl text-center md:text-left">
-                {t("competitive_pricing")}
-              </p>
-              <p className="text-gray-800 text-start md:text-left text-sm mt-2">
-                {t("competitive_pricing_desc")}
-              </p>
-            </div>
-          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardHeader className="flex flex-col items-center space-y-1">
+                <div className="rounded-full bg-primary/10 p-3 mb-2">
+                  <Image src={feature.icon} alt="" width={32} height={32} />
+                </div>
+                <CardTitle className="text-xl font-semibold text-center">
+                  {t(feature.title)}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 text-center">
+                  {t(feature.description)}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

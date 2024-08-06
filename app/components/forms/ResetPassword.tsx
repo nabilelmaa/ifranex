@@ -120,13 +120,13 @@ export const ResetPassword: React.FC = () => {
 
   return (
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
-      <p className="text-center font-bold text-green-500 lg:text-xl mb-4">
-        Ifrane<span className="text-black">X.</span>
-      </p>
+      <div className="flex justify-center mb-4">
+        <Image src="/logo-blue.svg" alt="logo" width={96} height={96} />
+      </div>
 
       {!isCodeSent && (
         <>
-          <h2 className="text-2xl font-bold mb-6 text-center">
+          <h2 className="text-2xl font-bold mb-4 text-center">
             {t("reset_forgot_password")}
           </h2>
           <p className="text-gray-500 text-center mb-2">

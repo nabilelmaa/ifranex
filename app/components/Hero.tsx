@@ -15,11 +15,23 @@ export const Hero = () => {
 
   const enWords = [
     { text: "Find" },
-    { text: "Trusted", className: "text-colGreen-000 dark:text-colGreen-000" },
+    {
+      text: "Trusted",
+      className:
+        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+    },
     { text: "Handypersons" },
     { text: "for" },
-    { text: "Every", className: "text-colGreen-000 dark:text-colGreen-000" },
-    { text: "Need", className: "text-colGreen-000 dark:text-colGreen-000" },
+    {
+      text: "Every",
+      className:
+        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+    },
+    {
+      text: "Need",
+      className:
+        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+    },
   ];
 
   const frWords = [
@@ -29,11 +41,20 @@ export const Hero = () => {
     { text: "de" },
     {
       text: "confiance",
-      className: "text-colGreen-000 dark:text-colGreen-000",
+      className:
+        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
     },
     { text: "pour " },
-    { text: "chaque", className: "text-colGreen-000 dark:text-colGreen-000" },
-    { text: "besoin", className: "text-colGreen-000 dark:text-colGreen-000" },
+    {
+      text: "chaque",
+      className:
+        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+    },
+    {
+      text: "besoin",
+      className:
+        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+    },
   ];
 
   const content = {
@@ -41,16 +62,13 @@ export const Hero = () => {
       words: enWords,
       description: (
         <>
-          Welcome to{" "}
-          <span className="font-semibold text-colGreen-000">ifraneX</span>, your
-          trusted partner for all home repair and handywork needs. Whether it's
-          a minor fix or a major renovation, our skilled professionals are here
-          to provide top-notch service with a smile. From plumbing and
-          electrical work to carpentry and painting, we handle it all with
-          precision and care. Let us help you keep your home in perfect shape,
-          so you can enjoy the comfort and peace of mind you deserve. Book your
-          service today and experience the difference with{" "}
-          <span className="font-semibold text-colGreen-000">ifraneX</span>!
+          Welcome to , your trusted partner for all home repair and handywork
+          needs. Whether it's a minor fix or a major renovation, our skilled
+          professionals are here to provide top-notch service with a smile. From
+          plumbing and electrical work to carpentry and painting, we handle it
+          all with precision and care. Let us help you keep your home in perfect
+          shape, so you can enjoy the comfort and peace of mind you deserve.
+          Book your service today and experience the difference with{" "}
         </>
       ),
       getStarted: "Get Started",
@@ -60,18 +78,16 @@ export const Hero = () => {
       words: frWords,
       description: (
         <>
-          Bienvenue chez{" "}
-          <span className="font-semibold text-colGreen-000">ifraneX</span>,
-          votre partenaire de confiance pour tous vos besoins de réparation et
-          de bricolage à domicile. Qu'il s'agisse d'une petite réparation ou
-          d'une rénovation majeure, nos professionnels qualifiés sont là pour
-          vous offrir un service de première qualité avec le sourire. De la
-          plomberie et des travaux électriques à la menuiserie et à la peinture,
-          nous nous occupons de tout avec précision et soin. Laissez-nous vous
-          aider à garder votre maison en parfait état, afin que vous puissiez
-          profiter du confort et de la tranquillité d'esprit que vous méritez.
-          Réservez votre service dès aujourd'hui et découvrez la différence avec{" "}
-          <span className="font-semibold text-colGreen-000">ifraneX</span>!
+          Bienvenue chez , votre partenaire de confiance pour tous vos besoins
+          de réparation et de bricolage à domicile. Qu'il s'agisse d'une petite
+          réparation ou d'une rénovation majeure, nos professionnels qualifiés
+          sont là pour vous offrir un service de première qualité avec le
+          sourire. De la plomberie et des travaux électriques à la menuiserie et
+          à la peinture, nous nous occupons de tout avec précision et soin.
+          Laissez-nous vous aider à garder votre maison en parfait état, afin
+          que vous puissiez profiter du confort et de la tranquillité d'esprit
+          que vous méritez. Réservez votre service dès aujourd'hui et découvrez
+          la différence avec{" "}
         </>
       ),
       getStarted: "Commencer",
@@ -87,7 +103,7 @@ export const Hero = () => {
       <div className="container px-4 mx-auto">
         <div className="flex flex-wrap xl:items-center -mx-4">
           <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem] mt-20">
               <TypewriterEffect words={words} />
             </h1>
             <p className="text-neutral-600 dark:text-neutral-200 text-md sm:text-base mt-6 mb-6">
@@ -96,12 +112,12 @@ export const Hero = () => {
             <div className="flex flex-wrap">
               <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:mt-24 w-full">
                 <Link href={`/${locale}/services`}>
-                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-colGreen-000 border dark:border-white border-transparent text-white text-sm">
+                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-indigo-700 border dark:border-white border-transparent text-white text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
                     {getStarted}
                   </button>
                 </Link>
                 <button
-                  className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-black border border-black  text-sm"
+                  className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-black border border-indigo-700  text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
                   // onClick={() => scrollToSection("how-it-works")}
                 >
                   {howItWorks}

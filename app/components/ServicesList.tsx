@@ -127,7 +127,7 @@ export const ServicesList: React.FC = () => {
       </div>
       <div className="flex justify-center items-center lg:mt-12 mb-8 mt-6">
         <Link href={`${locale}/services`}>
-          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-black text-white font-semibold text-xs sm:text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-white text-indigo-700 font-semibold text-xs sm:text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
             <div className="flex items-center justify-center">
               <span className="mr-2">{t("see_all_services")}</span>
               <FaChevronRight className="text-xs" />

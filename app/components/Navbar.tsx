@@ -56,48 +56,52 @@ export const Navbar = () => {
         !isUsersPage &&
         !isResetPasswowrdPage && (
           <>
-            <nav className="flex items-center justify-between lg:px-8 px-2 py-6 z-50 relative">
+            <nav className="flex items-center justify-between lg:px-8 px-2 py-4 fixed top-0 left-0 w-full z-50 bg-transparent bg-opacity-70 backdrop-blur-md backdrop-saturate-150 supports-[backdrop-filter]:bg-white/70">
               <div className="flex items-center">
                 {(isHomePage || !isHomePage) && (
-                  <div className="lg:hidden mr-4 bg-gray-200 p-2 rounded-md">
+                  <div className="lg:hidden mr-4 rounded-md">
                     <Image
                       src="/menu.svg"
                       alt={isSidebarOpen ? "Close menu" : "Open menu"}
-                      width={18}
-                      height={18}
+                      width={22}
+                      height={22}
                       onClick={() => setSidebarOpen(!isSidebarOpen)}
                       className="cursor-pointer"
                     />
                   </div>
                 )}
-                <Link href="/">
-                  <p className="font-bold text-colGreen-000 text-xl lg:text-2xl">
-                    Ifrane<span className="text-black">X.</span>
-                  </p>
+                <Link href={`/${locale}`}>
+                  <Image
+                    src="/logo-black.svg"
+                    alt="logo"
+                    width={72}
+                    height={72}
+                    className="h-6 w-auto md:h-10 cursor-pointer"
+                  />
                 </Link>
               </div>
               {isHomePage && (
                 <ul className="lg:flex justify-center gap-4 hidden h-full text-gray-900">
                   <li
-                    className="hover:text-green-400 transition cursor-pointer"
+                    className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
                     onClick={() => scrollToSection("footer")}
                   >
                     {t("nav_about")}
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer"
+                    className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
                     onClick={() => scrollToSection("services")}
                   >
                     {t("nav_services")}
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer"
+                    className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
                     onClick={() => scrollToSection("us")}
                   >
                     {t("nav_us")}
                   </li>
                   <li
-                    className="hover:text-green-400 transition cursor-pointer"
+                    className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
                     onClick={() => scrollToSection("reviews")}
                   >
                     {t("nav_reviews")}
@@ -168,70 +172,52 @@ export const Navbar = () => {
               ></div>
             )}
             <div
-              className={`fixed top-0 left-0 h-full bg-slate-50 w-3/4 shadow-lg transform transition-transform duration-300 ${
+              className={`fixed top-0 left-0 h-full w-full max-w-md bg-white bg-opacity-30 backdrop-blur-xl shadow-2xl transform transition-all duration-300 ease-in-out ${
                 isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-              } z-50 lg:hidden overflow-y-auto`}
+              } z-50 overflow-hidden`}
             >
               <div className="flex flex-col h-full">
                 <div className="p-6">
-                  <Link href="/" onClick={() => setSidebarOpen(false)}>
-                    <p className="font-bold text-colGreen-000 text-2xl">
-                      Ifrane<span className="text-black">X.</span>
-                    </p>
+                  <Link
+                    href={`/${locale}`}
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    <Image
+                      src="/logo-blue.svg"
+                      alt="logo"
+                      width={96}
+                      height={96}
+                      className="cursor-pointer"
+                    />
                   </Link>
                 </div>
                 <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2 font-semibold">
                   {isHomePage ? (
-                    <>
-                      <li
-                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                        onClick={() => scrollToSection("footer")}
-                      >
-                        <Image
-                          src="/about.svg"
-                          alt="About"
-                          width={20}
-                          height={20}
-                        />
-                        {t("nav_about")}
-                      </li>
-                      <li
-                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                        onClick={() => scrollToSection("services")}
-                      >
-                        <Image
-                          src="/work.svg"
-                          alt="Services"
-                          width={20}
-                          height={20}
-                        />
-                        {t("nav_services")}
-                      </li>
-                      <li
-                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                        onClick={() => scrollToSection("us")}
-                      >
-                        <Image
-                          src="/question.svg"
-                          alt="Us"
-                          width={20}
-                          height={20}
-                        />
-                        {t("nav_us")}
-                      </li>
-                      <li
-                        className="hover:text-green-600 transition cursor-pointer flex items-center gap-2 hover:bg-green-100 p-2 w-full rounded-md"
-                        onClick={() => scrollToSection("reviews")}
-                      >
-                        <Image
-                          src="/message.svg"
-                          alt="Reviews"
-                          width={20}
-                          height={20}
-                        />
-                        {t("nav_reviews")}
-                      </li>
-                    </>
+                   <ul className="space-y-2">
+                   {[
+                     { id: "footer", icon: "/about.svg", label: t("nav_about") },
+                     { id: "services", icon: "/work.svg", label: t("nav_services") },
+                     { id: "us", icon: "/question.svg", label: t("nav_us") },
+                     { id: "reviews", icon: "/message.svg", label: t("nav_reviews") }
+                   ].map(({ id, icon, label }) => (
+                     <li key={id} onClick={() => scrollToSection(id)}>
+                       <a className="flex items-center p-3 rounded-lg transition-all duration-200 bg-white hover:bg-blue-50 hover:shadow-md group">
+                         <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 group-hover:bg-blue-200">
+                           <Image
+                             src={icon}
+                             alt={label}
+                             width={20}
+                             height={20}
+                             className="text-blue-600"
+                           />
+                         </div>
+                         <span className="ml-3 font-medium text-gray-700 group-hover:text-blue-600">
+                           {label}
+                         </span>
+                       </a>
+                     </li>
+                   ))}
+                 </ul>
                   ) : (
                     <>
                       <li>
