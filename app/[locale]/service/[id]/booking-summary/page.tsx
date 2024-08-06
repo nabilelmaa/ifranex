@@ -60,7 +60,7 @@ const BookingSummary = () => {
       if (!response.ok) {
         throw new Error("Failed to confirm booking");
       }
-      showToast("Booking created successfully!", "success");
+      showToast(t("booking_success"), "success");
       router.push(`/${locale}/booking-history`);
     } catch (error) {
       console.error(error);
@@ -84,7 +84,7 @@ const BookingSummary = () => {
   tailChase.register();
 
   return (
-    <div className="max-w-4xl mx-auto p-8 space-y-8 bg-white shadow-2xl rounded-lg min-h-screen">
+    <div className="mt-16 max-w-4xl mx-auto p-8 space-y-8 bg-white shadow-2xl rounded-lg min-h-screen">
       <h2 className="text-3xl font-bold text-center text-gray-800 border-b-2 border-indigo-500 pb-4">
         {t("confirm_title")}
       </h2>

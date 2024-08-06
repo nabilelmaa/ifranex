@@ -56,7 +56,7 @@ export const Navbar = () => {
         !isUsersPage &&
         !isResetPasswowrdPage && (
           <>
-            <nav className="flex items-center justify-between lg:px-8 px-2 py-4 fixed top-0 left-0 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-saturate-150">
+            <nav className="flex items-center justify-between lg:px-8 px-2 py-3 fixed top-0 left-0 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-saturate-150">
               <div className="flex items-center">
                 {(isHomePage || !isHomePage) && (
                   <div className="lg:hidden mr-4 rounded-md">
@@ -74,9 +74,9 @@ export const Navbar = () => {
                   <Image
                     src="/logo-black.svg"
                     alt="logo"
-                    width={72}
-                    height={72}
-                    className="h-6 w-auto md:h-10 cursor-pointer"
+                    width={44}
+                    height={44}
+                    className="h-6 lg:h-8 w-auto cursor-pointer"
                   />
                 </Link>
               </div>

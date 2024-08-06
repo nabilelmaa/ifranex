@@ -7,6 +7,7 @@ import { useToast } from "@/contexts/ToastContext";
 import { useLocale } from "next-intl";
 import { lineWobble } from "ldrs";
 import { BarChart } from "@/app/components/BarChart";
+import { tailspin } from "ldrs";
 import { useTranslations } from "next-intl";
 import {
   Select,
@@ -39,8 +40,12 @@ const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingStates, setLoadingStates] = useState<LoadingStates>({});
   const locale = useLocale();
   const { showToast } = useToast();
+
+  type LoadingState = "confirm" | "cancel" | "complete" | null;
+  type LoadingStates = { [key: string]: LoadingState };
 
   type Status = "Pending" | "Confirmed" | "Canceled" | "Completed";
 
@@ -96,6 +101,7 @@ const Dashboard = () => {
   }, [filter, searchQuery, bookings]);
 
   const handleConfirm = async (id: string) => {
+    setLoadingStates((prev) => ({ ...prev, [id]: "confirm" }));
     try {
       const response = await fetch(`/api/bookings/${id}/confirm`, {
         method: "PATCH",
@@ -112,10 +118,13 @@ const Dashboard = () => {
       await fetchBookings();
     } catch (error) {
       console.error("Error confirming booking:", error);
+    } finally {
+      setLoadingStates((prev) => ({ ...prev, [id]: null }));
     }
   };
 
   const handleCancel = async (id: string) => {
+    setLoadingStates((prev) => ({ ...prev, [id]: "cancel" }));
     try {
       const response = await fetch(`/api/bookings/${id}/cancel`, {
         method: "PATCH",
@@ -128,14 +137,18 @@ const Dashboard = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
+
       showToast(t("booking_canceled"), "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error canceling booking:", error);
+    } finally {
+      setLoadingStates((prev) => ({ ...prev, [id]: null }));
     }
   };
 
   const handleCompleted = async (id: string) => {
+    setLoadingStates((prev) => ({ ...prev, [id]: "complete" }));
     try {
       const response = await fetch(`/api/bookings/${id}/complete`, {
         method: "PATCH",
@@ -148,14 +161,18 @@ const Dashboard = () => {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
+
       showToast(t("booking_completed"), "success");
       await fetchBookings();
     } catch (error) {
       console.error("Error confirming the job is completed:", error);
+    } finally {
+      setLoadingStates((prev) => ({ ...prev, [id]: null }));
     }
   };
 
   lineWobble.register();
+  tailspin.register();
 
   if (loading) {
     return (
@@ -384,43 +401,83 @@ const Dashboard = () => {
                     <div className="flex items-center lg:justify-between md:justify-between gap-2 cursor-pointer">
                       {booking.status === "Pending" && (
                         <>
-                          <Image
-                            src="/confirmed-icon.svg"
-                            alt="Confirm"
-                            width={38}
-                            height={38}
-                            onClick={() => handleConfirm(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md"
-                          />
-                          <Image
-                            src="/canceled-icon.svg"
-                            alt="Cancel"
-                            width={38}
-                            height={38}
-                            onClick={() => handleCancel(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md mr-2"
-                          />
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                            {loadingStates[booking.id] === "confirm" ? (
+                              <l-tailspin
+                                size="14"
+                                stroke="1"
+                                speed="0.6"
+                                color="black"
+                              ></l-tailspin>
+                            ) : (
+                              <Image
+                                src="/confirmed-icon.svg"
+                                alt="Confirm"
+                                width={32}
+                                height={32}
+                                onClick={() => handleConfirm(booking.id)}
+                              />
+                            )}
+                          </div>
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                            {loadingStates[booking.id] === "cancel" ? (
+                              <l-tailspin
+                                size="14"
+                                stroke="1"
+                                speed="0.6"
+                                color="black"
+                              ></l-tailspin>
+                            ) : (
+                              <Image
+                                src="/canceled-icon.svg"
+                                alt="Cancel"
+                                width={32}
+                                height={32}
+                                onClick={() => handleCancel(booking.id)}
+                              />
+                            )}
+                          </div>
                         </>
                       )}
 
                       {booking.status === "Confirmed" && (
                         <>
-                          <Image
-                            src="/completed-icon.svg"
-                            alt="Edit"
-                            width={38}
-                            height={38}
-                            onClick={() => handleCompleted(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md"
-                          />
-                          <Image
-                            src="/canceled-icon.svg"
-                            alt="Cancel"
-                            width={38}
-                            height={38}
-                            onClick={() => handleCancel(booking.id)}
-                            className="p-2 border border-gray-200 rounded-md mr-2"
-                          />
+                              <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                            {loadingStates[booking.id] === "complete" ? (
+                              <l-tailspin
+                                size="14"
+                                stroke="1"
+                                speed="0.6"
+                                color="black"
+                              ></l-tailspin>
+                            ) : (
+                              <Image
+                                src="/completed-icon.svg"
+                                alt="Edit"
+                                width={32}
+                                height={32}
+                                onClick={() => handleCompleted(booking.id)}
+                              />
+                            )}
+                          </div>
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                            {loadingStates[booking.id] === "cancel" ? (
+                              <l-tailspin
+                                size="14"
+                                stroke="1"
+                                speed="0.6"
+                                color="black"
+                              ></l-tailspin>
+                            ) : (
+                              <Image
+                                src="/canceled-icon.svg"
+                                alt="Cancel"
+                                width={32}
+                                height={32}
+                                onClick={() => handleCancel(booking.id)}
+                              />
+                            )}
+                          </div>
                         </>
                       )}
                     </div>

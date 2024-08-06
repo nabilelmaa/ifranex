@@ -133,7 +133,8 @@
         "service_details": "Détails du service",
         "your_details": "Vos détails",
         "confirm": "Confirmer",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "booking_success": "Réservation créée avec succès !"
     },
     "Tables": {
         "booking_history": "Historique des réservations",

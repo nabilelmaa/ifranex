@@ -98,9 +98,7 @@
         "error_message_login": "Invalid credentials",
         "login_success": "Login success."
     },
-    "BookingSummary": {
-        "booking_success": "Booking created successfully!"
-    },
+
     "Footer": {
         "job": "Do you want to get a job?",
         "join_team": "Join our team to grow your skills! We offer great opportunities for career growth.",
@@ -136,7 +134,8 @@
         "service_details": "Service Details",
         "your_details": "Service Details",
         "confirm": "Confirm",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "booking_success": "Booking created successfully!"
     },
     "Tables": {
         "booking_history": "Booking History",
@@ -204,7 +203,6 @@
         "french_title": "French Title",
         "french_description": "French Description",
         "update_service": "Update",
-
         "edit_service": "Edit Service",
         "add_new_service": "Add New Service",
         "update_details": "Update the details of the service.",

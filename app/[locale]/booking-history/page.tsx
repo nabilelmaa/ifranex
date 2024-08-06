@@ -107,7 +107,7 @@ const BookingHistory: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6 min-h-screen">
-      <h2 className="text-3xl font-bold">{t("booking_history")}</h2>
+      <h2 className="mt-24 text-3xl font-bold">{t("booking_history")}</h2>
       {loading ? (
         <div className="flex justify-center items-center h-screen">
           <l-hourglass

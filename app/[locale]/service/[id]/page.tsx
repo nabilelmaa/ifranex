@@ -68,7 +68,7 @@ const Page = () => {
 
   return (
     <div className="lg:p-12 md:p-6">
-      <div className="breadcrumbs text-sm p-2 mb-4">
+      <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
         <ul>
           <li>
             <a href={`/${locale}`}>{t("nav_home")}</a>

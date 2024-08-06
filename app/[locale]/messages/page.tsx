@@ -47,7 +47,7 @@ const UserInbox: React.FC = () => {
   return (
     <div className="min-h-screen">
       <div className="container mx-auto p-4">
-        <div className="breadcrumbs text-sm mb-6">
+        <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
           <ul>
             <li>
               <a href={`/${locale}`}>{t("nav_home")}</a>

@@ -93,7 +93,7 @@ const Page: React.FC = () => {
 
   return (
     <div className="min-h-screen lg:p-12 md:p-6 p-2">
-      <div className="breadcrumbs text-sm">
+     <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
         <ul>
           <li>
             <a href={`/${locale}`}>{t("nav_home")}</a>
@@ -103,7 +103,7 @@ const Page: React.FC = () => {
           </li>
         </ul>
       </div>
-      <div className="max-w-full max-auto lg:w-80 mt-12">
+      <div className="max-w-full max-auto lg:w-80">
         <p className="flex items-center p-2 border rounded-full w-full bg-white text-green-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
