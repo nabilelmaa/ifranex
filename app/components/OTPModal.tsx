@@ -13,7 +13,7 @@ import {
   AlertDialogCancel,
 } from "@/app/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useToast } from "@/contexts/ToastContext";
 
 function OTPModal() {
@@ -23,6 +23,7 @@ function OTPModal() {
   const router = useRouter();
   const locale = useLocale();
   const { showToast } = useToast();
+  const t = useTranslations("OTP");
 
   const admin_passcode = process.env.NEXT_PUBLIC_ADMIN_PASSCODE;
 
@@ -59,23 +60,22 @@ function OTPModal() {
         setIsVerified(true);
         setError("");
         router.push(`/${locale}/admin/dashboard`);
-        showToast("Access granted to admin.", "success");
+        showToast(t("access_granted"), "success");
       } else {
-        showToast("Invalid OTP. Please try again.", "error");
-        setError("Invalid OTP. Please try again.");
+        showToast(t("invalid_otp"), "error");
       }
     } else {
-      setError("Please enter a valid 6-digit OTP.");
+      showToast(t("enter_valid_otp"), "error");
     }
   };
 
   return (
     <div>
       <AlertDialog>
-        <AlertDialogTrigger>Admin</AlertDialogTrigger>
+        <AlertDialogTrigger>{t("admin")}</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Verify Admin Access</AlertDialogTitle>
+            <AlertDialogTitle>{t("verify_admin")}</AlertDialogTitle>
             <div className="flex justify-center space-x-2 mt-4">
               {otp.map((digit, index) => (
                 <input
@@ -89,14 +89,16 @@ function OTPModal() {
                 />
               ))}
             </div>
-            {/* {error && <p className="text-red-500 text-center mt-2">{error}</p>} */}
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setOtp(["", "", "", "", "", ""])}>
-              Cancel
+            <AlertDialogCancel
+              className="bg-red-200 text-red-600 hover:bg-red-300 hover:text-red-600"
+              onClick={() => setOtp(["", "", "", "", "", ""])}
+            >
+              {t("cancel")}
             </AlertDialogCancel>
             <AlertDialogAction onClick={handleVerifyOtp}>
-              Verify
+              {t("verify")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

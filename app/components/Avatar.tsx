@@ -406,7 +406,7 @@ const Avatar = () => {
           <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
             <Tab key="personal-info" title={t("personal_info")}>
-              <div className="grid gap-4 py-4 h-[200px] overflow-y-auto">
+              <div className="grid gap-4 py-4 h-[260px] overflow-y-auto">
                 <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 group">
                   <Image
                     src={user?.profilePicture || "/default-avatar.png"}
@@ -440,7 +440,7 @@ const Avatar = () => {
                   {t("allowed")}*.jpeg, *.jpg, *.png, *.gif
                 </div>
 
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="flex flex-col gap-4">
                   <Label htmlFor="username" className="text-start">
                     {t("username")}
                   </Label>
@@ -448,14 +448,13 @@ const Avatar = () => {
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="col-span-3"
                   />
                 </div>
               </div>
             </Tab>
             <Tab key="security" title={t("security")}>
-              <div className="grid gap-4 py-4 h-[200px] overflow-y-auto">
-                <div className="grid grid-cols-4 items-center gap-4">
+              <div className="flex flex-col gap-4 py-4 h-[260px] overflow-y-auto">
+                <div className="flex flex-col gap-2">
                   <Label htmlFor="oldPassword" className="text-start text-xs">
                     {t("curr_pass")}
                   </Label>
@@ -464,10 +463,9 @@ const Avatar = () => {
                     type="password"
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
-                    className="col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="flex flex-col gap-2">
                   <Label htmlFor="newPassword" className="text-start text-xs">
                     {t("new_pass")}
                   </Label>
@@ -476,10 +474,9 @@ const Avatar = () => {
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="col-span-3 w-45"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="flex flex-col gap-2">
                   <Label
                     htmlFor="confirmPassword"
                     className="text-start text-xs"
@@ -491,7 +488,6 @@ const Avatar = () => {
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="col-span-3"
                   />
                 </div>
                 {passwordError && (

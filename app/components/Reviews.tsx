@@ -34,13 +34,13 @@ export const Reviews = () => {
       const slideTimer = setInterval(() => {
         carousel.scrollTo({
           left: scrollAmount,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
         scrollAmount += carousel.offsetWidth;
         if (scrollAmount >= carousel.scrollWidth) {
           scrollAmount = 0;
         }
-      }, 2000); 
+      }, 2000);
 
       return () => clearInterval(slideTimer);
     }
@@ -65,7 +65,7 @@ export const Reviews = () => {
 
   return (
     <section
-      className="py-16 md:py-24 bg-gradient-to-br from-blue-50 to-indigo-100"
+      className="py-16 md:py-24 bg-gradient-to-b from-white to-blue-50 rounded-md"
       id="reviews"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +85,7 @@ export const Reviews = () => {
                 </div>
               ))}
         </div>
-        <div 
+        <div
           ref={carouselRef}
           className="sm:hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
         >

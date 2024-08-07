@@ -45,9 +45,9 @@ const UserInbox: React.FC = () => {
   hourglass.register();
 
   return (
-    <div className="min-h-screen">
+    <div className="mt-12 min-h-screen">
       <div className="container mx-auto p-4">
-        <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
+        <div className="hidden lg:block mb-4 breadcrumbs text-sm">
           <ul>
             <li>
               <a href={`/${locale}`}>{t("nav_home")}</a>
@@ -76,7 +76,7 @@ const UserInbox: React.FC = () => {
           </div>
         ) : messages.length === 0 ? (
           <div className="bg-white shadow-md rounded-lg p-8 text-center">
-            <p className="text-xl text-gray-600">You have no messages.</p>
+            <p className="text-xl text-gray-600">{t("no_messages")}</p>
           </div>
         ) : (
           <ul className="space-y-6">
@@ -91,11 +91,11 @@ const UserInbox: React.FC = () => {
                       <Image
                         src="/mail-check.svg"
                         alt="Message"
-                        width={24}
-                        height={24}
+                        width={22}
+                        height={22}
                         className="text-blue-600"
                       />
-                      <h2 className="text-xl font-semibold text-gray-800">
+                      <h2 className="text-md lg:text-xl md:text-xl font-semibold text-gray-800">
                         {message.serviceTitle}
                       </h2>
                     </div>
@@ -112,7 +112,7 @@ const UserInbox: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-xs lg:text-base md:text-base text-gray-700 leading-relaxed">
                     {message.content}
                   </p>
                 </div>

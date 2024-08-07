@@ -98,6 +98,12 @@ export const Navbar = () => {
                   </li>
                   <li
                     className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
+                    onClick={() => scrollToSection("how")}
+                  >
+                    {t("nav_how_it_works")}
+                  </li>
+                  <li
+                    className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
                     onClick={() => scrollToSection("us")}
                   >
                     {t("nav_us")}
@@ -207,6 +213,11 @@ export const Navbar = () => {
                           id: "services",
                           icon: "/work.svg",
                           label: t("nav_services"),
+                        },
+                        {
+                          id: "how",
+                          icon: "/how.svg",
+                          label: t("nav_how_it_works"),
                         },
                         { id: "us", icon: "/question.svg", label: t("nav_us") },
                         {

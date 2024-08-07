@@ -22,7 +22,8 @@
         "submit": "Submit",
         "failed_to_submit_review": "Failed to submit your review. Please try again.",
         "failed_to_update_profile_picture": "Failed to upload profile picture. Please try again.",
-        "thank_you_for_review": "Thank you for your review !"
+        "thank_you_for_review": "Thank you for your review !",
+        "no_messages": "You have no messages."
     },
     "Navbar": {
         "nav_home": "Home",
@@ -37,7 +38,8 @@
         "services": "Services",
         "history": "History",
         "support": "Support",
-        "your_inbox": "Your Inbox"
+        "your_inbox": "Your Inbox",
+        "nav_how_it_works": "How It Works"
     },
     "Us": {
         "title": "What Makes Us Different?",
@@ -231,5 +233,14 @@
         "title": "Get our free app",
         "description": " Download our mobile app to easily book home repair services, manage appointments, and stay updated with real-time notifications. Get the app now for a seamless service experience right from your phone.",
         "download": "Download on"
+    },
+    "OTP": {
+        "admin": "Admin",
+        "verify_admin": "Verify Admin Access",
+        "access_granted": "Access granted to admin.",
+        "invalid_otp": "Invalid OTP. Please try again.",
+        "enter_valid_otp": "Please enter a valid 6-digit OTP.",
+        "cancel": "Cancel",
+        "verify": "Verify"
     }
 }

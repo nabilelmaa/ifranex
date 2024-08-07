@@ -22,7 +22,8 @@
         "submit": "Soumettre",
         "failed_to_submit_review": "Échec de l'envoi de votre avis. Veuillez réessayer.",
         "failed_to_update_profile_picture": "Échec du téléchargement de la photo de profil. Veuillez réessayer.",
-        "thank_you_for_review": "Merci pour votre avis !"
+        "thank_you_for_review": "Merci pour votre avis !",
+        "no_messages": "Vous n'avez aucun message."
     },
     "Navbar": {
         "nav_home": "Accueil",
@@ -37,7 +38,8 @@
         "services": "Services",
         "history": "Historique",
         "support": "Support",
-        "your_inbox": "Votre boîte de réception"
+        "your_inbox": "Votre boîte de réception",
+        "nav_how_it_works": "Comment ça marche"
     },
     "Us": {
         "title": "Qu'est-ce qui nous rend différents?",
@@ -231,5 +233,14 @@
         "title": "Obtenez notre application gratuite",
         "description": "Téléchargez notre application mobile pour réserver facilement des services de réparation à domicile, gérer vos rendez-vous et rester informé des notifications en temps réel. Téléchargez l'application maintenant pour une expérience de service fluide directement depuis votre téléphone.",
         "download": "Télécharger sur"
+    },
+    "OTP": {
+        "admin": "Administrateur",
+        "verify_admin": "Vérifier l'accès administrateur",
+        "access_granted": "Accès accordé à l'administrateur.",
+        "invalid_otp": "OTP invalide. Veuillez réessayer.",
+        "enter_valid_otp": "Veuillez entrer un OTP valide à 6 chiffres.",
+        "cancel": "Annuler",
+        "verify": "Vérifier"
     }
 }
