@@ -17,17 +17,17 @@ export const Hero = () => {
     { text: "Find" },
     {
       text: "Trusted",
-      className: "text-rose-500",
+      className: "text-indigo-600",
     },
     { text: "Handypersons" },
     { text: "for" },
     {
       text: "Every",
-      className: "text-rose-500",
+      className: "text-indigo-600",
     },
     {
       text: "Need",
-      className: "text-rose-500",
+      className: "text-indigo-600",
     },
   ];
 
@@ -38,16 +38,16 @@ export const Hero = () => {
     { text: "de" },
     {
       text: "confiance",
-         className: "text-rose-500",
+      className: "text-indigo-600",
     },
     { text: "pour " },
     {
       text: "chaque",
-         className: "text-rose-500",
+      className: "text-indigo-600",
     },
     {
       text: "besoin",
-      className: "text-rose-500",
+      className: "text-indigo-600",
     },
   ];
 

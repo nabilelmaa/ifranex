@@ -106,8 +106,8 @@ const BookingHistory: React.FC = () => {
   hourglass.register();
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6 min-h-screen">
-      <h2 className="mt-24 text-md lg:text-2xl md:text-xl font-semibold text-gray-800">
+    <div className="mt-12 max-w-4xl mx-auto p-6 space-y-6 min-h-screen">
+      <h2 className="text-md lg:text-2xl md:text-xl font-semibold text-gray-800">
         {t("booking_history")}
       </h2>
       {loading ? (
@@ -125,7 +125,7 @@ const BookingHistory: React.FC = () => {
         <Table>
           <TableCaption>{t("recent_bookings")}</TableCaption>
           <TableHeader>
-            <TableRow>
+            <TableRow className="bg-slate-100">
               <TableHead>{t("date")}</TableHead>
               <TableHead>{t("service")}</TableHead>
               <TableHead>{t("description")}</TableHead>
