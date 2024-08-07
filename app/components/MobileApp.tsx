@@ -44,20 +44,15 @@ export const MobileApp = () => {
             </Link>
           </div>
         </div>
+
         <div className="lg:flex hidden">
-          <div className="mockup-phone">
-            <div className="camera"></div>
-            <div className="display">
-              <div className="artboard artboard-demo phone-1">
-                <Image
-                  src="/phone-picture.jpg"
-                  alt="image"
-                  width={320}
-                  height={100}
-                />
-              </div>
-            </div>
-          </div>
+          <Image
+            src="/mockup.png"
+            alt="image"
+            width={960}
+            height={960}
+            quality={100}
+          />
         </div>
       </div>
     </section>
