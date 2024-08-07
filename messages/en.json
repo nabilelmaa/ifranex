@@ -67,7 +67,7 @@
         "title3": "Fill Form",
         "title4": "Confirm",
         "title5": "Make Payment",
-        "how_it_works":"How It Works"
+        "how_it_works": "How It Works"
     },
     "RegisterForm": {
         "create_account": "Create account",
@@ -226,5 +226,10 @@
         "service_updated": "Service updated successfully !",
         "service_added": "Service added to database !",
         "submitting": "Submitting"
+    },
+    "MobileApp": {
+        "title": "Get our free app",
+        "description": " Download our mobile app to easily book home repair services, manage appointments, and stay updated with real-time notifications. Get the app now for a seamless service experience right from your phone.",
+        "download": "Download on"
     }
 }

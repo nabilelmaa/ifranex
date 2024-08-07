@@ -226,5 +226,10 @@
         "service_updated": "Service mis à jour avec succès !",
         "service_added": "Service ajouté à la base de données !",
         "submitting": "Soumission en cours"
+    },
+    "MobileApp": {
+        "title": "Obtenez notre application gratuite",
+        "description": "Téléchargez notre application mobile pour réserver facilement des services de réparation à domicile, gérer vos rendez-vous et rester informé des notifications en temps réel. Téléchargez l'application maintenant pour une expérience de service fluide directement depuis votre téléphone.",
+        "download": "Télécharger sur"
     }
 }

@@ -75,8 +75,8 @@ export const Navbar = () => {
                   <Image
                     src="/ifranex.png"
                     alt="logo"
-                    width={82}
-                    height={82}
+                    width={90}
+                    height={90}
                     layout="intrinsic"
                     className="cursor-pointer"
                   />

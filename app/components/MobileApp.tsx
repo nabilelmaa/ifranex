@@ -2,16 +2,16 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 export const MobileApp = () => {
+  const t = useTranslations("MobileApp");
   return (
     <section id="mobile-app" className="mt-12">
       <div className="flex lg:justify-between items-center">
         <div>
-          <h1 className="text-lg lg:text-2xl md:text-2xl font-semibold">
-            Get our free app
-          </h1>
-          <p className="text-xs lg:text-sm md:text-sm text-gray-600 mt-4 lg:w-[500px]">
-            Book and manage appointments effortlessly, communicate seamlessly
-            with your handy person, explore detailed profiles and ratings.
+          <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
+            {t("title")}
+          </h2>
+          <p className="text-xs lg:text-lg md:text-lg text-gray-600 mt-4 lg:w-[512px]">
+            {t("description")}
           </p>
           <div className="gap-4 mt-4 flex justify-between">
             <button className="p-1 border bg-black rounded-md">
@@ -19,11 +19,11 @@ export const MobileApp = () => {
                 <Image
                   src="/play-store.svg"
                   alt="play-store"
-                  width={50}
-                  height={50}
+                  width={46}
+                  height={46}
                 />
-                <p className="mr-2 font-semibold text-white">
-                  Download on <span className="font-bold">Play Store</span>
+                <p className="mr-2 font-semibold text-white text-xs lg:text-md md:text-md">
+                  {t("download")} <span className="font-bold">Play Store</span>
                 </p>
               </div>
             </button>
@@ -33,11 +33,11 @@ export const MobileApp = () => {
                   <Image
                     src="/app-store.svg"
                     alt="app-store"
-                    width={50}
-                    height={50}
+                    width={46}
+                    height={46}
                   />
-                  <p className="mr-2 font-semibold">
-                    Download on <span className="font-bold">App Store</span>
+                  <p className="font-semibold text-xs lg:text-md md:text-md">
+                    {t("download")} <span className="font-bold">App Store</span>
                   </p>
                 </div>
               </button>
@@ -49,7 +49,12 @@ export const MobileApp = () => {
             <div className="camera"></div>
             <div className="display">
               <div className="artboard artboard-demo phone-1">
-                <Image src="/phone-picture.jpg" alt="image" width={320} height={100} />
+                <Image
+                  src="/phone-picture.jpg"
+                  alt="image"
+                  width={320}
+                  height={100}
+                />
               </div>
             </div>
           </div>
