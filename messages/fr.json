@@ -114,9 +114,11 @@
         "toilet_and_shower_leaks": "Fuites de toilettes et de douches",
         "kitchen_installations": "Installations de cuisine",
         "bathroom_installations": "Installations de salle de bain",
-        "baby_sitting": "Babysitting",
+        "baby_sitting": "Garde d'enfants",
         "emergency_plumber": "Plombier d'urgence",
-        "get_in_touch": "Contactez-nous"
+        "get_in_touch": "Contactez-nous",
+        "ifrane_morocco": "Ifrane, Maroc",
+        "company_description": "offre des services de réparation et de bricolage à domicile de première qualité. Nos professionnels qualifiés garantissent que votre maison reste en parfait état avec précision et soin."
     },
     "BookingForm": {
         "title": "Veuillez remplir le formulaire",

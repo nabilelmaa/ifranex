@@ -98,7 +98,6 @@
         "error_message_login": "Invalid credentials",
         "login_success": "Login success."
     },
-
     "Footer": {
         "job": "Do you want to get a job?",
         "join_team": "Join our team to grow your skills! We offer great opportunities for career growth.",
@@ -117,7 +116,9 @@
         "bathroom_installations": "Bathroom Installations",
         "emergency_plumber": "Emergency Plumber",
         "baby_sitting": "Babysitting",
-        "get_in_touch": "Get in Touch"
+        "get_in_touch": "Get in Touch",
+        "ifrane_morocco": "Ifrane, Morocco",
+          "company_description":"offers top-notch home repair and handywork services. Our skilled professionals ensure your home stays in perfect shape with precision and care."
     },
     "BookingForm": {
         "title": "Fill the form please",

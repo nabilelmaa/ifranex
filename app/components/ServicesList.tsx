@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ServicesCard } from "@/app/components/ServicesCard";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
@@ -112,7 +112,7 @@ export const ServicesList: React.FC = () => {
 
   return (
     <div className="overflow-hidden lg:py-20 mt-12">
-      <div className="container mx-auto px-4">
+      {/* <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export const ServicesList: React.FC = () => {
             ))}
           </ul>
         </motion.div>
-      </div>
+      </div> */}
       <div className="relative">
         <div
           ref={carouselRef}
@@ -164,7 +164,7 @@ export const ServicesList: React.FC = () => {
       </div>
       <div className="flex justify-center items-center lg:mt-12 mb-8 mt-6">
         <Link href={`${locale}/services`}>
-          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-white text-indigo-700 font-semibold text-sm sm:text-sm transition duration-300 focus:outline-none ring-2 ring-indigo-700 focus:ring-opacity-50">
+          <button className="w-full sm:w-auto px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-white text-black font-semibold text-sm sm:text-sm transition duration-300 focus:outline-none ring-1 ring-indigo-700 focus:ring-opacity-50">
             <div className="flex items-center justify-center">
               <span className="mr-2">{t("see_all_services")}</span>
               <FaChevronRight className="text-xs" />

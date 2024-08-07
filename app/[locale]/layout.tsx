@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import Head from 'next/head';
+import Head from "next/head";
 import { Inter } from "next/font/google";
 import { Navbar } from "@/app/components/Navbar";
 import { Footer } from "@/app/components/Footer";
@@ -39,7 +39,7 @@ export default async function LocaleLayout({
             <ToastProvider>
               <Navbar />
               <main>{children}</main>
-              {/* <Footer /> */}
+              <Footer />
             </ToastProvider>
           </AuthProvider>
         </NextIntlClientProvider>

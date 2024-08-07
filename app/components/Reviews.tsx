@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReviewCard from "@/app/components/ReviewCard";
 import { Review } from "@/types/index";
 import { useTranslations } from "next-intl";
@@ -9,6 +9,7 @@ export const Reviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Reviews");
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const fetchReviews = async () => {
     try {
@@ -25,6 +26,25 @@ export const Reviews = () => {
   useEffect(() => {
     fetchReviews();
   }, []);
+
+  useEffect(() => {
+    if (!loading && carouselRef.current) {
+      const carousel = carouselRef.current;
+      let scrollAmount = 0;
+      const slideTimer = setInterval(() => {
+        carousel.scrollTo({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+        scrollAmount += carousel.offsetWidth;
+        if (scrollAmount >= carousel.scrollWidth) {
+          scrollAmount = 0;
+        }
+      }, 2000); 
+
+      return () => clearInterval(slideTimer);
+    }
+  }, [loading]);
 
   const ReviewSkeleton = () => (
     <div className="bg-white p-6 rounded-xl shadow-md animate-pulse">
@@ -50,11 +70,11 @@ export const Reviews = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-        <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
             {t("what_people_say")}
           </h2>
         </div>
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="hidden sm:grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {loading
             ? Array(6)
                 .fill(0)
@@ -65,13 +85,24 @@ export const Reviews = () => {
                 </div>
               ))}
         </div>
-        {/* {!loading && reviews.length > 6 && (
-          <div className="text-center mt-12">
-            <button className="bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 transition-colors duration-300">
-              {t("load_more_reviews")}
-            </button>
-          </div>
-        )} */}
+        <div 
+          ref={carouselRef}
+          className="sm:hidden flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+        >
+          {loading
+            ? Array(6)
+                .fill(0)
+                .map((_, index) => (
+                  <div key={index} className="snap-start min-w-full">
+                    <ReviewSkeleton />
+                  </div>
+                ))
+            : reviews.map((review) => (
+                <div key={review.id} className="snap-start min-w-full">
+                  <ReviewCard review={review} />
+                </div>
+              ))}
+        </div>
       </div>
     </section>
   );

@@ -86,7 +86,7 @@ export const Navbar = () => {
                 <ul className="lg:flex justify-center gap-4 hidden h-full text-gray-900">
                   <li
                     className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
-                    onClick={() => scrollToSection("footer")}
+                    onClick={() => scrollToSection("about")}
                   >
                     {t("nav_about")}
                   </li>
@@ -199,7 +199,7 @@ export const Navbar = () => {
                     <ul className="space-y-2">
                       {[
                         {
-                          id: "footer",
+                          id: "about",
                           icon: "/about.svg",
                           label: t("nav_about"),
                         },
