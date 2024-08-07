@@ -56,6 +56,19 @@
         "book_now": "Réserver maintenant",
         "see_all_services": "Voir tous les services"
     },
+    "How": {
+        "step1": "Créez un compte ou connectez-vous pour commencer.",
+        "step2": "Parcourez et sélectionnez le service dont vous avez besoin.",
+        "step3": "Fournissez des détails sur votre demande.",
+        "step4": "Vérifiez et confirmez votre demande.",
+        "step5": "Nous sommes flexibles concernant le paiement, nous acceptons donc soit en espèces, soit par paiement en ligne.",
+        "title1": "Se connecter",
+        "title2": "Choisir un service",
+        "title3": "Remplir le formulaire",
+        "title4": "Confirmer",
+        "title5": "Effectuer le paiement",
+        "how_it_works": "Comment ça marche"
+    },
     "RegisterForm": {
         "create_account": "Créer un compte",
         "username": "Nom d'utilisateur",

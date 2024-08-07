@@ -1,87 +1,76 @@
-// import { motion } from "framer-motion";
-// import Image from "next/image";
+import React from "react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
-// const steps = [
-//   {
-//     src: "/sign-in.svg",
-//     alt: "Sign In",
-//     title: "Step 1: Sign In",
-//     description: "Create an account or sign in to start using our service.",
-//   },
-//   {
-//     src: "/choose.svg",
-//     alt: "Choose",
-//     title: "Step 2: Choose a Service",
-//     description: "Browse through our services and choose the one you need.",
-//   },
-//   {
-//     src: "/fill-form.svg",
-//     alt: "Fill Form",
-//     title: "Step 3: Fill Out the Form",
-//     description: "Provide the necessary details by filling out the form.",
-//   },
-//   {
-//     src: "/confirm-process.svg",
-//     alt: "Confirm Process",
-//     title: "Step 4: Confirm the Process",
-//     description: "Review your details and confirm the process.",
-//   },
-//   {
-//     src: "/pay.svg",
-//     alt: "Pay",
-//     title: "Step 5: Make Payment",
-//     description: "Complete the payment to finalize your booking.",
-//   },
-// ];
+interface Step {
+  title: string;
+  description: string;
+  icon: string;
+}
 
-// const containerVariants = {
-//   hidden: { opacity: 0 },
-//   visible: {
-//     opacity: 1,
-//     transition: {
-//       staggerChildren: 0.3,
-//     },
-//   },
-// };
+const StepCard: React.FC<Step & { index: number }> = ({
+  title,
+  description,
+  icon,
+  index,
+}) => {
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 relative">
+      <div className="absolute -top-4 -left-4 w-12 h-12 bg-indigo-700 rounded-full flex items-center justify-center text-white text-xl font-bold">
+        {index + 1}
+      </div>
+      <div className="mb-4 flex justify-center">
+        <Image src={icon} alt={title} width={80} height={80} />
+      </div>
+      <h3 className="text-lg font-semibold mb-2 text-center">{title}</h3>
+      <p className="text-gray-600 text-sm text-center">{description}</p>
+    </div>
+  );
+};
 
-// const itemVariants = {
-//   hidden: { opacity: 0, y: 20 },
-//   visible: { opacity: 1, y: 0 },
-// };
+export const HowItWorks: React.FC = () => {
+  const t = useTranslations("How");
+  const steps: Step[] = [
+    {
+      title: t("title1"),
+      description: t("step1"),
+      icon: "/sign-in.svg",
+    },
+    {
+      title: t("title2"),
+      description: t("step2"),
+      icon: "/choose.svg",
+    },
+    {
+      title: t("title3"),
+      description: t("step3"),
+      icon: "/fill-form.svg",
+    },
+    {
+      title: t("title4"),
+      description: t("step4"),
+      icon: "/confirm-process.svg",
+    },
+    {
+      title: t("title5"),
+      description: t("step5"),
+      icon: "/pay.svg",
+    },
+  ];
+  return (
+    <section className="py-16 px-4 bg-gradient-to-b from-white to-blue-50">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-xl lg:text-3xl md:text-2xl text-center font-bold text-gray-900 mb-12">
+          {t("how_it_works")}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {steps.map((step, index) => (
+            <StepCard key={step.title} {...step} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
-// export const HowItWorks = () => {
-//   return (
-//     <section id="how-it-works" className="py-16 px-6 md:px-12 bg-gray-50">
-//       <div className="text-center mb-12">
-//         <h2 className="text-4xl font-bold text-gray-800">How It Works</h2>
-//         <p className="text-gray-600 mt-2">Follow these simple steps to get started</p>
-//       </div>
-//       <motion.div
-//         className="flex flex-col md:flex-row justify-around items-center"
-//         initial="hidden"
-//         animate="visible"
-//         variants={containerVariants}
-//       >
-//         {steps.map((step, index) => (
-//           <motion.div
-//             key={index}
-//             className="flex flex-col items-center text-center mb-8 md:mb-0 md:w-1/5 p-4 bg-white shadow-lg rounded-lg transform hover:scale-105 transition-transform duration-300"
-//             variants={itemVariants}
-//           >
-//             <div className="w-24 h-24 mb-4">
-//               <Image
-//                 src={step.src}
-//                 alt={step.alt}
-//                 width={96}
-//                 height={96}
-//                 className="w-full h-full"
-//               />
-//             </div>
-//             <h3 className="text-xl font-semibold text-gray-800">{step.title}</h3>
-//             <p className="text-gray-600 mt-2">{step.description}</p>
-//           </motion.div>
-//         ))}
-//       </motion.div>
-//     </section>
-//   );
-// };
+export default HowItWorks;

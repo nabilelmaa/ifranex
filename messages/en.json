@@ -56,6 +56,19 @@
         "book_now": "Book now",
         "see_all_services": "See all services"
     },
+    "How": {
+        "step1": "Create an account or log in to get started.",
+        "step2": "Browse and select the service you need.",
+        "step3": "Provide details about your request.",
+        "step4": "Review and confirm your request.",
+        "step5": "We are flexible regarding payment, so we accept either cash or online payments.",
+        "title1": "Sign In",
+        "title2": "Choose Service",
+        "title3": "Fill Form",
+        "title4": "Confirm",
+        "title5": "Make Payment",
+        "how_it_works":"How It Works"
+    },
     "RegisterForm": {
         "create_account": "Create account",
         "username": "Username",
@@ -118,7 +131,7 @@
         "baby_sitting": "Babysitting",
         "get_in_touch": "Get in Touch",
         "ifrane_morocco": "Ifrane, Morocco",
-          "company_description":"offers top-notch home repair and handywork services. Our skilled professionals ensure your home stays in perfect shape with precision and care."
+        "company_description": "offers top-notch home repair and handywork services. Our skilled professionals ensure your home stays in perfect shape with precision and care."
     },
     "BookingForm": {
         "title": "Fill the form please",
