@@ -56,7 +56,9 @@
     },
     "ServiceCard": {
         "book_now": "Réserver maintenant",
-        "see_all_services": "Voir tous les services"
+        "see_all_services": "Voir tous les services",
+        "title": "Nos Services",
+        "description": "Découvrez une gamme de services adaptés à tous vos besoins. Du nettoyage professionnel au support technique, nous avons tout couvert."
     },
     "How": {
         "step1": "Créez un compte ou connectez-vous pour commencer.",

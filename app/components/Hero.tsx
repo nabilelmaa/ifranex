@@ -17,20 +17,17 @@ export const Hero = () => {
     { text: "Find" },
     {
       text: "Trusted",
-      className:
-        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+      className: "text-rose-500",
     },
     { text: "Handypersons" },
     { text: "for" },
     {
       text: "Every",
-      className:
-        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+      className: "text-rose-500",
     },
     {
       text: "Need",
-      className:
-        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+      className: "text-rose-500",
     },
   ];
 
@@ -41,19 +38,16 @@ export const Hero = () => {
     { text: "de" },
     {
       text: "confiance",
-      className:
-        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+         className: "text-rose-500",
     },
     { text: "pour " },
     {
       text: "chaque",
-      className:
-        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+         className: "text-rose-500",
     },
     {
       text: "besoin",
-      className:
-        "bg-gradient-to-tr from-pink-700 via-violet-800 to-slate-900 bg-clip-text text-transparent",
+      className: "text-rose-500",
     },
   ];
 

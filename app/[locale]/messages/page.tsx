@@ -61,7 +61,7 @@ const UserInbox: React.FC = () => {
           </ul>
         </div>
 
-        <h1 className="text-2xl font-semibold text-gray-800 mb-6">
+        <h1 className="text-md lg:text-2xl md:text-xl font-semibold text-gray-800 mb-6">
           {t("your_inbox")}
         </h1>
 

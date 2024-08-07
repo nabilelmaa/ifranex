@@ -32,7 +32,7 @@ export const WhyUs = () => {
   return (
     <section
       id="us"
-      className="bg-gradient-to-b from-gray-100 to-white py-16 md:py-24"
+      className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
