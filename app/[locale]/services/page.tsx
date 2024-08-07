@@ -92,7 +92,7 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen lg:p-12 md:p-6 p-2">
+    <div className="min-h-screen lg:p-12 md:p-6 p-2 lg:mt-0 mt-20">
      <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
         <ul>
           <li>

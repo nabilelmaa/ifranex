@@ -67,7 +67,7 @@ const Page = () => {
   if (!service) return <div>Loading...</div>;
 
   return (
-    <div className="lg:p-12 md:p-6">
+    <div className="mt-16 lg:p-12 md:p-6">
       <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
         <ul>
           <li>

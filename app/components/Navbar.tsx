@@ -70,13 +70,15 @@ export const Navbar = () => {
                     />
                   </div>
                 )}
+
                 <Link href={`/${locale}`}>
                   <Image
-                    src="/logo-black.svg"
+                    src="/ifranex.png"
                     alt="logo"
-                    width={44}
-                    height={44}
-                    className="h-6 lg:h-8 w-auto cursor-pointer"
+                    width={82}
+                    height={82}
+                    layout="intrinsic"
+                    className="cursor-pointer"
                   />
                 </Link>
               </div>
@@ -183,10 +185,11 @@ export const Navbar = () => {
                     onClick={() => setSidebarOpen(false)}
                   >
                     <Image
-                      src="/logo-black.svg"
+                      src="/ifranex-2.png"
                       alt="logo"
-                      width={96}
-                      height={96}
+                      width={82}
+                      height={82}
+                      layout="intrinsic"
                       className="cursor-pointer"
                     />
                   </Link>

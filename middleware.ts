@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
 
   const response = intlMiddleware(request);
 
-  if (!token && !pathname.startsWith(`/${locale}`)) {
+  if ((!token && !pathname.startsWith(`/${locale}`)) || (!token && !pathname.startsWith(`/`))) {
     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 

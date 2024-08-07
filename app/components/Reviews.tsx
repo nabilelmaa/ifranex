@@ -65,13 +65,13 @@ export const Reviews = () => {
                 </div>
               ))}
         </div>
-        {!loading && reviews.length > 6 && (
+        {/* {!loading && reviews.length > 6 && (
           <div className="text-center mt-12">
             <button className="bg-indigo-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-indigo-700 transition-colors duration-300">
               {t("load_more_reviews")}
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );
