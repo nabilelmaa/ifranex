@@ -6,12 +6,13 @@ import {
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
+  IconLogout,
 } from "@tabler/icons-react";
-import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,34 +22,34 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const locale = useLocale();
+  const { logout } = useAuth();
+  const t = useTranslations("Admin");
+
+  const handleLogout = () => {
+    logout();
+    router.push(`/${locale}`);
+  };
 
   const links = [
     {
-      label: "Dashboard",
+      label: t("dashboard"),
       href: `/${locale}/admin/dashboard`,
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Services",
+      label: t("services"),
       href: `/${locale}/admin/services`,
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
-      label: "Users",
+      label: t("users"),
       href: `/${locale}/admin/users`,
       icon: (
         <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Log out",
-      href: `/${locale}`,
-      icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
   ];
@@ -64,6 +65,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <SidebarLink key={idx} link={link} />
               ))}
             </div>
+          </div>
+          <div className="">
+            <button onClick={handleLogout}>
+              <IconLogout className="text-neutral-700 dark:text-neutral-200 h-5 w-5" />
+            </button>
           </div>
         </SidebarBody>
       </Sidebar>

@@ -244,5 +244,10 @@
         "enter_valid_otp": "Veuillez entrer un OTP valide à 6 chiffres.",
         "cancel": "Annuler",
         "verify": "Vérifier"
+    },
+    "Admin": {
+        "dashboard": "Tableau de bord",
+        "services": "Services",
+        "users": "Utilisateurs"
     }
 }

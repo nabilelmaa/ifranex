@@ -15,17 +15,15 @@ import {
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useToast } from "@/contexts/ToastContext";
+import Cookies from "js-cookie";
 
 function OTPModal() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [error, setError] = useState("");
   const [isVerified, setIsVerified] = useState(false);
   const router = useRouter();
   const locale = useLocale();
   const { showToast } = useToast();
   const t = useTranslations("OTP");
-
-  const admin_passcode = process.env.NEXT_PUBLIC_ADMIN_PASSCODE;
 
   const handleChange = (index: number, value: string) => {
     const newOtp = [...otp];
@@ -52,20 +50,36 @@ function OTPModal() {
     }
   };
 
-  const handleVerifyOtp = () => {
-    const combinedOtp = otp.join("");
+  const handleVerifyOtp = async () => {
+    try {
+      const combinedOtp = otp.join("");
 
-    if (combinedOtp.length === 6) {
-      if (combinedOtp === admin_passcode) {
-        setIsVerified(true);
-        setError("");
-        router.push(`/${locale}/admin/dashboard`);
-        showToast(t("access_granted"), "success");
+      if (combinedOtp.length === 6) {
+        const response = await fetch("/api/auth/admin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ pin: combinedOtp }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.token) {
+          const token = data.token;
+          Cookies.set("isAdmin", "true", { expires: 1 });
+          Cookies.set("authToken", token, { expires: 1 });
+          router.push(`/${locale}/admin/dashboard`);
+          showToast(t("access_granted"), "success");
+        } else {
+          showToast(t("invalid_otp"), "error");
+        }
       } else {
-        showToast(t("invalid_otp"), "error");
+        showToast(t("enter_valid_otp"), "error");
       }
-    } else {
-      showToast(t("enter_valid_otp"), "error");
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+      showToast(t("oops_error"), "error");
     }
   };
 

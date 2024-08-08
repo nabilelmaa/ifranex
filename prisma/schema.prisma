@@ -20,6 +20,13 @@ model User {
   Message        Message[]
 }
 
+model Admin {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  pin       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Booking {
   id          String        @id @default(auto()) @map("_id") @db.ObjectId
   fullName    String

@@ -57,8 +57,8 @@
     "ServiceCard": {
         "book_now": "Book now",
         "see_all_services": "See all services",
-        "title":"Our Services",
-        "description":"Discover a range of services tailored to meet all your needs. From professional cleaning to tech support, we have it all covered."
+        "title": "Our Services",
+        "description": "Discover a range of services tailored to meet all your needs. From professional cleaning to tech support, we have it all covered."
     },
     "How": {
         "step1": "Create an account or log in to get started.",
@@ -244,5 +244,10 @@
         "enter_valid_otp": "Please enter a valid 6-digit OTP.",
         "cancel": "Cancel",
         "verify": "Verify"
+    },
+    "Admin": {
+        "dashboard": "Dashboard",
+        "services": "Services",
+        "users": "Users"
     }
 }

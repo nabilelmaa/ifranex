@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     Cookies.remove("token");
     Cookies.remove("token_exp");
+    Cookies.remove("isAdmin");
     router.push(`/${locale}`);
   }, [router, locale]);
 
@@ -75,7 +76,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const tokenExp = Cookies.get("token_exp");
 
     if (token && tokenExp && parseInt(tokenExp) > Date.now()) {
-    
       setIsAuthenticated(true);
       try {
         const response = await fetch("/api/auth/user-details", {
