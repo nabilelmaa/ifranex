@@ -37,9 +37,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
             <ToastProvider>
-              <div className="px-4">
-                <Navbar />
-              </div>
+              <Navbar />
               <main>{children}</main>
               <div className="lg:px-12 md:px-12">
                 <Footer />
