@@ -146,13 +146,6 @@ export const Navbar = () => {
                       </p>
                     </Link>
                   </li>
-                  <li>
-                    <Link href="/settings">
-                      <p className="text-gray-800 hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer">
-                        {t("support")}
-                      </p>
-                    </Link>
-                  </li>
                 </ul>
               )}
               <div className="relative text-left flex items-center">
@@ -324,27 +317,6 @@ export const Navbar = () => {
                               height={20}
                             />
                             <p className="ml-2">{t("history")}</p>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href="/settings"
-                          className={`block px-4 py-2 rounded-md w-52 ${
-                            pathname === `/${locale}/settings`
-                              ? "bg-gray-50"
-                              : "hover:bg-gray-100"
-                          }`}
-                          onClick={() => setSidebarOpen(false)}
-                        >
-                          <div className="flex items-center">
-                            <Image
-                              src="/support.svg"
-                              alt="support"
-                              width={20}
-                              height={20}
-                            />
-                            <p className="ml-2">{t("support")}</p>
                           </div>
                         </Link>
                       </li>
