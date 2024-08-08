@@ -20,21 +20,23 @@ const sendVerificationEmail = async (email: string, code: string) => {
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: 'Verify Your Account',
+    subject: 'Password Reset Request',
     html: `
       <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
         <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; color: #fff;">
-          <h2 style="color: #020617; margin-bottom: 20px;">Account Verification</h2>
+          <h2 style="color: #020617; margin-bottom: 20px;">Password Reset</h2>
           <p style="color: #020617; margin-bottom: 10px;">Dear User,</p>
-          <p style="color: #020617; margin-bottom: 20px;">Thank you for signing up. Please use the following code to verify your account:</p>
-          <p style="font-size: 24px; font-weight: bold; background-color: #f1f5f9; color: #020617; padding: 10px; border-radius: 8px; text-align: center;">${code}</p>
-          <p style="color: #020617; margin-top: 20px;">If you did not request this, please ignore this email.</p>
+          <p style="color: #020617; margin-bottom: 20px;">We received a request to reset your password. Please use the following code to proceed:</p>
+          <p style="font-size: 24px; font-weight: bold; background-color: #f1f5f9 ; color: #020617; padding: 10px; border-radius: 8px; text-align: center;">${code}</p>
+          <p style="color: #020617; margin-top: 20px;">If you did not request this, please ignore this email. Your password will remain unchanged.</p>
           <p style="color: #020617; font-weight: bold; margin-top: 40px;">The Ifrane<span style="color: #4338ca;">X</span> Team</p>
         </div>
       </div>
     `,
   };
-    
+  
+  
+  
 
   await transporter.sendMail(mailOptions);
 };

@@ -34,7 +34,7 @@ export const ResetPassword: React.FC = () => {
 
     try {
       if (!isCodeSent) {
-        const response = await fetch("/api/auth/send-code", {
+        const response = await fetch("/api/auth/reset-code", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -100,19 +100,40 @@ export const ResetPassword: React.FC = () => {
   const handleVerificationCodeChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setter: React.Dispatch<React.SetStateAction<string>>,
-    nextIndex?: number,
-    prevIndex?: number
+    index: number
   ) => {
     const value = e.target.value;
 
-    setter(value);
-
-    if (value && nextIndex !== undefined) {
-      inputRefs.current[nextIndex]?.focus();
+    if (value.length === 1) {
+      setter(value);
+      if (index < 3) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    } else if (value.length === 0) {
+      setter("");
+      if (index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      }
+    } else if (value.length === 4) {
+      const values = value.split("");
+      setOne(values[0]);
+      setTwo(values[1]);
+      setThree(values[2]);
+      setFour(values[3]);
+      inputRefs.current[3]?.focus();
     }
+  };
 
-    if (!value && prevIndex !== undefined) {
-      inputRefs.current[prevIndex]?.focus();
+  const handlePaste = (e: React.ClipboardEvent) => {
+    const pasteData = e.clipboardData.getData("text");
+    if (pasteData.length === 4) {
+      const values = pasteData.split("");
+      setOne(values[0]);
+      setTwo(values[1]);
+      setThree(values[2]);
+      setFour(values[3]);
+      inputRefs.current[3]?.focus();
+      e.preventDefault();
     }
   };
 
@@ -253,19 +274,14 @@ export const ResetPassword: React.FC = () => {
                     {t("verification_code")}
                   </label>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2" onPaste={handlePaste}>
                   {[setOne, setTwo, setThree, setFour].map((setter, index) => (
                     <input
                       key={index}
                       type="text"
                       value={[one, two, three, four][index]}
                       onChange={(e) =>
-                        handleVerificationCodeChange(
-                          e,
-                          setter,
-                          index < 3 ? index + 1 : undefined,
-                          index > 0 ? index - 1 : undefined
-                        )
+                        handleVerificationCodeChange(e, setter, index)
                       }
                       ref={(el) => {
                         inputRefs.current[index] = el;
@@ -302,8 +318,8 @@ export const ResetPassword: React.FC = () => {
                     <Image
                       src="/eye-off.svg"
                       alt="eye-on"
-                      width={20}
-                      height={20}
+                      width={18}
+                      height={18}
                     />
                   ) : (
                     <Image
@@ -337,7 +353,7 @@ export const ResetPassword: React.FC = () => {
                   onClick={() => togglePassword("confirmPassword")}
                   className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
                 >
-                  {showPassword ? (
+                  {showConfirmPassword ? (
                     <Image
                       src="/eye-off.svg"
                       alt="eye-on"

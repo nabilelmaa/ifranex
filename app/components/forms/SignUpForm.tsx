@@ -85,38 +85,58 @@ export const SignUpForm: React.FC = () => {
     setShowPassword(!showPassword);
   };
 
-  tailspin.register();
-
   const handleVerificationCodeChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setter: React.Dispatch<React.SetStateAction<string>>,
-    nextIndex?: number,
-    prevIndex?: number
+    index: number
   ) => {
     const value = e.target.value;
 
-    setter(value);
-
-    if (value && nextIndex !== undefined) {
-      inputRefs.current[nextIndex]?.focus();
-    }
-
-    if (!value && prevIndex !== undefined) {
-      inputRefs.current[prevIndex]?.focus();
+    if (value.length === 1) {
+      setter(value);
+      if (index < 3) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    } else if (value.length === 0) {
+      setter("");
+      if (index > 0) {
+        inputRefs.current[index - 1]?.focus();
+      }
+    } else if (value.length === 4) {
+      const values = value.split("");
+      setOne(values[0]);
+      setTwo(values[1]);
+      setThree(values[2]);
+      setFour(values[3]);
+      inputRefs.current[3]?.focus();
     }
   };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    const pasteData = e.clipboardData.getData("text");
+    if (pasteData.length === 4) {
+      const values = pasteData.split("");
+      setOne(values[0]);
+      setTwo(values[1]);
+      setThree(values[2]);
+      setFour(values[3]);
+      inputRefs.current[3]?.focus();
+      e.preventDefault();
+    }
+  };
+
+  tailspin.register();
 
   return (
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
       <div className="flex justify-center mb-4">
-      <Image
-                    src="/ifranex-2.png"
-                    alt="logo"
-                    width={82} 
-                    height={82} 
-                    layout="intrinsic"
-  
-                  />
+        <Image
+          src="/ifranex-2.png"
+          alt="logo"
+          width={82}
+          height={82}
+          layout="intrinsic"
+        />
       </div>
       <h2 className="text-xl font-bold text-center mb-4">
         {t("create_account")}
@@ -219,72 +239,23 @@ export const SignUpForm: React.FC = () => {
           {isCodeSent && (
             <>
               <div className="mb-4">
-                <div className="flex items-center mb-2">
-                  <Image
-                    src="/verify.svg"
-                    alt="verify"
-                    width={20}
-                    height={20}
-                    className="mr-1"
-                  />
-                  <label
-                    className="block text-sm ml-1 font-semibold text-indigo-700"
-                    htmlFor="verificationCode1"
-                  >
-                    {t("verification_code")}
-                  </label>
-                </div>
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={one}
-                    onChange={(e) => handleVerificationCodeChange(e, setOne, 1)}
-                    ref={(el) => {
-                      inputRefs.current[0] = el!;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
-                  <input
-                    type="text"
-                    value={two}
-                    onChange={(e) =>
-                      handleVerificationCodeChange(e, setTwo, 2, 0)
-                    }
-                    ref={(el) => {
-                      inputRefs.current[1] = el;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
-                  <input
-                    type="text"
-                    value={three}
-                    onChange={(e) =>
-                      handleVerificationCodeChange(e, setThree, 3, 1)
-                    }
-                    ref={(el) => {
-                      if (el) inputRefs.current[2] = el;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
-                  <input
-                    type="text"
-                    value={four}
-                    onChange={(e) =>
-                      handleVerificationCodeChange(e, setFour, undefined, 2)
-                    }
-                    ref={(el) => {
-                      if (el) inputRefs.current[3] = el;
-                    }}
-                    className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
-                    maxLength={1}
-                    required={formState === "verification"}
-                  />
+                <div className="flex gap-2" onPaste={handlePaste}>
+                  {[setOne, setTwo, setThree, setFour].map((setter, index) => (
+                    <input
+                      key={index}
+                      type="text"
+                      value={[one, two, three, four][index]}
+                      onChange={(e) =>
+                        handleVerificationCodeChange(e, setter, index)
+                      }
+                      ref={(el) => {
+                        inputRefs.current[index] = el;
+                      }}
+                      className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-md placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
+                      maxLength={1}
+                      required={formState === "verification"}
+                    />
+                  ))}
                 </div>
               </div>
               <div className="mb-4 relative">

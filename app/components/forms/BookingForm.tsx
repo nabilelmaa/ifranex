@@ -49,7 +49,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="-h-screen">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="md:flex">
