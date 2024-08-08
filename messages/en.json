@@ -248,6 +248,7 @@
     "Admin": {
         "dashboard": "Dashboard",
         "services": "Services",
-        "users": "Users"
+        "users": "Users",
+        "new":"new"
     }
 }
