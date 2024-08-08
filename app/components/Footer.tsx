@@ -93,7 +93,7 @@ export const Footer = () => {
               </h3>
               <ul className="space-y-2 text-gray-400">
                 <li>+212 6 11223344</li>
-                <li>example@email.com</li>
+                <li>support@ifranex.online</li>
                 <li>{t("ifrane_morocco")}</li>
               </ul>
               <div className="mt-4 flex space-x-4">

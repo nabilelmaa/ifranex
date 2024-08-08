@@ -16,7 +16,7 @@ const StepCard: React.FC<Step & { index: number }> = ({
 }) => {
   return (
     <div className="relative flex flex-col h-full border rounded-md shadow-lg cursor-pointer duration-50 bg-white p-4">
-      <div className="absolute -top-4 -left-4 w-12 h-12 bg-indigo-700 rounded-full flex items-center justify-center text-white text-xl font-bold">
+      <div className="absolute -top-4 -left-4 w-12 h-12 bg-tertiaryCol rounded-full flex items-center justify-center text-primaryCol text-xl font-bold">
         {index + 1}
       </div>
       <div className="relative w-full h-40 mb-4 overflow-hidden">
@@ -64,10 +64,10 @@ export const HowItWorks: React.FC = () => {
   return (
     <section
       id="how"
-      className="py-16 px-4 bg-gradient-to-b from-white to-blue-50"
+      className="px-4 bg-gradient-to-b from-tertiaryCol to-white"
     >
-      <div className="max-w-8xl mx-auto">
-        <h2 className="text-xl lg:text-3xl md:text-2xl text-center font-bold text-gray-900 mb-14">
+      <div className="mx-auto">
+        <h2 className="text-xl lg:text-3xl md:text-2xl text-center font-bold text-gray-900 mb-12">
           {t("how_it_works")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">

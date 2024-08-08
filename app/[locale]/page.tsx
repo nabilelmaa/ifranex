@@ -7,7 +7,7 @@ import { HowItWorks } from "@/app/components/HowItWorks";
 
 export default function Home() {
   return (
-    <div className="min-h-screen p-6 lg:p-12">
+    <div className="lg:px-12 md:px-12">
       <Hero />
       <Services />
       <HowItWorks />

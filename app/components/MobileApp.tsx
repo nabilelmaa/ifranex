@@ -4,7 +4,10 @@ import Link from "next/link";
 export const MobileApp = () => {
   const t = useTranslations("MobileApp");
   return (
-    <section id="mobile-app" className="bg-gradient-to-b from-blue-50 to-white">
+    <section
+      id="mobile-app"
+      className="bg-gradient-to-b from-white to-tertiaryCol"
+    >
       <div className="flex lg:justify-between items-center p-4">
         <div>
           <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">

@@ -17,37 +17,36 @@ export const Hero = () => {
     { text: "Find" },
     {
       text: "Trusted",
-      className: "text-indigo-600",
+      className: "text-primaryCol",
     },
     { text: "Handypersons" },
     { text: "for" },
     {
       text: "Every",
-      className: "text-indigo-600",
+      className: "text-primaryCol",
     },
     {
       text: "Need",
-      className: "text-indigo-600",
+      className: "text-primaryCol",
     },
   ];
 
   const frWords = [
-    { text: "Trouvez" },
-    { text: "des" },
-    { text: "bricoleurs" },
-    { text: "de" },
+    { text: "Trouvez", className: "text-textCol" },
+    { text: "bricoleurs", className: "text-textCol" },
+    { text: "de", className: "text-textCol" },
     {
       text: "confiance",
-      className: "text-indigo-600",
+      className: "text-primaryCol",
     },
-    { text: "pour " },
+    { text: "pour ", className: "text-textCol" },
     {
       text: "chaque",
-      className: "text-indigo-600",
+      className: "text-primaryCol",
     },
     {
       text: "besoin",
-      className: "text-indigo-600",
+      className: "text-primaryCol",
     },
   ];
 
@@ -106,12 +105,12 @@ export const Hero = () => {
             <div className="flex flex-wrap">
               <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:mt-24 w-full">
                 <Link href={`/${locale}/services`}>
-                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-indigo-700 border dark:border-white border-transparent text-white text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
+                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-secondaryCol border dark:border-white border-transparent text-primaryCol text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-primaryCol focus:ring-opacity-50">
                     {getStarted}
                   </button>
                 </Link>
                 <button
-                  className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-black border border-indigo-700  text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50"
+                  className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-textCol border border-primaryCol  text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-primaryCol focus:ring-opacity-50"
                   // onClick={() => scrollToSection("how-it-works")}
                 >
                   {howItWorks}

@@ -29,6 +29,10 @@ const config = {
         "coolGray-900":"#111827",
         "coolGray-200":"#e5e7eb",
         "colGreen-000":"#12c322",
+        "primaryCol":"#4f46e5",
+        "secondaryCol":"#c7d2fe",
+        "tertiaryCol":"#eef2ff",
+        "textCol":"#1e1b4b",
         
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

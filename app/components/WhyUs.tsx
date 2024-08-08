@@ -30,11 +30,8 @@ export const WhyUs = () => {
   ];
 
   return (
-    <section
-      id="us"
-      className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="us" className="bg-gradient-to-b from-white to-tertiaryCol py-16">
+      <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
             {t("title")}
@@ -50,7 +47,7 @@ export const WhyUs = () => {
               className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <CardHeader className="flex flex-col items-center space-y-1">
-                <div className="rounded-full bg-primary/10 p-3 mb-2">
+                <div className="rounded-full bg-tertiaryCol p-3 mb-2">
                   <Image src={feature.icon} alt="" width={32} height={32} />
                 </div>
                 <CardTitle className="text-xl font-semibold text-center">
