@@ -1,9 +1,9 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLocale, useTranslations } from "next-intl";
-import { Input } from "@/app/components/ui/input";
-import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
 import { Tabs, Tab } from "@nextui-org/react";
 import { useToast } from "@/contexts/ToastContext";
@@ -29,9 +29,14 @@ const Avatar = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -69,18 +74,23 @@ const Avatar = () => {
 
   const validatePasswords = () => {
     if (newPassword !== confirmPassword) {
-      setPasswordError("New passwords do not match");
+      setError(true);
+      setErrorMessage(t("passwords_not_match"));
+      setIsLoading(false);
       return false;
     }
     if (newPassword.length < 8) {
-      setPasswordError("New password must be at least 8 characters long");
+      setError(true);
+      setErrorMessage(t("password_8_characters"));
+      setIsLoading(false);
       return false;
     }
-    setPasswordError("");
+    setErrorMessage("");
     return true;
   };
 
   const handleSave = async () => {
+    setError(false);
     setIsLoading(true);
     const updatedFields: any = {};
 
@@ -145,8 +155,9 @@ const Avatar = () => {
         window.location.reload();
       }
     } catch (error) {
-      console.error("Error updating user information", error);
-      showToast(t("toast_error"), "error");
+      setError(true);
+      setIsLoading(false);
+      setErrorMessage(t("old_password_wrong"));
     }
   };
 
@@ -154,7 +165,7 @@ const Avatar = () => {
     setOldPassword("");
     setNewPassword("");
     setConfirmPassword("");
-    setPasswordError("");
+    setErrorMessage("");
     setProfileImage(null);
   };
 
@@ -231,6 +242,22 @@ const Avatar = () => {
       );
     }
     return stars;
+  };
+
+  const togglePassword = (
+    field: "oldPassword" | "newPassword" | "confirmPassword"
+  ) => {
+    switch (field) {
+      case "oldPassword":
+        setShowOldPassword(!showOldPassword);
+        break;
+      case "newPassword":
+        setShowNewPassword(!showNewPassword);
+        break;
+      case "confirmPassword":
+        setShowConfirmPassword(!showConfirmPassword);
+        break;
+    }
   };
 
   tailChase.register();
@@ -400,13 +427,12 @@ const Avatar = () => {
           </button>
         </form>
       </dialog>
-
       <dialog id="account" className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
             <Tab key="personal-info" title={t("personal_info")}>
-              <div className="grid gap-4 py-4 h-[260px] overflow-y-auto">
+              <div className="grid gap-4 py-4 h-auto overflow-y-auto">
                 <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 group">
                   <Image
                     src={user?.profilePicture || "/default-avatar.png"}
@@ -415,7 +441,6 @@ const Avatar = () => {
                     objectFit="cover"
                     className="rounded-full"
                   />
-
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <img
                       src="/camera.svg"
@@ -426,7 +451,6 @@ const Avatar = () => {
                       {t("update_photo")}
                     </span>
                   </div>
-
                   <input
                     type="file"
                     id="profileImage"
@@ -435,60 +459,133 @@ const Avatar = () => {
                     accept=".jpeg,.jpg,.png,.gif"
                   />
                 </div>
-
                 <div className="text-xs text-gray-500">
                   {t("allowed")}*.jpeg, *.jpg, *.png, *.gif
                 </div>
-
-                <div className="flex flex-col gap-4">
-                  <Label htmlFor="username" className="text-start">
-                    {t("username")}
-                  </Label>
-                  <Input
+                <div className="relative">
+                  <input
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                    placeholder=""
                   />
+                  <label
+                    htmlFor="username"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >
+                    {t("username")}
+                  </label>
                 </div>
               </div>
             </Tab>
             <Tab key="security" title={t("security")}>
-              <div className="flex flex-col gap-4 py-4 h-[260px] overflow-y-auto">
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="oldPassword" className="text-start text-xs">
-                    {t("curr_pass")}
-                  </Label>
-                  <Input
+              <div className="flex flex-col gap-4 py-4 h-auto overflow-y-auto">
+                {error && (
+                  <div
+                    id="alert-border-2"
+                    className="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
+                    role="alert"
+                  >
+                    <svg
+                      className="flex-shrink-0 w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <p className="ms-3 text-xs lg:text-sm md:text-sm font-medium">
+                      {errorMessage}
+                    </p>
+                  </div>
+                )}
+                <div className="relative">
+                  <input
                     id="oldPassword"
-                    type="password"
+                    type={showOldPassword ? "text" : "password"}
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                    placeholder=""
                   />
+                  <label
+                    htmlFor="oldPassword"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >
+                    {t("curr_pass")}
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => togglePassword("oldPassword")}
+                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                  >
+                    <Image
+                      src={showOldPassword ? "/eye-off.svg" : "/eye-on.svg"}
+                      alt={showOldPassword ? "hide password" : "show password"}
+                      width={18}
+                      height={18}
+                    />
+                  </button>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="newPassword" className="text-start text-xs">
-                    {t("new_pass")}
-                  </Label>
-                  <Input
+                <div className="relative">
+                  <input
                     id="newPassword"
-                    type="password"
+                    type={showNewPassword ? "text" : "password"}
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                    placeholder=""
                   />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Label
-                    htmlFor="confirmPassword"
-                    className="text-start text-xs"
+                  <label
+                    htmlFor="newPassword"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                   >
-                    {t("conf_pass")}
-                  </Label>
-                  <Input
+                    {t("new_pass")}
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => togglePassword("newPassword")}
+                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                  >
+                    <Image
+                      src={showNewPassword ? "/eye-off.svg" : "/eye-on.svg"}
+                      alt={showNewPassword ? "hide password" : "show password"}
+                      width={18}
+                      height={18}
+                    />
+                  </button>
+                </div>
+                <div className="relative">
+                  <input
                     id="confirmPassword"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-600 peer"
+                    placeholder=""
                   />
+                  <label
+                    htmlFor="confirmPassword"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >
+                    {t("conf_pass")}
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => togglePassword("confirmPassword")}
+                    className="absolute inset-y-0 right-0 flex items-center px-3 focus:outline-none"
+                  >
+                    <Image
+                      src={showConfirmPassword ? "/eye-off.svg" : "/eye-on.svg"}
+                      alt={
+                        showConfirmPassword ? "hide password" : "show password"
+                      }
+                      width={18}
+                      height={18}
+                    />
+                  </button>
                 </div>
                 {passwordError && (
                   <p className="text-red-500 text-sm">{passwordError}</p>
@@ -522,7 +619,7 @@ const Avatar = () => {
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button> {t("cancel")}</button>
+          <button>{t("cancel")}</button>
         </form>
       </dialog>
     </div>

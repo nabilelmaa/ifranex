@@ -12,7 +12,7 @@
         "cancel": "Cancel",
         "save": "Save changes",
         "toast_updated": "Profile updated successfully!",
-        "toast_error": "Failed to update profile. Please try again.",
+        "old_password_wrong": "Old password is wrong !",
         "allowed": "Allowed",
         "update_photo": "Update Photo",
         "error_fetching_services": "Error fetching services.",
@@ -23,7 +23,9 @@
         "failed_to_submit_review": "Failed to submit your review. Please try again.",
         "failed_to_update_profile_picture": "Failed to upload profile picture. Please try again.",
         "thank_you_for_review": "Thank you for your review !",
-        "no_messages": "You have no messages."
+        "no_messages": "You have no messages.",
+        "passwords_not_match": "Passwords fields do not match.",
+        "password_8_characters": "New password must be at least 8 characters long"
     },
     "Navbar": {
         "nav_home": "Home",
@@ -96,13 +98,14 @@
         "reset_forgot_password": "Forgot your password?",
         "reset_description": "Please enter the email address associated with your account. We'll email you a verification code to reset your password.",
         "reset_success": "Your password has been reset.",
-        "passwords_not_match": "Passwords fields do not match.",
         "failed_to_reset_password": "Failed to reset password.",
         "new_pass": "New password",
         "conf_new_pass": "Password confirmation",
         "reset_button": "Reset Password",
         "resetting": "Resetting",
-        "return": "Return to Sign In"
+        "return": "Return to Sign In",
+        "passwords_not_match": "Passwords fields do not match.",
+        "password_8_characters": "New password must be at least 8 characters long"
     },
     "LoginForm": {
         "welcome_message": "Welcome back",
@@ -249,6 +252,6 @@
         "dashboard": "Dashboard",
         "services": "Services",
         "users": "Users",
-        "new":"new"
+        "new": "new"
     }
 }

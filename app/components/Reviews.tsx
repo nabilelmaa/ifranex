@@ -65,7 +65,7 @@ export const Reviews = () => {
 
   return (
     <section
-      className="bg-gradient-to-b from-tertiaryCol to-white rounded-md"
+      className="py-16 bg-gradient-to-b from-tertiaryCol to-white rounded-md"
       id="reviews"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

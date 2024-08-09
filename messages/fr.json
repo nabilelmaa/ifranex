@@ -12,7 +12,7 @@
         "cancel": "Annuler",
         "save": "Enregistrer",
         "toast_updated": "Profil mis à jour avec succès!",
-        "toast_error": "Échec de la mise à jour du profil. Veuillez réessayer.",
+        "old_password_wrong": "L'ancien mot de passe est incorrect !",
         "allowed": "Autorisé",
         "update_photo": "Mettre à jour la photo",
         "error_fetching_services": "Erreur lors de la récupération des services.",
@@ -23,7 +23,9 @@
         "failed_to_submit_review": "Échec de l'envoi de votre avis. Veuillez réessayer.",
         "failed_to_update_profile_picture": "Échec du téléchargement de la photo de profil. Veuillez réessayer.",
         "thank_you_for_review": "Merci pour votre avis !",
-        "no_messages": "Vous n'avez aucun message."
+        "no_messages": "Vous n'avez aucun message.",
+        "passwords_not_match": "Les champs de mot de passe ne correspondent pas.",
+        "password_8_characters": "Le nouveau mot de passe doit comporter au moins 8 caractères."
     },
     "Navbar": {
         "nav_home": "Accueil",
@@ -96,13 +98,14 @@
         "reset_forgot_password": "Mot de passe oublié ?",
         "reset_description": "Veuillez entrer l'adresse e-mail associée à votre compte. Nous vous enverrons un code de vérification par e-mail pour réinitialiser votre mot de passe.",
         "reset_success": "Votre mot de passe a été réinitialisé.",
-        "passwords_not_match": "Les champs de mot de passe ne correspondent pas.",
         "failed_to_reset_password": "Échec de la réinitialisation du mot de passe.",
         "new_pass": "Nouveau mot de passe",
         "conf_new_pass": "Confirmation du mot de passe",
         "reset_button": "Réinitialiser",
         "resetting": "Réinitialisation",
-        "return": "Retour à la connexion"
+        "return": "Retour à la connexion",
+        "passwords_not_match": "Les champs de mot de passe ne correspondent pas.",
+        "password_8_characters": "Le nouveau mot de passe doit comporter au moins 8 caractères."
     },
     "LoginForm": {
         "welcome_message": "Bienvenue à nouveau",

@@ -60,7 +60,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col bg-white p-6 rounded-xl shadow-md">
+    <div className="w-full h-full flex flex-col bg-slate-100 p-6 rounded-xl">
       <p className="flex-grow mb-4">{review.comment}</p>
       <div className="flex items-start mt-auto">
         <div className="mr-4 relative w-10 h-10 overflow-hidden rounded-full flex-shrink-0">

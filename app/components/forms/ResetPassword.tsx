@@ -13,7 +13,6 @@ export const ResetPassword: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [formState, setFormState] = useState<"email" | "verification">("email");
@@ -27,9 +26,29 @@ export const ResetPassword: React.FC = () => {
   const [four, setFour] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const verificationCode = `${one}${two}${three}${four}`;
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const validatePasswords = () => {
+    if (password !== confirmPassword) {
+      setError(true);
+      setErrorMessage(t("passwords_not_match"));
+      setLoading(false);
+      return false;
+    }
+    if (password.length < 8) {
+      setError(true);
+      setErrorMessage(t("password_8_characters"));
+      setLoading(false);
+      return false;
+    }
+    setErrorMessage("");
+    return true;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(false);
     setLoading(true);
 
     try {
@@ -59,9 +78,7 @@ export const ResetPassword: React.FC = () => {
           return;
         }
 
-        if (password !== confirmPassword) {
-          setErrorMessage(t("passwords_not_match"));
-          setLoading(false);
+        if (!validatePasswords()) {
           return;
         }
 
@@ -161,7 +178,7 @@ export const ResetPassword: React.FC = () => {
           </p>
         </>
       )}
-      {errorMessage && (
+      {error && (
         <div
           id="alert-border-2"
           className="flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800"
@@ -179,29 +196,6 @@ export const ResetPassword: React.FC = () => {
           <p className="ms-3 text-xs lg:text-sm md:text-sm font-medium">
             {errorMessage}
           </p>
-          <button
-            type="button"
-            className="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
-            data-dismiss-target="#alert-border-2"
-            aria-label="Close"
-          >
-            <span className="sr-only">Dismiss</span>
-            <svg
-              className="w-3 h-3"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 14"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-              />
-            </svg>
-          </button>
         </div>
       )}
 

@@ -55,7 +55,7 @@ export const Hero = () => {
       words: enWords,
       description: (
         <>
-          Welcome to , your trusted partner for all home repair and handywork
+          Your trusted partner for all home repair and handywork
           needs. Whether it's a minor fix or a major renovation, our skilled
           professionals are here to provide top-notch service with a smile. From
           plumbing and electrical work to carpentry and painting, we handle it
@@ -71,7 +71,7 @@ export const Hero = () => {
       words: frWords,
       description: (
         <>
-          Bienvenue chez , votre partenaire de confiance pour tous vos besoins
+          Votre partenaire de confiance pour tous vos besoins
           de réparation et de bricolage à domicile. Qu'il s'agisse d'une petite
           réparation ou d'une rénovation majeure, nos professionnels qualifiés
           sont là pour vous offrir un service de première qualité avec le

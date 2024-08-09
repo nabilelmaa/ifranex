@@ -15,7 +15,7 @@ const StepCard: React.FC<Step & { index: number }> = ({
   index,
 }) => {
   return (
-    <div className="relative flex flex-col h-full border rounded-md shadow-lg cursor-pointer duration-50 bg-white p-4">
+    <div className="relative flex flex-col h-full border rounded-md shadow-sm cursor-pointer duration-50 bg-white p-4">
       <div className="absolute -top-4 -left-4 w-12 h-12 bg-tertiaryCol rounded-full flex items-center justify-center text-primaryCol text-xl font-bold">
         {index + 1}
       </div>
@@ -61,18 +61,24 @@ export const HowItWorks: React.FC = () => {
       icon: "/pay.svg",
     },
   ];
+
   return (
     <section
       id="how"
-      className="px-4 bg-gradient-to-b from-tertiaryCol to-white"
+      className="py-16 px-4 bg-gradient-to-b from-tertiaryCol to-white"
     >
-      <div className="mx-auto">
+      <div className="mx-auto max-w-7xl">
         <h2 className="text-xl lg:text-3xl md:text-2xl text-center font-bold text-gray-900 mb-12">
           {t("how_it_works")}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {steps.map((step, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-24 ">
+          {steps.slice(0, 3).map((step, index) => (
             <StepCard key={step.title} {...step} index={index} />
+          ))}
+        </div>
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-24 md:w-2/3 mx-auto">
+          {steps.slice(3).map((step, index) => (
+            <StepCard key={step.title} {...step} index={index + 3} />
           ))}
         </div>
       </div>
