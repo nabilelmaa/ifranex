@@ -74,7 +74,7 @@ export const Hero = () => {
       words: frWords,
       description: (
         <>
-          "Votre partenaire de confiance pour tous vos besoins en réparation et
+          Votre partenaire de confiance pour tous vos besoins en réparation et
           travaux à domicile. Que ce soit pour une petite réparation ou une
           rénovation majeure, nos professionnels qualifiés sont là pour vous
           offrir un service de qualité avec le sourire. De la plomberie et
