@@ -396,6 +396,7 @@ const Avatar = () => {
                   document.getElementById("rating") as HTMLDialogElement
                 ).close();
                 resetForm();
+                setError(false);
               }}
             >
               {t("cancel")}
@@ -587,9 +588,6 @@ const Avatar = () => {
                     />
                   </button>
                 </div>
-                {passwordError && (
-                  <p className="text-red-500 text-sm">{passwordError}</p>
-                )}
               </div>
             </Tab>
           </Tabs>
@@ -601,6 +599,7 @@ const Avatar = () => {
                   document.getElementById("account") as HTMLDialogElement
                 ).close();
                 resetForm();
+                setError(false);
               }}
             >
               {t("cancel")}
