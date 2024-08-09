@@ -93,7 +93,7 @@ export const Hero = () => {
 
   return (
     <div className="lg:py-16 md:py-16">
-      <div className="container px-4 mx-auto">
+      <div className="px-4">
         <div className="flex flex-wrap xl:items-center -mx-4">
           <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
             <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem] mt-20">
