@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import ReviewCard from "@/app/components/ReviewCard";
 import { Review } from "@/types/index";
 import { useTranslations } from "next-intl";

@@ -89,32 +89,6 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
         </div>
       </div>
     </div>
-    /* <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" />
-      <div
-        ref={cardRef}
-        className="relative shadow-xl bg-gray-900 border border-gray-800 px-6 py-8 h-full overflow-hidden rounded-2xl flex flex-col justify-end items-start"
-      >
-        <div ref={contentRef}>
-          <div className="flex items-center mb-4">
-            <div className="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
-            <div>
-              <h3 className="font-semibold text-lg text-white">{review.user.username}</h3>
-              <p className="text-sm text-gray-400">
-                {new Date(review.timestamp).toLocaleDateString()}
-              </p>
-            </div>
-          </div>
-          <div className="flex mb-3">{renderStars(review.rating)}</div>
-          <p className="text-gray-300 mb-4">{review.comment}</p>
-          <div className="flex justify-between items-center w-full">
-            <span className="text-sm text-gray-500">Verified Purchase</span>
-            <button className="border px-4 py-1 rounded-lg border-gray-500 text-gray-300 hover:bg-gray-800 transition-colors duration-300">
-              Helpful
-            </button>
-          </div>
-        </div>
-        <Meteors number={20} />
-      </div> */
   );
 };
 
