@@ -44,7 +44,7 @@
         "nav_how_it_works": "Comment ça marche"
     },
     "Us": {
-        "title": "Qu'est-ce qui nous rend différents?",
+        "title": "Qu'est-ce qui nous rend différents ?",
         "description": "Nous croyons en la construction de relations durables avec nos clients et les traitons toujours avec respect et professionnalisme.",
         "qualified_people": "Personnes qualifiés",
         "qualified_people_desc": "Nos plombiers sont pleinement qualifiés, très expérimentés et assurés, vous offrant une tranquillité d'esprit totale.",
@@ -73,7 +73,7 @@
         "title3": "Remplir le formulaire",
         "title4": "Confirmer",
         "title5": "Effectuer le paiement",
-        "how_it_works": "Comment ça marche?"
+        "how_it_works": "Comment ça marche ?"
     },
     "RegisterForm": {
         "create_account": "Créer un compte",
@@ -111,15 +111,15 @@
         "welcome_message": "Bienvenue à nouveau",
         "email": "Email",
         "password": "Mot de passe",
-        "forgot_password": "Mot de passe oublié?",
+        "forgot_password": "Mot de passe oublié ?",
         "signin_button": "Se connecter",
-        "dont_have": "Vous n'avez pas de compte?",
+        "dont_have": "Vous n'avez pas de compte ?",
         "sign_up": "S'inscrire",
         "error_message_login": "Identifiants invalides",
         "login_success": "Connexion réussie."
     },
     "Footer": {
-        "job": "Voulez-vous trouver un emploi?",
+        "job": "Voulez-vous trouver un emploi ?",
         "join_team": "Rejoignez notre équipe pour développer vos compétences! Nous offrons de grandes opportunités de croissance professionnelle.",
         "apply_to_join": "Postulez pour nous rejoindre",
         "rights_reserved": "Tous droits réservés.",

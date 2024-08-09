@@ -36,7 +36,7 @@ export const WhyUs = () => {
           <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
             {t("title")}
           </h2>
-          <p className="text-md md:text-xl lg:text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-lg lg:text-lg text-gray-600 max-w-3xl mx-auto">
             {t("description")}
           </p>
         </div>
@@ -50,12 +50,12 @@ export const WhyUs = () => {
                 <div className="rounded-full bg-tertiaryCol p-3 mb-2">
                   <Image src={feature.icon} alt="" width={32} height={32} />
                 </div>
-                <CardTitle className="text-xl font-semibold text-center">
+                <CardTitle className="text-lg lg:text-2xl md:text-2xl font-semibold text-center">
                   {t(feature.title)}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 text-center">
+                <p className="text-gray-600 text-center text-md lg:text-lg md:text-lg">
                   {t(feature.description)}
                 </p>
               </CardContent>

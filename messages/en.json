@@ -44,7 +44,7 @@
         "nav_how_it_works": "How It Works"
     },
     "Us": {
-        "title": "What Makes Us Different?",
+        "title": "What Makes Us Different ?",
         "description": "We believe in building long-lasting relationships with our customers and always treat them with respect and professionalism.",
         "qualified_people": "Qualified People",
         "qualified_people_desc": "Our plumbers are fully qualified, highly experienced, and insured, providing you with complete peace of mind.",
@@ -73,7 +73,7 @@
         "title3": "Fill Form",
         "title4": "Confirm",
         "title5": "Make Payment",
-        "how_it_works": "How It Works?"
+        "how_it_works": "How It Works ?"
     },
     "RegisterForm": {
         "create_account": "Create account",
@@ -111,9 +111,9 @@
         "welcome_message": "Welcome back",
         "email": "Email",
         "password": "Password",
-        "forgot_password": "Forgot password?",
+        "forgot_password": "Forgot password ?",
         "signin_button": "Sign In",
-        "dont_have": "Don't have an account?",
+        "dont_have": "Don't have an account ?",
         "sign_up": "Signup",
         "error_message_login": "Invalid credentials",
         "login_success": "Login success."

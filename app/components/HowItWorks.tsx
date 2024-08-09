@@ -23,8 +23,8 @@ const StepCard: React.FC<Step & { index: number }> = ({
         <Image src={icon} alt={title} layout="fill" objectFit="contain" />
       </div>
       <div className="flex-grow px-4 text-center">
-        <h3 className="font-semibold text-sm lg:text-md md:text-lg">{title}</h3>
-        <p className="text-xs text-gray-700 lg:text-sm md:text-sm mt-2">
+        <h3 className="font-semibold text-md lg:text-lg md:text-lg">{title}</h3>
+        <p className="text-sm text-gray-700 lg:text-md md:text-md mt-2">
           {description}
         </p>
       </div>
