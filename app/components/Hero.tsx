@@ -91,60 +91,60 @@ export const Hero = () => {
   const { words, description, getStarted, howItWorks } =
     content[locale as keyof typeof content];
 
-  return (
-    <div className="lg:py-16 md:py-16">
-      <div className="px-4">
-        <div className="flex flex-wrap xl:items-center -mx-4">
-          <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem] mt-20">
-              <TypewriterEffect words={words} />
-            </h1>
-            <p className="text-neutral-600 dark:text-neutral-200 text-md sm:text-base mt-6 mb-6">
-              {description}
-            </p>
-            <div className="flex flex-wrap">
-              <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:mt-24 w-full">
-                <Link href={`/${locale}/services`}>
-                  <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-secondaryCol border dark:border-white border-transparent text-primaryCol text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-primaryCol focus:ring-opacity-50">
-                    {getStarted}
+    return (
+      <div className="lg:py-16 md:py-16 overflow-x-hidden">
+        <div className="px-4">
+          <div className="flex flex-wrap xl:items-center -mx-4">
+            <div className="w-full md:w-1/2 px-4 mb-16 md:mb-0">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight lg:h-[10rem] mt-12 md:mt-16">
+                <TypewriterEffect words={words} />
+              </h1>
+              <p className="text-neutral-600 dark:text-neutral-200 text-md sm:text-base mt-6 mb-6">
+                {description}
+              </p>
+              <div className="flex flex-wrap">
+                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 lg:mt-16 w-full">
+                  <Link href={`/${locale}/services`}>
+                    <button className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-secondaryCol border dark:border-white border-transparent text-primaryCol text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-primaryCol focus:ring-opacity-50">
+                      {getStarted}
+                    </button>
+                  </Link>
+                  <button
+                    className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-textCol border border-primaryCol text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-primaryCol focus:ring-opacity-50"
+                    // onClick={() => scrollToSection("how-it-works")}
+                  >
+                    {howItWorks}
                   </button>
-                </Link>
-                <button
-                  className="w-full lg:w-40 md:w-40 h-10 rounded-xl bg-white text-textCol border border-primaryCol  text-sm transition duration-300 focus:outline-none focus:ring-2 focus:ring-primaryCol focus:ring-opacity-50"
-                  // onClick={() => scrollToSection("how-it-works")}
-                >
-                  {howItWorks}
-                </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="w-full md:w-1/2 px-4">
-            <div className="relative mx-auto md:mr-0 max-w-max">
-              <Image
-                src="/circle3-yellow.svg"
-                alt=""
-                width={45}
-                height={45}
-                className="absolute z-10 -left-14 -top-12 w-28 md:w-auto"
-              />
-              <Image
-                src="/dots3-blue.svg"
-                alt=""
-                width={45}
-                height={45}
-                className="absolute z-10 -right-7 -bottom-8 w-28 md:w-auto"
-              />
-              <Image
-                src="https://res.cloudinary.com/dcncaesb0/image/upload/v1718902555/hrh-ifrane/bdlwaqzjihochxude97o.jpg"
-                alt=""
-                width={400}
-                height={300}
-                className="relative rounded-lg"
-              />
+            <div className="w-full md:w-1/2 px-4">
+              <div className="relative mx-auto md:mr-0 max-w-max">
+                <Image
+                  src="/circle3-yellow.svg"
+                  alt=""
+                  width={45}
+                  height={45}
+                  className="absolute z-10 -left-14 -top-12 w-20 md:w-auto"
+                />
+                <Image
+                  src="/dots3-blue.svg"
+                  alt=""
+                  width={45}
+                  height={45}
+                  className="absolute z-10 -right-7 -bottom-8 w-20 md:w-auto"
+                />
+                <Image
+                  src="https://res.cloudinary.com/dcncaesb0/image/upload/v1718902555/hrh-ifrane/bdlwaqzjihochxude97o.jpg"
+                  alt=""
+                  width={400}
+                  height={300}
+                  className="relative rounded-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
