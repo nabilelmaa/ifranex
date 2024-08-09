@@ -64,9 +64,8 @@ export const Hero = () => {
           it's a minor fix or a major renovation, our skilled professionals are
           here to provide top-notch service with a smile. From plumbing and
           electrical work to carpentry and painting, we handle it all with
-          precision and care. Let us help you keep your home in perfect shape,
-          so you can enjoy the comfort and peace of mind you deserve. Book your
-          service today and experience the difference with{" "}
+          precision and care. Let us help you keep your home in perfect shape.
+          Book your service today and experience the difference.
         </>
       ),
       getStarted: "Get Started",
@@ -75,15 +74,14 @@ export const Hero = () => {
       words: frWords,
       description: (
         <>
-          Votre partenaire de confiance pour tous vos besoins de réparation et
-          de bricolage à domicile. Qu'il s'agisse d'une petite réparation ou
-          d'une rénovation majeure, nos professionnels qualifiés sont là pour
-          vous offrir un service de première qualité avec le sourire. De la
-          plomberie et des travaux électriques à la menuiserie et à la peinture,
-          nous nous occupons de tout avec précision et soin. Laissez-nous vous
-          aider à garder votre maison en parfait état, afin que vous puissiez
-          profiter du confort et de la tranquillité d'esprit que vous méritez.
-          Réservez votre service dès aujourd'hui et découvrez la différence avec{" "}
+          "Votre partenaire de confiance pour tous vos besoins en réparation et
+          travaux à domicile. Que ce soit pour une petite réparation ou une
+          rénovation majeure, nos professionnels qualifiés sont là pour vous
+          offrir un service de qualité avec le sourire. De la plomberie et
+          l'électricité à la menuiserie et la peinture, nous nous occupons de
+          tout avec précision et soin. Laissez-nous vous aider à garder votre
+          maison en parfait état. Réservez votre service dès aujourd'hui et
+          faites la différence."
         </>
       ),
       getStarted: "Commencer",
