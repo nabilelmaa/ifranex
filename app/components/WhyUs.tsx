@@ -30,7 +30,10 @@ export const WhyUs = () => {
   ];
 
   return (
-    <section id="us" className="bg-gradient-to-b from-white to-tertiaryCol py-16">
+    <section
+      id="us"
+      className="bg-gradient-to-b from-white to-tertiaryCol py-16"
+    >
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-xl lg:text-3xl md:text-2xl font-bold text-gray-900 mb-4">
