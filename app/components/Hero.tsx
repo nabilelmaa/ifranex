@@ -130,7 +130,7 @@ export const Hero = () => {
                     </div>
                   ) : (
                     <div className="flex items-center justify-between space-x-2 w-full md:w-auto">
-                      <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                      <div className="avatar-group -space-x-6 rtl:space-x-reverse w-28">
                         {reviews
                           .filter((review) => review.user.profilePicture)
                           .slice(0, 5)
@@ -140,8 +140,8 @@ export const Hero = () => {
                                 <Image
                                   src={review.user.profilePicture}
                                   alt={`Review by ${review.user.name}`}
-                                  width={40}
-                                  height={40}
+                                  width={46}
+                                  height={46}
                                   className="rounded-full"
                                 />
                               </div>
