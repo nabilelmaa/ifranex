@@ -1,4 +1,6 @@
-import React, { useRef, useEffect } from "react";
+"use client";
+
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { Review } from "@/types/index";
 import Image from "next/image";

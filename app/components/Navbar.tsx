@@ -72,14 +72,26 @@ export const Navbar = () => {
                 )}
 
                 <Link href={`/${locale}`}>
-                  <Image
-                    src="/ifranex.png"
-                    alt="logo"
-                    width={90}
-                    height={90}
-                    layout="intrinsic"
-                    className="cursor-pointer"
-                  />
+                  <div className="flex items-center">
+                    <Image
+                      src="/homehome.PNG"
+                      alt="logo"
+                      width={120}
+                      height={120}
+                      layout="intrinsic"
+                      className="cursor-pointer mr-2 h-8 w-8"
+                    />
+                    <span className="hidden lg:block md:block">
+                      <Image
+                        src="/ifranex.png"
+                        alt="logo"
+                        width={90}
+                        height={90}
+                        layout="intrinsic"
+                        className="cursor-pointer"
+                      />
+                    </span>
+                  </div>
                 </Link>
               </div>
               {isHomePage && (

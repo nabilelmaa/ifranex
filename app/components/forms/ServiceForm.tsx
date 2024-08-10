@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import axios from "axios";
 import {
   Dialog,
@@ -53,8 +52,7 @@ export const ServiceForm: React.FC<ServiceFormProps> = ({
     },
   });
   const { showToast } = useToast();
-  const router = useRouter();
-  const locale = useLocale();
+
   const t = useTranslations("Tables");
 
   const [selectedCategory, setSelectedCategory] = useState<string>(
