@@ -232,7 +232,8 @@
         "failed_to_update_service": "Failed to update service",
         "service_updated": "Service updated successfully !",
         "service_added": "Service added to database !",
-        "submitting": "Submitting"
+        "submitting": "Submitting",
+        "deleting": "Deleting.."
     },
     "MobileApp": {
         "title": "Get our free app",

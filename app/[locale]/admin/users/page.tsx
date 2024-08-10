@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import { db } from '@/lib/db';
 import {
   Table,
   TableHeader,
@@ -14,20 +14,41 @@ import {
   CardDescription,
 } from "@/app/components/ui/card";
 import Image from "next/image";
-import UserActions from "@/app/components/UserActions";
+import UserActions from "@/app/components/UserActions"; 
+
+
+const translations: { [key: string]: { [key: string]: string } } = {
+  en: {
+    username: 'Username',
+    email: 'Email',
+    createdAt: 'Created At',
+    actions: 'Actions',
+    total_users: 'Total Users',
+    no_users_found: 'No users found',
+  },
+  fr: {
+    username: 'Nom d\'utilisateur',
+    email: 'Email',
+    createdAt: 'Créé le',
+    actions: 'Actions',
+    total_users: 'Nombre total d\'utilisateurs',
+    no_users_found: 'Aucun utilisateur trouvé',
+  },
+};
 
 const fetchUsers = async () => {
   const users = await db.user.findMany({
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
   });
   return users;
 };
 
-const UsersPage = async () => {
+const UsersPage = async ({ params: { locale } }: { params: { locale: string } }) => {
   const users = await fetchUsers();
-  const totalUsers = users.length;
+
+  const t = translations[locale] || translations.en;
 
   return (
     <div className="container mx-auto p-4">
@@ -35,10 +56,10 @@ const UsersPage = async () => {
         <Card className="bg-gradient-to-tl from-blue-500 via-indigo-600 to-purple-700">
           <CardHeader className="pb-3">
             <CardTitle className="text-white font-semibold">
-              Total Users
+              {t.total_users}
             </CardTitle>
             <CardDescription className="text-3xl font-semibold text-white">
-              {totalUsers}
+              {users.length}
             </CardDescription>
           </CardHeader>
         </Card>
@@ -46,10 +67,10 @@ const UsersPage = async () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Username</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Created At</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>{t.username}</TableHead>
+            <TableHead>{t.email}</TableHead>
+            <TableHead>{t.createdAt}</TableHead>
+            <TableHead>{t.actions}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -69,9 +90,7 @@ const UsersPage = async () => {
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                          {user && user.username
-                            ? user.username.charAt(0).toUpperCase()
-                            : ""}
+                          {user.username?.charAt(0).toUpperCase() || ''}
                         </div>
                       )}
                     </div>
@@ -90,7 +109,7 @@ const UsersPage = async () => {
           ) : (
             <TableRow>
               <TableCell colSpan={4} className="text-center">
-                No users found
+                {t.no_users_found}
               </TableCell>
             </TableRow>
           )}

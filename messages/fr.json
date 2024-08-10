@@ -232,7 +232,8 @@
         "failed_to_update_service": "Échec de la mise à jour du service",
         "service_updated": "Service mis à jour avec succès !",
         "service_added": "Service ajouté à la base de données !",
-        "submitting": "Soumission en cours"
+        "submitting": "Soumission en cours",
+        "deleting": "Suppression en cours..."
     },
     "MobileApp": {
         "title": "Obtenez notre application gratuite",
