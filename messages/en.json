@@ -105,7 +105,8 @@
         "resetting": "Resetting",
         "return": "Return to Sign In",
         "passwords_not_match": "Passwords fields do not match.",
-        "password_8_characters": "New password must be at least 8 characters long"
+        "password_8_characters": "New password must be at least 8 characters long",
+        "password_8_must_be_characters": "Password must be at least 8 characters long."
     },
     "LoginForm": {
         "welcome_message": "Welcome back",

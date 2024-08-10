@@ -105,7 +105,8 @@
         "resetting": "Réinitialisation",
         "return": "Retour à la connexion",
         "passwords_not_match": "Les champs de mot de passe ne correspondent pas.",
-        "password_8_characters": "Le nouveau mot de passe doit comporter au moins 8 caractères."
+        "password_8_characters": "Le nouveau mot de passe doit comporter au moins 8 caractères.",
+        "password_8_must_be_characters": "Mot de passe doit comporter au moins 8 caractères."
     },
     "LoginForm": {
         "welcome_message": "Bienvenue à nouveau",
