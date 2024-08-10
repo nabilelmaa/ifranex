@@ -47,6 +47,19 @@ const BookingHistory: React.FC = () => {
   const locale = useLocale();
   const t = useTranslations("Tables");
 
+  type Status = "Pending" | "Confirmed" | "Canceled" | "Completed";
+
+  const statusMap: Record<Status, string> = {
+    Pending: t("pending"),
+    Confirmed: t("confirmed"),
+    Canceled: t("canceled"),
+    Completed: t("completed"),
+  };
+
+  const translateStatus = (status: Status): string => {
+    return statusMap[status];
+  };
+
   useEffect(() => {
     fetchBookings();
   }, [locale, showToast]);
@@ -141,7 +154,7 @@ const BookingHistory: React.FC = () => {
                 </TableCell>
                 <TableCell className="font-medium">{booking.title}</TableCell>
                 <TableCell>{booking.description}</TableCell>
-                <TableCell>
+                <TableCell className="w-32">
                   <div className="flex items-center space-x-2">
                     <Image
                       src={statusIcons[booking.status]}
@@ -149,7 +162,7 @@ const BookingHistory: React.FC = () => {
                       width={20}
                       height={20}
                     />
-                    <span>{booking.status}</span>
+                    <span>{translateStatus(booking.status as Status)}</span>
                   </div>
                 </TableCell>
                 <TableCell>

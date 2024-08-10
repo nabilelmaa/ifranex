@@ -433,10 +433,10 @@ const Avatar = () => {
           <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
             <Tab key="personal-info" title={t("personal_info")}>
-              <div className="grid gap-4 py-4 h-auto overflow-y-auto">
-                <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-200 flex-shrink-0 group">
+              <div className="grid gap-4 py-4 h-full overflow-y-auto">
+                <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 group">
                   <Image
-                    src={user?.profilePicture || "/default-avatar.png"}
+                    src={user?.profilePicture || "/user-avatar.svg"}
                     alt="profile picture"
                     layout="fill"
                     objectFit="cover"
