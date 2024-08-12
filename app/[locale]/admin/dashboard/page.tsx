@@ -219,7 +219,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen container mx-auto">
+    <div className="min-h-screen container mx-auto custom-cursor-auto">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card className="bg-gradient-to-bl from-indigo-600 via-purple-700 to-pink-800">
           <CardHeader className="pb-3">
@@ -332,16 +332,16 @@ const Dashboard = () => {
             placeholder={t("search_bookings")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-1/3"
+            className="w-1/3 custor-cursor-text"
           />
           <Select
             value={filter}
             onValueChange={(value: string) => setFilter(value)}
           >
-            <SelectTrigger className="max-w-xs">
+            <SelectTrigger className="max-w-xs custom-cursor-pointer">
               {filter || "Filter"}
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="custom-cursor-auto">
               <SelectItem value={t("all")}>{t("all")}</SelectItem>
               <SelectItem value={t("pending")}> {t("pending")}</SelectItem>
               <SelectItem value={t("confirmed")}>{t("confirmed")}</SelectItem>
@@ -401,7 +401,7 @@ const Dashboard = () => {
                     <div className="flex items-center lg:justify-between md:justify-between gap-2 cursor-pointer">
                       {booking.status === "Pending" && (
                         <>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
                             {loadingStates[booking.id] === "confirm" ? (
                               <l-tailspin
                                 size="14"
@@ -419,7 +419,7 @@ const Dashboard = () => {
                               />
                             )}
                           </div>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
                             {loadingStates[booking.id] === "cancel" ? (
                               <l-tailspin
                                 size="14"
@@ -442,7 +442,7 @@ const Dashboard = () => {
 
                       {booking.status === "Confirmed" && (
                         <>
-                              <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
                             {loadingStates[booking.id] === "complete" ? (
                               <l-tailspin
                                 size="14"
@@ -460,7 +460,7 @@ const Dashboard = () => {
                               />
                             )}
                           </div>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10">
+                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
                             {loadingStates[booking.id] === "cancel" ? (
                               <l-tailspin
                                 size="14"

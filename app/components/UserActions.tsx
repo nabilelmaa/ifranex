@@ -38,6 +38,7 @@ const UserActions: React.FC<UserActionsProps> = ({ userId }) => {
       onClick={handleDelete}
       variant="destructive"
       disabled={isDeleting}
+      className="custom-cursor-pointer"
     >
       {isDeleting ? t("deleting") : t("delete")}
     </Button>

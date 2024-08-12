@@ -139,3 +139,15 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.custom-cursor-auto {
+  cursor: url('/default-cursor.svg'), auto;
+}
+
+.custom-cursor-pointer {
+  cursor: url('/hand-pointer.svg'), pointer;
+}
+
+.custom-cursor-text {
+  cursor: url('/cursor-text.svg'), text;
+}

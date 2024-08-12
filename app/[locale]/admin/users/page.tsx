@@ -1,4 +1,4 @@
-import { db } from '@/lib/db';
+import { db } from "@/lib/db";
 import {
   Table,
   TableHeader,
@@ -14,44 +14,47 @@ import {
   CardDescription,
 } from "@/app/components/ui/card";
 import Image from "next/image";
-import UserActions from "@/app/components/UserActions"; 
-
+import UserActions from "@/app/components/UserActions";
 
 const translations: { [key: string]: { [key: string]: string } } = {
   en: {
-    username: 'Username',
-    email: 'Email',
-    createdAt: 'Created At',
-    actions: 'Actions',
-    total_users: 'Total Users',
-    no_users_found: 'No users found',
+    username: "Username",
+    email: "Email",
+    createdAt: "Created At",
+    actions: "Actions",
+    total_users: "Total Users",
+    no_users_found: "No users found",
   },
   fr: {
-    username: 'Nom d\'utilisateur',
-    email: 'Email',
-    createdAt: 'Créé le',
-    actions: 'Actions',
-    total_users: 'Nombre total d\'utilisateurs',
-    no_users_found: 'Aucun utilisateur trouvé',
+    username: "Nom d'utilisateur",
+    email: "Email",
+    createdAt: "Créé le",
+    actions: "Actions",
+    total_users: "Nombre total d'utilisateurs",
+    no_users_found: "Aucun utilisateur trouvé",
   },
 };
 
 const fetchUsers = async () => {
   const users = await db.user.findMany({
     orderBy: {
-      createdAt: 'desc',
+      createdAt: "desc",
     },
   });
   return users;
 };
 
-const UsersPage = async ({ params: { locale } }: { params: { locale: string } }) => {
+const UsersPage = async ({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) => {
   const users = await fetchUsers();
 
   const t = translations[locale] || translations.en;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 custom-cursor-auto">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 py-4">
         <Card className="bg-gradient-to-tl from-blue-500 via-indigo-600 to-purple-700">
           <CardHeader className="pb-3">
@@ -90,7 +93,7 @@ const UsersPage = async ({ params: { locale } }: { params: { locale: string } })
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-gray-300">
-                          {user.username?.charAt(0).toUpperCase() || ''}
+                          {user.username?.charAt(0).toUpperCase() || ""}
                         </div>
                       )}
                     </div>

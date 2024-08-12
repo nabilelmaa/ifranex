@@ -21,7 +21,7 @@ interface BarChartProps {
 
 export const BarChart: React.FC<BarChartProps> = ({ data }) => {
   const t = useTranslations("Tables");
-  const valueLabel = t("value"); 
+  const valueLabel = t("value");
 
   const gradientOffset = () => {
     const dataMax = Math.max(...data.map((i) => i.value));
@@ -40,7 +40,11 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
   const off = gradientOffset();
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer
+      width="100%"
+      height={400}
+      className="custom-cursor-auto"
+    >
       <AreaChart
         data={data}
         margin={{
@@ -61,9 +65,13 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
             boxShadow:
               "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
           }}
-          formatter={(value) => [`${value}`, valueLabel]} 
+          cursor={{ className: "custom-cursor-pointer" }}
+          formatter={(value) => [`${value}`, valueLabel]}
         />
-        <Legend formatter={() => valueLabel} /> 
+        <Legend
+          formatter={() => valueLabel}
+          wrapperStyle={{ cursor: 'url("/hand-pointer.svg"), pointer' }}
+        />
         <defs>
           <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
             <stop offset={off} stopColor="#8884d8" stopOpacity={0.8} />
@@ -71,8 +79,9 @@ export const BarChart: React.FC<BarChartProps> = ({ data }) => {
           </linearGradient>
         </defs>
         <Area
+          className="custom-cursor-pointer"
           type="monotone"
-          dataKey="value" 
+          dataKey="value"
           stroke="#8884d8"
           fill="url(#splitColor)"
           strokeWidth={2}

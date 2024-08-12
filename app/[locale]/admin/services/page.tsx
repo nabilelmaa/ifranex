@@ -117,24 +117,24 @@ const ManageServices = () => {
     );
   }
   return (
-    <div className="min-h-screen container mx-auto">
+    <div className="min-h-screen container mx-auto custom-cursor-auto">
       <h1 className="text-2xl font-semibold mb-4">{t("manage_services")}</h1>
       <div className="flex items-center justify-between mb-6">
         <div className="flex-1 max-w-md">
           <Input
             type="search"
             placeholder={t("search_services")}
-            className="w-full"
+            className="w-full custor-cursor-text"
           />
         </div>
         <Button onClick={handleAddClick} className="flex items-center">
           {" "}
           <Image src="/plus.svg" alt="plus" width={15} height={15} />
-          <p className="ml-2">{t("add_service")}</p>
+          <p className="ml-2 custom-cursor-pointer">{t("add_service")}</p>
         </Button>
       </div>
 
-      <Table>
+      <Table className="custom-cursor-auto">
         <TableCaption>{t("list_of_available_services")}</TableCaption>
         <TableHeader>
           <TableRow>
@@ -171,7 +171,7 @@ const ManageServices = () => {
                   <Button
                     onClick={() => handleEditClick(service)}
                     variant="ghost"
-                    className="p-2"
+                    className="p-2 custom-cursor-pointer"
                   >
                     <Image
                       src="/update.svg"
@@ -184,7 +184,7 @@ const ManageServices = () => {
                   <Button
                     onClick={() => handleDeleteClick(service.id)}
                     variant="ghost"
-                    className="p-2"
+                    className="p-2 custom-cursor-pointer"
                   >
                     <Image
                       src="/trash.svg"
@@ -206,7 +206,7 @@ const ManageServices = () => {
                       alt="Visibility"
                       width={22}
                       height={22}
-                      className="min-w-[22x] min-h-[22px]"
+                      className="min-w-[22x] min-h-[22px] custom-cursor-pointer"
                     />
                   </Button>
                 </div>
