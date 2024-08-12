@@ -342,11 +342,11 @@ const Dashboard = () => {
               {filter || "Filter"}
             </SelectTrigger>
             <SelectContent className="custom-cursor-auto">
-              <SelectItem value={t("all")}>{t("all")}</SelectItem>
-              <SelectItem value={t("pending")}> {t("pending")}</SelectItem>
-              <SelectItem value={t("confirmed")}>{t("confirmed")}</SelectItem>
-              <SelectItem value={t("completed")}>{t("completed")}</SelectItem>
-              <SelectItem value={t("canceled")}>{t("canceled")}</SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("all")}>{t("all")}</SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("pending")}> {t("pending")}</SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("confirmed")}>{t("confirmed")}</SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("completed")}>{t("completed")}</SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("canceled")}>{t("canceled")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
