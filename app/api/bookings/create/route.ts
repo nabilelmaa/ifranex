@@ -16,11 +16,10 @@ const sendBookingEmail = async (email: string, bookingDetails: BookingDetails) =
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: 'Booking Confirmation',
+    subject: 'Booking Details',
     html: `
       <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
         <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; color: #020617;">
-          <h2 style="color: #020617; margin-bottom: 20px;">Booking Confirmation</h2>
           <p style="color: #020617; margin-bottom: 10px;">Thank you for your booking! Below are the details of your appointment:</p>
           
           <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">

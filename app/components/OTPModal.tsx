@@ -98,7 +98,7 @@ function OTPModal() {
                   type="text"
                   value={digit}
                   onChange={(e) => handleChange(index, e.target.value)}
-                  className="w-10 h-10 text-center border rounded-md"
+                  className="w-10 h-10 text-center border rounded-md focus:border-slate-200"
                   maxLength={1}
                 />
               ))}
@@ -106,12 +106,11 @@ function OTPModal() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel
-              className="bg-red-200 text-red-600 hover:bg-red-300 hover:text-red-600"
               onClick={() => setOtp(["", "", "", "", "", ""])}
             >
               {t("cancel")}
             </AlertDialogCancel>
-            <AlertDialogAction onClick={handleVerifyOtp}>
+            <AlertDialogAction className="bg-slate-200 hover:bg-slate-300 text-gray-900"onClick={handleVerifyOtp}>
               {t("verify")}
             </AlertDialogAction>
           </AlertDialogFooter>

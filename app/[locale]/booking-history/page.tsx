@@ -195,7 +195,10 @@ const BookingHistory: React.FC = () => {
               <AlertDialogCancel onClick={() => setShowModal(false)}>
                 {t("cancel")}
               </AlertDialogCancel>
-              <AlertDialogAction onClick={confirmCancel}>
+              <AlertDialogAction
+                className="bg-red-200 text-red-700 hover:bg-red-300"
+                onClick={confirmCancel}
+              >
                 {t("confirm")}
               </AlertDialogAction>
             </AlertDialogFooter>
