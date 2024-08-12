@@ -35,6 +35,10 @@ const sendBookingEmail = async (email: string, bookingDetails: BookingDetails) =
                 <td style="padding: 10px; color: #020617;">${bookingDetails.phoneNumber}</td>
               </tr>
               <tr style="border-bottom: 1px solid #c7d2fe;">
+                <td style="padding: 10px; color: #020617; font-weight: bold;">Phone Number</td>
+                <td style="padding: 10px; color: #020617;">${bookingDetails.address}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #c7d2fe;">
                 <td style="padding: 10px; color: #020617; font-weight: bold;">Appointment Date & Time</td>
                 <td style="padding: 10px; color: #020617;">${new Date(bookingDetails.timing).toLocaleString()}</td>
               </tr>
