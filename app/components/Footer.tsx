@@ -18,6 +18,7 @@ export const Footer = () => {
   const isExcludedPage = [
     `/${locale}/admin/dashboard`,
     `/${locale}/admin/services`,
+    `/${locale}/admin/reviews`,
     `/${locale}/admin/users`,
     `/${locale}/login`,
     `/${locale}/register`,

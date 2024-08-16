@@ -235,7 +235,13 @@
         "service_updated": "Service mis à jour avec succès !",
         "service_added": "Service ajouté à la base de données !",
         "submitting": "Soumission en cours",
-        "deleting": "Suppression en cours..."
+        "deleting": "Suppression en cours..",
+        "rating": "Évaluation",
+        "comment": "Commentaire",
+        "all_reviews": "Tous les avis",
+        "total_reviews": "Total des avis",
+        "reviews_loaded": "Avis chargés avec succès.",
+        "reviews_not_loaded": "Échec du chargement des avis."
     },
     "MobileApp": {
         "title": "Obtenez notre application gratuite",
@@ -254,6 +260,7 @@
     "Admin": {
         "dashboard": "Tableau de bord",
         "services": "Services",
+        "reviews": "Avis",
         "users": "Utilisateurs"
     }
 }

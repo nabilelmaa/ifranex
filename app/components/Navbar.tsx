@@ -42,6 +42,7 @@ export const Navbar = () => {
   const isHomePage = pathname === `/${locale}`;
   const isDashboardPage = pathname === `/${locale}/admin/dashboard`;
   const isServicesPage = pathname === `/${locale}/admin/services`;
+  const isReviewsPage = pathname === `/${locale}/admin/reviews`;
   const isUsersPage = pathname === `/${locale}/admin/users`;
   const isLoginPage = pathname === `/${locale}/login`;
   const isRegisterPage = pathname === `/${locale}/register`;
@@ -53,6 +54,7 @@ export const Navbar = () => {
         !isRegisterPage &&
         !isDashboardPage &&
         !isServicesPage &&
+        !isReviewsPage &&
         !isUsersPage &&
         !isResetPasswowrdPage && (
           <>

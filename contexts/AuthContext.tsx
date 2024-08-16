@@ -108,6 +108,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const adminPaths = [
         `/${locale}/admin/dashboard`,
         `/${locale}/admin/services`,
+        `/${locale}/admin/reviews`,
         `/${locale}/admin/users`,
       ];
 

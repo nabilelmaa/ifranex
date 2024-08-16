@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/app/components/ui/sidebar";
 import {
-  IconArrowLeft,
+  IconStar,
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
@@ -46,6 +46,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       ),
     },
     {
+      label: t("reviews"),
+      href: `/${locale}/admin/reviews`,
+      icon: (
+        <IconStar className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      ),
+    },
+    {
       label: t("users"),
       href: `/${locale}/admin/users`,
       icon: (
@@ -66,7 +73,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               ))}
             </div>
           </div>
-          <div className="">
+          <div>
             <button onClick={handleLogout}>
               <IconLogout className="text-neutral-700 dark:text-neutral-200 h-5 w-5" />
             </button>

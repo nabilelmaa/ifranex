@@ -42,7 +42,7 @@
         "support": "Support",
         "your_inbox": "Your Inbox",
         "nav_how_it_works": "How It Works",
-        "no_messages":"No messages."
+        "no_messages": "No messages."
     },
     "Us": {
         "title": "What Makes Us Different ?",
@@ -235,7 +235,13 @@
         "service_updated": "Service updated successfully !",
         "service_added": "Service added to database !",
         "submitting": "Submitting",
-        "deleting": "Deleting.."
+        "deleting": "Deleting..",
+        "rating": "Rating",
+        "comment": "Comment",
+        "all_reviews": "All Reviews",
+        "total_reviews": "Total Reviews",
+        "reviews_loaded":"Reviews loaded successfully.",
+        "reviews_not_loaded":"Failed to fetch reviews."
     },
     "MobileApp": {
         "title": "Get our free app",
@@ -254,7 +260,7 @@
     "Admin": {
         "dashboard": "Dashboard",
         "services": "Services",
-        "users": "Users",
-        "new": "new"
+        "reviews": "Reviews",
+        "users": "Users"
     }
 }

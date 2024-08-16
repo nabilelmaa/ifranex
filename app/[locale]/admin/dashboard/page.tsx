@@ -4,11 +4,10 @@ import { Input } from "@/app/components/ui/input";
 import { Badge } from "@/app/components/ui/badge";
 import Image from "next/image";
 import { useToast } from "@/contexts/ToastContext";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { lineWobble } from "ldrs";
 import { BarChart } from "@/app/components/BarChart";
 import { tailspin } from "ldrs";
-import { useTranslations } from "next-intl";
 import {
   Select,
   SelectContent,
