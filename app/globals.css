@@ -136,18 +136,26 @@ body {
 
 /* For IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .custom-cursor-auto {
-  cursor: url('/default-cursor.svg'), auto;
+  cursor: url("/default-cursor.svg"), auto;
 }
 
 .custom-cursor-pointer {
-  cursor: url('/hand-pointer.svg'), pointer;
+  cursor: url("/hand-pointer.svg"), pointer;
 }
 
 .custom-cursor-text {
-  cursor: url('/cursor-text.svg'), text;
+  cursor: url("/cursor_text_fill.svg"), text;
+}
+
+.pointer {
+  cursor: url("/cursor-pointer.svg"), auto;
+}
+
+.hand {
+  cursor: url("/hand.svg"), auto;
 }
