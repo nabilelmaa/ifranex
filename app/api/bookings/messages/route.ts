@@ -28,8 +28,6 @@ export async function GET(request: NextRequest) {
     const formattedMessages = messages.map((message) => {
       const booking = message.booking as unknown as BookingProps & { service: Service };
       const title = booking.service[`title_${locale}` as keyof Service] || booking.service.title_en;
-      const description = booking.service[`description_${locale}` as keyof Service] || booking.service.description_en;
-
       const content = message[`content_${locale}` as keyof Message] || message.content_en || 'No content available';
 
       const messageDate = new Date(message.createdAt);
