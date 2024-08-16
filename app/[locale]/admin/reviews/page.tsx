@@ -15,6 +15,21 @@ import {
 } from "@/app/components/ui/card";
 import Image from "next/image";
 
+
+interface User {
+  profilePicture?: string;
+  username: string;
+  email: string;
+}
+
+interface Review {
+  id: string;
+  user: User;
+  rating: number;
+  comment: string;
+  timestamp: string;
+}
+
 const translations: { [key: string]: { [key: string]: string } } = {
   en: {
     username: "Username",
@@ -36,11 +51,10 @@ const translations: { [key: string]: { [key: string]: string } } = {
   },
 };
 
-
-const fetchReviews = async () => {
+const fetchReviews = async (): Promise<Review[]> => {
   return await db.review.findMany({
     include: {
-      user: true, 
+      user: true,
     },
     orderBy: {
       timestamp: "desc",
@@ -82,7 +96,7 @@ const AdminReviews = async ({
         </TableHeader>
         <TableBody>
           {reviews.length > 0 ? (
-            reviews.map((review) => (
+            reviews.map((review: Review) => (
               <TableRow key={review.id}>
                 <TableCell>
                   <div className="flex items-center">

@@ -16,6 +16,15 @@ import {
 import Image from "next/image";
 import UserActions from "@/app/components/UserActions";
 
+interface User {
+  id: string;
+  profilePicture?: string;
+  username: string;
+  email: string;
+  createdAt: string;
+}
+
+
 const translations: { [key: string]: { [key: string]: string } } = {
   en: {
     username: "Username",
@@ -35,13 +44,12 @@ const translations: { [key: string]: { [key: string]: string } } = {
   },
 };
 
-const fetchUsers = async () => {
-  const users = await db.user.findMany({
+const fetchUsers = async (): Promise<User[]> => {
+  return await db.user.findMany({
     orderBy: {
       createdAt: "desc",
     },
   });
-  return users;
 };
 
 const UsersPage = async ({
@@ -50,7 +58,6 @@ const UsersPage = async ({
   params: { locale: string };
 }) => {
   const users = await fetchUsers();
-
   const t = translations[locale] || translations.en;
 
   return (
@@ -78,7 +85,7 @@ const UsersPage = async ({
         </TableHeader>
         <TableBody>
           {users.length > 0 ? (
-            users.map((user) => (
+            users.map((user: User) => (
               <TableRow key={user.id}>
                 <TableCell>
                   <div className="flex items-center">

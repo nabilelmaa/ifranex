@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const formattedMessages = messages.map((message) => {
+    const formattedMessages = messages.map((message: { [x: string]: any; booking: unknown; content_en: any; createdAt: string | number | Date; id: any; }) => {
       const booking = message.booking as unknown as BookingProps & { service: Service };
       const title = booking.service[`title_${locale}` as keyof Service] || booking.service.title_en;
       const content = message[`content_${locale}` as keyof Message] || message.content_en || 'No content available';
