@@ -151,11 +151,3 @@ body {
 .custom-cursor-text {
   cursor: url("/cursor_text_fill.svg"), text;
 }
-
-.pointer {
-  cursor: url("/cursor-pointer.svg"), auto;
-}
-
-.hand {
-  cursor: url("/hand.svg"), auto;
-}
