@@ -27,6 +27,7 @@ export interface BookingProps {
   title: string;
   id: string;
   fullName: string;
+  email: string;
   address: string;
   timing: string; 
   phoneNumber: string;

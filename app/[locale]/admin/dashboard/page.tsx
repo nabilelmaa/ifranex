@@ -342,11 +342,22 @@ const Dashboard = () => {
               {filter || "Filter"}
             </SelectTrigger>
             <SelectContent className="custom-cursor-auto">
-              <SelectItem className="custom-cursor-auto" value={t("all")}>{t("all")}</SelectItem>
-              <SelectItem className="custom-cursor-auto" value={t("pending")}> {t("pending")}</SelectItem>
-              <SelectItem className="custom-cursor-auto" value={t("confirmed")}>{t("confirmed")}</SelectItem>
-              <SelectItem className="custom-cursor-auto" value={t("completed")}>{t("completed")}</SelectItem>
-              <SelectItem className="custom-cursor-auto" value={t("canceled")}>{t("canceled")}</SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("all")}>
+                {t("all")}
+              </SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("pending")}>
+                {" "}
+                {t("pending")}
+              </SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("confirmed")}>
+                {t("confirmed")}
+              </SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("completed")}>
+                {t("completed")}
+              </SelectItem>
+              <SelectItem className="custom-cursor-auto" value={t("canceled")}>
+                {t("canceled")}
+              </SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -356,6 +367,7 @@ const Dashboard = () => {
             <TableRow>
               <TableHead>{t("booking_date")}</TableHead>
               <TableHead>{t("customer_name")}</TableHead>
+              <TableHead>{t("email")}</TableHead>
               <TableHead>{t("phone")}</TableHead>
               <TableHead>{t("address")}</TableHead>
               <TableHead>{t("timing")}</TableHead>
@@ -373,6 +385,7 @@ const Dashboard = () => {
                     {new Date(booking.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell>{booking.fullName}</TableCell>
+                  <TableCell>{booking.email}</TableCell>
                   <TableCell>{booking.phoneNumber}</TableCell>
                   <TableCell>{booking.address}</TableCell>
                   <TableCell>
