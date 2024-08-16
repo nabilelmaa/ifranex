@@ -17,7 +17,9 @@ export function middleware(request: NextRequest) {
 
   if (pathname.startsWith(`/${locale}/admin`)) {
     if (!isAdmin || !token) {
-      return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+      const loginUrl = new URL(`/${locale}/login`, request.url);
+      loginUrl.searchParams.set('redirect', pathname); 
+      return NextResponse.redirect(loginUrl);
     }
   }
 

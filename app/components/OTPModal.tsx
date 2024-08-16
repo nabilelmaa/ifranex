@@ -1,6 +1,8 @@
-"use client";
-
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Cookies from "js-cookie";
+import { useLocale, useTranslations } from "next-intl";
+import { useToast } from "@/contexts/ToastContext";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -12,10 +14,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
 } from "@/app/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
-import { useToast } from "@/contexts/ToastContext";
-import Cookies from "js-cookie";
 
 function OTPModal() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -69,7 +67,9 @@ function OTPModal() {
           const token = data.token;
           Cookies.set("isAdmin", "true", { expires: 1 });
           Cookies.set("authToken", token, { expires: 1 });
-          router.push(`/${locale}/admin/dashboard`);
+          
+          const redirectUrl = new URL(window.location.href).searchParams.get('redirect') || `/${locale}/admin/dashboard`;
+          router.push(redirectUrl);
           showToast(t("access_granted"), "success");
         } else {
           showToast(t("invalid_otp"), "error");
@@ -110,7 +110,10 @@ function OTPModal() {
             >
               {t("cancel")}
             </AlertDialogCancel>
-            <AlertDialogAction className="bg-slate-200 hover:bg-slate-300 text-gray-900"onClick={handleVerifyOtp}>
+            <AlertDialogAction
+              className="bg-slate-200 hover:bg-slate-300 text-gray-900"
+              onClick={handleVerifyOtp}
+            >
               {t("verify")}
             </AlertDialogAction>
           </AlertDialogFooter>
