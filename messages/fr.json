@@ -41,7 +41,8 @@
         "history": "Historique",
         "support": "Support",
         "your_inbox": "Votre boîte de réception",
-        "nav_how_it_works": "Comment ça marche"
+        "nav_how_it_works": "Comment ça marche",
+        "no_messages": "Aucun message."
     },
     "Us": {
         "title": "Qu'est-ce qui nous rend différents ?",

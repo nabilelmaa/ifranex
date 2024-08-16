@@ -41,7 +41,8 @@
         "history": "History",
         "support": "Support",
         "your_inbox": "Your Inbox",
-        "nav_how_it_works": "How It Works"
+        "nav_how_it_works": "How It Works",
+        "no_messages":"No messages."
     },
     "Us": {
         "title": "What Makes Us Different ?",
