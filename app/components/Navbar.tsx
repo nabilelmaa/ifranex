@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import LocalSwitcher from "./locale-switcher";
-import Avatar from "./Avatar";
+import dynamic from 'next/dynamic';
 import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
@@ -15,6 +15,7 @@ export const Navbar = () => {
   const locale = useLocale();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isAuthChecked, setAuthChecked] = useState(false);
+  const Avatar = dynamic(() => import('./Avatar'), { ssr: false });
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);

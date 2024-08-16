@@ -15,7 +15,6 @@ import {
 } from "@/app/components/ui/card";
 import Image from "next/image";
 
-
 interface User {
   profilePicture?: string;
   username: string;
@@ -27,7 +26,7 @@ interface Review {
   user: User;
   rating: number;
   comment: string;
-  timestamp: string;
+  timestamp: Date; 
 }
 
 const translations: { [key: string]: { [key: string]: string } } = {
