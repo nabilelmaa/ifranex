@@ -28,7 +28,7 @@ export default async function LocaleLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwsz"
+          content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
         />
         <meta
           name="description"
