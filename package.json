@@ -23,6 +23,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@tabler/icons-react": "^3.11.0",
     "@types/gsap": "^3.0.0",
+    "@vercel/speed-insights": "^1.0.12",
     "aos": "^2.3.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.2",
