@@ -14,20 +14,7 @@ import {
   CardDescription,
 } from "@/app/components/ui/card";
 import Image from "next/image";
-
-interface User {
-  profilePicture?: string;
-  username: string;
-  email: string;
-}
-
-interface Review {
-  id: string;
-  user: User;
-  rating: number;
-  comment: string;
-  timestamp: Date; 
-}
+import { Review } from "@/types/index";
 
 const translations: { [key: string]: { [key: string]: string } } = {
   en: {
@@ -51,7 +38,7 @@ const translations: { [key: string]: { [key: string]: string } } = {
 };
 
 const fetchReviews = async (): Promise<Review[]> => {
-  return await db.review.findMany({
+  const reviews = await db.review.findMany({
     include: {
       user: true,
     },
@@ -59,6 +46,14 @@ const fetchReviews = async (): Promise<Review[]> => {
       timestamp: "desc",
     },
   });
+
+  // Convert Date to string
+  return reviews.map(
+    (review: Review): Review => ({
+      ...review,
+      timestamp: review.timestamp.toString(),
+    })
+  );
 };
 
 const AdminReviews = async ({
@@ -124,7 +119,9 @@ const AdminReviews = async ({
                       <svg
                         key={i}
                         className={`shrink-0 size-4 ${
-                          i < review.rating ? "text-yellow-400" : "text-gray-400"
+                          i < review.rating
+                            ? "text-yellow-400"
+                            : "text-gray-400"
                         } transition-colors duration-300`}
                         xmlns="http://www.w3.org/2000/svg"
                         width="6"

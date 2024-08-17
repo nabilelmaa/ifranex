@@ -49,14 +49,6 @@ export interface BookingDetails {
     customerId: string;
 }
 
-export interface Review {
-  user: any;
-  id: string
-  userId: string
-  rating: number
-  comment: string
-  timestamp: string | number | Date;
-}
 
 export interface Message {
   id: string;
@@ -65,4 +57,24 @@ export interface Message {
   createdAt: string;
   bookingId: string;
   userId: string;
+}
+
+
+export interface User {
+  id: string;
+  profilePicture: string;
+  username: string;
+  email: string;
+  password: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface Review {
+  user: any;
+  id: string;
+  userId: string;
+  rating: number;
+  comment: string;
+  timestamp: Date | string | number;
 }

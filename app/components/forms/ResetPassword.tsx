@@ -173,7 +173,7 @@ export const ResetPassword: React.FC = () => {
           <h2 className="text-lg md:text-2xl lg:text-2xl font-bold mb-4 text-center">
             {t("reset_forgot_password")}
           </h2>
-          <p className="text-sm md:text-lg lg:text-lg text-gray-500 text-center mb-2">
+          <p className="text-sm md:text-sm lg:text-sm text-gray-500 text-center mb-2">
             {t("reset_description")}
           </p>
         </>

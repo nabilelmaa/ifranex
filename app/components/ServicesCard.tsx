@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { ServiceProps } from "@/types";
 import { Card } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";

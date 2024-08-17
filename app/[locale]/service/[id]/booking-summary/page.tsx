@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ServiceProps } from "@/types/index";
 import { useToast } from "@/contexts/ToastContext";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useLocale, useTranslations } from "next-intl";
 import { tailChase } from "ldrs";
 import { Calendar, Clock, MapPin, Phone, User } from "lucide-react";

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Input } from "@/app/components/ui/input";
 import { Badge } from "@/app/components/ui/badge";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useToast } from "@/contexts/ToastContext";
 import { useLocale, useTranslations } from "next-intl";
 import { lineWobble } from "ldrs";

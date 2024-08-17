@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useAuth } from "@/contexts/AuthContext";
 import LocalSwitcher from "./locale-switcher";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
@@ -15,7 +15,7 @@ export const Navbar = () => {
   const locale = useLocale();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isAuthChecked, setAuthChecked] = useState(false);
-  const Avatar = dynamic(() => import('./Avatar'), { ssr: false });
+  const Avatar = dynamic(() => import("./Avatar"), { ssr: false });
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -75,25 +75,25 @@ export const Navbar = () => {
                 )}
 
                 <Link href={`/${locale}`}>
-                  <div className="flex items-center">
+                  <div className="flex items-center gap-1">
                     <Image
                       src="/homehome.PNG"
-                      alt="logo"
-                      width={120}
-                      height={120}
-                      layout="intrinsic"
-                      className="cursor-pointer mr-2 h-8 w-8"
+                      alt="Home logo icon"
+                      width={36}
+                      height={36}
+                      className="cursor-pointer mr-2 object-contain"
+                      priority
                     />
-                    <span className="hidden lg:block md:block">
+                    {/* <span className="hidden lg:block md:block">
                       <Image
                         src="/ifranex.png"
-                        alt="logo"
-                        width={90}
-                        height={90}
-                        layout="intrinsic"
-                        className="cursor-pointer"
+                        alt="Ifranex logo"
+                        width={120}
+                        height={32}
+                        priority
+                        className="cursor-pointer object-contain"
                       />
-                    </span>
+                    </span> */}
                   </div>
                 </Link>
               </div>
@@ -198,14 +198,15 @@ export const Navbar = () => {
                     href={`/${locale}`}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <Image
-                      src="/ifranex-2.png"
-                      alt="logo"
-                      width={82}
-                      height={82}
-                      layout="intrinsic"
-                      className="cursor-pointer"
-                    />
+                    <div className="relative w-[82px] h-[82px] md:w-[120px] md:h-[120px]">
+                      <Image
+                        src="/ifranex-2.png"
+                        alt="logo"
+                        layout="fill"
+                        sizes="(max-width: 768px) 82px, 120px"
+                        className="object-contain"
+                      />
+                    </div>
                   </Link>
                 </div>
                 <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2 font-semibold">

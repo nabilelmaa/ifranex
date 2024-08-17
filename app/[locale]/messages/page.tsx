@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { hourglass } from "ldrs";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Message {
   id: string;

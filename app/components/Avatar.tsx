@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/app/components/ui/button";

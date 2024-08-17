@@ -13,7 +13,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/app/components/ui/card";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import UserActions from "@/app/components/UserActions";
 
 interface User {
