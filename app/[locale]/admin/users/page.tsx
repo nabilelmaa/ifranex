@@ -18,11 +18,13 @@ import UserActions from "@/app/components/UserActions";
 
 interface User {
   id: string;
-  profilePicture?: string;
+  profilePicture: string;
   username: string;
   email: string;
-  createdAt: string;
+  password: string;
+  createdAt: Date; 
 }
+
 
 
 const translations: { [key: string]: { [key: string]: string } } = {
@@ -45,12 +47,18 @@ const translations: { [key: string]: { [key: string]: string } } = {
 };
 
 const fetchUsers = async (): Promise<User[]> => {
-  return await db.user.findMany({
+  const users = await db.user.findMany({
     orderBy: {
       createdAt: "desc",
     },
   });
+
+  return users.map((user: { createdAt: { toISOString: () => any; }; }) => ({
+    ...user,
+    createdAt: user.createdAt.toISOString(), 
+  }));
 };
+
 
 const UsersPage = async ({
   params: { locale },
