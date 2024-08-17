@@ -10,6 +10,11 @@ export async function GET(request: NextRequest) {
     const bookings = await db.booking.findMany({
       include: {
         service: true,
+        customer: {
+          select: {
+            email: true
+          }
+        }
       },
       orderBy: {
         createdAt: 'desc', 
@@ -32,6 +37,7 @@ export async function GET(request: NextRequest) {
         title,
         description: booking.details,
         status: booking.status,
+        email: booking.customer.email,
       };
     });
 

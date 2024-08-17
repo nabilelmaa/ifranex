@@ -22,6 +22,7 @@ export interface ServiceProps {
   
 
 export interface BookingProps {
+  user: any;
   bookingDate: string | number | Date;
   description: string;
   title: string;
