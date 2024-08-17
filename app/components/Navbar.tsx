@@ -77,10 +77,11 @@ export const Navbar = () => {
                 <Link href={`/${locale}`}>
                   <div className="flex items-center gap-1">
                     <Image
-                      src="/homehome.PNG"
+                      // src="/homehome.PNG"
+                      src="/app-logo.svg"
                       alt="Home logo icon"
-                      width={36}
-                      height={36}
+                      width={42}
+                      height={42}
                       className="cursor-pointer mr-2 object-contain"
                       priority
                     />
