@@ -1,9 +1,12 @@
-# *
+# Allow all crawlers to access the site
 User-agent: *
+Disallow: /api/
+Disallow: /private/
+Disallow: /admin/
 Allow: /
 
-# Host
-Host: https://ifranex.vercel.app
+# Specify the preferred domain
+Host: ifranex.vercel.app
 
-# Sitemaps
+# Sitemap location
 Sitemap: https://ifranex.vercel.app/sitemap.xml

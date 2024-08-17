@@ -19,7 +19,6 @@ export const verifyToken = async (req: NextRequest): Promise<{ userId: string }>
     const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
     return { userId: decoded.userId };
   } catch (error) {
-    console.error('Invalid token:', error);
     throw new Error('Invalid token');
   }
 };

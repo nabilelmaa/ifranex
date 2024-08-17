@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "../globals.css";
-
-import { Inter } from "next/font/google";
 import { Navbar } from "@/app/components/Navbar";
 import { Footer } from "@/app/components/Footer";
 import { NextIntlClientProvider } from "next-intl";
@@ -9,7 +7,6 @@ import { getMessages } from "next-intl/server";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "IfraneX - Home Repair and Handywork Services",
