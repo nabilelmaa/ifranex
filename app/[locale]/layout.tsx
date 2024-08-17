@@ -1,3 +1,4 @@
+// pages/_app.tsx or pages/_document.tsx
 import type { Metadata } from "next";
 import "../globals.css";
 import { Navbar } from "@/app/components/Navbar";
@@ -6,7 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/contexts/ToastContext";
-
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "IfraneX - Home Repair and Handywork Services",
@@ -25,6 +26,22 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <Head>
+        <meta
+          name="description"
+          content="IfraneX offers top-notch home repair and handywork services. Discover our range of services and get your home in shape with our expert team."
+        />
+        <meta
+          name="keywords"
+          content="home repair, handywork, home maintenance, expert repair services"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="google-site-verification"
+          content="pZPXaEwtvOCy1x5QMS-PBuLFUoXgEJVExC9h0dLhugc"
+        />
+        <link rel="canonical" href="https://ifranex.vercel.app" />
+      </Head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
