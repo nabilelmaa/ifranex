@@ -4,41 +4,40 @@ import { useParams } from "next/navigation";
 import BookingForm from "@/app/components/forms/BookingForm";
 import { ServiceProps } from "@/types/index";
 import { useLocale, useTranslations } from "next-intl";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 const BookingSkeleton = () => (
-  <div className="flex flex-col lg:flex-row lg:p-12 md:p-6">
-    <div className="flex-1 p-4 animate-pulse">
-      <h2 className="text-2xl font-semibold mb-4 bg-gray-200 h-8 rounded"></h2>
-      <form className="space-y-4">
-        <input
-          type="text"
-          className="w-full p-2 border rounded-md bg-gray-200 h-10"
-        />
-        <input
-          type="tel"
-          className="w-full p-2 border rounded-md bg-gray-200 h-10"
-        />
-        <input
-          type="text"
-          className="w-full p-2 border rounded-md bg-gray-200 h-10"
-        />
-        <input
-          type="datetime-local"
-          className="w-full p-2 border rounded-md bg-gray-200 h-10"
-        />
-        <textarea className="w-full p-2 border rounded-md bg-gray-200 h-24"></textarea>
-        <button
-          type="submit"
-          className="w-full p-2 bg-gray-300 text-white rounded-md cursor-not-allowed"
-        ></button>
-      </form>
-    </div>
-    <div className="flex-1 p-4 mt-4 lg:mt-0 lg:ml-4 animate-pulse">
-      <div className="rounded-md shadow-lg overflow-hidden">
-        <div className="w-full h-40 bg-gray-200"></div>
-        <div className="p-4 bg-gray-100">
-          <h3 className="text-xl font-semibold bg-gray-200 h-6 rounded mb-2"></h3>
-          <p className="text-gray-700 bg-gray-200 h-4 rounded"></p>
+  <div className="h-screen">
+    <div className="container mx-auto px-4">
+      <div className="mt-16 lg:p-12 md:p-6">
+        <div className="hidden lg:block mt-10 mb-4 text-sm">
+          <Skeleton className="h-6 w-1/4 mb-2" />
+          <Skeleton className="h-6 w-1/3" />
+        </div>
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="md:flex">
+            <div className="md:w-1/2">
+              <Skeleton className="w-full h-64" />
+              <div className="p-6 bg-gray-50">
+                <Skeleton className="h-8 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-1/2" />
+              </div>
+            </div>
+            <div className="md:w-1/2 p-8">
+              <Skeleton className="h-10 w-1/2 mb-6" />
+              <form className="space-y-6">
+                <div className="flex flex-col lg:flex-row lg:space-x-4 space-y-6 lg:space-y-0">
+                  <Skeleton className="h-10 flex-1" />
+                  <Skeleton className="h-10 flex-1" />
+                </div>
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="w-full py-3 h-12" />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,18 +52,37 @@ const Page = () => {
   const t = useTranslations("Navbar");
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchService = async () => {
       if (id) {
-        const response = await fetch(`/api/services/${id}`);
-        const data = await response.json();
-        setService(data);
-        setLoading(false);
+        try {
+          const response = await fetch(`/api/services/${id}`);
+          if (!response.ok) throw new Error("Failed to fetch service data.");
+          const data = await response.json();
+          if (isMounted) {
+            setService(data);
+            setLoading(false);
+          }
+        } catch (error) {
+          console.error(error);
+          if (isMounted) {
+            setLoading(false);
+            setService(null);
+          }
+        }
       }
     };
     fetchService();
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
+
   if (loading) return <BookingSkeleton />;
-  if (!service) return <div>Loading...</div>;
+  if (!service)
+    return <div>Error loading service. Please try again later.</div>;
 
   return (
     <div className="mt-16 lg:p-12 md:p-6">
@@ -81,7 +99,7 @@ const Page = () => {
           </li>
         </ul>
       </div>
-      <BookingForm service={service} />;
+      <BookingForm service={service} />
     </div>
   );
 };

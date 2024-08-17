@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useToast } from "@/contexts/ToastContext";
 import { BookingProps } from "@/types/index";
 import { useLocale, useTranslations } from "next-intl";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { hourglass } from "ldrs";
 
 import {

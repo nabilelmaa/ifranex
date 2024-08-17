@@ -4,9 +4,9 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import {
-  FaFacebookF,
-  FaTwitter,
+  FaFacebook,
   FaInstagram,
+  FaWhatsapp,
   FaLinkedinIn,
 } from "react-icons/fa";
 
@@ -100,30 +100,61 @@ export const Footer = () => {
               <div className="mt-4 flex space-x-4">
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition duration-300"
+                  className="text-gray-400 hover:text-blue-500 transition duration-300"
                 >
-                  <FaFacebookF />
+                  <FaFacebook />
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition duration-300"
+                  className="text-gray-400 hover:text-green-400 transition duration-300"
                 >
-                  <FaTwitter />
+                  <FaWhatsapp />
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition duration-300"
+                  className="text-gray-400 hover:text-rose-600 transition duration-300"
                 >
                   <FaInstagram />
                 </a>
                 <a
                   href="#"
-                  className="text-gray-400 hover:text-white transition duration-300"
+                  className="text-gray-400 hover:text-blue-600 transition duration-300"
                 >
                   <FaLinkedinIn />
                 </a>
               </div>
             </div>
+          </div>
+          <div className="py-8 text-center text-gray-400">
+            <p>
+              {t("dev_by_1")}{" "}
+              <a
+                href="mailto:nabilelmaa@gmail.com"
+                className="font-medium text-white hover:underline"
+              >
+                nabilelmaa@gmail.com
+              </a>
+              , {t("dev_by_2")}
+              <br />
+              <a
+                href="https://nabilel-portfolio.vercel.app"
+                className="text-blue-400 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("dev_by_3")}
+              </a>{" "}
+              {t("dev_by_4")}{" "}
+              <a
+                href="https://www.linkedin.com/in/nabil-el-maaroufi-0385ab232/"
+                className="text-blue-400 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              .
+            </p>
           </div>
 
           <div className="border-t border-gray-800 py-8 text-center text-gray-400">

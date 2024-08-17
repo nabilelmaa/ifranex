@@ -53,7 +53,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="md:flex">
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 bg-gray-50">
               <Image
                 src={service.banner}
                 alt={service.title}
@@ -61,7 +61,7 @@ const BookingPage: React.FC<{ service: ServiceProps }> = ({ service }) => {
                 height={300}
                 className="w-full h-64 object-cover"
               />
-              <div className="p-6 bg-gray-50">
+              <div className="p-6">
                 <h3 className="text-2xl font-bold mb-2 text-gray-800">
                   {service.title}
                 </h3>

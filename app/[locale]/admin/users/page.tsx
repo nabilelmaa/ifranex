@@ -13,11 +13,11 @@ import {
   CardTitle,
   CardDescription,
 } from "@/app/components/ui/card";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import UserActions from "@/app/components/UserActions";
 
 interface User {
-  id: string;
+  id: string; 
   profilePicture: string;
   username: string;
   email: string;
@@ -53,9 +53,13 @@ const fetchUsers = async (): Promise<User[]> => {
     },
   });
 
-  return users.map((user: { createdAt: { toISOString: () => any; }; }) => ({
-    ...user,
-    createdAt: user.createdAt.toISOString(), 
+  return users.map((user: { id: any; profilePicture: any; username: any; email: any; password: any; createdAt: { toISOString: () => any; }; }) => ({
+    id: user.id,
+    profilePicture: user.profilePicture,
+    username: user.username,
+    email: user.email,
+    password: user.password,
+    createdAt: user.createdAt.toISOString(),
   }));
 };
 

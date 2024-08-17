@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import LocalSwitcher from "./locale-switcher";
 import dynamic from "next/dynamic";
@@ -198,15 +198,15 @@ export const Navbar = () => {
                     href={`/${locale}`}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <div className="relative w-[82px] h-[82px] md:w-[120px] md:h-[120px]">
-                      <Image
-                        src="/ifranex-2.png"
-                        alt="logo"
-                        layout="fill"
-                        sizes="(max-width: 768px) 82px, 120px"
-                        className="object-contain"
-                      />
-                    </div>
+                    <Image
+                      src="/ifranex-2.png"
+                      alt="Ifranex logo"
+                      width={60}
+                      height={40}
+                      sizes="(max-width: 768px) 80px, 120px"
+                      className="cursor-pointer object-contain w-auto h-[32px] md:h-[40px]"
+                      priority
+                    />
                   </Link>
                 </div>
                 <ul className="flex-grow flex flex-col items-start px-6 py-2 gap-2 font-semibold">

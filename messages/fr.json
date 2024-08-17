@@ -140,7 +140,11 @@
         "emergency_plumber": "Plombier d'urgence",
         "get_in_touch": "Contactez-nous",
         "ifrane_morocco": "Ifrane, Maroc",
-        "company_description": "offre des services de réparation et de bricolage à domicile de première qualité. Nos professionnels qualifiés garantissent que votre maison reste en parfait état avec précision et soin."
+        "company_description": "offre des services de réparation et de bricolage à domicile de première qualité. Nos professionnels qualifiés garantissent que votre maison reste en parfait état avec précision et soin.",
+        "dev_by_1": "Développé par",
+        "dev_by_2": "un développeur full-stack passionné.",
+        "dev_by_3": "Consultez mon portfolio",
+        "dev_by_4": " ou connectez-vous avec moi sur"
     },
     "BookingForm": {
         "title": "Veuillez remplir le formulaire",

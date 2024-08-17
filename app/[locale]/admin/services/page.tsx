@@ -14,7 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/app/components/ui/table";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { ServiceForm } from "@/app/components/forms/ServiceForm";
 import { useToast } from "@/contexts/ToastContext";
 import { lineWobble } from "ldrs";

@@ -140,7 +140,11 @@
         "baby_sitting": "Babysitting",
         "get_in_touch": "Get in Touch",
         "ifrane_morocco": "Ifrane, Morocco",
-        "company_description": "offers top-notch home repair and handywork services. Our skilled professionals ensure your home stays in perfect shape with precision and care."
+        "company_description": "offers top-notch home repair and handywork services. Our skilled professionals ensure your home stays in perfect shape with precision and care.",
+        "dev_by_1": "Developed by",
+        "dev_by_2": "a passionate full-stack developer.",
+        "dev_by_3": "Check out my portfolio",
+        "dev_by_4": " or connect with me on"
     },
     "BookingForm": {
         "title": "Fill the form please",
@@ -240,8 +244,8 @@
         "comment": "Comment",
         "all_reviews": "All Reviews",
         "total_reviews": "Total Reviews",
-        "reviews_loaded":"Reviews loaded successfully.",
-        "reviews_not_loaded":"Failed to fetch reviews."
+        "reviews_loaded": "Reviews loaded successfully.",
+        "reviews_not_loaded": "Failed to fetch reviews."
     },
     "MobileApp": {
         "title": "Get our free app",
