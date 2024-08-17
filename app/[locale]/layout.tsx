@@ -1,4 +1,3 @@
-// pages/_app.tsx or pages/_document.tsx
 import type { Metadata } from "next";
 import "../globals.css";
 import { Navbar } from "@/app/components/Navbar";
@@ -26,10 +25,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <Head>
+      <head>
         <meta
           name="google-site-verification"
-          content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
+          content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwsz"
         />
         <meta
           name="description"
@@ -40,9 +39,8 @@ export default async function LocaleLayout({
           content="home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX"
         />
         <meta name="robots" content="index, follow" />
-
         <link rel="canonical" href="https://ifranex.vercel.app" />
-      </Head>
+      </head>
       <body>
         <NextIntlClientProvider messages={messages}>
           <AuthProvider>
