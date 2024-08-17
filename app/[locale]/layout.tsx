@@ -36,7 +36,7 @@ export default async function LocaleLayout({
         />
         <meta
           name="keywords"
-          content="home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX"
+          content="home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX, ifrane"
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://ifranex.vercel.app" />
