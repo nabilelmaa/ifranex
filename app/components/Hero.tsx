@@ -81,7 +81,7 @@ export const Hero = () => {
           l'électricité à la menuiserie et la peinture, nous nous occupons de
           tout avec précision et soin. Laissez-nous vous aider à garder votre
           maison en parfait état. Réservez votre service dès aujourd'hui et
-          faites la différence."
+          faites la différence.
         </>
       ),
       getStarted: "Commencer",

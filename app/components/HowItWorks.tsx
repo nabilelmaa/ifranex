@@ -1,6 +1,6 @@
-import React from "react";
-import StepCard from "./StepCard";
 import { useTranslations } from "next-intl";
+import StepCard from "./StepCard";
+import { useInView } from "@/app/components/hooks/useInView";
 
 interface Step {
   title: string;
@@ -48,14 +48,26 @@ export const HowItWorks: React.FC = () => {
           {t("how_it_works")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-24">
-          {steps.slice(0, 3).map((step, index) => (
-            <StepCard key={step.title} {...step} index={index} />
-          ))}
+          {steps.slice(0, 3).map((step, index) => {
+            const [ref, isInView] = useInView();
+
+            return (
+              <div key={step.title} ref={ref}>
+                <StepCard {...step} index={index} isInView={isInView} />
+              </div>
+            );
+          })}
         </div>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-24 md:w-2/3 mx-auto">
-          {steps.slice(3).map((step, index) => (
-            <StepCard key={step.title} {...step} index={index + 3} />
-          ))}
+          {steps.slice(3).map((step, index) => {
+            const [ref, isInView] = useInView();
+
+            return (
+              <div key={step.title} ref={ref}>
+                <StepCard {...step} index={index + 3} isInView={isInView} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

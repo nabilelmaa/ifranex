@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { useInView } from "@/app/components/useInView";
+import { useInView } from "@/app/components/hooks/useInView";
 
 export const WhyUs = () => {
   const t = useTranslations("Us");
@@ -50,8 +50,8 @@ export const WhyUs = () => {
 
             return (
               <div
-                ref={ref}
                 key={index}
+                ref={ref}
                 className={`transform transition-transform duration-500 ${
                   isInView
                     ? "opacity-100 translate-y-0"

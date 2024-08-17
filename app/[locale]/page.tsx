@@ -13,7 +13,7 @@ import { HowItWorks } from "@/app/components/HowItWorks";
 export default function Home() {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 750,
       easing: "ease-in-out",
       once: true,
     });
