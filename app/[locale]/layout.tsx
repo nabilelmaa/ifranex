@@ -38,7 +38,7 @@ export default async function LocaleLayout({
         <meta name="robots" content="index, follow" />
         <meta
           name="google-site-verification"
-          content="pZPXaEwtvOCy1x5QMS-PBuLFUoXgEJVExC9h0dLhugc"
+          content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
         />
         <link rel="canonical" href="https://ifranex.vercel.app" />
       </Head>
