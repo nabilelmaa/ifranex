@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useAuth } from "@/contexts/AuthContext";
 import LocalSwitcher from "./locale-switcher";
 import dynamic from "next/dynamic";
@@ -84,16 +84,6 @@ export const Navbar = () => {
                       className="cursor-pointer mr-2 object-contain"
                       priority
                     />
-                    {/* <span className="hidden lg:block md:block">
-                      <Image
-                        src="/ifranex.png"
-                        alt="Ifranex logo"
-                        width={120}
-                        height={32}
-                        priority
-                        className="cursor-pointer object-contain"
-                      />
-                    </span> */}
                   </div>
                 </Link>
               </div>
