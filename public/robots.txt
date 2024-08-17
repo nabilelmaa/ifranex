@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ifranex.vercel.app
+
+# Sitemaps
+Sitemap: https://ifranex.vercel.app/sitemap.xml
