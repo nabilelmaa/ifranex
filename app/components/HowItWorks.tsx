@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import StepCard from "./StepCard";
 import { useTranslations } from "next-intl";
 
 interface Step {
@@ -7,30 +7,6 @@ interface Step {
   description: string;
   icon: string;
 }
-
-const StepCard: React.FC<Step & { index: number }> = ({
-  title,
-  description,
-  icon,
-  index,
-}) => {
-  return (
-    <div className="relative flex flex-col h-full border rounded-md shadow-sm cursor-pointer duration-50 bg-white p-4">
-      <div className="absolute -top-4 -left-4 w-12 h-12 bg-tertiaryCol rounded-full flex items-center justify-center text-primaryCol text-xl font-bold">
-        {index + 1}
-      </div>
-      <div className="relative w-full h-40 mb-4 overflow-hidden">
-        <Image src={icon} alt={title} layout="fill" objectFit="contain" />
-      </div>
-      <div className="flex-grow px-4 text-center">
-        <h3 className="font-semibold text-md lg:text-lg md:text-lg">{title}</h3>
-        <p className="text-sm text-gray-700 lg:text-md md:text-md mt-2">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-};
 
 export const HowItWorks: React.FC = () => {
   const t = useTranslations("How");
@@ -71,7 +47,7 @@ export const HowItWorks: React.FC = () => {
         <h2 className="text-xl lg:text-3xl md:text-2xl text-center font-bold text-gray-900 mb-12">
           {t("how_it_works")}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-24 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-24">
           {steps.slice(0, 3).map((step, index) => (
             <StepCard key={step.title} {...step} index={index} />
           ))}

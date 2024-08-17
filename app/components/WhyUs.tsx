@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
+import { useInView } from "@/app/components/useInView";
 
 export const WhyUs = () => {
   const t = useTranslations("Us");
@@ -44,26 +45,37 @@ export const WhyUs = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <Card
-              key={index}
-              className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <CardHeader className="flex flex-col items-center space-y-1">
-                <div className="rounded-full bg-tertiaryCol p-3 mb-2">
-                  <Image src={feature.icon} alt="" width={32} height={32} />
-                </div>
-                <CardTitle className="text-lg lg:text-2xl md:text-2xl font-semibold text-center">
-                  {t(feature.title)}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 text-center text-md lg:text-lg md:text-lg">
-                  {t(feature.description)}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+          {features.map((feature, index) => {
+            const [ref, isInView] = useInView();
+
+            return (
+              <div
+                ref={ref}
+                key={index}
+                className={`transform transition-transform duration-500 ${
+                  isInView
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+              >
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardHeader className="flex flex-col items-center space-y-1">
+                    <div className="rounded-full bg-tertiaryCol p-3 mb-2">
+                      <Image src={feature.icon} alt="" width={32} height={32} />
+                    </div>
+                    <CardTitle className="text-lg lg:text-2xl md:text-2xl font-semibold text-center">
+                      {t(feature.title)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 text-center text-md lg:text-lg md:text-lg">
+                      {t(feature.description)}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
