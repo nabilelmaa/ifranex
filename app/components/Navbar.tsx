@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import LocalSwitcher from "./locale-switcher";
 import dynamic from "next/dynamic";
