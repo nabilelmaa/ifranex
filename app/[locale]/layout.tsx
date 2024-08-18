@@ -43,8 +43,8 @@ export default async function LocaleLayout({
           name="keywords"
           content={
             locale === "en"
-              ? "home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX, ifrane"
-              : "réparation maison, bricolage, entretien maison, services de réparation experts, ifranex, IfraneX, ifrane"
+              ? "home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX, ifrane, ifranx, Ifranx"
+              : "réparation maison, bricolage, entretien maison, services de réparation experts, ifranex, IfraneX, ifrane, ifranx, Ifranx"
           }
         />
         <meta name="robots" content="index, follow" />
