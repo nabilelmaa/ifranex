@@ -26,20 +26,48 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+        {/* Google Site Verification */}
         <meta
           name="google-site-verification"
           content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
         />
+
+        {/* SEO Meta Tags */}
         <meta
           name="description"
-          content="IfraneX offers top-notch home repair and handywork services. Discover our range of services and get your home in shape with our expert team."
+          content={
+            locale === "en"
+              ? "IfraneX offers top-notch home repair and handywork services. Discover our range of services and get your home in shape with our expert team."
+              : "IfraneX propose des services de réparation et de bricolage de premier ordre. Découvrez notre gamme de services et remettez votre maison en état avec notre équipe d'experts."
+          }
         />
         <meta
           name="keywords"
-          content="home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX, ifrane"
+          content={
+            locale === "en"
+              ? "home repair, handywork, home maintenance, expert repair services, ifranex, IfraneX, ifrane"
+              : "réparation maison, bricolage, entretien maison, services de réparation experts, ifranex, IfraneX, ifrane"
+          }
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://ifranex.vercel.app" />
+        
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href={`https://ifranex.vercel.app/${locale}`}
+        />
+
+        {/* Hreflang for SEO */}
+        <link
+          rel="alternate"
+          href="https://ifranex.vercel.app/en"
+          hrefLang="en"
+        />
+        <link
+          rel="alternate"
+          href="https://ifranex.vercel.app/fr"
+          hrefLang="fr"
+        />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
