@@ -79,8 +79,8 @@ export const Navbar = () => {
                     <Image
                       src="/app-logo.svg"
                       alt="Home logo icon"
-                      width={42}
-                      height={42}
+                      width={38}
+                      height={38}
                       className="cursor-pointer mr-2 object-contain"
                       priority
                     />

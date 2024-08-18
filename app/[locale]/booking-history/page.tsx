@@ -33,7 +33,7 @@ import { Button } from "@/app/components/ui/button";
 
 const statusIcons: { [key: string]: string } = {
   Pending: "/pending.svg",
-  Canceled: "/canceled.svg",
+  Canceled: "/canceled-icon.svg",
   Confirmed: "/confirmed-icon.svg",
   Completed: "/completed-icon.svg",
 };
