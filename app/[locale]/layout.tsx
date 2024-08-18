@@ -26,13 +26,11 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
-        {/* Google Site Verification */}
         <meta
           name="google-site-verification"
           content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
         />
-
-        {/* SEO Meta Tags */}
+        <meta property="og:site_name" content="IfraneX" />
         <meta
           name="description"
           content={
@@ -51,7 +49,6 @@ export default async function LocaleLayout({
         />
         <meta name="robots" content="index, follow" />
 
-        {/* Canonical URL */}
         <link rel="canonical" href={`https://ifranex.vercel.app/${locale}`} />
 
         {/* Hreflang for SEO */}
