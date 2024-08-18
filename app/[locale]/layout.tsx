@@ -30,6 +30,10 @@ export default async function LocaleLayout({
           name="google-site-verification"
           content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
         />
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-3131838246288728"
+        ></meta>
         <meta property="og:site_name" content="IfraneX" />
         <meta
           name="description"
