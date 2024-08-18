@@ -3,6 +3,8 @@ import { db } from '@/lib/db';
 import nodemailer from 'nodemailer';
 import { verifyToken } from '@/lib/auth';
 import { BookingDetails } from "@/types/index"
+import path from 'path';
+import fs from 'fs';
 
 const sendBookingEmail = async (email: string, bookingDetails: BookingDetails) => {
   const transporter = nodemailer.createTransport({
@@ -12,6 +14,9 @@ const sendBookingEmail = async (email: string, bookingDetails: BookingDetails) =
       pass: process.env.EMAIL_PASSWORD,
     },
   });
+
+  const logoPath = path.join(process.cwd(), 'public', 'logo-app.svg');
+  const logoBase64 = fs.readFileSync(logoPath, { encoding: 'base64' });
 
   const mailOptions = {
     from: process.env.EMAIL,
@@ -56,6 +61,10 @@ const sendBookingEmail = async (email: string, bookingDetails: BookingDetails) =
           <p style="color: #020617; margin-bottom: 20px;">If you have any questions or need to make changes, please feel free to contact us.</p>
           
           <p style="color: #020617; font-weight: bold; margin-top: 40px;">The Ifrane<span style="color: #4338ca;">X</span> Team</p>
+          
+          <div style="text-align: center; margin-top: 30px;">
+            <img src="data:image/svg+xml;base64,${logoBase64}" alt="App Logo" style="max-width: 150px;">
+          </div>
         </div>
       </div>
     `,
