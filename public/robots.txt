@@ -1,32 +1,9 @@
-# Allow all crawlers
+# *
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /private/
-Disallow: /admin/
 
 # Host
 Host: https://ifranex.vercel.app
 
 # Sitemaps
 Sitemap: https://ifranex.vercel.app/sitemap.xml
-Sitemap: https://ifranex.vercel.app/sitemap-0.xml
-
-# Crawl-delay directive (optional, adjust if needed)
-Crawl-delay: 10
-
-# Prevent indexing of search result pages (if applicable)
-Disallow: /search
-
-# Prevent indexing of user-specific pages (if applicable)
-Disallow: /user/
-
-# Allow indexing of important directories (if applicable)
-Allow: /images/
-Allow: /styles/
-Allow: /scripts/
-
-# Specific instructions for Googlebot (optional)
-User-agent: Googlebot
-Allow: /*.js$
-Allow: /*.css$

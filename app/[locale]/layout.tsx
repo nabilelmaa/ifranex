@@ -50,12 +50,9 @@ export default async function LocaleLayout({
           }
         />
         <meta name="robots" content="index, follow" />
-        
+
         {/* Canonical URL */}
-        <link
-          rel="canonical"
-          href={`https://ifranex.vercel.app/${locale}`}
-        />
+        <link rel="canonical" href={`https://ifranex.vercel.app/${locale}`} />
 
         {/* Hreflang for SEO */}
         <link
@@ -68,6 +65,8 @@ export default async function LocaleLayout({
           href="https://ifranex.vercel.app/fr"
           hrefLang="fr"
         />
+
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
