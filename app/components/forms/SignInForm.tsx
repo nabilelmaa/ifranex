@@ -91,12 +91,12 @@ export const SignInForm: React.FC = () => {
     <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
       <div className="flex justify-center mb-4">
         <Image
-          src="/ifranex-2.png"
-          alt="logo"
-          width={82}
-          height={82}
-          layout="intrinsic"
-
+          src="/app-logo.svg"
+          alt="Home logo icon"
+          width={40}
+          height={40}
+          className="cursor-pointer mr-2 object-contain"
+          priority
         />
       </div>
       <h2 className="text-xl font-bold text-center">{t("welcome_message")}</h2>

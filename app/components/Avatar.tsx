@@ -347,20 +347,19 @@ const Avatar = () => {
                 </button>
               </li>
             </ul>
-            <hr className="flex-grow border-gray-300" />
-            <div className="py-1">
+            <div>
               <button
                 onClick={logout}
-                className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
+                className="block w-full px-4 py-2 text-sm text-left text-gray-700 bg-red-100 hover:bg-red-200 transition-all duration-300 rounded-b-md"
               >
                 <div className="flex items-center">
                   <Image
-                    src="/log-out.svg"
+                    src="/log-out-icon.svg"
                     alt="log-out-icon"
                     width={17}
                     height={17}
                   />
-                  <p className="ml-2 text-red-500 font-semibold">
+                  <p className="ml-2 text-red-600 font-semibold">
                     {t("log_out")}
                   </p>
                 </div>

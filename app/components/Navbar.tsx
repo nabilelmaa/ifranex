@@ -77,7 +77,6 @@ export const Navbar = () => {
                 <Link href={`/${locale}`}>
                   <div className="flex items-center gap-1">
                     <Image
-                      // src="/homehome.PNG"
                       src="/app-logo.svg"
                       alt="Home logo icon"
                       width={42}

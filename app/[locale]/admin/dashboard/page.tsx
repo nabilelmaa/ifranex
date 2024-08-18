@@ -413,14 +413,16 @@ const Dashboard = () => {
                     <div className="flex items-center lg:justify-between md:justify-between gap-2 cursor-pointer">
                       {booking.status === "Pending" && (
                         <>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
+                          <div className="w-10 h-10 custom-cursor-pointer flex items-center justify-center">
                             {loadingStates[booking.id] === "confirm" ? (
-                              <l-tailspin
-                                size="14"
-                                stroke="1"
-                                speed="0.6"
-                                color="black"
-                              ></l-tailspin>
+                              <div className="h-8 w-8 border rounded-lg bg-[#1868FF] flex items-center justify-center">
+                                <l-tailspin
+                                  size="14"
+                                  stroke="1"
+                                  speed="0.6"
+                                  color="white"
+                                ></l-tailspin>
+                              </div>
                             ) : (
                               <Image
                                 src="/confirmed-icon.svg"
@@ -431,14 +433,16 @@ const Dashboard = () => {
                               />
                             )}
                           </div>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
+                          <div className="w-10 h-10 custom-cursor-pointer flex items-center justify-center">
                             {loadingStates[booking.id] === "cancel" ? (
-                              <l-tailspin
-                                size="14"
-                                stroke="1"
-                                speed="0.6"
-                                color="black"
-                              ></l-tailspin>
+                              <div className="h-8 w-8 border rounded-lg bg-[#FF2C2C] flex items-center justify-center">
+                                <l-tailspin
+                                  size="14"
+                                  stroke="1"
+                                  speed="0.6"
+                                  color="white"
+                                ></l-tailspin>
+                              </div>
                             ) : (
                               <Image
                                 src="/canceled-icon.svg"
@@ -454,14 +458,16 @@ const Dashboard = () => {
 
                       {booking.status === "Confirmed" && (
                         <>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
+                          <div className="w-10 h-10 custom-cursor-pointer flex items-center justify-center">
                             {loadingStates[booking.id] === "complete" ? (
-                              <l-tailspin
-                                size="14"
-                                stroke="1"
-                                speed="0.6"
-                                color="black"
-                              ></l-tailspin>
+                              <div className="h-8 w-8 border rounded-lg bg-[#00D021] flex items-center justify-center">
+                                <l-tailspin
+                                  size="14"
+                                  stroke="1"
+                                  speed="0.6"
+                                  color="white"
+                                ></l-tailspin>
+                              </div>
                             ) : (
                               <Image
                                 src="/completed-icon.svg"
@@ -472,14 +478,16 @@ const Dashboard = () => {
                               />
                             )}
                           </div>
-                          <div className="flex justify-center items-center p-2 border border-gray-200 rounded-md w-10 h-10 custom-cursor-pointer">
+                          <div className="w-10 h-10 custom-cursor-pointer flex items-center justify-center">
                             {loadingStates[booking.id] === "cancel" ? (
-                              <l-tailspin
-                                size="14"
-                                stroke="1"
-                                speed="0.6"
-                                color="black"
-                              ></l-tailspin>
+                              <div className="h-8 w-8 border rounded-lg bg-[#FF2C2C] flex items-center justify-center">
+                                <l-tailspin
+                                  size="14"
+                                  stroke="1"
+                                  speed="0.6"
+                                  color="white"
+                                ></l-tailspin>
+                              </div>
                             ) : (
                               <Image
                                 src="/canceled-icon.svg"
