@@ -294,19 +294,20 @@ const Avatar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 w-52 mt-2 bg-white border rounded-lg shadow-lg z-10"
+            className="absolute right-0 w-52 mt-2 bg-white rounded-lg shadow-md z-10 custom-colorful-shadow"
+            style={{ fontFamily: "Arial, sans-serif" }}
           >
-            <div className="px-4 py-3 text-sm text-gray-900 text-center">
-              <div>{user?.username}</div>
-              <div className="font-semibold truncate text-gray-700 text-xs">
+            <div className="px-4 py-3 text-sm text-zinc-900">
+              <div className="font-semibold">{user?.username}</div>
+              <div className="text-xs text-zinc-600 truncate">
                 {user?.email}
               </div>
             </div>
 
-            <ul className="py-2 text-sm text-gray-700">
+            <ul className="py-1">
               <li>
                 <button
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100"
+                  className="flex items-center w-full px-4 py-2 text-sm text-zinc-800 hover:bg-gray-100 transition-all duration-300"
                   onClick={() => {
                     (
                       document.getElementById("account") as HTMLDialogElement
@@ -314,20 +315,18 @@ const Avatar = () => {
                     setIsOpen(false);
                   }}
                 >
-                  <div className="flex items-center">
-                    <Image
-                      src="/settings.svg"
-                      alt="user"
-                      width={17}
-                      height={17}
-                    />
-                    <p className="ml-2">{t("manage_acc")}</p>
-                  </div>
+                  <Image
+                    src="/settings.svg"
+                    alt="user"
+                    width={16}
+                    height={16}
+                  />
+                  <p className="ml-2">{t("manage_acc")}</p>
                 </button>
               </li>
               <li>
                 <button
-                  className="block px-4 py-2 w-full text-left hover:bg-gray-100"
+                  className="flex items-center w-full px-4 py-2 text-sm text-zinc-800 hover:bg-gray-100 transition-all duration-300"
                   onClick={() => {
                     (
                       document.getElementById("rating") as HTMLDialogElement
@@ -335,34 +334,28 @@ const Avatar = () => {
                     setIsOpen(false);
                   }}
                 >
-                  <div className="flex items-center">
-                    <Image
-                      src="/review.svg"
-                      alt="review"
-                      width={17}
-                      height={17}
-                    />
-                    <p className="ml-2">{t("rate_us")}</p>
-                  </div>
+                  <Image
+                    src="/review.svg"
+                    alt="review"
+                    width={16}
+                    height={16}
+                  />
+                  <p className="ml-2">{t("rate_us")}</p>
                 </button>
               </li>
             </ul>
             <div>
               <button
                 onClick={logout}
-                className="block w-full px-4 py-2 text-sm text-left text-gray-700 bg-red-100 hover:bg-red-200 transition-all duration-300 rounded-b-md"
+                className="flex items-center w-full px-4 py-2 text-sm text-zinc-800 hover:bg-gray-100 transition-all duration-300 rounded-b-lg"
               >
-                <div className="flex items-center">
-                  <Image
-                    src="/log-out-icon.svg"
-                    alt="log-out-icon"
-                    width={17}
-                    height={17}
-                  />
-                  <p className="ml-2 text-red-600 font-semibold">
-                    {t("log_out")}
-                  </p>
-                </div>
+                <Image
+                  src="/log-out-icon.svg"
+                  alt="log-out-icon"
+                  width={16}
+                  height={16}
+                />
+                <p className="ml-2">{t("log_out")}</p>
               </button>
             </div>
           </motion.div>
@@ -603,7 +596,7 @@ const Avatar = () => {
             >
               {t("cancel")}
             </Button>
-            <Button variant="outline" className="w-28" onClick={handleSave}>
+            <Button className="w-28 bg-slate-100 hover:bg-slate-200 text-black" onClick={handleSave}>
               {isLoading ? (
                 <l-tail-chase
                   size="20"

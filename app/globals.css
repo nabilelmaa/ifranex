@@ -151,3 +151,9 @@ body {
 .custom-cursor-text {
   cursor: url("/cursor_text_fill.svg"), text;
 }
+
+.custom-colorful-shadow {
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1),
+    /* indigo-600 */ 0 2px 4px -1px rgba(109, 40, 217, 0.06),
+    /* violet-700 */ 0 0 0 1px rgba(126, 34, 206, 0.08); /* purple-700 */
+}
