@@ -96,7 +96,21 @@ export const ResetPassword: React.FC = () => {
           showToast(t("reset_success"), "success");
           router.push(`/${locale}/login`);
         } else {
-          setErrorMessage(data.message || t("failed_to_reset_password"));
+          setError(true);
+          setError(true);
+          if (locale === "en") {
+            if (data.message === "Invalid verification code") {
+              setErrorMessage(t("invalid_code"));
+            } else {
+              setErrorMessage(t("failed_to_reset_password"));
+            }
+          } else {
+            if (data.message === "Invalid verification code") {
+              setErrorMessage(t("invalid_code"));
+            } else {
+              setErrorMessage(t("failed_to_reset_password"));
+            }
+          }
         }
         setLoading(false);
       }

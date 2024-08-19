@@ -77,7 +77,20 @@ export const SignUpForm: React.FC = () => {
           showToast(t("account_created"), "success");
           router.push(`/${locale}/services`);
         } else {
-          setErrorMessage(data.message || t("failed_to_verify"));
+          setError(true);
+          if (locale === "en") {
+            if (data.message === "Invalid verification code") {
+              setErrorMessage(t("invalid_code"));
+            } else {
+              setErrorMessage(t("user_exist"));
+            }
+          } else {
+            if (data.message === "Invalid verification code") {
+              setErrorMessage(t("invalid_code"));
+            } else {
+              setErrorMessage(t("user_exist"));
+            }
+          }
         }
         setLoading(false);
       }

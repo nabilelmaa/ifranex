@@ -91,7 +91,7 @@
         "code_sent": "Code de vérification envoyé!",
         "verification_code": "Entrer le code de vérification",
         "account_created": "Compte créé avec succès!",
-        "invalid_code": "Code de vérification invalide!",
+        "invalid_code": "Code de vérification invalide !",
         "failed_to_send_code": "Échec de l'envoi de l'e-mail de vérification !",
         "fill_fields": "Veuillez remplir tous les champs.",
         "failed_to_verify": "Échec de la vérification de l'e-mail!",
