@@ -119,29 +119,6 @@ export const SignInForm: React.FC = () => {
             <p className="ms-3 text-xs lg:text-sm md:text-sm font-medium">
               {t("error_message_login")}
             </p>
-            <button
-              type="button"
-              className="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"
-              data-dismiss-target="#alert-border-2"
-              aria-label="Close"
-            >
-              <span className="sr-only">Dismiss</span>
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
-            </button>
           </div>
         )}
       </div>
