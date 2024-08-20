@@ -61,7 +61,8 @@
         "book_now": "Book now",
         "see_all_services": "See all services",
         "title": "Our Services",
-        "description": "Discover a range of services tailored to meet all your needs. From professional cleaning to tech support, we have it all covered."
+        "description": "Discover a range of services tailored to meet all your needs. From professional cleaning to tech support, we have it all covered.",
+        "hour": "hour"
     },
     "How": {
         "step1": "Create an account or log in to get started.",

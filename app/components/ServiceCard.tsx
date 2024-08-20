@@ -33,7 +33,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
         <h2 className="text-xl font-bold">
           <span className="text-[12px] font-light">MAD </span>
           {service.pricePerHour}
-          <span className="text-[12px] font-light">/hour</span>
+          <span className="text-[12px] font-light">/{t("hour")}</span>
         </h2>
       </div>
       <div className="mt-auto px-2 mb-2">
