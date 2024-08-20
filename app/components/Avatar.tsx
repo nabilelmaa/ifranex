@@ -394,8 +394,7 @@ const Avatar = () => {
               {t("cancel")}
             </Button>
             <Button
-              variant="outline"
-              className="w-28"
+              className="w-28 bg-slate-100 hover:bg-slate-200 text-black"
               onClick={handleSubmitRating}
             >
               {isLoading ? (
@@ -596,7 +595,10 @@ const Avatar = () => {
             >
               {t("cancel")}
             </Button>
-            <Button className="w-28 bg-slate-100 hover:bg-slate-200 text-black" onClick={handleSave}>
+            <Button
+              className="w-28 bg-slate-100 hover:bg-slate-200 text-black"
+              onClick={handleSave}
+            >
               {isLoading ? (
                 <l-tail-chase
                   size="20"

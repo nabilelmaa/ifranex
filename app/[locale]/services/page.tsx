@@ -1,5 +1,6 @@
 "use client";
 
+import { Metadata } from "next";
 import { SetStateAction, useEffect, useState } from "react";
 import { ServiceProps } from "@/types/index";
 import { useLocale, useTranslations } from "next-intl";
@@ -13,6 +14,39 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/components/ui/select";
+
+export const metadata: Metadata = {
+  title: "Services - IfraneX Home Repair and Handywork",
+  description:
+    "Explore a wide range of home repair and handywork services offered by IfraneX. Find the right service for your home improvement needs and book with our expert team today.",
+  keywords:
+    "home repair services, handywork services, home maintenance, home improvement, ifranex services, expert repair services, book home repair",
+  openGraph: {
+    title: "Services - IfraneX Home Repair and Handywork",
+    description:
+      "Explore a wide range of home repair and handywork services offered by IfraneX. Find the right service for your home improvement needs and book with our expert team today.",
+    url: "https://ifranex.vercel.app/services",
+    type: "website",
+    siteName: "IfraneX",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services - IfraneX Home Repair and Handywork",
+    description:
+      "Explore a wide range of home repair and handywork services offered by IfraneX. Find the right service for your home improvement needs and book with our expert team today.",
+  },
+  alternates: {
+    canonical: "https://ifranex.vercel.app/services",
+    languages: {
+      en: "https://ifranex.vercel.app/en/services",
+      fr: "https://ifranex.vercel.app/fr/services",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const Skeleton = () => (
   <div className="flex flex-col h-full border rounded-md shadow-lg bg-gray-100 animate-pulse">
@@ -93,7 +127,7 @@ const Page: React.FC = () => {
 
   return (
     <div className="min-h-screen lg:p-12 md:p-6 space-y-6 p-2 lg:mt-0 mt-20">
-     <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
+      <div className="hidden lg:block mt-10 mb-4 breadcrumbs text-sm">
         <ul>
           <li>
             <a href={`/${locale}`}>{t("nav_home")}</a>

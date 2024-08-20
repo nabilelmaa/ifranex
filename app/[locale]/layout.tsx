@@ -55,7 +55,6 @@ export default async function LocaleLayout({
 
         <link rel="canonical" href={`https://ifranex.vercel.app/${locale}`} />
 
-        {/* Hreflang for SEO */}
         <link
           rel="alternate"
           href="https://ifranex.vercel.app/en"

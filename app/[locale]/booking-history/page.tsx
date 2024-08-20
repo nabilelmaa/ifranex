@@ -32,10 +32,10 @@ import {
 import { Button } from "@/app/components/ui/button";
 
 const statusIcons: { [key: string]: string } = {
-  Pending: "/pending.svg",
-  Canceled: "/canceled-icon.svg",
-  Confirmed: "/confirmed-icon.svg",
-  Completed: "/completed-icon.svg",
+  Pending: "/pending_.svg",
+  Canceled: "/canceled_.svg",
+  Confirmed: "/confirmed_.svg",
+  Completed: "/completed_.svg",
 };
 
 const BookingHistory: React.FC = () => {
