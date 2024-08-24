@@ -161,7 +161,7 @@ export const Navbar = () => {
                       <Avatar />
                     ) : (
                       <Link href={`/${locale}/login`}>
-                        <button className="hidden lg:block ml-8 px-4 py-3 text-sm font-semibold leading-none bg-white rounded-full shadow-md transition duration-100">
+                        <button className="hidden lg:block ml-8 px-4 py-3 w-32 text-sm font-semibold leading-none bg-white rounded-full shadow-md transition duration-100">
                           {t("login_button")}
                         </button>
                       </Link>
