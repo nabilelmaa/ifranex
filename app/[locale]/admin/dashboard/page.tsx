@@ -405,6 +405,7 @@ const Dashboard = () => {
                           ? "completed"
                           : "outline"
                       }
+                      className="w-20"
                     >
                       {translateStatus(booking.status as Status)}
                     </Badge>
