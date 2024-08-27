@@ -358,20 +358,20 @@ export const SignUpForm: React.FC = () => {
       </div>
       <div className="col-span-6 mt-6">
         <p className="text-sm text-gray-500">
-          By creating an account, you agree to our
+          {t("by_creating")}
           <a
             href={`/${locale}/terms&conditions`}
             className="text-indigo-700 underline"
           >
             {" "}
-            terms and conditions{" "}
+            {t("terms_and_conditions")}{" "}
           </a>
-          and{" "}
+          {t("and")}{" "}
           <a
             href={`/${locale}/privacy&policy`}
             className="text-indigo-700 underline"
           >
-            privacy policy
+            {t("privacy_policy")}
           </a>
           .
         </p>

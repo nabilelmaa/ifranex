@@ -108,7 +108,11 @@
         "return": "Retour à la connexion",
         "passwords_not_match": "Les champs de mot de passe ne correspondent pas.",
         "password_8_characters": "Le nouveau mot de passe doit comporter au moins 8 caractères.",
-        "password_8_must_be_characters": "Mot de passe doit comporter au moins 8 caractères."
+        "password_8_must_be_characters": "Mot de passe doit comporter au moins 8 caractères.",
+        "by_creating": "En créant un compte, vous acceptez nos",
+        "terms_and_conditions": "termes et conditions",
+        "and": "et",
+        "privacy_policy": "politique de confidentialité"
     },
     "LoginForm": {
         "welcome_message": "Bienvenue à nouveau",
