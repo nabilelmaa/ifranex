@@ -28,7 +28,7 @@ export default async function LocaleLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="_Y7ML4gZWIySGLRKsVPsMiCRuaK58uL1TL4sqwszDmg"
+          content="pZPXaEwtvOCy1x5QMS-PBuLFUoXgEJVExC9h0dLhugc"
         />
         <meta property="og:title" content="IfraneX" />
         <meta

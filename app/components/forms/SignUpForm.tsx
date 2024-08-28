@@ -75,6 +75,7 @@ export const SignUpForm: React.FC = () => {
 
         if (response.ok) {
           showToast(t("account_created"), "success");
+          
           router.push(`/${locale}/services`);
         } else {
           setError(true);
