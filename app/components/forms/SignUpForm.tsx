@@ -75,7 +75,7 @@ export const SignUpForm: React.FC = () => {
 
         if (response.ok) {
           showToast(t("account_created"), "success");
-          
+
           router.push(`/${locale}/services`);
         } else {
           setError(true);
@@ -158,7 +158,7 @@ export const SignUpForm: React.FC = () => {
   tailspin.register();
 
   return (
-    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white rounded-xl">
+    <div className="p-8 md:w-1/3 lg:w-1/4 bg-white">
       <div className="flex justify-center mb-4">
         <Image
           src="/app-logo.svg"
