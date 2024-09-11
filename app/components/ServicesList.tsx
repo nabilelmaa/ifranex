@@ -117,7 +117,7 @@ export const ServicesList: React.FC = () => {
             style={{ width: "200%" }}
           >
             {loading
-              ? Array.from({ length: 5 }).map((_, index) => (
+              ? Array.from({ length: 6 }).map((_, index) => (
                   <div key={index} className="flex-shrink-0 w-44 sm:w-64">
                     <ServicesCardSkeleton />
                   </div>
