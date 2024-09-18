@@ -7,22 +7,26 @@ import Link from "next/link";
 import { FaChevronRight } from "react-icons/fa6";
 import { ServiceProps } from "@/types/index";
 import { gsap } from "gsap";
+import { Card } from "@/app/components/ui/card";
 import { motion } from "framer-motion";
 
 const ServicesCardSkeleton = () => {
   return (
-    <div className="flex flex-col h-full overflow-hidden border rounded-lg shadow-lg bg-white animate-pulse">
-      <div className="relative w-full h-32 sm:h-48 bg-gray-200"></div>
-      <div className="flex flex-col flex-grow p-3 sm:p-4 space-y-2 sm:space-y-4">
-        <div className="w-3/4 h-4 sm:h-6 bg-gray-200 rounded"></div>
-        <div className="flex-grow space-y-1 sm:space-y-2">
-          <div className="w-full h-3 sm:h-4 bg-gray-200 rounded"></div>
-          <div className="w-5/6 h-3 sm:h-4 bg-gray-200 rounded"></div>
-          <div className="w-2/3 h-3 sm:h-4 bg-gray-200 rounded"></div>
+    <Card className="group relative overflow-hidden h-64 transition-all duration-300 hover:shadow-lg animate-pulse">
+      <div className="absolute inset-0 bg-gray-200"></div>
+      <div className="relative h-full flex flex-col justify-between p-6">
+        <div>
+          <div className="w-20 h-6 bg-gray-300 rounded mb-3"></div>
+          <div className="w-3/4 h-6 bg-gray-300 rounded mb-2"></div>
+          <div className="w-full h-4 bg-gray-300 rounded mb-1"></div>
+          <div className="w-5/6 h-4 bg-gray-300 rounded mb-1"></div>
+          <div className="w-4/5 h-4 bg-gray-300 rounded mb-4"></div>
         </div>
-        <div className="w-1/3 h-4 sm:h-6 bg-gray-200 rounded mt-auto"></div>
+        <div className="mt-auto">
+          <div className="w-full h-8 bg-gray-300 rounded"></div>
+        </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
