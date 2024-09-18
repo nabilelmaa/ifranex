@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const Avatar = () => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const locale = useLocale();
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const colors = ["bg-gray-300"];
   const { showToast } = useToast();
@@ -424,7 +424,7 @@ const Avatar = () => {
           <h3 className="font-bold text-lg mb-6">{t("edit_profile")}</h3>
           <Tabs aria-label="Options">
             <Tab key="personal-info" title={t("personal_info")}>
-              <div className="grid gap-4 py-4 h-full overflow-y-auto">
+              <div className="grid gap-4 py-4 h-[260px] oveflow-y-auto">
                 <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 group">
                   <Image
                     src={user?.profilePicture || "/user-avatar.svg"}
@@ -456,6 +456,21 @@ const Avatar = () => {
                 </div>
                 <div className="relative">
                   <input
+                    id="email"
+                    value={user?.email}
+                    readOnly
+                    className="bg-gray-100 cursor-not-allowed  block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900  rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0"
+                    placeholder=""
+                  />
+                  <label
+                    htmlFor="email"
+                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-indigo-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+                  >
+                    Email
+                  </label>
+                </div>
+                <div className="relative">
+                  <input
                     id="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -472,7 +487,7 @@ const Avatar = () => {
               </div>
             </Tab>
             <Tab key="security" title={t("security")}>
-              <div className="flex flex-col gap-4 py-4 h-auto overflow-y-auto">
+              <div className="flex flex-col gap-4 py-4 h-[260px] overflow-y-auto">
                 {error && (
                   <div
                     id="alert-border-2"
