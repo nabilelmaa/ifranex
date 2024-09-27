@@ -7,11 +7,28 @@ import { getMessages } from "next-intl/server";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "IfraneX - Home Repair and Handywork Services",
   description:
     "IfraneX offers top-notch home repair and handywork services. Discover our range of services and get your home in shape with our expert team.",
+  openGraph: {
+    title: "IfraneX - Home Repair and Handywork Services",
+    description: "Top-notch home repair and handywork services in Ifrane.",
+    url: "https://ifranex.vercel.app",
+    siteName: "IfraneX",
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://ifranex.vercel.app",
+    languages: {
+      "en": "https://ifranex.vercel.app/en",
+      "fr": "https://ifranex.vercel.app/fr",
+    },
+  },
+  robots: "index, follow",
 };
 
 export default async function LocaleLayout({
@@ -30,19 +47,9 @@ export default async function LocaleLayout({
           name="google-site-verification"
           content="pZPXaEwtvOCy1x5QMS-PBuLFUoXgEJVExC9h0dLhugc"
         />
-        <meta property="og:title" content="IfraneX" />
         <meta
           name="google-adsense-account"
           content="ca-pub-3131838246288728"
-        ></meta>
-        <meta property="og:site_name" content="IfraneX" />
-        <meta
-          name="description"
-          content={
-            locale === "en"
-              ? "IfraneX offers top-notch home repair and handywork services. Discover our range of services and get your home in shape with our expert team."
-              : "IfraneX propose des services de réparation et de bricolage de premier ordre. Découvrez notre gamme de services et remettez votre maison en état avec notre équipe d'experts."
-          }
         />
         <meta
           name="keywords"
@@ -52,21 +59,6 @@ export default async function LocaleLayout({
               : "réparation maison, bricolage, entretien maison, services de réparation experts, ifranex, IfraneX, ifrane, ifranx, Ifranx"
           }
         />
-        <meta name="robots" content="index, follow" />
-
-        <link rel="canonical" href={`https://ifranex.vercel.app/${locale}`} />
-
-        <link
-          rel="alternate"
-          href="https://ifranex.vercel.app/en"
-          hrefLang="en"
-        />
-        <link
-          rel="alternate"
-          href="https://ifranex.vercel.app/fr"
-          hrefLang="fr"
-        />
-
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
@@ -82,6 +74,32 @@ export default async function LocaleLayout({
             </ToastProvider>
           </AuthProvider>
         </NextIntlClientProvider>
+        <Script id="schema-structured-data" type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "IfraneX",
+              "description": "IfraneX offers top-notch home repair and handywork services.",
+              "url": "https://ifranex.vercel.app",
+              "sameAs": [
+                "https://www.facebook.com/IfraneX",
+                "https://www.instagram.com/IfraneX"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "123 Main St",
+                "addressLocality": "Ifrane",
+                "addressRegion": "Fès-Meknès",
+                "postalCode": "53000",
+                "addressCountry": "MA"
+              },
+              "telephone": "+212-5XX-XXXXXX",
+              "openingHours": "Mo-Fr 09:00-18:00",
+              "priceRange": "$$"
+            }
+          `}
+        </Script>
       </body>
     </html>
   );

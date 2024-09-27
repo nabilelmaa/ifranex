@@ -3,7 +3,7 @@ import { ToastSuccess } from "@/app/components/ui/toast-success";
 import { ToastFailed } from "@/app/components/ui/toast-fail";
 import { ToastAlert } from "@/app/components/ui/toast-alert";
 import { createContext, ReactNode, useContext, useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Toast {
   show: boolean;
@@ -26,9 +26,29 @@ export const useToast = (): ToastContextType => {
 };
 
 const toastVariants = {
-  hidden: { opacity: 0, x: 100 },
-  visible: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 100 }
+  hidden: {
+    opacity: 0,
+    y: -50,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 24,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 20,
+    scale: 0.9,
+    transition: {
+      duration: 0.2,
+    },
+  },
 };
 
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
@@ -55,13 +75,15 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       <AnimatePresence>
         {toast.show && (
           <motion.div
-            className="fixed top-4 right-4 z-50 pointer-events-none"
+            className="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={toastVariants}
           >
-            {toast.type === "success" && <ToastSuccess message={toast.message} />}
+            {toast.type === "success" && (
+              <ToastSuccess message={toast.message} />
+            )}
             {toast.type === "error" && <ToastFailed message={toast.message} />}
             {toast.type === "alert" && <ToastAlert message={toast.message} />}
           </motion.div>

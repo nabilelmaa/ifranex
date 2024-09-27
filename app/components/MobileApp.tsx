@@ -22,8 +22,8 @@ export const MobileApp = () => {
                 <Image
                   src="/play-store.svg"
                   alt="play-store"
-                  width={46}
-                  height={46}
+                  width={42}
+                  height={42}
                 />
                 <p className="mr-2 font-semibold text-white text-xs lg:text-md md:text-md">
                   {t("download")} <span className="font-bold">Play Store</span>
@@ -31,7 +31,7 @@ export const MobileApp = () => {
               </div>
             </button>
             <Link href="https://apps.apple.com/ma/app/facebook/id284882215">
-              <button className="p-1 border border-black rounded-md">
+              <button className="p-1 border border-black rounded-md bg-white">
                 <div className="flex items-center justify-center">
                   <Image
                     src="/app-store.svg"
@@ -39,7 +39,7 @@ export const MobileApp = () => {
                     width={46}
                     height={46}
                   />
-                  <p className="font-semibold text-xs lg:text-md md:text-md">
+                  <p className="mr-2 font-semibold text-xs lg:text-md md:text-md">
                     {t("download")} <span className="font-bold">App Store</span>
                   </p>
                 </div>
