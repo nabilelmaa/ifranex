@@ -126,7 +126,7 @@ export const ServicesList: React.FC = () => {
                     <ServicesCardSkeleton />
                   </div>
                 ))
-              : services.slice(0, 6).map((service, index) => (
+              : services.map((service, index) => (
                   <motion.div
                     key={index}
                     ref={(el) => {
