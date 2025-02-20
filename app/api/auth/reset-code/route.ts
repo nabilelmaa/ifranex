@@ -18,7 +18,7 @@ const sendVerificationEmail = async (email: string, code: string) => {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL,
+    from: `"IfraneX" <${process.env.EMAIL}>`,
     to: email,
     subject: 'Password Reset Request',
     html: `
