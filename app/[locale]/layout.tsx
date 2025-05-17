@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://ifranex.vercel.app",
     languages: {
-      "en": "https://ifranex.vercel.app/en",
-      "fr": "https://ifranex.vercel.app/fr",
+      en: "https://ifranex.vercel.app/en",
+      fr: "https://ifranex.vercel.app/fr",
     },
   },
   robots: "index, follow",
@@ -47,10 +47,7 @@ export default async function LocaleLayout({
           name="google-site-verification"
           content="pZPXaEwtvOCy1x5QMS-PBuLFUoXgEJVExC9h0dLhugc"
         />
-        <meta
-          name="google-adsense-account"
-          content="ca-pub-3131838246288728"
-        />
+        <meta name="google-adsense-account" content="ca-pub-3131838246288728" />
         <meta
           name="keywords"
           content={
@@ -66,9 +63,9 @@ export default async function LocaleLayout({
           <SpeedInsights />
           <AuthProvider>
             <ToastProvider>
-              <Navbar />
-              <main>{children}</main>
-              <div className="lg:px-12 md:px-12">
+              <div className="lg:px-24">
+                <Navbar />
+                <main>{children}</main>
                 <Footer />
               </div>
             </ToastProvider>

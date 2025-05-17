@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
@@ -50,7 +51,7 @@ export const Navbar = () => {
   const isResetPasswowrdPage = pathname === `/${locale}/reset-password`;
 
   return (
-    <>
+    <div>
       {!isLoginPage &&
         !isRegisterPage &&
         !isDashboardPage &&
@@ -59,7 +60,7 @@ export const Navbar = () => {
         !isUsersPage &&
         !isResetPasswowrdPage && (
           <>
-            <nav className="flex items-center justify-between lg:px-8 px-2 py-3 fixed top-0 left-0 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-blur-ios backdrop-saturate-150">
+            <nav className="flex items-center justify-between py-3 fixed top-0 left-0 right-0 lg:px-32 w-full z-50 bg-white bg-opacity-70 backdrop-blur-md backdrop-blur-ios backdrop-saturate-150">
               <div className="flex items-center">
                 {(isHomePage || !isHomePage) && (
                   <div className="lg:hidden mr-4 rounded-md">
@@ -345,6 +346,6 @@ export const Navbar = () => {
             </div>
           </>
         )}
-    </>
+    </div>
   );
 };

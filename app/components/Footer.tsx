@@ -137,7 +137,7 @@ export const Footer = () => {
               , {t("dev_by_2")}
               <br />
               <a
-                href="https://nabilel-portfolio.vercel.app"
+                href="https://nabilelmaaroufi.site"
                 className="text-blue-400 hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
